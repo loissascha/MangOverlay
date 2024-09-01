@@ -1,0 +1,13 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "mangohud-configurator",
+  "outputfilename": "mangohud-configurator",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "Sascha Loishandl",
+    "email": "sascha.loishandl@gmail.com"
+  }
+}
