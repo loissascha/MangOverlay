@@ -32,7 +32,7 @@ func LoadConfig() {
 			case "round_corners":
 				r := strings.TrimSpace(val)
 				fmt.Println("round corners found", r)
-				ConfigGlobal.RoundCorners = r == "1"
+				ConfigGlobal.RoundCorners = (r != "0")
 				break
 			}
 			continue
@@ -83,8 +83,6 @@ func getConfigFile() []string {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
-		//line = strings.TrimSpace(line)
-
 		result = append(result, line)
 	}
 	return result

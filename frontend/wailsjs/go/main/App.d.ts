@@ -7,6 +7,8 @@ export function GetRoundCorners():Promise<boolean>;
 
 export function ResetConfig():Promise<void>;
 
+export function RestartVkcube():Promise<void>;
+
 export function SetOrientation(arg1:string):Promise<void>;
 
 export function SetRoundedCorners(arg1:boolean):Promise<void>;

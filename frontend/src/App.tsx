@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import GeneralSettings from "./pages/GeneralSettings";
-import { GetOrientation, SetOrientation, GetRoundCorners, SetRoundedCorners, ResetConfig } from "../wailsjs/go/main/App";
+import { GetOrientation, SetOrientation, GetRoundCorners, SetRoundedCorners, ResetConfig, RestartVkcube } from "../wailsjs/go/main/App";
 import Button from "./ui/Button";
 
 function App() {
@@ -61,6 +61,9 @@ function App() {
             <footer className="bg-gray-700 p-2">
                 <Button click={() => { ResetConfig(); }}>
                     Reset
+                </Button>
+                <Button click={() => { RestartVkcube(); }}>
+                    Restart VkCube
                 </Button>
             </footer>
         </div >

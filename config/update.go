@@ -9,9 +9,9 @@ import (
 func (c *Config) SetRoundedCorners(n bool) {
 	c.RoundCorners = n
 	if n {
-		updateConfigLine("round_corners", "1")
+		updateConfigLine("round_corners", "10", true)
 	} else {
-		updateConfigLine("round_corners", "0")
+		updateConfigLine("round_corners", "0", true)
 	}
 }
 
@@ -32,6 +32,7 @@ func deleteConfigLine(n string) {
 	cf := getConfigFile()
 	newFile := ""
 	for _, v := range cf {
+		org := v
 		if strings.Contains(v, "#") {
 			before, _, _ := strings.Cut(v, "#")
 			v = before
@@ -44,14 +45,14 @@ func deleteConfigLine(n string) {
 			if cmd == n {
 				continue
 			}
-			newFile += v + "\n"
+			newFile += org + "\n"
 			continue
 		}
 		nv := strings.TrimSpace(v)
 		if nv == n {
 			continue
 		}
-		newFile += v + "\n"
+		newFile += org + "\n"
 	}
 	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
 }
@@ -66,11 +67,12 @@ func addConfigLine(n string) {
 	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
 }
 
-func updateConfigLine(c string, n string) {
+func updateConfigLine(c string, n string, addIfMissing bool) {
 	cf := getConfigFile()
 	newFile := ""
 	lineFound := false
 	for _, v := range cf {
+		org := v
 		if strings.Contains(v, "#") {
 			before, _, _ := strings.Cut(v, "#")
 			v = before
@@ -84,12 +86,12 @@ func updateConfigLine(c string, n string) {
 				lineFound = true
 				continue
 			}
-			newFile += v + "\n"
+			newFile += org + "\n"
 			continue
 		}
-		newFile += v + "\n"
+		newFile += org + "\n"
 	}
-	if !lineFound {
+	if !lineFound && addIfMissing {
 		newFile += c + "=" + n
 	}
 	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)

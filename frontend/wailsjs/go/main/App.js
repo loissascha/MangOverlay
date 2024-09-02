@@ -14,6 +14,10 @@ export function ResetConfig() {
   return window['go']['main']['App']['ResetConfig']();
 }
 
+export function RestartVkcube() {
+  return window['go']['main']['App']['RestartVkcube']();
+}
+
 export function SetOrientation(arg1) {
   return window['go']['main']['App']['SetOrientation'](arg1);
 }
