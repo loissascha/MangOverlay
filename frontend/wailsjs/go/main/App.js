@@ -58,6 +58,10 @@ export function GetRoundCorners() {
   return window['go']['main']['App']['GetRoundCorners']();
 }
 
+export function GetTextColor() {
+  return window['go']['main']['App']['GetTextColor']();
+}
+
 export function GetVramColor() {
   return window['go']['main']['App']['GetVramColor']();
 }
@@ -128,6 +132,10 @@ export function SetRamColor(arg1) {
 
 export function SetRoundedCorners(arg1) {
   return window['go']['main']['App']['SetRoundedCorners'](arg1);
+}
+
+export function SetTextColor(arg1) {
+  return window['go']['main']['App']['SetTextColor'](arg1);
 }
 
 export function SetVramColor(arg1) {

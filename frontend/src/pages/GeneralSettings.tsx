@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { GetBatteryColor, GetCpuColor, GetEngineColor, GetFrametimeColor, GetGpuColor, GetIoColor, GetMediaColor, GetNetworkColor, GetRamColor, GetVramColor, GetWineColor, SetBatteryColor, SetCpuColor, SetEngineColor, SetFrametimeColor, SetGpuColor, SetIoColor, SetMediaColor, SetNetworkColor, SetRamColor, SetVramColor, SetWineColor, GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, GetFontSize, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetFontSize, SetOrientation } from "../../wailsjs/go/main/App";
+import { GetBatteryColor, GetCpuColor, GetEngineColor, GetFrametimeColor, GetGpuColor, GetIoColor, GetMediaColor, GetNetworkColor, GetRamColor, GetVramColor, GetWineColor, SetBatteryColor, SetCpuColor, SetEngineColor, SetFrametimeColor, SetGpuColor, SetIoColor, SetMediaColor, SetNetworkColor, SetRamColor, SetVramColor, SetWineColor, GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, GetFontSize, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetFontSize, SetOrientation, GetTextColor, SetTextColor } from "../../wailsjs/go/main/App";
 import SettingBox from "../general/SettingBox";
 
 function GeneralSettings() {
     const [gpuColor, setGpuColor] = useState<string>("");
+    const [textColor, setTextColor] = useState<string>("");
     const [cpuColor, setCpuColor] = useState<string>("");
     const [vramColor, setVramColor] = useState<string>("");
     const [ramColor, setRamColor] = useState<string>("");
@@ -21,6 +22,9 @@ function GeneralSettings() {
     const [backgroundAlpha, setBackgroundAlpha] = useState<string>("");
 
     useEffect(() => {
+        GetTextColor().then((r) => {
+            setTextColor(r)
+        })
         GetOrientation().then((or) => {
             setOrientation(or);
         });
@@ -244,6 +248,11 @@ function GeneralSettings() {
                                 type="text"
                                 id="textcolor"
                                 className="w-28 bg-gray-700"
+                                defaultValue={textColor}
+                                onChange={(event) => {
+                                    setTextColor(event.target.value)
+                                    SetTextColor(event.target.value)
+                                }}
                             />
                         </div>
                     </SettingBox>

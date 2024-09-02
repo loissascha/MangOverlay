@@ -29,6 +29,8 @@ export function GetRamColor():Promise<string>;
 
 export function GetRoundCorners():Promise<boolean>;
 
+export function GetTextColor():Promise<string>;
+
 export function GetVramColor():Promise<string>;
 
 export function GetWineColor():Promise<string>;
@@ -64,6 +66,8 @@ export function SetOrientation(arg1:string):Promise<void>;
 export function SetRamColor(arg1:string):Promise<void>;
 
 export function SetRoundedCorners(arg1:boolean):Promise<void>;
+
+export function SetTextColor(arg1:string):Promise<void>;
 
 export function SetVramColor(arg1:string):Promise<void>;
 

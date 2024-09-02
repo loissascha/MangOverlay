@@ -46,6 +46,13 @@ func (a *App) SetFontSize(n string) {
 	config.ConfigGlobal.SetFontSize(n)
 }
 
+func (a *App) GetTextColor() string {
+	return config.ConfigGlobal.TextColor
+}
+func (a *App) SetTextColor(n string) {
+	config.ConfigGlobal.SetTextColor(n)
+}
+
 func (a *App) GetGpuColor() string {
 	return config.ConfigGlobal.GpuColor
 }

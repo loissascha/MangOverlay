@@ -59,6 +59,16 @@ func (c *Config) SetGpuColor(n string) {
 	updateConfigLine("gpu_color", n, true)
 }
 
+func (c *Config) SetTextColor(n string) {
+	c.TextColor = n
+	n = strings.TrimPrefix(n, "#")
+	if n == "" {
+		deleteConfigLine("text_color")
+		return
+	}
+	updateConfigLine("text_color", n, true)
+}
+
 func (c *Config) SetCpuColor(n string) {
 	c.CpuColor = n
 	n = strings.TrimPrefix(n, "#")
