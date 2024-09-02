@@ -278,9 +278,9 @@ function GeneralSettings() {
                         <div className="grid grid-cols-2 gap-3">
                             <label htmlFor="fontsize" className="me-2">Size:</label>
                             <input
-                                type="text"
+                                type="number"
                                 id="fontsize"
-                                className="w-28 bg-gray-700"
+                                className="w-28 bg-gray-700 p-1 border rounded text-center"
                                 defaultValue={fontSize}
                                 onChange={(event) => {
                                     setFontSize(event.target.value)
