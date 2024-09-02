@@ -34,17 +34,63 @@ func LoadConfig() {
 				fmt.Println("round corners found", r)
 				ConfigGlobal.RoundCorners = (r != "0")
 				break
+
 			case "background_color":
 				r := strings.TrimSpace(val)
 				ConfigGlobal.Background = "#" + r
 				break
-			case "background_alpha":
-				r := strings.TrimSpace(val)
-				ConfigGlobal.BackgroundAlpha = r
-				break
 			case "text_color":
 				r := strings.TrimSpace(val)
 				ConfigGlobal.TextColor = "#" + r
+				break
+			case "gpu_color":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.GpuColor = "#" + r
+				break
+			case "cpu_color":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.CpuColor = "#" + r
+				break
+			case "vram_color":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.VramColor = "#" + r
+				break
+			case "ram_color":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.RamColor = "#" + r
+				break
+			case "engine_color":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.EngineColor = "#" + r
+				break
+			case "io_color":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.IoColor = "#" + r
+				break
+			case "frametime_color":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.FrametimeColor = "#" + r
+				break
+			case "media_player_color":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.MediaColor = "#" + r
+				break
+			case "wine_color":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.WineColor = "#" + r
+				break
+			case "battery_color":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.BatteryColor = "#" + r
+				break
+			case "network_color":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.NetworkColor = "#" + r
+				break
+
+			case "background_alpha":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.BackgroundAlpha = r
 				break
 			case "font_size":
 				r := strings.TrimSpace(val)
@@ -111,6 +157,17 @@ func setDefaults() {
 	ConfigGlobal.BackgroundAlpha = "0.8"
 	ConfigGlobal.FontSize = "24"
 	ConfigGlobal.TextColor = "#ffffff"
+	ConfigGlobal.GpuColor = ""
+	ConfigGlobal.CpuColor = ""
+	ConfigGlobal.VramColor = ""
+	ConfigGlobal.RamColor = ""
+	ConfigGlobal.EngineColor = ""
+	ConfigGlobal.IoColor = ""
+	ConfigGlobal.FrametimeColor = ""
+	ConfigGlobal.MediaColor = ""
+	ConfigGlobal.WineColor = ""
+	ConfigGlobal.BatteryColor = ""
+	ConfigGlobal.NetworkColor = ""
 }
 
 func createConfigIfNotExist() {
