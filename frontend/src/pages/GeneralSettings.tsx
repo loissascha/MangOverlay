@@ -13,14 +13,32 @@ function GeneralSettings() {
     const [showCpuPicker, setShowCpuPicker] = useState<boolean>(false);
 
     const [vramColor, setVramColor] = useState<string>("");
+    const [showVramPicker, setShowVramPicker] = useState<boolean>(false);
+
     const [ramColor, setRamColor] = useState<string>("");
+    const [showRamPicker, setShowRamPicker] = useState<boolean>(false);
+
     const [engineColor, setEngineColor] = useState<string>("");
+    const [showEnginePicker, setShowEnginePicker] = useState<boolean>(false);
+
     const [ioColor, setIoColor] = useState<string>("");
+    const [showIoPicker, setShowIoPicker] = useState<boolean>(false);
+
     const [frametimeColor, setFrametimeColor] = useState<string>("");
+    const [showFrametimePicker, setShowFrametimePicker] = useState<boolean>(false);
+
     const [mediaColor, setMediaColor] = useState<string>("");
+    const [showMediaPicker, setShowMediaPicker] = useState<boolean>(false);
+
     const [wineColor, setWineColor] = useState<string>("");
+    const [showWinePicker, setShowWinePicker] = useState<boolean>(false);
+
     const [batteryColor, setBatteryColor] = useState<string>("");
+    const [showBatteryPicker, setShowBatteryPicker] = useState<boolean>(false);
+
     const [networkColor, setNetworkColor] = useState<string>("");
+    const [showNetworkPicker, setShowNetworkPicker] = useState<boolean>(false);
+
     const [orientation, setOrientation] = useState<string>("");
     const [rounded, setRounded] = useState<boolean>(false);
     const [fontSize, setFontSize] = useState<string>("");
@@ -323,104 +341,257 @@ function GeneralSettings() {
                                 </div>) : null}
                         </div>
                         <label htmlFor="vramcolor" className="me-2">VRAM:</label>
-                        <input
-                            type="text"
-                            id="vramcolor"
-                            className="w-28 bg-gray-700"
-                            defaultValue={vramColor}
-                            onChange={(event) => {
-                                setVramColor(event.target.value)
-                                SetVramColor(event.target.value)
-                            }}
-                        />
+                        <div>
+                            <button
+                                style={{
+                                    backgroundColor: "#" + vramColor
+                                }}
+                                onClick={() => {
+                                    setShowVramPicker(!showVramPicker)
+                                }}
+                                className="cursor-pointer p-1 rounded border"
+                            >
+                                {vramColor}
+                            </button>
+                            {showVramPicker ? (
+                                <div className="absolute z-50 text-black">
+                                    <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
+                                        setShowVramPicker(false)
+                                    }}> </div>
+                                    <SketchPicker color={vramColor} onChange={(color) => {
+                                        let col = color.hex;
+                                        if (col[0] == "#") {
+                                            col = col.substring(1)
+                                        }
+                                        setVramColor(col)
+                                        SetVramColor(col)
+                                    }} />
+                                </div>) : null}
+                        </div>
                         <label htmlFor="ramcolor" className="me-2">RAM:</label>
-                        <input
-                            type="text"
-                            id="ramcolor"
-                            className="w-28 bg-gray-700"
-                            defaultValue={ramColor}
-                            onChange={(event) => {
-                                setRamColor(event.target.value)
-                                SetRamColor(event.target.value)
-                            }}
-                        />
+                        <div>
+                            <button
+                                style={{
+                                    backgroundColor: "#" + ramColor
+                                }}
+                                onClick={() => {
+                                    setShowRamPicker(!showRamPicker)
+                                }}
+                                className="cursor-pointer p-1 rounded border"
+                            >
+                                {ramColor}
+                            </button>
+                            {showRamPicker ? (
+                                <div className="absolute z-50 text-black">
+                                    <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
+                                        setShowRamPicker(false)
+                                    }}> </div>
+                                    <SketchPicker color={ramColor} onChange={(color) => {
+                                        let col = color.hex;
+                                        if (col[0] == "#") {
+                                            col = col.substring(1)
+                                        }
+                                        setRamColor(col)
+                                        SetRamColor(col)
+                                    }} />
+                                </div>) : null}
+                        </div>
                         <label htmlFor="enginecolor" className="me-2">Engine:</label>
-                        <input
-                            type="text"
-                            id="enginecolor"
-                            className="w-28 bg-gray-700"
-                            defaultValue={engineColor}
-                            onChange={(event) => {
-                                setEngineColor(event.target.value)
-                                SetEngineColor(event.target.value)
-                            }}
-                        />
+                        <div>
+                            <button
+                                style={{
+                                    backgroundColor: "#" + engineColor
+                                }}
+                                onClick={() => {
+                                    setShowEnginePicker(!showEnginePicker)
+                                }}
+                                className="cursor-pointer p-1 rounded border"
+                            >
+                                {engineColor}
+                            </button>
+                            {showEnginePicker ? (
+                                <div className="absolute z-50 text-black">
+                                    <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
+                                        setShowEnginePicker(false)
+                                    }}> </div>
+                                    <SketchPicker color={engineColor} onChange={(color) => {
+                                        let col = color.hex;
+                                        if (col[0] == "#") {
+                                            col = col.substring(1)
+                                        }
+                                        setEngineColor(col)
+                                        SetEngineColor(col)
+                                    }} />
+                                </div>) : null}
+                        </div>
                         <label htmlFor="iocolor" className="me-2">IO:</label>
-                        <input
-                            type="text"
-                            id="iocolor"
-                            className="w-28 bg-gray-700"
-                            defaultValue={ioColor}
-                            onChange={(event) => {
-                                setIoColor(event.target.value)
-                                SetIoColor(event.target.value)
-                            }}
-                        />
+                        <div>
+                            <button
+                                style={{
+                                    backgroundColor: "#" + ioColor
+                                }}
+                                onClick={() => {
+                                    setShowIoPicker(!showIoPicker)
+                                }}
+                                className="cursor-pointer p-1 rounded border"
+                            >
+                                {ioColor}
+                            </button>
+                            {showIoPicker ? (
+                                <div className="absolute z-50 text-black">
+                                    <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
+                                        setShowIoPicker(false)
+                                    }}> </div>
+                                    <SketchPicker color={ioColor} onChange={(color) => {
+                                        let col = color.hex;
+                                        if (col[0] == "#") {
+                                            col = col.substring(1)
+                                        }
+                                        setIoColor(col)
+                                        SetIoColor(col)
+                                    }} />
+                                </div>) : null}
+                        </div>
                         <label htmlFor="frametimecolor" className="me-2">Frametime:</label>
-                        <input
-                            type="text"
-                            id="frametimecolor"
-                            className="w-28 bg-gray-700"
-                            defaultValue={frametimeColor}
-                            onChange={(event) => {
-                                setFrametimeColor(event.target.value)
-                                SetFrametimeColor(event.target.value)
-                            }}
-                        />
+                        <div>
+                            <button
+                                style={{
+                                    backgroundColor: "#" + frametimeColor
+                                }}
+                                onClick={() => {
+                                    setShowFrametimePicker(!showFrametimePicker)
+                                }}
+                                className="cursor-pointer p-1 rounded border"
+                            >
+                                {frametimeColor}
+                            </button>
+                            {showFrametimePicker ? (
+                                <div className="absolute z-50 text-black">
+                                    <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
+                                        setShowFrametimePicker(false)
+                                    }}> </div>
+                                    <SketchPicker color={frametimeColor} onChange={(color) => {
+                                        let col = color.hex;
+                                        if (col[0] == "#") {
+                                            col = col.substring(1)
+                                        }
+                                        setFrametimeColor(col)
+                                        SetFrametimeColor(col)
+                                    }} />
+                                </div>) : null}
+                        </div>
                         <label htmlFor="mediacolor" className="me-2">Media Player:</label>
-                        <input
-                            type="text"
-                            id="mediacolor"
-                            className="w-28 bg-gray-700"
-                            defaultValue={mediaColor}
-                            onChange={(event) => {
-                                setMediaColor(event.target.value)
-                                SetMediaColor(event.target.value)
-                            }}
-                        />
+                        <div>
+                            <button
+                                style={{
+                                    backgroundColor: "#" + mediaColor
+                                }}
+                                onClick={() => {
+                                    setShowMediaPicker(!showMediaPicker)
+                                }}
+                                className="cursor-pointer p-1 rounded border"
+                            >
+                                {mediaColor}
+                            </button>
+                            {showMediaPicker ? (
+                                <div className="absolute z-50 text-black">
+                                    <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
+                                        setShowMediaPicker(false)
+                                    }}> </div>
+                                    <SketchPicker color={mediaColor} onChange={(color) => {
+                                        let col = color.hex;
+                                        if (col[0] == "#") {
+                                            col = col.substring(1)
+                                        }
+                                        setMediaColor(col)
+                                        SetMediaColor(col)
+                                    }} />
+                                </div>) : null}
+                        </div>
                         <label htmlFor="winecolor" className="me-2">Wine:</label>
-                        <input
-                            type="text"
-                            id="winecolor"
-                            className="w-28 bg-gray-700"
-                            defaultValue={wineColor}
-                            onChange={(event) => {
-                                setWineColor(event.target.value)
-                                SetWineColor(event.target.value)
-                            }}
-                        />
+                        <div>
+                            <button
+                                style={{
+                                    backgroundColor: "#" + wineColor
+                                }}
+                                onClick={() => {
+                                    setShowWinePicker(!showWinePicker)
+                                }}
+                                className="cursor-pointer p-1 rounded border"
+                            >
+                                {wineColor}
+                            </button>
+                            {showWinePicker ? (
+                                <div className="absolute z-50 text-black">
+                                    <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
+                                        setShowWinePicker(false)
+                                    }}> </div>
+                                    <SketchPicker color={wineColor} onChange={(color) => {
+                                        let col = color.hex;
+                                        if (col[0] == "#") {
+                                            col = col.substring(1)
+                                        }
+                                        setWineColor(col)
+                                        SetWineColor(col)
+                                    }} />
+                                </div>) : null}
+                        </div>
                         <label htmlFor="batterycolor" className="me-2">Battery:</label>
-                        <input
-                            type="text"
-                            id="batterycolor"
-                            className="w-28 bg-gray-700"
-                            defaultValue={batteryColor}
-                            onChange={(event) => {
-                                setBatteryColor(event.target.value)
-                                SetBatteryColor(event.target.value)
-                            }}
-                        />
+                        <div>
+                            <button
+                                style={{
+                                    backgroundColor: "#" + batteryColor
+                                }}
+                                onClick={() => {
+                                    setShowBatteryPicker(!showBatteryPicker)
+                                }}
+                                className="cursor-pointer p-1 rounded border"
+                            >
+                                {batteryColor}
+                            </button>
+                            {showBatteryPicker ? (
+                                <div className="absolute z-50 text-black">
+                                    <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
+                                        setShowBatteryPicker(false)
+                                    }}> </div>
+                                    <SketchPicker color={batteryColor} onChange={(color) => {
+                                        let col = color.hex;
+                                        if (col[0] == "#") {
+                                            col = col.substring(1)
+                                        }
+                                        setBatteryColor(col)
+                                        SetBatteryColor(col)
+                                    }} />
+                                </div>) : null}
+                        </div>
                         <label htmlFor="networkcolor" className="me-2">Network:</label>
-                        <input
-                            type="text"
-                            id="networkcolor"
-                            className="w-28 bg-gray-700"
-                            defaultValue={networkColor}
-                            onChange={(event) => {
-                                setNetworkColor(event.target.value)
-                                SetNetworkColor(event.target.value)
-                            }}
-                        />
+                        <div>
+                            <button
+                                style={{
+                                    backgroundColor: "#" + networkColor
+                                }}
+                                onClick={() => {
+                                    setShowNetworkPicker(!showNetworkPicker)
+                                }}
+                                className="cursor-pointer p-1 rounded border"
+                            >
+                                {networkColor}
+                            </button>
+                            {showNetworkPicker ? (
+                                <div className="absolute z-50 text-black">
+                                    <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
+                                        setShowNetworkPicker(false)
+                                    }}> </div>
+                                    <SketchPicker color={networkColor} onChange={(color) => {
+                                        let col = color.hex;
+                                        if (col[0] == "#") {
+                                            col = col.substring(1)
+                                        }
+                                        setNetworkColor(col)
+                                        SetNetworkColor(col)
+                                    }} />
+                                </div>) : null}
+                        </div>
                     </div>
                 </SettingBox>
 
