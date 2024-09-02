@@ -104,10 +104,10 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded }: P
 
             <SettingBox header="Position">
                 <div>
-                    <label htmlFor="textcolor" className="me-2">Text Color:</label>
+                    <label htmlFor="position" className="me-2">Position</label>
                     <input
                         type="text"
-                        id="textcolor"
+                        id="position"
                         className="w-28"
                     />
                 </div>
@@ -115,10 +115,10 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded }: P
 
             <SettingBox header="Keybinds">
                 <div>
-                    <label htmlFor="textcolor" className="me-2">Text Color:</label>
+                    <label htmlFor="showhide" className="me-2">Show/Hide:</label>
                     <input
                         type="text"
-                        id="textcolor"
+                        id="showhide"
                         className="w-28"
                     />
                 </div>
