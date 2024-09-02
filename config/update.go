@@ -28,6 +28,27 @@ func (c *Config) SetOrientation(n string) {
 	}
 }
 
+func (c *Config) SetBackgroundColor(n string) {
+	c.Background = n
+	n = strings.TrimPrefix(n, "#")
+	if n == "" {
+		deleteConfigLine("background_color")
+		return
+	}
+	updateConfigLine("background_color", n, true)
+}
+
+func (c *Config) SetBackgroundAlpha(n string) {
+	c.BackgroundAlpha = n
+	fmt.Println("SetBackgroundAlpha update")
+	updateConfigLine("background_alpha", n, true)
+}
+
+func (c *Config) SetFontSize(n string) {
+	c.FontSize = n
+	updateConfigLine("font_size", n, true)
+}
+
 func deleteConfigLine(n string) {
 	cf := getConfigFile()
 	newFile := ""

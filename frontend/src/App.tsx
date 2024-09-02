@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
 import GeneralSettings from "./pages/GeneralSettings";
-import { GetOrientation, SetOrientation, GetRoundCorners, SetRoundedCorners, ResetConfig, RestartVkcube } from "../wailsjs/go/main/App";
+import { GetOrientation, SetOrientation, GetRoundCorners, SetRoundedCorners, ResetConfig, RestartVkcube, GetBackgroundColor, SetBackgroundColor, GetBackgroundAlpha, SetBackgroundAlpha, GetFontSize, SetFontSize } from "../wailsjs/go/main/App";
 import Button from "./ui/Button";
 
 function App() {
     const [activeMenu, setActiveMenu] = useState<string>("general");
     const [orientation, setOrientation] = useState<string>("");
     const [rounded, setRounded] = useState<boolean>(false);
+    const [backgroundColor, setBackgroundColor] = useState<string>("");
+    const [backgroundAlpha, setBackgroundAlpha] = useState<string>("");
+    const [fontSize, setFontSize] = useState<string>("");
 
     useEffect(() => {
         console.log("call");
@@ -15,6 +18,21 @@ function App() {
         });
         GetRoundCorners().then((r: boolean) => {
             setRounded(r);
+        });
+        GetBackgroundColor().then((r) => {
+            setBackgroundColor(r);
+        });
+        GetBackgroundAlpha().then((r) => {
+            if (r == "") {
+                r = "0.8"
+            }
+            setBackgroundAlpha(r);
+        })
+        GetFontSize().then((r) => {
+            if (r == "") {
+                r = "24"
+            }
+            setFontSize(r)
         })
     }, []);
 
@@ -51,6 +69,21 @@ function App() {
                             setRounded={(newRounded) => {
                                 setRounded(newRounded);
                                 SetRoundedCorners(newRounded);
+                            }}
+                            backgroundColor={backgroundColor}
+                            setBackgroundColor={(newBg) => {
+                                setBackgroundColor(newBg);
+                                SetBackgroundColor(newBg);
+                            }}
+                            backgroundAlpha={backgroundAlpha}
+                            setBackgroundAlpha={(newAlpha) => {
+                                setBackgroundAlpha(newAlpha);
+                                SetBackgroundAlpha(newAlpha);
+                            }}
+                            fontSize={fontSize}
+                            setFontSize={(newSize) => {
+                                setFontSize(newSize)
+                                SetFontSize(newSize)
                             }}
                         />) :
                         activeMenu == "elements" ?

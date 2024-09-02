@@ -6,8 +6,14 @@ interface Props {
     setOrientation: React.Dispatch<string>;
     rounded: boolean;
     setRounded: React.Dispatch<boolean>;
+    backgroundColor: string;
+    setBackgroundColor: React.Dispatch<string>;
+    backgroundAlpha: string;
+    setBackgroundAlpha: React.Dispatch<string>;
+    fontSize: string;
+    setFontSize: React.Dispatch<string>;
 }
-function GeneralSettings({ orientation, setOrientation, rounded, setRounded }: Props) {
+function GeneralSettings({ orientation, setOrientation, rounded, setRounded, backgroundColor, setBackgroundColor, backgroundAlpha, setBackgroundAlpha, fontSize, setFontSize }: Props) {
 
     return (
         <>
@@ -70,7 +76,11 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded }: P
                     <input
                         type="text"
                         id="bgcolor"
-                        className="w-28"
+                        className="w-28 bg-gray-700"
+                        defaultValue={backgroundColor}
+                        onChange={(event) => {
+                            setBackgroundColor(event.target.value);
+                        }}
                     />
                 </div>
                 <div>
@@ -81,7 +91,11 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded }: P
                         max="1"
                         step="0.1"
                         id="bgalpha"
-                        className="w-28 text-black"
+                        className="w-28 bg-gray-700"
+                        defaultValue={backgroundAlpha}
+                        onChange={(event) => {
+                            setBackgroundAlpha(event.target.value);
+                        }}
                     />
                 </div>
                 <div>
@@ -89,7 +103,11 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded }: P
                     <input
                         type="text"
                         id="fontsize"
-                        className="w-28"
+                        className="w-28 bg-gray-700"
+                        defaultValue={fontSize}
+                        onChange={(event) => {
+                            setFontSize(event.target.value)
+                        }}
                     />
                 </div>
                 <div>
@@ -97,7 +115,7 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded }: P
                     <input
                         type="text"
                         id="textcolor"
-                        className="w-28"
+                        className="w-28 bg-gray-700"
                     />
                 </div>
             </SettingBox>
@@ -108,7 +126,7 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded }: P
                     <input
                         type="text"
                         id="position"
-                        className="w-28"
+                        className="w-28 bg-gray-700"
                     />
                 </div>
             </SettingBox>
@@ -119,7 +137,7 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded }: P
                     <input
                         type="text"
                         id="showhide"
-                        className="w-28"
+                        className="w-28 bg-gray-700"
                     />
                 </div>
             </SettingBox>

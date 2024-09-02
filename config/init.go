@@ -34,6 +34,22 @@ func LoadConfig() {
 				fmt.Println("round corners found", r)
 				ConfigGlobal.RoundCorners = (r != "0")
 				break
+			case "background_color":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.Background = "#" + r
+				break
+			case "background_alpha":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.BackgroundAlpha = r
+				break
+			case "text_color":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.TextColor = "#" + r
+				break
+			case "font_size":
+				r := strings.TrimSpace(val)
+				ConfigGlobal.FontSize = r
+				break
 			}
 			continue
 		}
@@ -92,8 +108,8 @@ func setDefaults() {
 	ConfigGlobal.Orientation = "vertical"
 	ConfigGlobal.RoundCorners = false
 	ConfigGlobal.Background = "#000000"
-	ConfigGlobal.BackgroundAlpha = 0.1
-	ConfigGlobal.FontSize = 24
+	ConfigGlobal.BackgroundAlpha = "0.8"
+	ConfigGlobal.FontSize = "24"
 	ConfigGlobal.TextColor = "#ffffff"
 }
 

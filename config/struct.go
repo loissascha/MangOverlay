@@ -4,8 +4,8 @@ type Config struct {
 	Orientation     string
 	RoundCorners    bool
 	Background      string
-	BackgroundAlpha float64
-	FontSize        int
+	BackgroundAlpha string
+	FontSize        string
 	TextColor       string
 }
 
