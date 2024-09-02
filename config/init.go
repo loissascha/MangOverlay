@@ -93,6 +93,10 @@ func getConfigFile() []string {
 func setDefaults() {
 	ConfigGlobal.Orientation = "vertical"
 	ConfigGlobal.RoundCorners = false
+	ConfigGlobal.Background = "#000000"
+	ConfigGlobal.BackgroundAlpha = 0.1
+	ConfigGlobal.FontSize = 24
+	ConfigGlobal.TextColor = "#ffffff"
 }
 
 func createConfigIfNotExist() {
