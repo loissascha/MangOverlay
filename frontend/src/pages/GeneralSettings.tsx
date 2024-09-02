@@ -129,11 +129,51 @@ function GeneralSettings() {
                         </div>
                     </SettingBox>
                     <SettingBox header="Position">
-                        <div>
+                        <div className="grid grid-cols-2 gap-3">
                             <label htmlFor="position" className="me-2">Position</label>
                             <input
                                 type="text"
                                 id="position"
+                                className="w-28 bg-gray-700"
+                            />
+                        </div>
+                    </SettingBox>
+                    <SettingBox header="Keybinds">
+                        <div className="grid grid-cols-2 gap-3">
+                            <label htmlFor="togglehud" className="me-2">Toggle HUD:</label>
+                            <input
+                                type="text"
+                                id="togglehud"
+                                className="w-28 bg-gray-700"
+                            />
+                            <label htmlFor="togglehudposition" className="me-2">Toggle Position:</label>
+                            <input
+                                type="text"
+                                id="togglehudposition"
+                                className="w-28 bg-gray-700"
+                            />
+                            <label htmlFor="togglepreset" className="me-2">Toggle Preset:</label>
+                            <input
+                                type="text"
+                                id="togglepreset"
+                                className="w-28 bg-gray-700"
+                            />
+                            <label htmlFor="togglefpslimit" className="me-2">Toggle FPS Limit:</label>
+                            <input
+                                type="text"
+                                id="togglefpslimit"
+                                className="w-28 bg-gray-700"
+                            />
+                            <label htmlFor="togglelogging" className="me-2">Toggle Logging:</label>
+                            <input
+                                type="text"
+                                id="togglelogging"
+                                className="w-28 bg-gray-700"
+                            />
+                            <label htmlFor="reloadcfg" className="me-2">Reload Cfg:</label>
+                            <input
+                                type="text"
+                                id="reloadcfg"
                                 className="w-28 bg-gray-700"
                             />
                         </div>
@@ -335,16 +375,6 @@ function GeneralSettings() {
                     </div>
                 </SettingBox>
 
-                <SettingBox header="Keybinds">
-                    <div>
-                        <label htmlFor="showhide" className="me-2">Show/Hide:</label>
-                        <input
-                            type="text"
-                            id="showhide"
-                            className="w-28 bg-gray-700"
-                        />
-                    </div>
-                </SettingBox>
             </div>
 
         </>
