@@ -9,6 +9,7 @@ import (
 
 func LoadConfig() {
 	createConfigIfNotExist()
+	createBackupConfig()
 	setDefaults()
 
 	conf := getConfigFile()
@@ -54,6 +55,15 @@ func getConfigFilePath() string {
 		panic("cant load config! UserHomeDir not found.")
 	}
 	configFile := homeDir + "/.config/MangoHud/MangoHud.conf"
+	return configFile
+}
+
+func getConfigBackupFilePath() string {
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		panic("cant load config! UserHomeDir not found.")
+	}
+	configFile := homeDir + "/.config/MangoHud/MangoHud_backup_mnghdc.conf"
 	return configFile
 }
 
@@ -108,6 +118,20 @@ func createConfigIfNotExist() {
 	}
 
 	if !configExists {
-		os.WriteFile(configDir+"/MangoHud.conf", []byte("Hello"), 0766)
+		os.WriteFile(configDir+"/MangoHud.conf", []byte("Hello"), 0666)
+	}
+}
+
+func createBackupConfig() {
+	configFilePath := getConfigFilePath()
+	backupFilePath := getConfigBackupFilePath()
+	content, err := os.ReadFile(configFilePath)
+	if err != nil {
+		panic("Can't backup config file. Can't read original file")
+	}
+	err = os.Remove(backupFilePath)
+	err = os.WriteFile(backupFilePath, content, 0666)
+	if err != nil {
+		panic("Can't backup config file. Can't write backup file")
 	}
 }
