@@ -49,6 +49,7 @@ func LoadConfig() {
 				break
 			case "cpu_color":
 				r := strings.TrimSpace(val)
+				fmt.Println("fount cpu color", r)
 				ConfigGlobal.CpuColor = "#" + r
 				break
 			case "vram_color":

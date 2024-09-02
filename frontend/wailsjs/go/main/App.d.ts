@@ -5,11 +5,33 @@ export function GetBackgroundAlpha():Promise<string>;
 
 export function GetBackgroundColor():Promise<string>;
 
+export function GetBatteryColor():Promise<string>;
+
+export function GetCpuColor():Promise<string>;
+
+export function GetEngineColor():Promise<string>;
+
 export function GetFontSize():Promise<string>;
+
+export function GetFrametimeColor():Promise<string>;
+
+export function GetGpuColor():Promise<string>;
+
+export function GetIoColor():Promise<string>;
+
+export function GetMediaColor():Promise<string>;
+
+export function GetNetworkColor():Promise<string>;
 
 export function GetOrientation():Promise<string>;
 
+export function GetRamColor():Promise<string>;
+
 export function GetRoundCorners():Promise<boolean>;
+
+export function GetVramColor():Promise<string>;
+
+export function GetWineColor():Promise<string>;
 
 export function ResetConfig():Promise<void>;
 
@@ -19,8 +41,30 @@ export function SetBackgroundAlpha(arg1:string):Promise<void>;
 
 export function SetBackgroundColor(arg1:string):Promise<void>;
 
+export function SetBatteryColor(arg1:string):Promise<void>;
+
+export function SetCpuColor(arg1:string):Promise<void>;
+
+export function SetEngineColor(arg1:string):Promise<void>;
+
 export function SetFontSize(arg1:string):Promise<void>;
+
+export function SetFrametimeColor(arg1:string):Promise<void>;
+
+export function SetGpuColor(arg1:string):Promise<void>;
+
+export function SetIoColor(arg1:string):Promise<void>;
+
+export function SetMediaColor(arg1:string):Promise<void>;
+
+export function SetNetworkColor(arg1:string):Promise<void>;
 
 export function SetOrientation(arg1:string):Promise<void>;
 
+export function SetRamColor(arg1:string):Promise<void>;
+
 export function SetRoundedCorners(arg1:boolean):Promise<void>;
+
+export function SetVramColor(arg1:string):Promise<void>;
+
+export function SetWineColor(arg1:string):Promise<void>;

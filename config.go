@@ -45,3 +45,80 @@ func (a *App) GetFontSize() string {
 func (a *App) SetFontSize(n string) {
 	config.ConfigGlobal.SetFontSize(n)
 }
+
+func (a *App) GetGpuColor() string {
+	return config.ConfigGlobal.GpuColor
+}
+func (a *App) SetGpuColor(n string) {
+	config.ConfigGlobal.SetGpuColor(n)
+}
+
+func (a *App) GetCpuColor() string {
+	return config.ConfigGlobal.CpuColor
+}
+func (a *App) SetCpuColor(n string) {
+	config.ConfigGlobal.SetCpuColor(n)
+}
+
+func (a *App) GetVramColor() string {
+	return config.ConfigGlobal.VramColor
+}
+func (a *App) SetVramColor(n string) {
+	config.ConfigGlobal.SetVramColor(n)
+}
+
+func (a *App) GetRamColor() string {
+	return config.ConfigGlobal.RamColor
+}
+func (a *App) SetRamColor(n string) {
+	config.ConfigGlobal.SetRamColor(n)
+}
+
+func (a *App) GetEngineColor() string {
+	return config.ConfigGlobal.EngineColor
+}
+func (a *App) SetEngineColor(n string) {
+	config.ConfigGlobal.SetEngineColor(n)
+}
+
+func (a *App) GetIoColor() string {
+	return config.ConfigGlobal.IoColor
+}
+func (a *App) SetIoColor(n string) {
+	config.ConfigGlobal.SetIoColor(n)
+}
+
+func (a *App) GetFrametimeColor() string {
+	return config.ConfigGlobal.FrametimeColor
+}
+func (a *App) SetFrametimeColor(n string) {
+	config.ConfigGlobal.SetFrametimeColor(n)
+}
+
+func (a *App) GetMediaColor() string {
+	return config.ConfigGlobal.MediaColor
+}
+func (a *App) SetMediaColor(n string) {
+	config.ConfigGlobal.SetMediaColor(n)
+}
+
+func (a *App) GetWineColor() string {
+	return config.ConfigGlobal.WineColor
+}
+func (a *App) SetWineColor(n string) {
+	config.ConfigGlobal.SetWineColor(n)
+}
+
+func (a *App) GetBatteryColor() string {
+	return config.ConfigGlobal.BatteryColor
+}
+func (a *App) SetBatteryColor(n string) {
+	config.ConfigGlobal.SetBatteryColor(n)
+}
+
+func (a *App) GetNetworkColor() string {
+	return config.ConfigGlobal.NetworkColor
+}
+func (a *App) SetNetworkColor(n string) {
+	config.ConfigGlobal.SetNetworkColor(n)
+}

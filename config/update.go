@@ -49,6 +49,116 @@ func (c *Config) SetFontSize(n string) {
 	updateConfigLine("font_size", n, true)
 }
 
+func (c *Config) SetGpuColor(n string) {
+	c.GpuColor = n
+	n = strings.TrimPrefix(n, "#")
+	if n == "" {
+		deleteConfigLine("gpu_color")
+		return
+	}
+	updateConfigLine("gpu_color", n, true)
+}
+
+func (c *Config) SetCpuColor(n string) {
+	c.CpuColor = n
+	n = strings.TrimPrefix(n, "#")
+	if n == "" {
+		deleteConfigLine("cpu_color")
+		return
+	}
+	updateConfigLine("cpu_color", n, true)
+}
+
+func (c *Config) SetVramColor(n string) {
+	c.VramColor = n
+	n = strings.TrimPrefix(n, "#")
+	if n == "" {
+		deleteConfigLine("vram_color")
+		return
+	}
+	updateConfigLine("vram_color", n, true)
+}
+
+func (c *Config) SetRamColor(n string) {
+	c.RamColor = n
+	n = strings.TrimPrefix(n, "#")
+	if n == "" {
+		deleteConfigLine("ram_color")
+		return
+	}
+	updateConfigLine("ram_color", n, true)
+}
+
+func (c *Config) SetEngineColor(n string) {
+	c.EngineColor = n
+	n = strings.TrimPrefix(n, "#")
+	if n == "" {
+		deleteConfigLine("engine_color")
+		return
+	}
+	updateConfigLine("engine_color", n, true)
+}
+
+func (c *Config) SetIoColor(n string) {
+	c.IoColor = n
+	n = strings.TrimPrefix(n, "#")
+	if n == "" {
+		deleteConfigLine("io_color")
+		return
+	}
+	updateConfigLine("io_color", n, true)
+}
+
+func (c *Config) SetFrametimeColor(n string) {
+	c.FrametimeColor = n
+	n = strings.TrimPrefix(n, "#")
+	if n == "" {
+		deleteConfigLine("frametime_color")
+		return
+	}
+	updateConfigLine("frametime_color", n, true)
+}
+
+func (c *Config) SetMediaColor(n string) {
+	c.MediaColor = n
+	n = strings.TrimPrefix(n, "#")
+	if n == "" {
+		deleteConfigLine("media_player_color")
+		return
+	}
+	updateConfigLine("media_player_color", n, true)
+}
+
+func (c *Config) SetWineColor(n string) {
+	c.WineColor = n
+	n = strings.TrimPrefix(n, "#")
+	if n == "" {
+		deleteConfigLine("wine_color")
+		return
+	}
+	updateConfigLine("wine_color", n, true)
+}
+
+func (c *Config) SetBatteryColor(n string) {
+	c.BatteryColor = n
+	n = strings.TrimPrefix(n, "#")
+	if n == "" {
+		deleteConfigLine("battery_color")
+		return
+	}
+	updateConfigLine("battery_color", n, true)
+}
+
+func (c *Config) SetNetworkColor(n string) {
+	c.NetworkColor = n
+	n = strings.TrimPrefix(n, "#")
+	if n == "" {
+		deleteConfigLine("network_color")
+		return
+	}
+	updateConfigLine("network_color", n, true)
+}
+
 func deleteConfigLine(n string) {
 	cf := getConfigFile()
 	newFile := ""

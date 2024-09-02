@@ -10,16 +10,60 @@ export function GetBackgroundColor() {
   return window['go']['main']['App']['GetBackgroundColor']();
 }
 
+export function GetBatteryColor() {
+  return window['go']['main']['App']['GetBatteryColor']();
+}
+
+export function GetCpuColor() {
+  return window['go']['main']['App']['GetCpuColor']();
+}
+
+export function GetEngineColor() {
+  return window['go']['main']['App']['GetEngineColor']();
+}
+
 export function GetFontSize() {
   return window['go']['main']['App']['GetFontSize']();
+}
+
+export function GetFrametimeColor() {
+  return window['go']['main']['App']['GetFrametimeColor']();
+}
+
+export function GetGpuColor() {
+  return window['go']['main']['App']['GetGpuColor']();
+}
+
+export function GetIoColor() {
+  return window['go']['main']['App']['GetIoColor']();
+}
+
+export function GetMediaColor() {
+  return window['go']['main']['App']['GetMediaColor']();
+}
+
+export function GetNetworkColor() {
+  return window['go']['main']['App']['GetNetworkColor']();
 }
 
 export function GetOrientation() {
   return window['go']['main']['App']['GetOrientation']();
 }
 
+export function GetRamColor() {
+  return window['go']['main']['App']['GetRamColor']();
+}
+
 export function GetRoundCorners() {
   return window['go']['main']['App']['GetRoundCorners']();
+}
+
+export function GetVramColor() {
+  return window['go']['main']['App']['GetVramColor']();
+}
+
+export function GetWineColor() {
+  return window['go']['main']['App']['GetWineColor']();
 }
 
 export function ResetConfig() {
@@ -38,14 +82,58 @@ export function SetBackgroundColor(arg1) {
   return window['go']['main']['App']['SetBackgroundColor'](arg1);
 }
 
+export function SetBatteryColor(arg1) {
+  return window['go']['main']['App']['SetBatteryColor'](arg1);
+}
+
+export function SetCpuColor(arg1) {
+  return window['go']['main']['App']['SetCpuColor'](arg1);
+}
+
+export function SetEngineColor(arg1) {
+  return window['go']['main']['App']['SetEngineColor'](arg1);
+}
+
 export function SetFontSize(arg1) {
   return window['go']['main']['App']['SetFontSize'](arg1);
+}
+
+export function SetFrametimeColor(arg1) {
+  return window['go']['main']['App']['SetFrametimeColor'](arg1);
+}
+
+export function SetGpuColor(arg1) {
+  return window['go']['main']['App']['SetGpuColor'](arg1);
+}
+
+export function SetIoColor(arg1) {
+  return window['go']['main']['App']['SetIoColor'](arg1);
+}
+
+export function SetMediaColor(arg1) {
+  return window['go']['main']['App']['SetMediaColor'](arg1);
+}
+
+export function SetNetworkColor(arg1) {
+  return window['go']['main']['App']['SetNetworkColor'](arg1);
 }
 
 export function SetOrientation(arg1) {
   return window['go']['main']['App']['SetOrientation'](arg1);
 }
 
+export function SetRamColor(arg1) {
+  return window['go']['main']['App']['SetRamColor'](arg1);
+}
+
 export function SetRoundedCorners(arg1) {
   return window['go']['main']['App']['SetRoundedCorners'](arg1);
+}
+
+export function SetVramColor(arg1) {
+  return window['go']['main']['App']['SetVramColor'](arg1);
+}
+
+export function SetWineColor(arg1) {
+  return window['go']['main']['App']['SetWineColor'](arg1);
 }

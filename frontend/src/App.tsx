@@ -7,9 +7,9 @@ function App() {
     const [activeMenu, setActiveMenu] = useState<string>("general");
     const [orientation, setOrientation] = useState<string>("");
     const [rounded, setRounded] = useState<boolean>(false);
+    const [fontSize, setFontSize] = useState<string>("");
     const [backgroundColor, setBackgroundColor] = useState<string>("");
     const [backgroundAlpha, setBackgroundAlpha] = useState<string>("");
-    const [fontSize, setFontSize] = useState<string>("");
 
     useEffect(() => {
         console.log("call");
