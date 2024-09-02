@@ -35,58 +35,109 @@ func LoadConfig() {
 				ConfigGlobal.RoundCorners = (r != "0")
 				break
 
+				// # text_color=FFFFFF
+				// # gpu_color=2E9762
+				// # cpu_color=2E97CB
+				// # vram_color=AD64C1
+				// # ram_color=C26693
+				// # engine_color=EB5B5B
+				// # io_color=A491D3
+				// # frametime_color=00FF00
+				// # media_player_color=FFFFFF
+				// # wine_color=EB5B5B
+				// # battery_color=FF9078
+				// # network_color=E07B85
+
 			case "background_color":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.Background = "#" + r
+				if r == "" {
+					break
+				}
+				ConfigGlobal.Background = r
 				break
 			case "text_color":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.TextColor = "#" + r
+				if r == "" {
+					break
+				}
+				ConfigGlobal.TextColor = r
 				break
 			case "gpu_color":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.GpuColor = "#" + r
+				if r == "" {
+					break
+				}
+				ConfigGlobal.GpuColor = r
 				break
 			case "cpu_color":
 				r := strings.TrimSpace(val)
-				fmt.Println("fount cpu color", r)
-				ConfigGlobal.CpuColor = "#" + r
+				if r == "" {
+					break
+				}
+				ConfigGlobal.CpuColor = r
 				break
 			case "vram_color":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.VramColor = "#" + r
+				if r == "" {
+					break
+				}
+				ConfigGlobal.VramColor = r
 				break
 			case "ram_color":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.RamColor = "#" + r
+				if r == "" {
+					break
+				}
+				ConfigGlobal.RamColor = r
 				break
 			case "engine_color":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.EngineColor = "#" + r
+				if r == "" {
+					break
+				}
+				ConfigGlobal.EngineColor = r
 				break
 			case "io_color":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.IoColor = "#" + r
+				if r == "" {
+					break
+				}
+				ConfigGlobal.IoColor = r
 				break
 			case "frametime_color":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.FrametimeColor = "#" + r
+				if r == "" {
+					break
+				}
+				ConfigGlobal.FrametimeColor = r
 				break
 			case "media_player_color":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.MediaColor = "#" + r
+				if r == "" {
+					break
+				}
+				ConfigGlobal.MediaColor = r
 				break
 			case "wine_color":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.WineColor = "#" + r
+				if r == "" {
+					break
+				}
+				ConfigGlobal.WineColor = r
 				break
 			case "battery_color":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.BatteryColor = "#" + r
+				if r == "" {
+					break
+				}
+				ConfigGlobal.BatteryColor = r
 				break
 			case "network_color":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.NetworkColor = "#" + r
+				if r == "" {
+					break
+				}
+				ConfigGlobal.NetworkColor = r
 				break
 
 			case "background_alpha":
@@ -157,18 +208,18 @@ func setDefaults() {
 	ConfigGlobal.Background = "#000000"
 	ConfigGlobal.BackgroundAlpha = "0.8"
 	ConfigGlobal.FontSize = "24"
-	ConfigGlobal.TextColor = "#ffffff"
-	ConfigGlobal.GpuColor = ""
-	ConfigGlobal.CpuColor = ""
-	ConfigGlobal.VramColor = ""
-	ConfigGlobal.RamColor = ""
-	ConfigGlobal.EngineColor = ""
-	ConfigGlobal.IoColor = ""
-	ConfigGlobal.FrametimeColor = ""
-	ConfigGlobal.MediaColor = ""
-	ConfigGlobal.WineColor = ""
-	ConfigGlobal.BatteryColor = ""
-	ConfigGlobal.NetworkColor = ""
+	ConfigGlobal.TextColor = "FFFFFF"
+	ConfigGlobal.GpuColor = "2E9762"
+	ConfigGlobal.CpuColor = "2E97CB"
+	ConfigGlobal.VramColor = "AD64C1"
+	ConfigGlobal.RamColor = "C26693"
+	ConfigGlobal.EngineColor = "EB5B5B"
+	ConfigGlobal.IoColor = "A491D3"
+	ConfigGlobal.FrametimeColor = "00FF00"
+	ConfigGlobal.MediaColor = "FFFFFF"
+	ConfigGlobal.WineColor = "EB4B4B"
+	ConfigGlobal.BatteryColor = "FF9078"
+	ConfigGlobal.NetworkColor = "E07B85"
 }
 
 func createConfigIfNotExist() {
