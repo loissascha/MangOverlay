@@ -76,9 +76,12 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded }: P
                 <div>
                     <label htmlFor="bgalpha" className="me-2">Background Alpha:</label>
                     <input
-                        type="text"
+                        type="number"
+                        min="0.1"
+                        max="1"
+                        step="0.1"
                         id="bgalpha"
-                        className="w-28"
+                        className="w-28 text-black"
                     />
                 </div>
                 <div>
