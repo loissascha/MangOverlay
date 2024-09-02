@@ -17,3 +17,7 @@ func (a *App) GetRoundCorners() bool {
 func (a *App) SetRoundedCorners(n bool) {
 	config.ConfigGlobal.SetRoundedCorners(n)
 }
+
+func (a *App) ResetConfig() {
+	config.ResetConfig()
+}

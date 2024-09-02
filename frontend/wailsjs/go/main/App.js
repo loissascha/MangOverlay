@@ -10,6 +10,10 @@ export function GetRoundCorners() {
   return window['go']['main']['App']['GetRoundCorners']();
 }
 
+export function ResetConfig() {
+  return window['go']['main']['App']['ResetConfig']();
+}
+
 export function SetOrientation(arg1) {
   return window['go']['main']['App']['SetOrientation'](arg1);
 }

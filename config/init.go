@@ -7,6 +7,10 @@ import (
 	"strings"
 )
 
+func ResetConfig() {
+
+}
+
 func LoadConfig() {
 	createConfigIfNotExist()
 	createBackupConfig()
