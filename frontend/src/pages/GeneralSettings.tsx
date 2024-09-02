@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { GetBatteryColor, GetCpuColor, GetEngineColor, GetFrametimeColor, GetGpuColor, GetIoColor, GetMediaColor, GetNetworkColor, GetRamColor, GetVramColor, GetWineColor, SetBatteryColor, SetCpuColor, SetEngineColor, SetFrametimeColor, SetGpuColor, SetIoColor, SetMediaColor, SetNetworkColor, SetRamColor, SetVramColor, SetWineColor, GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, GetFontSize, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetFontSize, SetOrientation, GetTextColor, SetTextColor } from "../../wailsjs/go/main/App";
 import SettingBox from "../general/SettingBox";
+import { SketchPicker } from "react-color";
 
 function GeneralSettings() {
-    const [gpuColor, setGpuColor] = useState<string>("");
     const [textColor, setTextColor] = useState<string>("");
+
+    const [gpuColor, setGpuColor] = useState<string>("");
+    const [showGpuPicker, setShowGpuPicker] = useState<boolean>(false);
+
     const [cpuColor, setCpuColor] = useState<string>("");
+    const [showCpuPicker, setShowCpuPicker] = useState<boolean>(false);
+
     const [vramColor, setVramColor] = useState<string>("");
     const [ramColor, setRamColor] = useState<string>("");
     const [engineColor, setEngineColor] = useState<string>("");
@@ -261,27 +267,61 @@ function GeneralSettings() {
                 <SettingBox header="Colors">
                     <div className="grid grid-cols-2 gap-3">
                         <label htmlFor="cpucolor" className="me-2">CPU:</label>
-                        <input
-                            type="text"
-                            id="cpucolor"
-                            className="w-28 bg-gray-700"
-                            defaultValue={cpuColor}
-                            onChange={(event) => {
-                                setCpuColor(event.target.value)
-                                SetCpuColor(event.target.value)
-                            }}
-                        />
+                        <div>
+                            <button
+                                style={{
+                                    backgroundColor: "#" + cpuColor
+                                }}
+                                onClick={() => {
+                                    setShowCpuPicker(!showCpuPicker)
+                                }}
+                                className="cursor-pointer p-1 rounded border"
+                            >
+                                {cpuColor}
+                            </button>
+                            {showCpuPicker ? (
+                                <div className="absolute z-50">
+                                    <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
+                                        setShowCpuPicker(false)
+                                    }}> </div>
+                                    <SketchPicker color={cpuColor} onChange={(color) => {
+                                        let col = color.hex;
+                                        if (col[0] == "#") {
+                                            col = col.substring(1)
+                                        }
+                                        setCpuColor(col)
+                                        SetCpuColor(col)
+                                    }} />
+                                </div>) : null}
+                        </div>
                         <label htmlFor="gpucolor" className="me-2">GPU:</label>
-                        <input
-                            type="text"
-                            id="gpucolor"
-                            className="w-28 bg-gray-700"
-                            defaultValue={gpuColor}
-                            onChange={(event) => {
-                                setGpuColor(event.target.value)
-                                SetGpuColor(event.target.value)
-                            }}
-                        />
+                        <div>
+                            <button
+                                style={{
+                                    backgroundColor: "#" + gpuColor
+                                }}
+                                onClick={() => {
+                                    setShowGpuPicker(!showGpuPicker)
+                                }}
+                                className="cursor-pointer p-1 rounded border"
+                            >
+                                {gpuColor}
+                            </button>
+                            {showGpuPicker ? (
+                                <div className="absolute z-50 text-black">
+                                    <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
+                                        setShowGpuPicker(false)
+                                    }}> </div>
+                                    <SketchPicker color={gpuColor} onChange={(color) => {
+                                        let col = color.hex;
+                                        if (col[0] == "#") {
+                                            col = col.substring(1)
+                                        }
+                                        setGpuColor(col)
+                                        SetGpuColor(col)
+                                    }} />
+                                </div>) : null}
+                        </div>
                         <label htmlFor="vramcolor" className="me-2">VRAM:</label>
                         <input
                             type="text"
