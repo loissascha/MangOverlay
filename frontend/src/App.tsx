@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import GeneralSettings from "./pages/GeneralSettings";
 import { GetOrientation, SetOrientation, GetRoundCorners, SetRoundedCorners } from "../wailsjs/go/main/App";
+import Button from "./ui/Button";
 
 function App() {
     const [activeMenu, setActiveMenu] = useState<string>("general");
@@ -22,7 +23,7 @@ function App() {
     }
 
     return (
-        <div className='w-full h-full text-white grid grid-rows-[auto_1fr]'>
+        <div className='w-full h-full text-white grid grid-rows-[auto_1fr_auto]'>
             <nav className="bg-gray-700 pt-2 px-3">
                 <ul className="flex gap-3 list-none">
                     <li
@@ -57,6 +58,11 @@ function App() {
                             null
                 }
             </main>
+            <footer className="bg-gray-700 p-2">
+                <Button>
+                    Reset
+                </Button>
+            </footer>
         </div >
     )
 }
