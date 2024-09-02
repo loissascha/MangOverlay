@@ -42,7 +42,10 @@ function GeneralSettings() {
     const [orientation, setOrientation] = useState<string>("");
     const [rounded, setRounded] = useState<boolean>(false);
     const [fontSize, setFontSize] = useState<string>("");
+
     const [backgroundColor, setBackgroundColor] = useState<string>("");
+    const [showBackgroundPicker, setShowBackgroundPicker] = useState<boolean>(false);
+
     const [backgroundAlpha, setBackgroundAlpha] = useState<string>("");
 
     useEffect(() => {
@@ -212,16 +215,33 @@ function GeneralSettings() {
                     <SettingBox header="Background">
                         <div className="grid grid-cols-2 gap-3">
                             <label htmlFor="bgcolor" className="me-2">Color:</label>
-                            <input
-                                type="text"
-                                id="bgcolor"
-                                className="w-28 bg-gray-700"
-                                defaultValue={backgroundColor}
-                                onChange={(event) => {
-                                    setBackgroundColor(event.target.value);
-                                    SetBackgroundColor(event.target.value);
-                                }}
-                            />
+                            <div>
+                                <button
+                                    style={{
+                                        backgroundColor: "#" + backgroundColor
+                                    }}
+                                    onClick={() => {
+                                        setShowBackgroundPicker(!showBackgroundPicker)
+                                    }}
+                                    className="cursor-pointer p-1 rounded border w-28"
+                                >
+                                    {backgroundColor}
+                                </button>
+                                {showBackgroundPicker ? (
+                                    <div className="absolute z-50">
+                                        <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
+                                            setShowBackgroundPicker(false)
+                                        }}> </div>
+                                        <SketchPicker color={backgroundColor} onChange={(color) => {
+                                            let col = color.hex;
+                                            if (col[0] == "#") {
+                                                col = col.substring(1)
+                                            }
+                                            setBackgroundColor(col)
+                                            SetBackgroundColor(col)
+                                        }} />
+                                    </div>) : null}
+                            </div>
                             <label htmlFor="bgalpha" className="me-2">Alpha:</label>
                             <input
                                 type="number"
@@ -229,7 +249,7 @@ function GeneralSettings() {
                                 max="1"
                                 step="0.1"
                                 id="bgalpha"
-                                className="w-28 bg-gray-700"
+                                className="w-28 bg-gray-700 p-1 text-center border rounded"
                                 defaultValue={backgroundAlpha}
                                 onChange={(event) => {
                                     setBackgroundAlpha(event.target.value);
@@ -293,7 +313,7 @@ function GeneralSettings() {
                                 onClick={() => {
                                     setShowCpuPicker(!showCpuPicker)
                                 }}
-                                className="cursor-pointer p-1 rounded border"
+                                className="cursor-pointer p-1 rounded border w-28"
                             >
                                 {cpuColor}
                             </button>
@@ -321,7 +341,7 @@ function GeneralSettings() {
                                 onClick={() => {
                                     setShowGpuPicker(!showGpuPicker)
                                 }}
-                                className="cursor-pointer p-1 rounded border"
+                                className="cursor-pointer p-1 rounded border w-28"
                             >
                                 {gpuColor}
                             </button>
@@ -349,7 +369,7 @@ function GeneralSettings() {
                                 onClick={() => {
                                     setShowVramPicker(!showVramPicker)
                                 }}
-                                className="cursor-pointer p-1 rounded border"
+                                className="cursor-pointer p-1 rounded border w-28"
                             >
                                 {vramColor}
                             </button>
@@ -377,7 +397,7 @@ function GeneralSettings() {
                                 onClick={() => {
                                     setShowRamPicker(!showRamPicker)
                                 }}
-                                className="cursor-pointer p-1 rounded border"
+                                className="cursor-pointer p-1 rounded border w-28"
                             >
                                 {ramColor}
                             </button>
@@ -405,7 +425,7 @@ function GeneralSettings() {
                                 onClick={() => {
                                     setShowEnginePicker(!showEnginePicker)
                                 }}
-                                className="cursor-pointer p-1 rounded border"
+                                className="cursor-pointer p-1 rounded border w-28"
                             >
                                 {engineColor}
                             </button>
@@ -433,7 +453,7 @@ function GeneralSettings() {
                                 onClick={() => {
                                     setShowIoPicker(!showIoPicker)
                                 }}
-                                className="cursor-pointer p-1 rounded border"
+                                className="cursor-pointer p-1 rounded border w-28"
                             >
                                 {ioColor}
                             </button>
@@ -461,7 +481,7 @@ function GeneralSettings() {
                                 onClick={() => {
                                     setShowFrametimePicker(!showFrametimePicker)
                                 }}
-                                className="cursor-pointer p-1 rounded border"
+                                className="cursor-pointer p-1 rounded border w-28"
                             >
                                 {frametimeColor}
                             </button>
@@ -489,7 +509,7 @@ function GeneralSettings() {
                                 onClick={() => {
                                     setShowMediaPicker(!showMediaPicker)
                                 }}
-                                className="cursor-pointer p-1 rounded border"
+                                className="cursor-pointer p-1 rounded border w-28"
                             >
                                 {mediaColor}
                             </button>
@@ -517,7 +537,7 @@ function GeneralSettings() {
                                 onClick={() => {
                                     setShowWinePicker(!showWinePicker)
                                 }}
-                                className="cursor-pointer p-1 rounded border"
+                                className="cursor-pointer p-1 rounded border w-28"
                             >
                                 {wineColor}
                             </button>
@@ -545,7 +565,7 @@ function GeneralSettings() {
                                 onClick={() => {
                                     setShowBatteryPicker(!showBatteryPicker)
                                 }}
-                                className="cursor-pointer p-1 rounded border"
+                                className="cursor-pointer p-1 rounded border w-28"
                             >
                                 {batteryColor}
                             </button>
@@ -573,7 +593,7 @@ function GeneralSettings() {
                                 onClick={() => {
                                     setShowNetworkPicker(!showNetworkPicker)
                                 }}
-                                className="cursor-pointer p-1 rounded border"
+                                className="cursor-pointer p-1 rounded border w-28"
                             >
                                 {networkColor}
                             </button>
