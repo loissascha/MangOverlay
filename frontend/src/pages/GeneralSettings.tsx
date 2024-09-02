@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { GetBatteryColor, GetCpuColor, GetEngineColor, GetFrametimeColor, GetGpuColor, GetIoColor, GetMediaColor, GetNetworkColor, GetRamColor, GetVramColor, GetWineColor, SetBatteryColor, SetCpuColor, SetEngineColor, SetFrametimeColor, SetGpuColor, SetIoColor, SetMediaColor, SetNetworkColor, SetRamColor, SetVramColor, SetWineColor } from "../../wailsjs/go/main/App";
+import { GetBatteryColor, GetCpuColor, GetEngineColor, GetFrametimeColor, GetGpuColor, GetIoColor, GetMediaColor, GetNetworkColor, GetRamColor, GetVramColor, GetWineColor, SetBatteryColor, SetCpuColor, SetEngineColor, SetFrametimeColor, SetGpuColor, SetIoColor, SetMediaColor, SetNetworkColor, SetRamColor, SetVramColor, SetWineColor, GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, GetFontSize, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetFontSize, SetOrientation } from "../../wailsjs/go/main/App";
 import SettingBox from "../general/SettingBox";
 
-interface Props {
-    orientation: string;
-    setOrientation: React.Dispatch<string>;
-    rounded: boolean;
-    setRounded: React.Dispatch<boolean>;
-    backgroundColor: string;
-    setBackgroundColor: React.Dispatch<string>;
-    backgroundAlpha: string;
-    setBackgroundAlpha: React.Dispatch<string>;
-    fontSize: string;
-    setFontSize: React.Dispatch<string>;
-}
-function GeneralSettings({ orientation, setOrientation, rounded, setRounded, backgroundColor, setBackgroundColor, backgroundAlpha, setBackgroundAlpha, fontSize, setFontSize }: Props) {
+function GeneralSettings() {
     const [gpuColor, setGpuColor] = useState<string>("");
     const [cpuColor, setCpuColor] = useState<string>("");
     const [vramColor, setVramColor] = useState<string>("");
@@ -26,8 +14,34 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded, bac
     const [wineColor, setWineColor] = useState<string>("");
     const [batteryColor, setBatteryColor] = useState<string>("");
     const [networkColor, setNetworkColor] = useState<string>("");
+    const [orientation, setOrientation] = useState<string>("");
+    const [rounded, setRounded] = useState<boolean>(false);
+    const [fontSize, setFontSize] = useState<string>("");
+    const [backgroundColor, setBackgroundColor] = useState<string>("");
+    const [backgroundAlpha, setBackgroundAlpha] = useState<string>("");
 
     useEffect(() => {
+        GetOrientation().then((or) => {
+            setOrientation(or);
+        });
+        GetRoundCorners().then((r: boolean) => {
+            setRounded(r);
+        });
+        GetBackgroundColor().then((r) => {
+            setBackgroundColor(r);
+        });
+        GetBackgroundAlpha().then((r) => {
+            if (r == "") {
+                r = "0.8"
+            }
+            setBackgroundAlpha(r);
+        })
+        GetFontSize().then((r) => {
+            if (r == "") {
+                r = "24"
+            }
+            setFontSize(r)
+        })
         GetGpuColor().then((r) => {
             setGpuColor(r)
         })
@@ -70,7 +84,10 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded, bac
                     <SettingBox header="Orientation">
                         <div>
                             <input
-                                onClick={() => { setOrientation("vertical"); }}
+                                onClick={() => {
+                                    setOrientation("vertical");
+                                    SetOrientation("vertical")
+                                }}
                                 type="radio"
                                 name="orientationRadio"
                                 className="me-2"
@@ -82,7 +99,10 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded, bac
                         </div>
                         <div>
                             <input
-                                onClick={() => { setOrientation("horizontal"); }}
+                                onClick={() => {
+                                    setOrientation("horizontal");
+                                    SetOrientation("horizontal")
+                                }}
                                 type="radio"
                                 name="orientationRadio"
                                 className="me-2"
@@ -94,7 +114,10 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded, bac
                         </div>
                         <div>
                             <input
-                                onClick={() => { setOrientation("horizontal_stretch"); }}
+                                onClick={() => {
+                                    setOrientation("horizontal_stretch");
+                                    SetOrientation("horizontal_stretch")
+                                }}
                                 type="radio"
                                 name="orientationRadio"
                                 className="me-2"
@@ -128,6 +151,7 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded, bac
                                 defaultValue={backgroundColor}
                                 onChange={(event) => {
                                     setBackgroundColor(event.target.value);
+                                    SetBackgroundColor(event.target.value);
                                 }}
                             />
                             <label htmlFor="bgalpha" className="me-2">Alpha:</label>
@@ -141,12 +165,17 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded, bac
                                 defaultValue={backgroundAlpha}
                                 onChange={(event) => {
                                     setBackgroundAlpha(event.target.value);
+                                    SetBackgroundAlpha(event.target.value)
                                 }}
                             />
                         </div>
                         <div>
                             <input
-                                onClick={() => { setRounded(!rounded); }}
+                                onClick={() => {
+                                    const newV = !rounded;
+                                    setRounded(newV);
+                                    SetRoundedCorners(newV)
+                                }}
                                 type="checkbox"
                                 id="roundedCheck"
                                 className="me-2"
@@ -167,6 +196,7 @@ function GeneralSettings({ orientation, setOrientation, rounded, setRounded, bac
                                 defaultValue={fontSize}
                                 onChange={(event) => {
                                     setFontSize(event.target.value)
+                                    SetFontSize(event.target.value)
                                 }}
                             />
                             <label htmlFor="textcolor" className="me-2">Color:</label>
