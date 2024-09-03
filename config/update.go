@@ -197,6 +197,28 @@ func (c *Config) SetCpuLoadColor(n0 string, n1 string, n2 string) {
 	updateConfigLine("cpu_load_color", n0+","+n1+","+n2, true)
 }
 
+func (c *Config) SetKbToggleHud(n string) {
+	updateConfigLine("toggle_hud", n, true)
+}
+func (c *Config) SetKbToggleHudPosition(n string) {
+	updateConfigLine("toggle_hud_position", n, true)
+}
+func (c *Config) SetKbTogglePreset(n string) {
+	updateConfigLine("toggle_preset", n, true)
+}
+func (c *Config) SetKbToggleFpsLimit(n string) {
+	updateConfigLine("toggle_fps_limit", n, true)
+}
+func (c *Config) SetKbToggleLogging(n string) {
+	updateConfigLine("toggle_logging", n, true)
+}
+func (c *Config) SetKbReloadCfg(n string) {
+	updateConfigLine("reload_cfg", n, true)
+}
+func (c *Config) SetKbUploadLog(n string) {
+	updateConfigLine("upload_log", n, true)
+}
+
 func deleteConfigLine(n string) {
 	cf := getConfigFile()
 	newFile := ""

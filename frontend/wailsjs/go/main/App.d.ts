@@ -31,6 +31,20 @@ export function GetGpuLoadColor2():Promise<string>;
 
 export function GetIoColor():Promise<string>;
 
+export function GetKbReloadCfg():Promise<string>;
+
+export function GetKbToggleFpsLimit():Promise<string>;
+
+export function GetKbToggleHud():Promise<string>;
+
+export function GetKbToggleHudPosition():Promise<string>;
+
+export function GetKbToggleLogging():Promise<string>;
+
+export function GetKbTogglePreset():Promise<string>;
+
+export function GetKbUploadLog():Promise<string>;
+
 export function GetMediaColor():Promise<string>;
 
 export function GetNetworkColor():Promise<string>;
@@ -74,6 +88,20 @@ export function SetGpuColor(arg1:string):Promise<void>;
 export function SetGpuLoadColors(arg1:string,arg2:string,arg3:string):Promise<void>;
 
 export function SetIoColor(arg1:string):Promise<void>;
+
+export function SetKbReloadCfg(arg1:string):Promise<void>;
+
+export function SetKbToggleFpsLimit(arg1:string):Promise<void>;
+
+export function SetKbToggleHud(arg1:string):Promise<void>;
+
+export function SetKbToggleHudPosition(arg1:string):Promise<void>;
+
+export function SetKbToggleLogging(arg1:string):Promise<void>;
+
+export function SetKbTogglePreset(arg1:string):Promise<void>;
+
+export function SetKbUploadLog(arg1:string):Promise<void>;
 
 export function SetMediaColor(arg1:string):Promise<void>;
 

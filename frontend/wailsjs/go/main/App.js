@@ -62,6 +62,34 @@ export function GetIoColor() {
   return window['go']['main']['App']['GetIoColor']();
 }
 
+export function GetKbReloadCfg() {
+  return window['go']['main']['App']['GetKbReloadCfg']();
+}
+
+export function GetKbToggleFpsLimit() {
+  return window['go']['main']['App']['GetKbToggleFpsLimit']();
+}
+
+export function GetKbToggleHud() {
+  return window['go']['main']['App']['GetKbToggleHud']();
+}
+
+export function GetKbToggleHudPosition() {
+  return window['go']['main']['App']['GetKbToggleHudPosition']();
+}
+
+export function GetKbToggleLogging() {
+  return window['go']['main']['App']['GetKbToggleLogging']();
+}
+
+export function GetKbTogglePreset() {
+  return window['go']['main']['App']['GetKbTogglePreset']();
+}
+
+export function GetKbUploadLog() {
+  return window['go']['main']['App']['GetKbUploadLog']();
+}
+
 export function GetMediaColor() {
   return window['go']['main']['App']['GetMediaColor']();
 }
@@ -148,6 +176,34 @@ export function SetGpuLoadColors(arg1, arg2, arg3) {
 
 export function SetIoColor(arg1) {
   return window['go']['main']['App']['SetIoColor'](arg1);
+}
+
+export function SetKbReloadCfg(arg1) {
+  return window['go']['main']['App']['SetKbReloadCfg'](arg1);
+}
+
+export function SetKbToggleFpsLimit(arg1) {
+  return window['go']['main']['App']['SetKbToggleFpsLimit'](arg1);
+}
+
+export function SetKbToggleHud(arg1) {
+  return window['go']['main']['App']['SetKbToggleHud'](arg1);
+}
+
+export function SetKbToggleHudPosition(arg1) {
+  return window['go']['main']['App']['SetKbToggleHudPosition'](arg1);
+}
+
+export function SetKbToggleLogging(arg1) {
+  return window['go']['main']['App']['SetKbToggleLogging'](arg1);
+}
+
+export function SetKbTogglePreset(arg1) {
+  return window['go']['main']['App']['SetKbTogglePreset'](arg1);
+}
+
+export function SetKbUploadLog(arg1) {
+  return window['go']['main']['App']['SetKbUploadLog'](arg1);
 }
 
 export function SetMediaColor(arg1) {
