@@ -3,26 +3,26 @@ package main
 import "mangohud-configurator/config"
 
 func (a *App) GetOrientation() string {
-	return config.ConfigGlobal.Orientation
+	return config.CG.Orientation
 }
 
 func (a *App) SetOrientation(n string) {
-	config.ConfigGlobal.SetOrientation(n)
+	config.CG.SetOrientation(n)
 }
 
 func (a *App) GetPosition() string {
-	return config.ConfigGlobal.Position
+	return config.CG.Position
 }
 func (a *App) SetPosition(n string) {
-	config.ConfigGlobal.SetPosition(n)
+	config.CG.SetPosition(n)
 }
 
 func (a *App) GetRoundCorners() bool {
-	return config.ConfigGlobal.RoundCorners
+	return config.CG.RoundCorners
 }
 
 func (a *App) SetRoundedCorners(n bool) {
-	config.ConfigGlobal.SetRoundedCorners(n)
+	config.CG.SetRoundedCorners(n)
 }
 
 func (a *App) ResetConfig() {
@@ -30,141 +30,141 @@ func (a *App) ResetConfig() {
 }
 
 func (a *App) GetBackgroundColor() string {
-	return config.ConfigGlobal.Background
+	return config.CG.Background
 }
 
 func (a *App) SetBackgroundColor(n string) {
-	config.ConfigGlobal.SetBackgroundColor(n)
+	config.CG.SetBackgroundColor(n)
 }
 
 func (a *App) GetBackgroundAlpha() string {
-	return config.ConfigGlobal.BackgroundAlpha
+	return config.CG.BackgroundAlpha
 }
 
 func (a *App) SetBackgroundAlpha(n string) {
-	config.ConfigGlobal.SetBackgroundAlpha(n)
+	config.CG.SetBackgroundAlpha(n)
 }
 
 func (a *App) GetFontSize() string {
-	return config.ConfigGlobal.FontSize
+	return config.CG.FontSize
 }
 
 func (a *App) SetFontSize(n string) {
-	config.ConfigGlobal.SetFontSize(n)
+	config.CG.SetFontSize(n)
 }
 
 func (a *App) GetTextColor() string {
-	return config.ConfigGlobal.TextColor
+	return config.CG.TextColor
 }
 func (a *App) SetTextColor(n string) {
-	config.ConfigGlobal.SetTextColor(n)
+	config.CG.SetTextColor(n)
 }
 
 func (a *App) GetGpuColor() string {
-	return config.ConfigGlobal.GpuColor
+	return config.CG.GpuColor
 }
 func (a *App) SetGpuColor(n string) {
-	config.ConfigGlobal.SetGpuColor(n)
+	config.CG.SetGpuColor(n)
 }
 
 func (a *App) GetCpuColor() string {
-	return config.ConfigGlobal.CpuColor
+	return config.CG.CpuColor
 }
 func (a *App) SetCpuColor(n string) {
-	config.ConfigGlobal.SetCpuColor(n)
+	config.CG.SetCpuColor(n)
 }
 
 func (a *App) GetVramColor() string {
-	return config.ConfigGlobal.VramColor
+	return config.CG.VramColor
 }
 func (a *App) SetVramColor(n string) {
-	config.ConfigGlobal.SetVramColor(n)
+	config.CG.SetVramColor(n)
 }
 
 func (a *App) GetRamColor() string {
-	return config.ConfigGlobal.RamColor
+	return config.CG.RamColor
 }
 func (a *App) SetRamColor(n string) {
-	config.ConfigGlobal.SetRamColor(n)
+	config.CG.SetRamColor(n)
 }
 
 func (a *App) GetEngineColor() string {
-	return config.ConfigGlobal.EngineColor
+	return config.CG.EngineColor
 }
 func (a *App) SetEngineColor(n string) {
-	config.ConfigGlobal.SetEngineColor(n)
+	config.CG.SetEngineColor(n)
 }
 
 func (a *App) GetIoColor() string {
-	return config.ConfigGlobal.IoColor
+	return config.CG.IoColor
 }
 func (a *App) SetIoColor(n string) {
-	config.ConfigGlobal.SetIoColor(n)
+	config.CG.SetIoColor(n)
 }
 
 func (a *App) GetFrametimeColor() string {
-	return config.ConfigGlobal.FrametimeColor
+	return config.CG.FrametimeColor
 }
 func (a *App) SetFrametimeColor(n string) {
-	config.ConfigGlobal.SetFrametimeColor(n)
+	config.CG.SetFrametimeColor(n)
 }
 
 func (a *App) GetMediaColor() string {
-	return config.ConfigGlobal.MediaColor
+	return config.CG.MediaColor
 }
 func (a *App) SetMediaColor(n string) {
-	config.ConfigGlobal.SetMediaColor(n)
+	config.CG.SetMediaColor(n)
 }
 
 func (a *App) GetWineColor() string {
-	return config.ConfigGlobal.WineColor
+	return config.CG.WineColor
 }
 func (a *App) SetWineColor(n string) {
-	config.ConfigGlobal.SetWineColor(n)
+	config.CG.SetWineColor(n)
 }
 
 func (a *App) GetBatteryColor() string {
-	return config.ConfigGlobal.BatteryColor
+	return config.CG.BatteryColor
 }
 func (a *App) SetBatteryColor(n string) {
-	config.ConfigGlobal.SetBatteryColor(n)
+	config.CG.SetBatteryColor(n)
 }
 
 func (a *App) GetNetworkColor() string {
-	return config.ConfigGlobal.NetworkColor
+	return config.CG.NetworkColor
 }
 func (a *App) SetNetworkColor(n string) {
-	config.ConfigGlobal.SetNetworkColor(n)
+	config.CG.SetNetworkColor(n)
 }
 
 func (a *App) GetCpuLoadColor0() string {
-	return config.ConfigGlobal.CpuLoadColor0
+	return config.CG.CpuLoadColor0
 }
 
 func (a *App) GetCpuLoadColor1() string {
-	return config.ConfigGlobal.CpuLoadColor1
+	return config.CG.CpuLoadColor1
 }
 
 func (a *App) GetCpuLoadColor2() string {
-	return config.ConfigGlobal.CpuLoadColor2
+	return config.CG.CpuLoadColor2
 }
 
 func (a *App) SetCpuLoadColors(n0 string, n1 string, n2 string) {
-	config.ConfigGlobal.SetCpuLoadColor(n0, n1, n2)
+	config.CG.SetCpuLoadColor(n0, n1, n2)
 }
 
 func (a *App) GetGpuLoadColor0() string {
-	return config.ConfigGlobal.GpuLoadColor0
+	return config.CG.GpuLoadColor0
 }
 
 func (a *App) GetGpuLoadColor1() string {
-	return config.ConfigGlobal.GpuLoadColor1
+	return config.CG.GpuLoadColor1
 }
 
 func (a *App) GetGpuLoadColor2() string {
-	return config.ConfigGlobal.GpuLoadColor2
+	return config.CG.GpuLoadColor2
 }
 
 func (a *App) SetGpuLoadColors(n0 string, n1 string, n2 string) {
-	config.ConfigGlobal.SetGpuLoadColor(n0, n1, n2)
+	config.CG.SetGpuLoadColor(n0, n1, n2)
 }

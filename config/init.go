@@ -31,14 +31,14 @@ func LoadConfig() {
 			switch cmd {
 			case "round_corners":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.RoundCorners = (r != "0")
+				CG.RoundCorners = (r != "0")
 				break
 			case "position":
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
 				}
-				ConfigGlobal.Position = r
+				CG.Position = r
 				break
 
 				// # text_color=FFFFFF
@@ -59,21 +59,21 @@ func LoadConfig() {
 				if r == "" {
 					break
 				}
-				ConfigGlobal.Background = r
+				CG.Background = r
 				break
 			case "text_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
 				}
-				ConfigGlobal.TextColor = r
+				CG.TextColor = r
 				break
 			case "gpu_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
 				}
-				ConfigGlobal.GpuColor = r
+				CG.GpuColor = r
 				break
 			case "gpu_load_color":
 				r := strings.TrimSpace(val)
@@ -84,16 +84,16 @@ func LoadConfig() {
 				if len(sep) != 3 {
 					break
 				}
-				ConfigGlobal.GpuLoadColor0 = sep[0]
-				ConfigGlobal.GpuLoadColor1 = sep[1]
-				ConfigGlobal.GpuLoadColor2 = sep[2]
+				CG.GpuLoadColor0 = sep[0]
+				CG.GpuLoadColor1 = sep[1]
+				CG.GpuLoadColor2 = sep[2]
 				break
 			case "cpu_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
 				}
-				ConfigGlobal.CpuColor = r
+				CG.CpuColor = r
 				break
 			case "cpu_load_color":
 				r := strings.TrimSpace(val)
@@ -104,95 +104,126 @@ func LoadConfig() {
 				if len(sep) != 3 {
 					break
 				}
-				ConfigGlobal.CpuLoadColor0 = sep[0]
-				ConfigGlobal.CpuLoadColor1 = sep[1]
-				ConfigGlobal.CpuLoadColor2 = sep[2]
+				CG.CpuLoadColor0 = sep[0]
+				CG.CpuLoadColor1 = sep[1]
+				CG.CpuLoadColor2 = sep[2]
 				break
 			case "vram_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
 				}
-				ConfigGlobal.VramColor = r
+				CG.VramColor = r
 				break
 			case "ram_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
 				}
-				ConfigGlobal.RamColor = r
+				CG.RamColor = r
 				break
 			case "engine_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
 				}
-				ConfigGlobal.EngineColor = r
+				CG.EngineColor = r
 				break
 			case "io_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
 				}
-				ConfigGlobal.IoColor = r
+				CG.IoColor = r
 				break
 			case "frametime_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
 				}
-				ConfigGlobal.FrametimeColor = r
+				CG.FrametimeColor = r
 				break
 			case "media_player_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
 				}
-				ConfigGlobal.MediaColor = r
+				CG.MediaColor = r
 				break
 			case "wine_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
 				}
-				ConfigGlobal.WineColor = r
+				CG.WineColor = r
 				break
 			case "battery_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
 				}
-				ConfigGlobal.BatteryColor = r
+				CG.BatteryColor = r
 				break
 			case "network_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
 				}
-				ConfigGlobal.NetworkColor = r
+				CG.NetworkColor = r
 				break
 
 			case "background_alpha":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.BackgroundAlpha = r
+				CG.BackgroundAlpha = r
 				break
 			case "font_size":
 				r := strings.TrimSpace(val)
-				ConfigGlobal.FontSize = r
+				CG.FontSize = r
 				break
+
+			case "toggle_hud":
+				r := strings.TrimSpace(val)
+				CG.KbToggleHud = r
+				break
+			case "toggle_hud_position":
+				r := strings.TrimSpace(val)
+				CG.KbToggleHudPosition = r
+				break
+			case "toggle_preset":
+				r := strings.TrimSpace(val)
+				CG.KbTogglePreset = r
+				break
+			case "toggle_fps_limit":
+				r := strings.TrimSpace(val)
+				CG.KbToggleFpsLimit = r
+				break
+			case "toggle_logging":
+				r := strings.TrimSpace(val)
+				CG.KbToggleLogging = r
+				break
+			case "reload_cfg":
+				r := strings.TrimSpace(val)
+				CG.KbReloadCfg = r
+				break
+			case "upload_cfg":
+				r := strings.TrimSpace(val)
+				CG.KbUploadLog = r
+				break
+
 			}
+
 			continue
 		}
 		v = strings.TrimSpace(v)
 
 		if v == "horizontal" {
 			fmt.Println("horizontal found")
-			ConfigGlobal.Orientation = "horizontal"
+			CG.Orientation = "horizontal"
 			continue
 		}
 		if v == "horizontal_stretch" {
 			fmt.Println("horizontal stretch found")
-			ConfigGlobal.Orientation = "horizontal_stretch"
+			CG.Orientation = "horizontal_stretch"
 			continue
 		}
 
@@ -235,30 +266,37 @@ func getConfigFile() []string {
 }
 
 func setDefaults() {
-	ConfigGlobal.Orientation = "vertical"
-	ConfigGlobal.Position = "top-left"
-	ConfigGlobal.RoundCorners = false
-	ConfigGlobal.Background = "000000"
-	ConfigGlobal.BackgroundAlpha = "0.8"
-	ConfigGlobal.FontSize = "24"
-	ConfigGlobal.TextColor = "FFFFFF"
-	ConfigGlobal.GpuColor = "2E9762"
-	ConfigGlobal.GpuLoadColor0 = "39F900"
-	ConfigGlobal.GpuLoadColor1 = "FDFD09"
-	ConfigGlobal.GpuLoadColor2 = "B22222"
-	ConfigGlobal.CpuColor = "2E97CB"
-	ConfigGlobal.CpuLoadColor0 = "39F900"
-	ConfigGlobal.CpuLoadColor1 = "FDFD09"
-	ConfigGlobal.CpuLoadColor2 = "B22222"
-	ConfigGlobal.VramColor = "AD64C1"
-	ConfigGlobal.RamColor = "C26693"
-	ConfigGlobal.EngineColor = "EB5B5B"
-	ConfigGlobal.IoColor = "A491D3"
-	ConfigGlobal.FrametimeColor = "00FF00"
-	ConfigGlobal.MediaColor = "FFFFFF"
-	ConfigGlobal.WineColor = "EB4B4B"
-	ConfigGlobal.BatteryColor = "FF9078"
-	ConfigGlobal.NetworkColor = "E07B85"
+	CG.Orientation = "vertical"
+	CG.Position = "top-left"
+	CG.RoundCorners = false
+	CG.Background = "000000"
+	CG.BackgroundAlpha = "0.8"
+	CG.FontSize = "24"
+	CG.TextColor = "FFFFFF"
+	CG.GpuColor = "2E9762"
+	CG.GpuLoadColor0 = "39F900"
+	CG.GpuLoadColor1 = "FDFD09"
+	CG.GpuLoadColor2 = "B22222"
+	CG.CpuColor = "2E97CB"
+	CG.CpuLoadColor0 = "39F900"
+	CG.CpuLoadColor1 = "FDFD09"
+	CG.CpuLoadColor2 = "B22222"
+	CG.VramColor = "AD64C1"
+	CG.RamColor = "C26693"
+	CG.EngineColor = "EB5B5B"
+	CG.IoColor = "A491D3"
+	CG.FrametimeColor = "00FF00"
+	CG.MediaColor = "FFFFFF"
+	CG.WineColor = "EB4B4B"
+	CG.BatteryColor = "FF9078"
+	CG.NetworkColor = "E07B85"
+	CG.KbToggleHud = "Shift_R+F12"
+	CG.KbToggleHudPosition = "Shift_R+F11"
+	CG.KbTogglePreset = "Shift_R+F10"
+	CG.KbToggleFpsLimit = "Shift_L+F1"
+	CG.KbToggleLogging = "Shift_L+F2"
+	CG.KbReloadCfg = "Shift_L+F4"
+	CG.KbUploadLog = "Shift_L+F3"
 }
 
 func createConfigIfNotExist() {

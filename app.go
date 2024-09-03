@@ -13,7 +13,7 @@ type App struct {
 
 // NewApp creates a new App application struct
 func NewApp() *App {
-	config.ConfigGlobal = config.Config{}
+	config.CG = config.Config{}
 	return &App{}
 }
 
