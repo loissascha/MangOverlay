@@ -19,11 +19,11 @@ func main() {
 	err := wails.Run(&options.App{
 		Title:  "mangohud-configurator",
 		Width:  1024,
-		Height: 768,
+		Height: 968,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		BackgroundColour: &options.RGBA{R: 255, G: 155, B: 0, A: 255},
+		BackgroundColour: &options.RGBA{R: 55, G: 65, B: 81, A: 255},
 		OnStartup:        app.startup,
 		Bind: []interface{}{
 			app,
