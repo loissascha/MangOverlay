@@ -8,6 +8,9 @@ type Config struct {
 	FontSize        string
 	TextColor       string
 	GpuColor        string
+	GpuLoadColor0   string
+	GpuLoadColor1   string
+	GpuLoadColor2   string
 	CpuColor        string
 	CpuLoadColor0   string
 	CpuLoadColor1   string

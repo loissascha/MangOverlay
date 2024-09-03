@@ -69,6 +69,19 @@ func LoadConfig() {
 				}
 				ConfigGlobal.GpuColor = r
 				break
+			case "gpu_load_color":
+				r := strings.TrimSpace(val)
+				if r == "" {
+					break
+				}
+				sep := strings.Split(r, ",")
+				if len(sep) != 3 {
+					break
+				}
+				ConfigGlobal.GpuLoadColor0 = sep[0]
+				ConfigGlobal.GpuLoadColor1 = sep[1]
+				ConfigGlobal.GpuLoadColor2 = sep[2]
+				break
 			case "cpu_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
@@ -223,6 +236,9 @@ func setDefaults() {
 	ConfigGlobal.FontSize = "24"
 	ConfigGlobal.TextColor = "FFFFFF"
 	ConfigGlobal.GpuColor = "2E9762"
+	ConfigGlobal.GpuLoadColor0 = "39F900"
+	ConfigGlobal.GpuLoadColor1 = "FDFD09"
+	ConfigGlobal.GpuLoadColor2 = "B22222"
 	ConfigGlobal.CpuColor = "2E97CB"
 	ConfigGlobal.CpuLoadColor0 = "39F900"
 	ConfigGlobal.CpuLoadColor1 = "FDFD09"

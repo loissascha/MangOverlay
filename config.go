@@ -145,3 +145,19 @@ func (a *App) GetCpuLoadColor2() string {
 func (a *App) SetCpuLoadColors(n0 string, n1 string, n2 string) {
 	config.ConfigGlobal.SetCpuLoadColor(n0, n1, n2)
 }
+
+func (a *App) GetGpuLoadColor0() string {
+	return config.ConfigGlobal.GpuLoadColor0
+}
+
+func (a *App) GetGpuLoadColor1() string {
+	return config.ConfigGlobal.GpuLoadColor1
+}
+
+func (a *App) GetGpuLoadColor2() string {
+	return config.ConfigGlobal.GpuLoadColor2
+}
+
+func (a *App) SetGpuLoadColors(n0 string, n1 string, n2 string) {
+	config.ConfigGlobal.SetGpuLoadColor(n0, n1, n2)
+}

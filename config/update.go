@@ -169,6 +169,16 @@ func (c *Config) SetNetworkColor(n string) {
 	updateConfigLine("network_color", n, true)
 }
 
+func (c *Config) SetGpuLoadColor(n0 string, n1 string, n2 string) {
+	if n0 == "" || n1 == "" || n2 == "" {
+		return
+	}
+	c.GpuLoadColor0 = n0
+	c.GpuLoadColor1 = n1
+	c.GpuLoadColor2 = n2
+	updateConfigLine("gpu_load_color", n0+","+n1+","+n2, true)
+}
+
 func (c *Config) SetCpuLoadColor(n0 string, n1 string, n2 string) {
 	if n0 == "" || n1 == "" || n2 == "" {
 		return
@@ -219,6 +229,7 @@ func addConfigLine(n string) {
 }
 
 func updateConfigLine(c string, n string, addIfMissing bool) {
+	fmt.Println("updateConfigLine:", c, "=", n)
 	cf := getConfigFile()
 	newFile := ""
 	lineFound := false
