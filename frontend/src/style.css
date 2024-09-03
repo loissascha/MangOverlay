@@ -11,3 +11,24 @@ html, body {
     width:100%;
     height:100%;
 }
+
+.sketch-picker {
+    background: #333 !important;
+    color: #fff !important;
+}
+
+.sketch-picker div {
+    border-top-color: #555 !important;
+}
+
+.sketch-picker input {
+    background: #333 !important;
+    color: #fff !important;
+    border:1px solid #555 !important;
+    border-radius: 5px;
+    box-shadow: unset !important;
+}
+
+.sketch-picker label {
+    color: #fff !important;
+}
