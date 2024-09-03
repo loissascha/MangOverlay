@@ -18,6 +18,18 @@ export function GetCpuColor() {
   return window['go']['main']['App']['GetCpuColor']();
 }
 
+export function GetCpuLoadColor0() {
+  return window['go']['main']['App']['GetCpuLoadColor0']();
+}
+
+export function GetCpuLoadColor1() {
+  return window['go']['main']['App']['GetCpuLoadColor1']();
+}
+
+export function GetCpuLoadColor2() {
+  return window['go']['main']['App']['GetCpuLoadColor2']();
+}
+
 export function GetEngineColor() {
   return window['go']['main']['App']['GetEngineColor']();
 }
@@ -92,6 +104,10 @@ export function SetBatteryColor(arg1) {
 
 export function SetCpuColor(arg1) {
   return window['go']['main']['App']['SetCpuColor'](arg1);
+}
+
+export function SetCpuLoadColors(arg1, arg2, arg3) {
+  return window['go']['main']['App']['SetCpuLoadColors'](arg1, arg2, arg3);
 }
 
 export function SetEngineColor(arg1) {

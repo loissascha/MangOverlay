@@ -9,6 +9,12 @@ export function GetBatteryColor():Promise<string>;
 
 export function GetCpuColor():Promise<string>;
 
+export function GetCpuLoadColor0():Promise<string>;
+
+export function GetCpuLoadColor1():Promise<string>;
+
+export function GetCpuLoadColor2():Promise<string>;
+
 export function GetEngineColor():Promise<string>;
 
 export function GetFontSize():Promise<string>;
@@ -46,6 +52,8 @@ export function SetBackgroundColor(arg1:string):Promise<void>;
 export function SetBatteryColor(arg1:string):Promise<void>;
 
 export function SetCpuColor(arg1:string):Promise<void>;
+
+export function SetCpuLoadColors(arg1:string,arg2:string,arg3:string):Promise<void>;
 
 export function SetEngineColor(arg1:string):Promise<void>;
 

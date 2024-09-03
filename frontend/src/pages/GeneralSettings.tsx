@@ -164,7 +164,7 @@ function GeneralSettings() {
                                     {backgroundColor}
                                 </button>
                                 {showBackgroundPicker ? (
-                                    <div className="absolute z-50">
+                                    <div className="absolute z-50 text-black">
                                         <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
                                             setShowBackgroundPicker(false)
                                         }}> </div>
@@ -218,9 +218,15 @@ function GeneralSettings() {
                                 id="fontsize"
                                 className="w-28 bg-gray-700 p-1 border rounded text-center"
                                 defaultValue={fontSize}
+                                min="8"
+                                max="50"
                                 onChange={(event) => {
-                                    setFontSize(event.target.value)
-                                    SetFontSize(event.target.value)
+                                    let num = event.target.value
+                                    if (parseInt(num) < 8) {
+                                        num = "8"
+                                    }
+                                    setFontSize(num)
+                                    SetFontSize(num)
                                 }}
                             />
                             <label htmlFor="textcolor" className="me-2">Color:</label>
@@ -237,7 +243,7 @@ function GeneralSettings() {
                                     {textColor}
                                 </button>
                                 {showTextPicker ? (
-                                    <div className="absolute z-50">
+                                    <div className="absolute z-50 text-black">
                                         <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
                                             setShowTextPicker(false)
                                         }}> </div>
