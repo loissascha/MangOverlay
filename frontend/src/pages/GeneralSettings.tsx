@@ -3,14 +3,11 @@ import { GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor
 import SettingBox from "../general/SettingBox";
 import { SketchPicker } from "react-color";
 import Colors from "../generalSettings/Colors";
+import Text from "../generalSettings/Text";
 
 function GeneralSettings() {
-    const [textColor, setTextColor] = useState<string>("");
-    const [showTextPicker, setShowTextPicker] = useState<boolean>(false);
-
     const [orientation, setOrientation] = useState<string>("");
     const [rounded, setRounded] = useState<boolean>(false);
-    const [fontSize, setFontSize] = useState<string>("");
 
     const [backgroundColor, setBackgroundColor] = useState<string>("");
     const [showBackgroundPicker, setShowBackgroundPicker] = useState<boolean>(false);
@@ -18,9 +15,6 @@ function GeneralSettings() {
     const [backgroundAlpha, setBackgroundAlpha] = useState<string>("");
 
     useEffect(() => {
-        GetTextColor().then((r) => {
-            setTextColor(r)
-        })
         GetOrientation().then((or) => {
             setOrientation(or);
         });
@@ -35,12 +29,6 @@ function GeneralSettings() {
                 r = "0.8"
             }
             setBackgroundAlpha(r);
-        })
-        GetFontSize().then((r) => {
-            if (r == "") {
-                r = "24"
-            }
-            setFontSize(r)
         })
     }, [])
 
@@ -210,55 +198,7 @@ function GeneralSettings() {
                         </div>
                     </SettingBox>
 
-                    <SettingBox header="Text">
-                        <div className="grid grid-cols-2 gap-3">
-                            <label htmlFor="fontsize" className="me-2">Size:</label>
-                            <input
-                                type="number"
-                                id="fontsize"
-                                className="w-28 bg-gray-700 p-1 border rounded text-center"
-                                defaultValue={fontSize}
-                                min="8"
-                                max="50"
-                                onChange={(event) => {
-                                    let num = event.target.value
-                                    if (parseInt(num) < 8) {
-                                        num = "8"
-                                    }
-                                    setFontSize(num)
-                                    SetFontSize(num)
-                                }}
-                            />
-                            <label htmlFor="textcolor" className="me-2">Color:</label>
-                            <div>
-                                <button
-                                    style={{
-                                        backgroundColor: "#" + textColor
-                                    }}
-                                    onClick={() => {
-                                        setShowTextPicker(!showTextPicker)
-                                    }}
-                                    className="cursor-pointer p-1 rounded border w-28"
-                                >
-                                    {textColor}
-                                </button>
-                                {showTextPicker ? (
-                                    <div className="absolute z-50 text-black">
-                                        <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                            setShowTextPicker(false)
-                                        }}> </div>
-                                        <SketchPicker color={textColor} onChange={(color) => {
-                                            let col = color.hex;
-                                            if (col[0] == "#") {
-                                                col = col.substring(1)
-                                            }
-                                            setTextColor(col)
-                                            SetTextColor(col)
-                                        }} />
-                                    </div>) : null}
-                            </div>
-                        </div>
-                    </SettingBox>
+                    <Text />
                 </div>
 
                 <Colors />

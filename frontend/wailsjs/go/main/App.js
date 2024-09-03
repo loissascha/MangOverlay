@@ -46,6 +46,18 @@ export function GetGpuColor() {
   return window['go']['main']['App']['GetGpuColor']();
 }
 
+export function GetGpuLoadColor0() {
+  return window['go']['main']['App']['GetGpuLoadColor0']();
+}
+
+export function GetGpuLoadColor1() {
+  return window['go']['main']['App']['GetGpuLoadColor1']();
+}
+
+export function GetGpuLoadColor2() {
+  return window['go']['main']['App']['GetGpuLoadColor2']();
+}
+
 export function GetIoColor() {
   return window['go']['main']['App']['GetIoColor']();
 }
@@ -124,6 +136,10 @@ export function SetFrametimeColor(arg1) {
 
 export function SetGpuColor(arg1) {
   return window['go']['main']['App']['SetGpuColor'](arg1);
+}
+
+export function SetGpuLoadColors(arg1, arg2, arg3) {
+  return window['go']['main']['App']['SetGpuLoadColors'](arg1, arg2, arg3);
 }
 
 export function SetIoColor(arg1) {
