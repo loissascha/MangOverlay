@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, GetFontSize, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetFontSize, SetOrientation, GetTextColor, SetTextColor, GetPosition, SetPosition, GetKbToggleHud, GetKbToggleHudPosition, GetKbTogglePreset, GetKbToggleFpsLimit, GetKbToggleLogging, GetKbReloadCfg, GetKbUploadLog, SetKbToggleHud, SetKbToggleHudPosition, SetKbTogglePreset, SetKbToggleFpsLimit, SetKbToggleLogging, SetKbReloadCfg, SetKbUploadLog } from "../../wailsjs/go/main/App";
+import { GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetOrientation, GetPosition, GetKbToggleHud, GetKbToggleHudPosition, GetKbTogglePreset, GetKbToggleFpsLimit, GetKbToggleLogging, GetKbReloadCfg, GetKbUploadLog, SetKbToggleHud, SetKbToggleHudPosition, SetKbTogglePreset, SetKbToggleFpsLimit, SetKbToggleLogging, SetKbReloadCfg, SetKbUploadLog } from "../../wailsjs/go/main/App";
 import SettingBox from "../general/SettingBox";
 import { SketchPicker } from "react-color";
 import Colors from "../generalSettings/Colors";
 import Text from "../generalSettings/Text";
+import Position from "../generalSettings/Position";
 
 function GeneralSettings() {
     const [orientation, setOrientation] = useState<string>("");
     const [rounded, setRounded] = useState<boolean>(false);
-    const [position, setPosition] = useState<string>("");
 
     const [kbToggleHud, setKbToggleHud] = useState<string>("")
     const [kbToggleHudPosition, setKbToggleHudPosition] = useState<string>("")
@@ -24,9 +24,6 @@ function GeneralSettings() {
     const [backgroundAlpha, setBackgroundAlpha] = useState<string>("");
 
     useEffect(() => {
-        GetPosition().then((r) => {
-            setPosition(r)
-        })
         GetOrientation().then((or) => {
             setOrientation(or)
         })
@@ -116,21 +113,7 @@ function GeneralSettings() {
                             <label htmlFor="orientationHorizontalStretch">Horizontal Stretch</label>
                         </div>
                     </SettingBox>
-                    <SettingBox header="Position">
-                        <div className="grid grid-cols-2 gap-3">
-                            <label htmlFor="position" className="me-2">Position</label>
-                            <input
-                                type="text"
-                                id="position"
-                                className="w-28 bg-gray-700 p-1 rounded border"
-                                defaultValue={position}
-                                onChange={(event) => {
-                                    setPosition(event.target.value)
-                                    SetPosition(event.target.value)
-                                }}
-                            />
-                        </div>
-                    </SettingBox>
+                    <Position />
                     <SettingBox header="Keybinds">
                         <div className="grid grid-cols-2 gap-3">
                             <label htmlFor="togglehud" className="me-2">Toggle HUD:</label>
