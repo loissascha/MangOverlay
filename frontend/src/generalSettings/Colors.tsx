@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SettingBox from "../general/SettingBox";
+import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
 import { GetBatteryColor, GetCpuColor, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetEngineColor, GetFrametimeColor, GetGpuColor, GetGpuLoadColor0, GetGpuLoadColor1, GetGpuLoadColor2, GetIoColor, GetMediaColor, GetNetworkColor, GetRamColor, GetVramColor, GetWineColor, SetBatteryColor, SetCpuColor, SetCpuLoadColors, SetEngineColor, SetFrametimeColor, SetGpuColor, SetGpuLoadColors, SetIoColor, SetMediaColor, SetNetworkColor, SetRamColor, SetVramColor, SetWineColor } from "../../wailsjs/go/main/App";
 

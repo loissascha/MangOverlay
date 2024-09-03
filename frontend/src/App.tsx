@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import GeneralSettings from "./pages/GeneralSettings";
 import { ResetConfig, RestartVkcube } from "../wailsjs/go/main/App";
 import Button from "./ui/Button";
+import ElementsSettings from "./pages/ElementsSettings";
 
 function App() {
     const [activeMenu, setActiveMenu] = useState<string>("general");
@@ -35,7 +36,7 @@ function App() {
                     activeMenu == "general" ?
                         (<GeneralSettings />) :
                         activeMenu == "elements" ?
-                            (<div>Elements</div>) :
+                            (<ElementsSettings />) :
                             null
                 }
             </main>

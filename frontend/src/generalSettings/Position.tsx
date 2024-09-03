@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SettingBox from "../general/SettingBox";
+import SettingBox from "../ui/SettingBox";
 import { GetPosition, SetPosition } from "../../wailsjs/go/main/App";
 
 function Position() {

@@ -1,4 +1,4 @@
-import SettingBox from "../general/SettingBox";
+import SettingBox from "../ui/SettingBox";
 import { GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, GetFontSize, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetFontSize, SetOrientation, GetTextColor, SetTextColor, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, SetCpuLoadColors, GetGpuLoadColor0, GetGpuLoadColor1, GetGpuLoadColor2, SetGpuLoadColors } from "../../wailsjs/go/main/App";
 import { useEffect, useState } from "react";
 import { SketchPicker } from "react-color";
