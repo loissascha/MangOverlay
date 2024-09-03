@@ -9,6 +9,9 @@ type Config struct {
 	TextColor       string
 	GpuColor        string
 	CpuColor        string
+	CpuLoadColor0   string
+	CpuLoadColor1   string
+	CpuLoadColor2   string
 	VramColor       string
 	RamColor        string
 	EngineColor     string

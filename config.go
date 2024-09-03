@@ -129,3 +129,19 @@ func (a *App) GetNetworkColor() string {
 func (a *App) SetNetworkColor(n string) {
 	config.ConfigGlobal.SetNetworkColor(n)
 }
+
+func (a *App) GetCpuLoadColor0() string {
+	return config.ConfigGlobal.CpuLoadColor0
+}
+
+func (a *App) GetCpuLoadColor1() string {
+	return config.ConfigGlobal.CpuLoadColor1
+}
+
+func (a *App) GetCpuLoadColor2() string {
+	return config.ConfigGlobal.CpuLoadColor2
+}
+
+func (a *App) SetCpuLoadColors(n0 string, n1 string, n2 string) {
+	config.ConfigGlobal.SetCpuLoadColor(n0, n1, n2)
+}

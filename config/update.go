@@ -169,6 +169,16 @@ func (c *Config) SetNetworkColor(n string) {
 	updateConfigLine("network_color", n, true)
 }
 
+func (c *Config) SetCpuLoadColor(n0 string, n1 string, n2 string) {
+	if n0 == "" || n1 == "" || n2 == "" {
+		return
+	}
+	c.CpuLoadColor0 = n0
+	c.CpuLoadColor1 = n1
+	c.CpuLoadColor2 = n2
+	updateConfigLine("cpu_load_color", n0+","+n1+","+n2, true)
+}
+
 func deleteConfigLine(n string) {
 	cf := getConfigFile()
 	newFile := ""

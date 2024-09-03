@@ -76,6 +76,19 @@ func LoadConfig() {
 				}
 				ConfigGlobal.CpuColor = r
 				break
+			case "cpu_load_color":
+				r := strings.TrimSpace(val)
+				if r == "" {
+					break
+				}
+				sep := strings.Split(r, ",")
+				if len(sep) != 3 {
+					break
+				}
+				ConfigGlobal.CpuLoadColor0 = sep[0]
+				ConfigGlobal.CpuLoadColor1 = sep[1]
+				ConfigGlobal.CpuLoadColor2 = sep[2]
+				break
 			case "vram_color":
 				r := strings.TrimSpace(val)
 				if r == "" {
@@ -205,12 +218,15 @@ func getConfigFile() []string {
 func setDefaults() {
 	ConfigGlobal.Orientation = "vertical"
 	ConfigGlobal.RoundCorners = false
-	ConfigGlobal.Background = "#000000"
+	ConfigGlobal.Background = "000000"
 	ConfigGlobal.BackgroundAlpha = "0.8"
 	ConfigGlobal.FontSize = "24"
 	ConfigGlobal.TextColor = "FFFFFF"
 	ConfigGlobal.GpuColor = "2E9762"
 	ConfigGlobal.CpuColor = "2E97CB"
+	ConfigGlobal.CpuLoadColor0 = "39F900"
+	ConfigGlobal.CpuLoadColor1 = "FDFD09"
+	ConfigGlobal.CpuLoadColor2 = "B22222"
 	ConfigGlobal.VramColor = "AD64C1"
 	ConfigGlobal.RamColor = "C26693"
 	ConfigGlobal.EngineColor = "EB5B5B"
