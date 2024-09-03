@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, GetFontSize, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetFontSize, SetOrientation, GetTextColor, SetTextColor } from "../../wailsjs/go/main/App";
+import { GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, GetFontSize, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetFontSize, SetOrientation, GetTextColor, SetTextColor, GetPosition, SetPosition } from "../../wailsjs/go/main/App";
 import SettingBox from "../general/SettingBox";
 import { SketchPicker } from "react-color";
 import Colors from "../generalSettings/Colors";
@@ -8,6 +8,7 @@ import Text from "../generalSettings/Text";
 function GeneralSettings() {
     const [orientation, setOrientation] = useState<string>("");
     const [rounded, setRounded] = useState<boolean>(false);
+    const [position, setPosition] = useState<string>("");
 
     const [backgroundColor, setBackgroundColor] = useState<string>("");
     const [showBackgroundPicker, setShowBackgroundPicker] = useState<boolean>(false);
@@ -15,20 +16,23 @@ function GeneralSettings() {
     const [backgroundAlpha, setBackgroundAlpha] = useState<string>("");
 
     useEffect(() => {
+        GetPosition().then((r) => {
+            setPosition(r)
+        })
         GetOrientation().then((or) => {
-            setOrientation(or);
-        });
+            setOrientation(or)
+        })
         GetRoundCorners().then((r: boolean) => {
-            setRounded(r);
-        });
+            setRounded(r)
+        })
         GetBackgroundColor().then((r) => {
-            setBackgroundColor(r);
-        });
+            setBackgroundColor(r)
+        })
         GetBackgroundAlpha().then((r) => {
             if (r == "") {
                 r = "0.8"
             }
-            setBackgroundAlpha(r);
+            setBackgroundAlpha(r)
         })
     }, [])
 
@@ -89,7 +93,12 @@ function GeneralSettings() {
                             <input
                                 type="text"
                                 id="position"
-                                className="w-28 bg-gray-700"
+                                className="w-28 bg-gray-700 p-1 rounded border"
+                                defaultValue={position}
+                                onChange={(event) => {
+                                    setPosition(event.target.value)
+                                    SetPosition(event.target.value)
+                                }}
                             />
                         </div>
                     </SettingBox>
@@ -99,37 +108,37 @@ function GeneralSettings() {
                             <input
                                 type="text"
                                 id="togglehud"
-                                className="w-28 bg-gray-700"
+                                className="w-28 bg-gray-700 p-1 rounded border"
                             />
                             <label htmlFor="togglehudposition" className="me-2">Toggle Position:</label>
                             <input
                                 type="text"
                                 id="togglehudposition"
-                                className="w-28 bg-gray-700"
+                                className="w-28 bg-gray-700 p-1 rounded border"
                             />
                             <label htmlFor="togglepreset" className="me-2">Toggle Preset:</label>
                             <input
                                 type="text"
                                 id="togglepreset"
-                                className="w-28 bg-gray-700"
+                                className="w-28 bg-gray-700 p-1 rounded border"
                             />
                             <label htmlFor="togglefpslimit" className="me-2">Toggle FPS Limit:</label>
                             <input
                                 type="text"
                                 id="togglefpslimit"
-                                className="w-28 bg-gray-700"
+                                className="w-28 bg-gray-700 p-1 rounded border"
                             />
                             <label htmlFor="togglelogging" className="me-2">Toggle Logging:</label>
                             <input
                                 type="text"
                                 id="togglelogging"
-                                className="w-28 bg-gray-700"
+                                className="w-28 bg-gray-700 p-1 rounded border"
                             />
                             <label htmlFor="reloadcfg" className="me-2">Reload Cfg:</label>
                             <input
                                 type="text"
                                 id="reloadcfg"
-                                className="w-28 bg-gray-700"
+                                className="w-28 bg-gray-700 p-1 rounded border"
                             />
                         </div>
                     </SettingBox>

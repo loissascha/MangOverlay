@@ -37,6 +37,8 @@ export function GetNetworkColor():Promise<string>;
 
 export function GetOrientation():Promise<string>;
 
+export function GetPosition():Promise<string>;
+
 export function GetRamColor():Promise<string>;
 
 export function GetRoundCorners():Promise<boolean>;
@@ -78,6 +80,8 @@ export function SetMediaColor(arg1:string):Promise<void>;
 export function SetNetworkColor(arg1:string):Promise<void>;
 
 export function SetOrientation(arg1:string):Promise<void>;
+
+export function SetPosition(arg1:string):Promise<void>;
 
 export function SetRamColor(arg1:string):Promise<void>;
 

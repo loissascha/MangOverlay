@@ -74,6 +74,10 @@ export function GetOrientation() {
   return window['go']['main']['App']['GetOrientation']();
 }
 
+export function GetPosition() {
+  return window['go']['main']['App']['GetPosition']();
+}
+
 export function GetRamColor() {
   return window['go']['main']['App']['GetRamColor']();
 }
@@ -156,6 +160,10 @@ export function SetNetworkColor(arg1) {
 
 export function SetOrientation(arg1) {
   return window['go']['main']['App']['SetOrientation'](arg1);
+}
+
+export function SetPosition(arg1) {
+  return window['go']['main']['App']['SetPosition'](arg1);
 }
 
 export function SetRamColor(arg1) {
