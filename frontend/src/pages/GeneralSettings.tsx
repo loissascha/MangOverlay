@@ -6,6 +6,7 @@ import Colors from "../generalSettings/Colors";
 
 function GeneralSettings() {
     const [textColor, setTextColor] = useState<string>("");
+    const [showTextPicker, setShowTextPicker] = useState<boolean>(false);
 
     const [orientation, setOrientation] = useState<string>("");
     const [rounded, setRounded] = useState<boolean>(false);
@@ -223,16 +224,33 @@ function GeneralSettings() {
                                 }}
                             />
                             <label htmlFor="textcolor" className="me-2">Color:</label>
-                            <input
-                                type="text"
-                                id="textcolor"
-                                className="w-28 bg-gray-700"
-                                defaultValue={textColor}
-                                onChange={(event) => {
-                                    setTextColor(event.target.value)
-                                    SetTextColor(event.target.value)
-                                }}
-                            />
+                            <div>
+                                <button
+                                    style={{
+                                        backgroundColor: "#" + textColor
+                                    }}
+                                    onClick={() => {
+                                        setShowTextPicker(!showTextPicker)
+                                    }}
+                                    className="cursor-pointer p-1 rounded border w-28"
+                                >
+                                    {textColor}
+                                </button>
+                                {showTextPicker ? (
+                                    <div className="absolute z-50">
+                                        <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
+                                            setShowTextPicker(false)
+                                        }}> </div>
+                                        <SketchPicker color={textColor} onChange={(color) => {
+                                            let col = color.hex;
+                                            if (col[0] == "#") {
+                                                col = col.substring(1)
+                                            }
+                                            setTextColor(col)
+                                            SetTextColor(col)
+                                        }} />
+                                    </div>) : null}
+                            </div>
                         </div>
                     </SettingBox>
                 </div>
