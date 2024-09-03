@@ -29,6 +29,7 @@ func (c *Config) SetOrientation(n string) {
 }
 
 func (c *Config) SetPosition(n string) {
+	c.Position = n
 	if n == "" {
 		deleteConfigLine("position")
 		return
@@ -198,24 +199,31 @@ func (c *Config) SetCpuLoadColor(n0 string, n1 string, n2 string) {
 }
 
 func (c *Config) SetKbToggleHud(n string) {
+	c.KbToggleHud = n
 	updateConfigLine("toggle_hud", n, true)
 }
 func (c *Config) SetKbToggleHudPosition(n string) {
+	c.KbToggleHudPosition = n
 	updateConfigLine("toggle_hud_position", n, true)
 }
 func (c *Config) SetKbTogglePreset(n string) {
+	c.KbTogglePreset = n
 	updateConfigLine("toggle_preset", n, true)
 }
 func (c *Config) SetKbToggleFpsLimit(n string) {
+	c.KbToggleFpsLimit = n
 	updateConfigLine("toggle_fps_limit", n, true)
 }
 func (c *Config) SetKbToggleLogging(n string) {
+	c.KbToggleLogging = n
 	updateConfigLine("toggle_logging", n, true)
 }
 func (c *Config) SetKbReloadCfg(n string) {
+	c.KbReloadCfg = n
 	updateConfigLine("reload_cfg", n, true)
 }
 func (c *Config) SetKbUploadLog(n string) {
+	c.KbUploadLog = n
 	updateConfigLine("upload_log", n, true)
 }
 
