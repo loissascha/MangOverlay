@@ -31,8 +31,14 @@ func LoadConfig() {
 			switch cmd {
 			case "round_corners":
 				r := strings.TrimSpace(val)
-				fmt.Println("round corners found", r)
 				ConfigGlobal.RoundCorners = (r != "0")
+				break
+			case "position":
+				r := strings.TrimSpace(val)
+				if r == "" {
+					break
+				}
+				ConfigGlobal.Position = r
 				break
 
 				// # text_color=FFFFFF
@@ -230,6 +236,7 @@ func getConfigFile() []string {
 
 func setDefaults() {
 	ConfigGlobal.Orientation = "vertical"
+	ConfigGlobal.Position = "top-left"
 	ConfigGlobal.RoundCorners = false
 	ConfigGlobal.Background = "000000"
 	ConfigGlobal.BackgroundAlpha = "0.8"

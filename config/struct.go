@@ -2,6 +2,7 @@ package config
 
 type Config struct {
 	Orientation     string
+	Position        string
 	RoundCorners    bool
 	Background      string
 	BackgroundAlpha string

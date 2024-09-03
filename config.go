@@ -10,6 +10,13 @@ func (a *App) SetOrientation(n string) {
 	config.ConfigGlobal.SetOrientation(n)
 }
 
+func (a *App) GetPosition() string {
+	return config.ConfigGlobal.Position
+}
+func (a *App) SetPosition(n string) {
+	config.ConfigGlobal.SetPosition(n)
+}
+
 func (a *App) GetRoundCorners() bool {
 	return config.ConfigGlobal.RoundCorners
 }

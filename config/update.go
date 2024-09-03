@@ -28,6 +28,14 @@ func (c *Config) SetOrientation(n string) {
 	}
 }
 
+func (c *Config) SetPosition(n string) {
+	if n == "" {
+		deleteConfigLine("position")
+		return
+	}
+	updateConfigLine("position", n, true)
+}
+
 func (c *Config) SetBackgroundColor(n string) {
 	c.Background = n
 	n = strings.TrimPrefix(n, "#")
