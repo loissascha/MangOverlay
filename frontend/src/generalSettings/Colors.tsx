@@ -87,7 +87,7 @@ function Colors() {
                         onClick={() => {
                             setShowCpuPicker(!showCpuPicker)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
                     >
                         {cpuColor}
                     </button>
@@ -115,7 +115,7 @@ function Colors() {
                         onClick={() => {
                             setShowGpuPicker(!showGpuPicker)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
                     >
                         {gpuColor}
                     </button>
@@ -143,7 +143,7 @@ function Colors() {
                         onClick={() => {
                             setShowVramPicker(!showVramPicker)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
                     >
                         {vramColor}
                     </button>
@@ -171,7 +171,7 @@ function Colors() {
                         onClick={() => {
                             setShowRamPicker(!showRamPicker)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
                     >
                         {ramColor}
                     </button>
@@ -199,7 +199,7 @@ function Colors() {
                         onClick={() => {
                             setShowEnginePicker(!showEnginePicker)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
                     >
                         {engineColor}
                     </button>
@@ -227,7 +227,7 @@ function Colors() {
                         onClick={() => {
                             setShowIoPicker(!showIoPicker)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
                     >
                         {ioColor}
                     </button>
@@ -255,7 +255,7 @@ function Colors() {
                         onClick={() => {
                             setShowFrametimePicker(!showFrametimePicker)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
                     >
                         {frametimeColor}
                     </button>
@@ -283,7 +283,7 @@ function Colors() {
                         onClick={() => {
                             setShowMediaPicker(!showMediaPicker)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
                     >
                         {mediaColor}
                     </button>
@@ -311,7 +311,7 @@ function Colors() {
                         onClick={() => {
                             setShowWinePicker(!showWinePicker)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
                     >
                         {wineColor}
                     </button>
@@ -339,7 +339,7 @@ function Colors() {
                         onClick={() => {
                             setShowBatteryPicker(!showBatteryPicker)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
                     >
                         {batteryColor}
                     </button>
@@ -367,7 +367,7 @@ function Colors() {
                         onClick={() => {
                             setShowNetworkPicker(!showNetworkPicker)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
                     >
                         {networkColor}
                     </button>

@@ -120,7 +120,7 @@ function GeneralSettings() {
                             <input
                                 type="text"
                                 id="togglehud"
-                                className="w-28 bg-gray-700 p-1 rounded border"
+                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
                                 defaultValue={kbToggleHud}
                                 onChange={(event) => {
                                     const v = event.target.value
@@ -132,7 +132,7 @@ function GeneralSettings() {
                             <input
                                 type="text"
                                 id="togglehudposition"
-                                className="w-28 bg-gray-700 p-1 rounded border"
+                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
                                 defaultValue={kbToggleHudPosition}
                                 onChange={(event) => {
                                     const v = event.target.value
@@ -144,7 +144,7 @@ function GeneralSettings() {
                             <input
                                 type="text"
                                 id="togglepreset"
-                                className="w-28 bg-gray-700 p-1 rounded border"
+                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
                                 defaultValue={kbTogglePreset}
                                 onChange={(event) => {
                                     const v = event.target.value
@@ -156,7 +156,7 @@ function GeneralSettings() {
                             <input
                                 type="text"
                                 id="togglefpslimit"
-                                className="w-28 bg-gray-700 p-1 rounded border"
+                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
                                 defaultValue={kbToggleFpsLimit}
                                 onChange={(event) => {
                                     const v = event.target.value
@@ -168,7 +168,7 @@ function GeneralSettings() {
                             <input
                                 type="text"
                                 id="togglelogging"
-                                className="w-28 bg-gray-700 p-1 rounded border"
+                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
                                 defaultValue={kbToggleLogging}
                                 onChange={(event) => {
                                     const v = event.target.value
@@ -180,7 +180,7 @@ function GeneralSettings() {
                             <input
                                 type="text"
                                 id="reloadcfg"
-                                className="w-28 bg-gray-700 p-1 rounded border"
+                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
                                 defaultValue={kbReloadCfg}
                                 onChange={(event) => {
                                     const v = event.target.value
@@ -192,7 +192,7 @@ function GeneralSettings() {
                             <input
                                 type="text"
                                 id="uploadlog"
-                                className="w-28 bg-gray-700 p-1 rounded border"
+                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
                                 defaultValue={kbUploadLog}
                                 onChange={(event) => {
                                     const v = event.target.value
@@ -216,7 +216,7 @@ function GeneralSettings() {
                                     onClick={() => {
                                         setShowBackgroundPicker(!showBackgroundPicker)
                                     }}
-                                    className="cursor-pointer p-1 rounded border w-28"
+                                    className="cursor-pointer p-1 rounded border border-gray-500 w-28"
                                 >
                                     {backgroundColor}
                                 </button>
@@ -242,7 +242,7 @@ function GeneralSettings() {
                                 max="1"
                                 step="0.1"
                                 id="bgalpha"
-                                className="w-28 bg-gray-700 p-1 text-center border rounded"
+                                className="w-28 bg-gray-700 p-1 text-center border border-gray-500 rounded"
                                 defaultValue={backgroundAlpha}
                                 onChange={(event) => {
                                     setBackgroundAlpha(event.target.value);

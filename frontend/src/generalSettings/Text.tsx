@@ -64,7 +64,7 @@ function Text() {
                 <input
                     type="number"
                     id="fontsize"
-                    className="w-28 bg-gray-700 p-1 border rounded text-center"
+                    className="w-28 bg-gray-700 p-1 border border-gray-500 rounded text-center"
                     defaultValue={fontSize}
                     min="8"
                     max="50"
@@ -86,7 +86,7 @@ function Text() {
                         onClick={() => {
                             setShowTextPicker(!showTextPicker)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
                     >
                         {textColor}
                     </button>
@@ -114,7 +114,7 @@ function Text() {
                         onClick={() => {
                             setShowCpuLoadPicker0(!showCpuLoadPicker0)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28 block mb-2"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
                     >
                         {cpuLoadColor0}
                     </button>
@@ -139,7 +139,7 @@ function Text() {
                         onClick={() => {
                             setShowCpuLoadPicker1(!showCpuLoadPicker1)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28 block mb-2"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
                     >
                         {cpuLoadColor1}
                     </button>
@@ -164,7 +164,7 @@ function Text() {
                         onClick={() => {
                             setShowCpuLoadPicker2(!showCpuLoadPicker2)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28 block"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28 block"
                     >
                         {cpuLoadColor2}
                     </button>
@@ -192,7 +192,7 @@ function Text() {
                         onClick={() => {
                             setShowGpuLoadPicker0(!showGpuLoadPicker0)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28 block mb-2"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
                     >
                         {gpuLoadColor0}
                     </button>
@@ -217,7 +217,7 @@ function Text() {
                         onClick={() => {
                             setShowGpuLoadPicker1(!showGpuLoadPicker1)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28 block mb-2"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
                     >
                         {gpuLoadColor1}
                     </button>
@@ -242,7 +242,7 @@ function Text() {
                         onClick={() => {
                             setShowGpuLoadPicker2(!showGpuLoadPicker2)
                         }}
-                        className="cursor-pointer p-1 rounded border w-28 block"
+                        className="cursor-pointer p-1 rounded border border-gray-500 w-28 block"
                     >
                         {gpuLoadColor2}
                     </button>
