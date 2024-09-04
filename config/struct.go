@@ -1,5 +1,18 @@
 package config
 
+type Element struct {
+	Name string
+}
+
+type ExtraSetting struct {
+	Name  string
+	Value string
+}
+
+var Elements []Element
+var GPUElementsAvailable []Element
+var GPUExtraSettings []ExtraSetting
+
 type Config struct {
 	Orientation         string
 	Position            string
@@ -8,6 +21,8 @@ type Config struct {
 	BackgroundAlpha     string
 	FontSize            string
 	TextColor           string
+	GpuText             string
+	GpuLoadChange       string
 	GpuColor            string
 	GpuLoadColor0       string
 	GpuLoadColor1       string
@@ -33,13 +48,5 @@ type Config struct {
 	KbReloadCfg         string
 	KbUploadLog         string
 }
-
-// # toggle_hud=Shift_R+F12
-// # toggle_hud_position=Shift_R+F11
-// # toggle_preset=Shift_R+F10
-// # toggle_fps_limit=Shift_L+F1
-// # toggle_logging=Shift_L+F2
-// # reload_cfg=Shift_L+F4
-// # upload_log=Shift_L+F3
 
 var CG Config

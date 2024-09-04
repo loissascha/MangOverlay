@@ -46,6 +46,10 @@ export function GetGpuColor() {
   return window['go']['main']['App']['GetGpuColor']();
 }
 
+export function GetGpuLoadChange() {
+  return window['go']['main']['App']['GetGpuLoadChange']();
+}
+
 export function GetGpuLoadColor0() {
   return window['go']['main']['App']['GetGpuLoadColor0']();
 }
@@ -56,6 +60,10 @@ export function GetGpuLoadColor1() {
 
 export function GetGpuLoadColor2() {
   return window['go']['main']['App']['GetGpuLoadColor2']();
+}
+
+export function GetGpuText() {
+  return window['go']['main']['App']['GetGpuText']();
 }
 
 export function GetIoColor() {
@@ -170,8 +178,16 @@ export function SetGpuColor(arg1) {
   return window['go']['main']['App']['SetGpuColor'](arg1);
 }
 
+export function SetGpuLoadChange(arg1) {
+  return window['go']['main']['App']['SetGpuLoadChange'](arg1);
+}
+
 export function SetGpuLoadColors(arg1, arg2, arg3) {
   return window['go']['main']['App']['SetGpuLoadColors'](arg1, arg2, arg3);
+}
+
+export function SetGpuText(arg1) {
+  return window['go']['main']['App']['SetGpuText'](arg1);
 }
 
 export function SetIoColor(arg1) {

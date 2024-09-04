@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import GeneralSettings from "./pages/GeneralSettings";
 import { ResetConfig, RestartVkcube } from "../wailsjs/go/main/App";
 import Button from "./ui/Button";

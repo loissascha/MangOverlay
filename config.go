@@ -153,6 +153,19 @@ func (a *App) SetCpuLoadColors(n0 string, n1 string, n2 string) {
 	config.CG.SetCpuLoadColor(n0, n1, n2)
 }
 
+func (a *App) GetGpuText() string {
+	return config.CG.GpuText
+}
+func (a *App) SetGpuText(n string) {
+	config.CG.SetGpuText(n)
+}
+func (a *App) GetGpuLoadChange() string {
+	return config.CG.GpuLoadChange
+}
+func (a *App) SetGpuLoadChange(n string) {
+	config.CG.SetGpuLoadChange(n)
+}
+
 func (a *App) GetGpuLoadColor0() string {
 	return config.CG.GpuLoadColor0
 }

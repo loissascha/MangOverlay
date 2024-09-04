@@ -16,6 +16,30 @@ func LoadConfig() {
 	createBackupConfig()
 	setDefaults()
 
+	Elements = []Element{}
+	GPUElementsAvailable = []Element{
+		Element{Name: "gpu_stats"},
+		Element{Name: "gpu_temp"},
+		Element{Name: "gpu_junction_temp"},
+		Element{Name: "gpu_core_clock"},
+		Element{Name: "gpu_mem_temp"},
+		Element{Name: "gpu_mem_clock"},
+		Element{Name: "gpu_power"},
+		Element{Name: "gpu_load_change"},
+		Element{Name: "gpu_fan"},
+		Element{Name: "gpu_voltage"},
+	}
+	// 	gpu_stats
+	// # gpu_temp
+	// # gpu_junction_temp
+	// # gpu_core_clock
+	// # gpu_mem_temp
+	// # gpu_mem_clock
+	// # gpu_power
+	// # gpu_load_change
+	// # gpu_fan
+	// # gpu_voltage
+
 	conf := getConfigFile()
 
 	for _, v := range conf {
@@ -40,19 +64,17 @@ func LoadConfig() {
 				}
 				CG.Position = r
 				break
-
-				// # text_color=FFFFFF
-				// # gpu_color=2E9762
-				// # cpu_color=2E97CB
-				// # vram_color=AD64C1
-				// # ram_color=C26693
-				// # engine_color=EB5B5B
-				// # io_color=A491D3
-				// # frametime_color=00FF00
-				// # media_player_color=FFFFFF
-				// # wine_color=EB5B5B
-				// # battery_color=FF9078
-				// # network_color=E07B85
+			case "gpu_text":
+				r := strings.TrimSpace(val)
+				CG.GpuText = r
+				break
+			case "gpu_load_value":
+				r := strings.TrimSpace(val)
+				if r == "" {
+					break
+				}
+				CG.GpuLoadChange = r
+				break
 
 			case "background_color":
 				r := strings.TrimSpace(val)
@@ -274,6 +296,8 @@ func setDefaults() {
 	CG.FontSize = "24"
 	CG.TextColor = "FFFFFF"
 	CG.GpuColor = "2E9762"
+	CG.GpuText = ""
+	CG.GpuLoadChange = "60,90"
 	CG.GpuLoadColor0 = "39F900"
 	CG.GpuLoadColor1 = "FDFD09"
 	CG.GpuLoadColor2 = "B22222"

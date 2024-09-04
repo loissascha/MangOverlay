@@ -5,6 +5,7 @@ import { SketchPicker } from "react-color";
 import Colors from "../generalSettings/Colors";
 import Text from "../generalSettings/Text";
 import Position from "../generalSettings/Position";
+import Gpu from "../generalSettings/Gpu";
 
 function GeneralSettings() {
     const [orientation, setOrientation] = useState<string>("");
@@ -268,6 +269,7 @@ function GeneralSettings() {
                     </SettingBox>
 
                     <Text />
+                    <Gpu />
                 </div>
 
                 <Colors />

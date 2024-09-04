@@ -178,6 +178,35 @@ func (c *Config) SetNetworkColor(n string) {
 	updateConfigLine("network_color", n, true)
 }
 
+func (c *Config) SetGpuText(n string) {
+	c.GpuText = n
+	if n == "" {
+		deleteConfigLine("gpu_text")
+		return
+	}
+	updateConfigLine("gpu_text", n, true)
+}
+
+func (c *Config) SetGpuLoadChange(n string) {
+	c.GpuLoadChange = n
+	if n == "" {
+		deleteConfigLine("gpu_load_value")
+		return
+	}
+	if !strings.Contains(n, ",") {
+		deleteConfigLine("gpu_load_value")
+		return
+	}
+	b, a, found := strings.Cut(n, ",")
+	if !found {
+		return
+	}
+	if b == "" || a == "" {
+		return
+	}
+	updateConfigLine("gpu_load_value", n, true)
+}
+
 func (c *Config) SetGpuLoadColor(n0 string, n1 string, n2 string) {
 	if n0 == "" || n1 == "" || n2 == "" {
 		return
