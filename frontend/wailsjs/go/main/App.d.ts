@@ -14,6 +14,8 @@ export function GetBatteryColor():Promise<string>;
 
 export function GetCpuColor():Promise<string>;
 
+export function GetCpuElements():Promise<Array<config.Element>>;
+
 export function GetCpuLoadColor0():Promise<string>;
 
 export function GetCpuLoadColor1():Promise<string>;
@@ -28,11 +30,15 @@ export function GetElements():Promise<Array<config.Element>>;
 
 export function GetEngineColor():Promise<string>;
 
+export function GetExtraElements():Promise<Array<config.Element>>;
+
 export function GetFontSize():Promise<string>;
 
 export function GetFrametimeColor():Promise<string>;
 
 export function GetGpuColor():Promise<string>;
+
+export function GetGpuElements():Promise<Array<config.Element>>;
 
 export function GetGpuLoadColor0():Promise<string>;
 
@@ -61,6 +67,8 @@ export function GetKbTogglePreset():Promise<string>;
 export function GetKbUploadLog():Promise<string>;
 
 export function GetMediaColor():Promise<string>;
+
+export function GetMemoryElements():Promise<Array<config.Element>>;
 
 export function GetNetworkColor():Promise<string>;
 

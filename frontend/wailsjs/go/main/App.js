@@ -26,6 +26,10 @@ export function GetCpuColor() {
   return window['go']['main']['App']['GetCpuColor']();
 }
 
+export function GetCpuElements() {
+  return window['go']['main']['App']['GetCpuElements']();
+}
+
 export function GetCpuLoadColor0() {
   return window['go']['main']['App']['GetCpuLoadColor0']();
 }
@@ -54,6 +58,10 @@ export function GetEngineColor() {
   return window['go']['main']['App']['GetEngineColor']();
 }
 
+export function GetExtraElements() {
+  return window['go']['main']['App']['GetExtraElements']();
+}
+
 export function GetFontSize() {
   return window['go']['main']['App']['GetFontSize']();
 }
@@ -64,6 +72,10 @@ export function GetFrametimeColor() {
 
 export function GetGpuColor() {
   return window['go']['main']['App']['GetGpuColor']();
+}
+
+export function GetGpuElements() {
+  return window['go']['main']['App']['GetGpuElements']();
 }
 
 export function GetGpuLoadColor0() {
@@ -120,6 +132,10 @@ export function GetKbUploadLog() {
 
 export function GetMediaColor() {
   return window['go']['main']['App']['GetMediaColor']();
+}
+
+export function GetMemoryElements() {
+  return window['go']['main']['App']['GetMemoryElements']();
 }
 
 export function GetNetworkColor() {

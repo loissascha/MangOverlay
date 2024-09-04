@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { act, useState } from "react"
 import GeneralSettings from "./pages/GeneralSettings";
 import { ResetConfig, RestartVkcube } from "../wailsjs/go/main/App";
 import Button from "./ui/Button";
@@ -27,9 +27,19 @@ function App() {
                         Keybinds
                     </li>
                     <li
+                        onClick={() => { setActiveMenuButton("metrics"); }}
+                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg " + (activeMenu == "metrics" ? "bg-gray-800" : "bg-gray-900")}>
+                        Metrics
+                    </li>
+                    <li
+                        onClick={() => { setActiveMenuButton("fpslimits"); }}
+                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg " + (activeMenu == "fpslimits" ? "bg-gray-800" : "bg-gray-900")}>
+                        FPS Limits
+                    </li>
+                    <li
                         onClick={() => { setActiveMenuButton("elements"); }}
                         className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg " + (activeMenu == "elements" ? "bg-gray-800" : "bg-gray-900")}>
-                        Elements
+                        Extra Elements
                     </li>
                 </ul>
             </nav>
@@ -41,7 +51,8 @@ function App() {
                             (<KeybindSettings />) :
                             activeMenu == "elements" ?
                                 (<ElementsSettings />) :
-                                null
+                                activeMenu == "metrics" ?
+                                    (<div>Metrics</div>) : null
                 }
             </main>
             <footer className="bg-gray-700 p-2">

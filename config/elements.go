@@ -30,6 +30,15 @@ func (c *Config) ActiveElement(e string) int {
 		addConfigLine(e)
 		return newIndex
 	}
+	for i, v := range ExtraElementsAvailable {
+		if v.Name != e {
+			continue
+		}
+		ExtraElementsAvailable[i].Active = true
+		ExtraElementsAvailable[i].Index = newIndex
+		addConfigLine(e)
+		return newIndex
+	}
 	return -1
 }
 
@@ -55,6 +64,14 @@ func (c *Config) DeactivateElement(e string) {
 			continue
 		}
 		MemoryElementsAvailable[i].Active = false
+		deleteConfigLine(e)
+		return
+	}
+	for i, v := range ExtraElementsAvailable {
+		if v.Name != e {
+			continue
+		}
+		ExtraElementsAvailable[i].Active = false
 		deleteConfigLine(e)
 		return
 	}

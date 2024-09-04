@@ -10,6 +10,7 @@ var Elements []Element
 var GPUElementsAvailable []Element
 var CPUElementsAvailable []Element
 var MemoryElementsAvailable []Element
+var ExtraElementsAvailable []Element
 
 type Config struct {
 	Orientation         string

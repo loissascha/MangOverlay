@@ -28,6 +28,7 @@ func LoadConfig() {
 		Element{Name: "gpu_load_change", Active: false},
 		Element{Name: "gpu_fan", Active: false},
 		Element{Name: "gpu_voltage", Active: false},
+		Element{Name: "gpu_name", Active: false},
 	}
 	CPUElementsAvailable = []Element{
 		Element{Name: "cpu_stats", Active: false},
@@ -38,9 +39,7 @@ func LoadConfig() {
 		Element{Name: "core_load", Active: false},
 		Element{Name: "core_load_change", Active: false},
 	}
-	MemoryElementsAvailable = []Element{
-		Element{Name: "vram", Active: false},
-		Element{Name: "ram", Active: false},
+	ExtraElementsAvailable = []Element{
 		Element{Name: "full", Active: false},
 		Element{Name: "fps_only", Active: false},
 		Element{Name: "time", Active: false},
@@ -48,9 +47,6 @@ func LoadConfig() {
 		Element{Name: "version", Active: false},
 		Element{Name: "io_read", Active: false},
 		Element{Name: "io_write", Active: false},
-		Element{Name: "procmem", Active: false},
-		Element{Name: "procmem_shared", Active: false},
-		Element{Name: "procmem_virt", Active: false},
 		Element{Name: "battery", Active: false},
 		Element{Name: "battery_icon", Active: false},
 		Element{Name: "device_battery_icon", Active: false},
@@ -65,7 +61,6 @@ func LoadConfig() {
 		Element{Name: "throttling_status_graph", Active: false},
 		Element{Name: "engine_version", Active: false},
 		Element{Name: "engine_short_names", Active: false},
-		Element{Name: "gpu_name", Active: false},
 		Element{Name: "vulkan_driver", Active: false},
 		Element{Name: "wine", Active: false},
 		Element{Name: "exec_name", Active: false},
@@ -87,6 +82,13 @@ func LoadConfig() {
 		Element{Name: "hud_no_margin", Active: false},
 		Element{Name: "hud_compact", Active: false},
 		Element{Name: "no_display", Active: false},
+	}
+	MemoryElementsAvailable = []Element{
+		Element{Name: "ram", Active: false},
+		Element{Name: "vram", Active: false},
+		Element{Name: "procmem", Active: false},
+		Element{Name: "procmem_shared", Active: false},
+		Element{Name: "procmem_virt", Active: false},
 	}
 
 	conf := getConfigFile()
@@ -346,12 +348,25 @@ func LoadConfig() {
 		if found {
 			continue
 		}
+		for i, cmd := range ExtraElementsAvailable {
+			if cmd.Name == v {
+				fmt.Println("found cmd", cmd, index)
+				ExtraElementsAvailable[i].Active = true
+				ExtraElementsAvailable[i].Index = index
+				found = true
+				break
+			}
+		}
+		if found {
+			continue
+		}
 
 	}
 	fmt.Println("finished")
 	fmt.Println(GPUElementsAvailable)
 	fmt.Println(CPUElementsAvailable)
 	fmt.Println(MemoryElementsAvailable)
+	fmt.Println(ExtraElementsAvailable)
 }
 
 func getConfigFilePath() string {
