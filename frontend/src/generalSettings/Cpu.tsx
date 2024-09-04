@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
-import { GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetCpuLoadValue, GetCpuText, SetCpuLoadValue, SetCpuText } from "../../wailsjs/go/main/App";
+import { SetCpuLoadColors, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetCpuLoadValue, GetCpuText, SetCpuLoadValue, SetCpuText } from "../../wailsjs/go/main/App";
 
 function Cpu() {
     const [cpuLoadColor0, setCpuLoadColor0] = useState<string>("");

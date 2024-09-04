@@ -38,6 +38,10 @@ export function GetCpuText() {
   return window['go']['main']['App']['GetCpuText']();
 }
 
+export function GetElements() {
+  return window['go']['main']['App']['GetElements']();
+}
+
 export function GetEngineColor() {
   return window['go']['main']['App']['GetEngineColor']();
 }

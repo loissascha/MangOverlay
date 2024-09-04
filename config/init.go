@@ -35,6 +35,8 @@ func LoadConfig() {
 		Element{Name: "cpu_power", Active: false},
 		Element{Name: "cpu_mhz", Active: false},
 		Element{Name: "cpu_load_change", Active: false},
+		Element{Name: "core_load", Active: false},
+		Element{Name: "core_load_change", Active: false},
 	}
 	MemoryElementsAvailable = []Element{
 		Element{Name: "vram", Active: false},
@@ -263,10 +265,11 @@ func LoadConfig() {
 		}
 
 		found := false
-		for _, cmd := range GPUElementsAvailable {
+		for i, cmd := range GPUElementsAvailable {
 			if cmd.Name == v {
-				cmd.Active = true
-				cmd.Index = index
+				fmt.Println("found cmd", cmd, index)
+				GPUElementsAvailable[i].Active = true
+				GPUElementsAvailable[i].Index = index
 				found = true
 				break
 			}
@@ -274,10 +277,11 @@ func LoadConfig() {
 		if found {
 			continue
 		}
-		for _, cmd := range CPUElementsAvailable {
+		for i, cmd := range CPUElementsAvailable {
 			if cmd.Name == v {
-				cmd.Active = true
-				cmd.Index = index
+				fmt.Println("found cmd", cmd, index)
+				CPUElementsAvailable[i].Active = true
+				CPUElementsAvailable[i].Index = index
 				found = true
 				break
 			}
@@ -285,10 +289,11 @@ func LoadConfig() {
 		if found {
 			continue
 		}
-		for _, cmd := range MemoryElementsAvailable {
+		for i, cmd := range MemoryElementsAvailable {
 			if cmd.Name == v {
-				cmd.Active = true
-				cmd.Index = index
+				fmt.Println("found cmd", cmd, index)
+				MemoryElementsAvailable[i].Active = true
+				MemoryElementsAvailable[i].Index = index
 				found = true
 				break
 			}
@@ -298,6 +303,10 @@ func LoadConfig() {
 		}
 
 	}
+	fmt.Println("finished")
+	fmt.Println(GPUElementsAvailable)
+	fmt.Println(CPUElementsAvailable)
+	fmt.Println(MemoryElementsAvailable)
 }
 
 func getConfigFilePath() string {
