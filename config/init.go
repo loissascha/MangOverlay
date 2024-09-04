@@ -18,31 +18,33 @@ func LoadConfig() {
 
 	Elements = []Element{}
 	GPUElementsAvailable = []Element{
-		Element{Name: "gpu_stats"},
-		Element{Name: "gpu_temp"},
-		Element{Name: "gpu_junction_temp"},
-		Element{Name: "gpu_core_clock"},
-		Element{Name: "gpu_mem_temp"},
-		Element{Name: "gpu_mem_clock"},
-		Element{Name: "gpu_power"},
-		Element{Name: "gpu_load_change"},
-		Element{Name: "gpu_fan"},
-		Element{Name: "gpu_voltage"},
+		Element{Name: "gpu_stats", Active: false},
+		Element{Name: "gpu_temp", Active: false},
+		Element{Name: "gpu_junction_temp", Active: false},
+		Element{Name: "gpu_core_clock", Active: false},
+		Element{Name: "gpu_mem_temp", Active: false},
+		Element{Name: "gpu_mem_clock", Active: false},
+		Element{Name: "gpu_power", Active: false},
+		Element{Name: "gpu_load_change", Active: false},
+		Element{Name: "gpu_fan", Active: false},
+		Element{Name: "gpu_voltage", Active: false},
 	}
-	// 	gpu_stats
-	// # gpu_temp
-	// # gpu_junction_temp
-	// # gpu_core_clock
-	// # gpu_mem_temp
-	// # gpu_mem_clock
-	// # gpu_power
-	// # gpu_load_change
-	// # gpu_fan
-	// # gpu_voltage
+	CPUElementsAvailable = []Element{
+		Element{Name: "cpu_stats", Active: false},
+		Element{Name: "cpu_temp", Active: false},
+		Element{Name: "cpu_power", Active: false},
+		Element{Name: "cpu_mhz", Active: false},
+		Element{Name: "cpu_load_change", Active: false},
+	}
+	MemoryElementsAvailable = []Element{
+		Element{Name: "vram", Active: false},
+		Element{Name: "ram", Active: false},
+		Element{Name: "swap", Active: false},
+	}
 
 	conf := getConfigFile()
 
-	for _, v := range conf {
+	for index, v := range conf {
 
 		if strings.Contains(v, "#") {
 			before, _, _ := strings.Cut(v, "#")
@@ -257,6 +259,41 @@ func LoadConfig() {
 		if v == "horizontal_stretch" {
 			fmt.Println("horizontal stretch found")
 			CG.Orientation = "horizontal_stretch"
+			continue
+		}
+
+		found := false
+		for _, cmd := range GPUElementsAvailable {
+			if cmd.Name == v {
+				cmd.Active = true
+				cmd.Index = index
+				found = true
+				break
+			}
+		}
+		if found {
+			continue
+		}
+		for _, cmd := range CPUElementsAvailable {
+			if cmd.Name == v {
+				cmd.Active = true
+				cmd.Index = index
+				found = true
+				break
+			}
+		}
+		if found {
+			continue
+		}
+		for _, cmd := range MemoryElementsAvailable {
+			if cmd.Name == v {
+				cmd.Active = true
+				cmd.Index = index
+				found = true
+				break
+			}
+		}
+		if found {
 			continue
 		}
 

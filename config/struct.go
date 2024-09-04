@@ -1,17 +1,15 @@
 package config
 
 type Element struct {
-	Name string
-}
-
-type ExtraSetting struct {
-	Name  string
-	Value string
+	Name   string
+	Active bool
+	Index  int
 }
 
 var Elements []Element
 var GPUElementsAvailable []Element
-var GPUExtraSettings []ExtraSetting
+var CPUElementsAvailable []Element
+var MemoryElementsAvailable []Element
 
 type Config struct {
 	Orientation         string
