@@ -22,12 +22,14 @@ type Config struct {
 	FontSize            string
 	TextColor           string
 	GpuText             string
-	GpuLoadChange       string
+	GpuLoadValue        string
 	GpuColor            string
 	GpuLoadColor0       string
 	GpuLoadColor1       string
 	GpuLoadColor2       string
 	CpuColor            string
+	CpuText             string
+	CpuLoadValue        string
 	CpuLoadColor0       string
 	CpuLoadColor1       string
 	CpuLoadColor2       string

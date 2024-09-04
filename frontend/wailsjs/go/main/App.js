@@ -30,6 +30,14 @@ export function GetCpuLoadColor2() {
   return window['go']['main']['App']['GetCpuLoadColor2']();
 }
 
+export function GetCpuLoadValue() {
+  return window['go']['main']['App']['GetCpuLoadValue']();
+}
+
+export function GetCpuText() {
+  return window['go']['main']['App']['GetCpuText']();
+}
+
 export function GetEngineColor() {
   return window['go']['main']['App']['GetEngineColor']();
 }
@@ -46,10 +54,6 @@ export function GetGpuColor() {
   return window['go']['main']['App']['GetGpuColor']();
 }
 
-export function GetGpuLoadChange() {
-  return window['go']['main']['App']['GetGpuLoadChange']();
-}
-
 export function GetGpuLoadColor0() {
   return window['go']['main']['App']['GetGpuLoadColor0']();
 }
@@ -60,6 +64,10 @@ export function GetGpuLoadColor1() {
 
 export function GetGpuLoadColor2() {
   return window['go']['main']['App']['GetGpuLoadColor2']();
+}
+
+export function GetGpuLoadValue() {
+  return window['go']['main']['App']['GetGpuLoadValue']();
 }
 
 export function GetGpuText() {
@@ -162,6 +170,14 @@ export function SetCpuLoadColors(arg1, arg2, arg3) {
   return window['go']['main']['App']['SetCpuLoadColors'](arg1, arg2, arg3);
 }
 
+export function SetCpuLoadValue(arg1) {
+  return window['go']['main']['App']['SetCpuLoadValue'](arg1);
+}
+
+export function SetCpuText(arg1) {
+  return window['go']['main']['App']['SetCpuText'](arg1);
+}
+
 export function SetEngineColor(arg1) {
   return window['go']['main']['App']['SetEngineColor'](arg1);
 }
@@ -178,12 +194,12 @@ export function SetGpuColor(arg1) {
   return window['go']['main']['App']['SetGpuColor'](arg1);
 }
 
-export function SetGpuLoadChange(arg1) {
-  return window['go']['main']['App']['SetGpuLoadChange'](arg1);
-}
-
 export function SetGpuLoadColors(arg1, arg2, arg3) {
   return window['go']['main']['App']['SetGpuLoadColors'](arg1, arg2, arg3);
+}
+
+export function SetGpuLoadValue(arg1) {
+  return window['go']['main']['App']['SetGpuLoadValue'](arg1);
 }
 
 export function SetGpuText(arg1) {

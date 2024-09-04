@@ -159,11 +159,24 @@ func (a *App) GetGpuText() string {
 func (a *App) SetGpuText(n string) {
 	config.CG.SetGpuText(n)
 }
-func (a *App) GetGpuLoadChange() string {
-	return config.CG.GpuLoadChange
+func (a *App) GetGpuLoadValue() string {
+	return config.CG.GpuLoadValue
 }
-func (a *App) SetGpuLoadChange(n string) {
+func (a *App) SetGpuLoadValue(n string) {
 	config.CG.SetGpuLoadChange(n)
+}
+
+func (a *App) GetCpuText() string {
+	return config.CG.CpuText
+}
+func (a *App) SetCpuText(n string) {
+	config.CG.SetCpuText(n)
+}
+func (a *App) GetCpuLoadValue() string {
+	return config.CG.CpuLoadValue
+}
+func (a *App) SetCpuLoadValue(n string) {
+	config.CG.SetCpuLoadChange(n)
 }
 
 func (a *App) GetGpuLoadColor0() string {

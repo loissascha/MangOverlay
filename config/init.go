@@ -73,7 +73,18 @@ func LoadConfig() {
 				if r == "" {
 					break
 				}
-				CG.GpuLoadChange = r
+				CG.GpuLoadValue = r
+				break
+			case "cpu_text":
+				r := strings.TrimSpace(val)
+				CG.CpuText = r
+				break
+			case "cpu_load_value":
+				r := strings.TrimSpace(val)
+				if r == "" {
+					break
+				}
+				CG.CpuLoadValue = r
 				break
 
 			case "background_color":
@@ -297,7 +308,9 @@ func setDefaults() {
 	CG.TextColor = "FFFFFF"
 	CG.GpuColor = "2E9762"
 	CG.GpuText = ""
-	CG.GpuLoadChange = "60,90"
+	CG.GpuLoadValue = "60,90"
+	CG.CpuText = ""
+	CG.CpuLoadValue = "60,90"
 	CG.GpuLoadColor0 = "39F900"
 	CG.GpuLoadColor1 = "FDFD09"
 	CG.GpuLoadColor2 = "B22222"

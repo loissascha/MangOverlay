@@ -6,6 +6,7 @@ import Colors from "../generalSettings/Colors";
 import Text from "../generalSettings/Text";
 import Position from "../generalSettings/Position";
 import Gpu from "../generalSettings/Gpu";
+import Cpu from "../generalSettings/Cpu";
 
 function GeneralSettings() {
     const [orientation, setOrientation] = useState<string>("");
@@ -115,97 +116,6 @@ function GeneralSettings() {
                         </div>
                     </SettingBox>
                     <Position />
-                    <SettingBox header="Keybinds">
-                        <div className="grid grid-cols-2 gap-3">
-                            <label htmlFor="togglehud" className="me-2">Toggle HUD:</label>
-                            <input
-                                type="text"
-                                id="togglehud"
-                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
-                                defaultValue={kbToggleHud}
-                                onChange={(event) => {
-                                    const v = event.target.value
-                                    setKbToggleHud(v)
-                                    SetKbToggleHud(v)
-                                }}
-                            />
-                            <label htmlFor="togglehudposition" className="me-2">Toggle Position:</label>
-                            <input
-                                type="text"
-                                id="togglehudposition"
-                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
-                                defaultValue={kbToggleHudPosition}
-                                onChange={(event) => {
-                                    const v = event.target.value
-                                    setKbToggleHudPosition(v)
-                                    SetKbToggleHudPosition(v)
-                                }}
-                            />
-                            <label htmlFor="togglepreset" className="me-2">Toggle Preset:</label>
-                            <input
-                                type="text"
-                                id="togglepreset"
-                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
-                                defaultValue={kbTogglePreset}
-                                onChange={(event) => {
-                                    const v = event.target.value
-                                    setKbTogglePreset(v)
-                                    SetKbTogglePreset(v)
-                                }}
-                            />
-                            <label htmlFor="togglefpslimit" className="me-2">Toggle FPS Limit:</label>
-                            <input
-                                type="text"
-                                id="togglefpslimit"
-                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
-                                defaultValue={kbToggleFpsLimit}
-                                onChange={(event) => {
-                                    const v = event.target.value
-                                    setKbToggleFpsLimit(v)
-                                    SetKbToggleFpsLimit(v)
-                                }}
-                            />
-                            <label htmlFor="togglelogging" className="me-2">Toggle Logging:</label>
-                            <input
-                                type="text"
-                                id="togglelogging"
-                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
-                                defaultValue={kbToggleLogging}
-                                onChange={(event) => {
-                                    const v = event.target.value
-                                    setKbToggleLogging(v)
-                                    SetKbToggleLogging(v)
-                                }}
-                            />
-                            <label htmlFor="reloadcfg" className="me-2">Reload Cfg:</label>
-                            <input
-                                type="text"
-                                id="reloadcfg"
-                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
-                                defaultValue={kbReloadCfg}
-                                onChange={(event) => {
-                                    const v = event.target.value
-                                    setKbReloadCfg(v)
-                                    SetKbReloadCfg(v)
-                                }}
-                            />
-                            <label htmlFor="uploadlog" className="me-2">Upload Log:</label>
-                            <input
-                                type="text"
-                                id="uploadlog"
-                                className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
-                                defaultValue={kbUploadLog}
-                                onChange={(event) => {
-                                    const v = event.target.value
-                                    setKbUploadLog(v)
-                                    SetKbUploadLog(v)
-                                }}
-                            />
-                        </div>
-                    </SettingBox>
-                </div>
-
-                <div>
                     <SettingBox header="Background">
                         <div className="grid grid-cols-2 gap-3">
                             <label htmlFor="bgcolor" className="me-2">Color:</label>
@@ -267,13 +177,106 @@ function GeneralSettings() {
                             <label htmlFor="roundedCheck">Rounded Corners</label>
                         </div>
                     </SettingBox>
-
                     <Text />
+                </div>
+
+                <div>
+
+                    <Cpu />
                     <Gpu />
                 </div>
 
-                <Colors />
-
+                <div>
+                    <Colors />
+                </div>
+                <SettingBox header="Keybinds">
+                    <div className="grid grid-cols-2 gap-3">
+                        <label htmlFor="togglehud" className="me-2">Toggle HUD:</label>
+                        <input
+                            type="text"
+                            id="togglehud"
+                            className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                            defaultValue={kbToggleHud}
+                            onChange={(event) => {
+                                const v = event.target.value
+                                setKbToggleHud(v)
+                                SetKbToggleHud(v)
+                            }}
+                        />
+                        <label htmlFor="togglehudposition" className="me-2">Toggle Position:</label>
+                        <input
+                            type="text"
+                            id="togglehudposition"
+                            className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                            defaultValue={kbToggleHudPosition}
+                            onChange={(event) => {
+                                const v = event.target.value
+                                setKbToggleHudPosition(v)
+                                SetKbToggleHudPosition(v)
+                            }}
+                        />
+                        <label htmlFor="togglepreset" className="me-2">Toggle Preset:</label>
+                        <input
+                            type="text"
+                            id="togglepreset"
+                            className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                            defaultValue={kbTogglePreset}
+                            onChange={(event) => {
+                                const v = event.target.value
+                                setKbTogglePreset(v)
+                                SetKbTogglePreset(v)
+                            }}
+                        />
+                        <label htmlFor="togglefpslimit" className="me-2">Toggle FPS Limit:</label>
+                        <input
+                            type="text"
+                            id="togglefpslimit"
+                            className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                            defaultValue={kbToggleFpsLimit}
+                            onChange={(event) => {
+                                const v = event.target.value
+                                setKbToggleFpsLimit(v)
+                                SetKbToggleFpsLimit(v)
+                            }}
+                        />
+                        <label htmlFor="togglelogging" className="me-2">Toggle Logging:</label>
+                        <input
+                            type="text"
+                            id="togglelogging"
+                            className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                            defaultValue={kbToggleLogging}
+                            onChange={(event) => {
+                                const v = event.target.value
+                                setKbToggleLogging(v)
+                                SetKbToggleLogging(v)
+                            }}
+                        />
+                        <label htmlFor="reloadcfg" className="me-2">Reload Cfg:</label>
+                        <input
+                            type="text"
+                            id="reloadcfg"
+                            className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                            defaultValue={kbReloadCfg}
+                            onChange={(event) => {
+                                const v = event.target.value
+                                setKbReloadCfg(v)
+                                SetKbReloadCfg(v)
+                            }}
+                        />
+                        <label htmlFor="uploadlog" className="me-2">Upload Log:</label>
+                        <input
+                            type="text"
+                            id="uploadlog"
+                            className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                            defaultValue={kbUploadLog}
+                            onChange={(event) => {
+                                const v = event.target.value
+                                setKbUploadLog(v)
+                                SetKbUploadLog(v)
+                            }}
+                        />
+                    </div>
+                </SettingBox>
             </div>
 
         </>

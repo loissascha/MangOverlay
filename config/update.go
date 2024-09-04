@@ -188,7 +188,7 @@ func (c *Config) SetGpuText(n string) {
 }
 
 func (c *Config) SetGpuLoadChange(n string) {
-	c.GpuLoadChange = n
+	c.GpuLoadValue = n
 	if n == "" {
 		deleteConfigLine("gpu_load_value")
 		return
@@ -205,6 +205,35 @@ func (c *Config) SetGpuLoadChange(n string) {
 		return
 	}
 	updateConfigLine("gpu_load_value", n, true)
+}
+
+func (c *Config) SetCpuText(n string) {
+	c.CpuText = n
+	if n == "" {
+		deleteConfigLine("cpu_text")
+		return
+	}
+	updateConfigLine("cpu_text", n, true)
+}
+
+func (c *Config) SetCpuLoadChange(n string) {
+	c.CpuLoadValue = n
+	if n == "" {
+		deleteConfigLine("cpu_load_value")
+		return
+	}
+	if !strings.Contains(n, ",") {
+		deleteConfigLine("cpu_load_value")
+		return
+	}
+	b, a, found := strings.Cut(n, ",")
+	if !found {
+		return
+	}
+	if b == "" || a == "" {
+		return
+	}
+	updateConfigLine("cpu_load_value", n, true)
 }
 
 func (c *Config) SetGpuLoadColor(n0 string, n1 string, n2 string) {

@@ -15,6 +15,10 @@ export function GetCpuLoadColor1():Promise<string>;
 
 export function GetCpuLoadColor2():Promise<string>;
 
+export function GetCpuLoadValue():Promise<string>;
+
+export function GetCpuText():Promise<string>;
+
 export function GetEngineColor():Promise<string>;
 
 export function GetFontSize():Promise<string>;
@@ -23,13 +27,13 @@ export function GetFrametimeColor():Promise<string>;
 
 export function GetGpuColor():Promise<string>;
 
-export function GetGpuLoadChange():Promise<string>;
-
 export function GetGpuLoadColor0():Promise<string>;
 
 export function GetGpuLoadColor1():Promise<string>;
 
 export function GetGpuLoadColor2():Promise<string>;
+
+export function GetGpuLoadValue():Promise<string>;
 
 export function GetGpuText():Promise<string>;
 
@@ -81,6 +85,10 @@ export function SetCpuColor(arg1:string):Promise<void>;
 
 export function SetCpuLoadColors(arg1:string,arg2:string,arg3:string):Promise<void>;
 
+export function SetCpuLoadValue(arg1:string):Promise<void>;
+
+export function SetCpuText(arg1:string):Promise<void>;
+
 export function SetEngineColor(arg1:string):Promise<void>;
 
 export function SetFontSize(arg1:string):Promise<void>;
@@ -89,9 +97,9 @@ export function SetFrametimeColor(arg1:string):Promise<void>;
 
 export function SetGpuColor(arg1:string):Promise<void>;
 
-export function SetGpuLoadChange(arg1:string):Promise<void>;
-
 export function SetGpuLoadColors(arg1:string,arg2:string,arg3:string):Promise<void>;
+
+export function SetGpuLoadValue(arg1:string):Promise<void>;
 
 export function SetGpuText(arg1:string):Promise<void>;
 

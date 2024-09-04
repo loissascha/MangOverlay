@@ -1,145 +1,145 @@
 import { useEffect, useState } from "react";
-import { GetGpuLoadValue, SetGpuLoadColors, GetGpuLoadColor0, GetGpuLoadColor1, GetGpuLoadColor2, GetGpuText, SetGpuLoadValue, SetGpuText } from "../../wailsjs/go/main/App";
 import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
+import { GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetCpuLoadValue, GetCpuText, SetCpuLoadValue, SetCpuText } from "../../wailsjs/go/main/App";
 
-function Gpu() {
-    const [gpuText, setGpuText] = useState<string>("")
-    const [gpuLoadValue, setGpuLoadValue] = useState<string>("")
+function Cpu() {
+    const [cpuLoadColor0, setCpuLoadColor0] = useState<string>("");
+    const [showCpuLoadPicker0, setShowCpuLoadPicker0] = useState<boolean>(false);
 
-    const [gpuLoadColor0, setGpuLoadColor0] = useState<string>("");
-    const [showGpuLoadPicker0, setShowGpuLoadPicker0] = useState<boolean>(false);
+    const [cpuLoadColor1, setCpuLoadColor1] = useState<string>("");
+    const [showCpuLoadPicker1, setShowCpuLoadPicker1] = useState<boolean>(false);
 
-    const [gpuLoadColor1, setGpuLoadColor1] = useState<string>("");
-    const [showGpuLoadPicker1, setShowGpuLoadPicker1] = useState<boolean>(false);
+    const [cpuLoadColor2, setCpuLoadColor2] = useState<string>("");
+    const [showCpuLoadPicker2, setShowCpuLoadPicker2] = useState<boolean>(false);
 
-    const [gpuLoadColor2, setGpuLoadColor2] = useState<string>("");
-    const [showGpuLoadPicker2, setShowGpuLoadPicker2] = useState<boolean>(false);
+    const [cpuText, setCpuText] = useState<string>("")
+    const [cpuLoadValue, setCpuLoadValue] = useState<string>("")
 
     useEffect(() => {
-        GetGpuText().then((r) => {
-            setGpuText(r)
+        GetCpuText().then((r) => {
+            setCpuText(r)
         })
-        GetGpuLoadValue().then((r) => {
-            setGpuLoadValue(r)
+        GetCpuLoadValue().then((r) => {
+            setCpuLoadValue(r)
         })
-        GetGpuLoadColor0().then((r) => {
-            setGpuLoadColor0(r)
+        GetCpuLoadColor0().then((r) => {
+            setCpuLoadColor0(r)
         })
-        GetGpuLoadColor1().then((r) => {
-            setGpuLoadColor1(r)
+        GetCpuLoadColor1().then((r) => {
+            setCpuLoadColor1(r)
         })
-        GetGpuLoadColor2().then((r) => {
-            setGpuLoadColor2(r)
+        GetCpuLoadColor2().then((r) => {
+            setCpuLoadColor2(r)
         })
     }, [])
 
     return (
-        <SettingBox header="GPU">
+        <SettingBox header="CPU">
             <div className="grid grid-cols-2 gap-3">
-                <label htmlFor="gputext" className="me-2">Text:</label>
+                <label htmlFor="cputext">Text:</label>
                 <input
                     type="text"
-                    id="gputext"
+                    id="cputext"
                     className="w-28 bg-gray-700 p-1 border border-gray-500 rounded text-center"
                     min="8"
                     max="50"
-                    defaultValue={gpuText}
+                    defaultValue={cpuText}
                     onChange={(event) => {
                         const nv = event.target.value
-                        setGpuText(nv)
-                        SetGpuText(nv)
+                        setCpuText(nv)
+                        SetCpuText(nv)
                     }}
                 />
-                <label htmlFor="gpuloadvalue" className="me-2">Load Value:</label>
+                <label htmlFor="cpuloadvalue">Load Value:</label>
                 <input
                     type="text"
-                    id="gpuloadvalue"
+                    id="cpuloadvalue"
                     className="w-28 bg-gray-700 p-1 border border-gray-500 rounded text-center"
                     min="8"
                     max="50"
-                    defaultValue={gpuLoadValue}
+                    defaultValue={cpuLoadValue}
                     onChange={(event) => {
                         const nv = event.target.value
-                        setGpuLoadValue(nv)
-                        SetGpuLoadValue(nv)
+                        setCpuLoadValue(nv)
+                        SetCpuLoadValue(nv)
                     }}
                 />
                 <label htmlFor="cpucolor" className="me-2">Load Colors:</label>
                 <div>
                     <button
                         style={{
-                            backgroundColor: "#" + gpuLoadColor0
+                            backgroundColor: "#" + cpuLoadColor0
                         }}
                         onClick={() => {
-                            setShowGpuLoadPicker0(!showGpuLoadPicker0)
+                            setShowCpuLoadPicker0(!showCpuLoadPicker0)
                         }}
                         className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
                     >
-                        {gpuLoadColor0}
+                        {cpuLoadColor0}
                     </button>
-                    {showGpuLoadPicker0 ? (
+                    {showCpuLoadPicker0 ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowGpuLoadPicker0(false)
+                                setShowCpuLoadPicker0(false)
                             }}> </div>
-                            <SketchPicker color={gpuLoadColor0} onChange={(color) => {
+                            <SketchPicker color={cpuLoadColor0} onChange={(color) => {
                                 let col = color.hex;
                                 if (col[0] == "#") {
                                     col = col.substring(1)
                                 }
-                                setGpuLoadColor0(col)
-                                SetGpuLoadColors(col, gpuLoadColor1, gpuLoadColor2)
+                                setCpuLoadColor0(col)
+                                SetCpuLoadColors(col, cpuLoadColor1, cpuLoadColor2)
                             }} />
                         </div>) : null}
                     <button
                         style={{
-                            backgroundColor: "#" + gpuLoadColor1
+                            backgroundColor: "#" + cpuLoadColor1
                         }}
                         onClick={() => {
-                            setShowGpuLoadPicker1(!showGpuLoadPicker1)
+                            setShowCpuLoadPicker1(!showCpuLoadPicker1)
                         }}
                         className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
                     >
-                        {gpuLoadColor1}
+                        {cpuLoadColor1}
                     </button>
-                    {showGpuLoadPicker1 ? (
+                    {showCpuLoadPicker1 ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowGpuLoadPicker1(false)
+                                setShowCpuLoadPicker1(false)
                             }}> </div>
-                            <SketchPicker color={gpuLoadColor1} onChange={(color) => {
+                            <SketchPicker color={cpuLoadColor1} onChange={(color) => {
                                 let col = color.hex;
                                 if (col[0] == "#") {
                                     col = col.substring(1)
                                 }
-                                setGpuLoadColor1(col)
-                                SetGpuLoadColors(gpuLoadColor0, col, gpuLoadColor2)
+                                setCpuLoadColor1(col)
+                                SetCpuLoadColors(cpuLoadColor0, col, cpuLoadColor2)
                             }} />
                         </div>) : null}
                     <button
                         style={{
-                            backgroundColor: "#" + gpuLoadColor2
+                            backgroundColor: "#" + cpuLoadColor2
                         }}
                         onClick={() => {
-                            setShowGpuLoadPicker2(!showGpuLoadPicker2)
+                            setShowCpuLoadPicker2(!showCpuLoadPicker2)
                         }}
                         className="cursor-pointer p-1 rounded border border-gray-500 w-28 block"
                     >
-                        {gpuLoadColor2}
+                        {cpuLoadColor2}
                     </button>
-                    {showGpuLoadPicker2 ? (
+                    {showCpuLoadPicker2 ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowGpuLoadPicker2(false)
+                                setShowCpuLoadPicker2(false)
                             }}> </div>
-                            <SketchPicker color={gpuLoadColor2} onChange={(color) => {
+                            <SketchPicker color={cpuLoadColor2} onChange={(color) => {
                                 let col = color.hex;
                                 if (col[0] == "#") {
                                     col = col.substring(1)
                                 }
-                                setGpuLoadColor2(col)
-                                SetGpuLoadColors(gpuLoadColor0, gpuLoadColor1, col)
+                                setCpuLoadColor2(col)
+                                SetCpuLoadColors(cpuLoadColor0, cpuLoadColor1, col)
                             }} />
                         </div>) : null}
                 </div>
@@ -147,4 +147,4 @@ function Gpu() {
         </SettingBox>
     );
 }
-export default Gpu;
+export default Cpu;
