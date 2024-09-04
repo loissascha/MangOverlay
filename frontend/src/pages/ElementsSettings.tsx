@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { GetElements } from "../../wailsjs/go/main/App";
+import { ActivateElement, DeactivateElement, GetElements } from "../../wailsjs/go/main/App";
+import SettingBox from "../ui/SettingBox";
 
 function ElementsSettings() {
     const [elements, setElements] = useState<any>()
@@ -24,6 +25,8 @@ function ElementsSettings() {
                 }
                 data.push(element)
             }
+            data.sort((a, b) => a.Index - b.Index)
+            console.log(data)
             setActiveElements(data)
         }
         function getInactiveElements() {
@@ -31,12 +34,17 @@ function ElementsSettings() {
                 return
             }
             let data = []
+            let newId = 100000
             for (var element of elements) {
                 if (element.Active) {
                     continue
                 }
-                data.push(element)
+                var newe = element
+                newe.id = newId
+                newId++
+                data.push(newe)
             }
+            console.log(data)
             setInactiveElements(data)
         }
         getActiveElements()
@@ -46,11 +54,49 @@ function ElementsSettings() {
 
     return (
         <>
-            <div>
-                Active Elements
-                {activeElements.map((e: any) => (
-                    <div key={e.Index}>{e.Name}</div>
-                ))}
+            <div className="grid grid-cols-2 gap-3">
+                <SettingBox header="Active Elements">
+                    {activeElements.map((e: any) => (
+                        <div key={e.Index} className="grid grid-cols-[1fr_auto]">
+                            <div>
+                                {e.Name}
+                            </div>
+                            <div>
+                                <a
+                                    className="cursor-pointer"
+                                    onClick={() => {
+                                        DeactivateElement(e.Name).then(() => {
+                                            GetElements().then((r) => {
+                                                setElements(r)
+                                            })
+                                        })
+                                    }}
+                                >Deactivate</a>
+                            </div>
+                        </div>
+                    ))}
+                </SettingBox>
+                <SettingBox header="Available Elements">
+                    {inactiveElements.map((e: any) => (
+                        <div key={e.Id} className="grid grid-cols-[1fr_auto]">
+                            <div>
+                                {e.Name}
+                            </div>
+                            <div>
+                                <a
+                                    className="cursor-pointer"
+                                    onClick={() => {
+                                        ActivateElement(e.Name).then(() => {
+                                            GetElements().then((r2) => {
+                                                setElements(r2)
+                                            })
+                                        })
+                                    }}
+                                >Activate</a>
+                            </div>
+                        </div>
+                    ))}
+                </SettingBox>
             </div>
         </>
     );

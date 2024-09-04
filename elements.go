@@ -15,3 +15,11 @@ func (a *App) GetElements() []config.Element {
 	}
 	return elements
 }
+
+func (a *App) ActivateElement(n string) int {
+	return config.CG.ActiveElement(n)
+}
+
+func (a *App) DeactivateElement(n string) {
+	config.CG.DeactivateElement(n)
+}
