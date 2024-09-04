@@ -37,7 +37,7 @@ function Gpu() {
     return (
         <SettingBox header="GPU">
             <div className="grid grid-cols-2 gap-3">
-                <label htmlFor="gputext" className="me-2">Text:</label>
+                <label htmlFor="gputext" className="me-2">Custom Text:</label>
                 <input
                     type="text"
                     id="gputext"

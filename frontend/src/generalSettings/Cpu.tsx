@@ -37,7 +37,7 @@ function Cpu() {
     return (
         <SettingBox header="CPU">
             <div className="grid grid-cols-2 gap-3">
-                <label htmlFor="cputext">Text:</label>
+                <label htmlFor="cputext">Custom Text:</label>
                 <input
                     type="text"
                     id="cputext"

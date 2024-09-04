@@ -54,49 +54,53 @@ function ElementsSettings() {
 
     return (
         <>
-            <div className="grid grid-cols-2 gap-3">
-                <SettingBox header="Active Elements">
-                    {activeElements.map((e: any) => (
-                        <div key={e.Index} className="grid grid-cols-[1fr_auto]">
-                            <div>
-                                {e.Name}
-                            </div>
-                            <div>
-                                <a
-                                    className="cursor-pointer"
-                                    onClick={() => {
-                                        DeactivateElement(e.Name).then(() => {
-                                            GetElements().then((r) => {
-                                                setElements(r)
+            <div className="flex gap-5 flex-auto flex-wrap">
+                <div>
+                    <SettingBox header="Active Elements">
+                        {activeElements.map((e: any) => (
+                            <div key={e.Index} className="grid grid-cols-[1fr_auto]">
+                                <div>
+                                    {e.Name}
+                                </div>
+                                <div>
+                                    <a
+                                        className="cursor-pointer"
+                                        onClick={() => {
+                                            DeactivateElement(e.Name).then(() => {
+                                                GetElements().then((r) => {
+                                                    setElements(r)
+                                                })
                                             })
-                                        })
-                                    }}
-                                >Deactivate</a>
+                                        }}
+                                    >Deactivate</a>
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </SettingBox>
-                <SettingBox header="Available Elements">
-                    {inactiveElements.map((e: any) => (
-                        <div key={e.Id} className="grid grid-cols-[1fr_auto]">
-                            <div>
-                                {e.Name}
-                            </div>
-                            <div>
-                                <a
-                                    className="cursor-pointer"
-                                    onClick={() => {
-                                        ActivateElement(e.Name).then(() => {
-                                            GetElements().then((r2) => {
-                                                setElements(r2)
+                        ))}
+                    </SettingBox>
+                </div>
+                <div>
+                    <SettingBox header="Available Elements">
+                        {inactiveElements.map((e: any) => (
+                            <div key={e.Id} className="grid grid-cols-[1fr_auto]">
+                                <div>
+                                    {e.Name}
+                                </div>
+                                <div>
+                                    <a
+                                        className="cursor-pointer"
+                                        onClick={() => {
+                                            ActivateElement(e.Name).then(() => {
+                                                GetElements().then((r2) => {
+                                                    setElements(r2)
+                                                })
                                             })
-                                        })
-                                    }}
-                                >Activate</a>
+                                        }}
+                                    >Activate</a>
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </SettingBox>
+                        ))}
+                    </SettingBox>
+                </div>
             </div>
         </>
     );
