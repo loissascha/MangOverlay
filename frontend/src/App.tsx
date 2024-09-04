@@ -7,10 +7,6 @@ import ElementsSettings from "./pages/ElementsSettings";
 function App() {
     const [activeMenu, setActiveMenu] = useState<string>("general");
 
-    useEffect(() => {
-        console.log("call");
-    }, []);
-
     function setActiveMenuButton(am: string) {
         setActiveMenu(am);
     }
@@ -48,7 +44,7 @@ function App() {
                     Restart VkCube
                 </Button>
             </footer>
-        </div >
+        </div>
     )
 }
 
