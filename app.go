@@ -23,8 +23,7 @@ func NewApp() *App {
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 	config.LoadConfig()
-	VkCubeRunning = false
-	a.RestartVkcube()
+	a.StartVkcube()
 }
 
 func (a *App) shutdown(ctx context.Context) {
@@ -33,11 +32,15 @@ func (a *App) shutdown(ctx context.Context) {
 }
 
 var VkCubeCmd *exec.Cmd
-var VkCubeRunning bool
+var VkCubeRunning bool = false
 
 func (a *App) RestartVkcube() {
+	a.StopVkcube()
+	a.StartVkcube()
+}
+
+func (a *App) StartVkcube() {
 	go func() {
-		a.StopVkcube()
 		VkCubeCmd = exec.Command("bash", "-c", "mangohud vkcube")
 		err := VkCubeCmd.Start()
 		if err != nil {
@@ -55,5 +58,6 @@ func (a *App) StopVkcube() {
 		if err != nil {
 			fmt.Println("Error killing old process")
 		}
+		VkCubeRunning = false
 	}
 }
