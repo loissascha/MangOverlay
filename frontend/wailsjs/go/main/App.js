@@ -301,3 +301,7 @@ export function SetVramColor(arg1) {
 export function SetWineColor(arg1) {
   return window['go']['main']['App']['SetWineColor'](arg1);
 }
+
+export function StopVkcube() {
+  return window['go']['main']['App']['StopVkcube']();
+}

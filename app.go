@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"mangohud-configurator/config"
 	"os/exec"
 )
@@ -22,14 +23,37 @@ func NewApp() *App {
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 	config.LoadConfig()
+	VkCubeRunning = false
 	a.RestartVkcube()
 }
 
+func (a *App) shutdown(ctx context.Context) {
+	a.StopVkcube()
+	fmt.Println("Goodbye!")
+}
+
+var VkCubeCmd *exec.Cmd
+var VkCubeRunning bool
+
 func (a *App) RestartVkcube() {
-	cmd := exec.Command("bash", "-c", "killall vkcube")
-	cmd.Run()
 	go func() {
-		cmd := exec.Command("bash", "-c", "mangohud vkcube")
-		cmd.Run()
+		a.StopVkcube()
+		VkCubeCmd = exec.Command("bash", "-c", "mangohud vkcube")
+		err := VkCubeCmd.Start()
+		if err != nil {
+			fmt.Println("Error Starting VkCube")
+			return
+		} else {
+			VkCubeRunning = true
+		}
 	}()
+}
+
+func (a *App) StopVkcube() {
+	if VkCubeRunning {
+		err := VkCubeCmd.Process.Kill()
+		if err != nil {
+			fmt.Println("Error killing old process")
+		}
+	}
 }
