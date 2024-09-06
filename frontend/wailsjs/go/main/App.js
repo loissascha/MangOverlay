@@ -302,6 +302,10 @@ export function SetWineColor(arg1) {
   return window['go']['main']['App']['SetWineColor'](arg1);
 }
 
+export function StartVkcube() {
+  return window['go']['main']['App']['StartVkcube']();
+}
+
 export function StopVkcube() {
   return window['go']['main']['App']['StopVkcube']();
 }

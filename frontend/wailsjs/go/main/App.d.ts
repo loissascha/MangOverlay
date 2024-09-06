@@ -152,4 +152,6 @@ export function SetVramColor(arg1:string):Promise<void>;
 
 export function SetWineColor(arg1:string):Promise<void>;
 
+export function StartVkcube():Promise<void>;
+
 export function StopVkcube():Promise<void>;
