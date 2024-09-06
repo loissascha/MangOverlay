@@ -6,6 +6,27 @@
   "command": "mangoverlay",
   "modules": [
     {
+      "name": "webkit2gtk-4.0",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DPORT=GTK",
+        "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+        "-DENABLE_DOCUMENTATION=OFF",
+        "-DENABLE_MINIBROWSER=OFF",
+        "-DENABLE_WEBDRIVER=OFF",
+        "-DENABLE_GAMEPAD=OFF",
+        "-DUSE_SOUP2=ON",
+        "-DENABLE_BUBBLEWRAP_SANDBOX=OFF"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://webkitgtk.org/releases/webkitgtk-2.42.1.tar.xz",
+          "sha256": "6f41fac9989d3ee51c08c48de1d439cdeddecbc757e34b6180987d99b16d2499"
+        }
+      ]
+    },
+    {
       "name": "libsoup",
       "buildsystem": "meson",
       "config-opts": [
@@ -17,22 +38,6 @@
           "type": "archive",
           "url": "https://download.gnome.org/sources/libsoup/2.74/libsoup-2.74.3.tar.xz",
           "sha256": "e4b77c41cfc4c8c5a035fcdc320c7bc6cfb75ef7c5a034153df1413fa1d92f13"
-        }
-      ]
-    },
-    {
-      "name": "webkit2gtk",
-      "buildsystem": "cmake-ninja",
-      "config-opts": [
-        "-DPORT=GTK",
-        "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-        "-GNinja"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://webkitgtk.org/releases/webkitgtk-2.40.1.tar.xz",
-          "sha256": "64e526984f8cd2161ef03ae949af99c002ff333d615e6386b460164a3c1b7ef6"
         }
       ]
     },
@@ -53,8 +58,10 @@
     }
   ],
   "finish-args": [
+    "--share=ipc",
     "--share=network",
     "--socket=x11",
+    "--share=fallback-x11",
     "--socket=wayland",
     "--device=dri",
     "--filesystem=host",
