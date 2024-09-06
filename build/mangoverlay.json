@@ -1,0 +1,63 @@
+{
+  "id": "com.github.loissascha.mangoverlay",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "46",
+  "sdk": "org.gnome.Sdk",
+  "command": "mangoverlay",
+  "modules": [
+    {
+      "name": "libsoup",
+      "buildsystem": "meson",
+      "config-opts": [
+        "-Dgssapi=auto",
+        "-Dintrospection=auto"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://download.gnome.org/sources/libsoup/2.74/libsoup-2.74.3.tar.xz",
+          "sha256": "e4b77c41cfc4c8c5a035fcdc320c7bc6cfb75ef7c5a034153df1413fa1d92f13"
+        }
+      ]
+    },
+    {
+      "name": "webkit2gtk",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DPORT=GTK",
+        "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+        "-GNinja"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://webkitgtk.org/releases/webkitgtk-2.40.1.tar.xz",
+          "sha256": "64e526984f8cd2161ef03ae949af99c002ff333d615e6386b460164a3c1b7ef6"
+        }
+      ]
+    },
+    {
+      "name": "mangoverlay",
+      "buildsystem": "simple",
+      "build-commands": [
+        "install -Dm755 ./bin/mangoverlay /app/bin/mangoverlay",
+        "install -Dm644 com.github.loissascha.mangoverlay.jpeg /app/share/icons/hicolor/64x64/apps/com.github.loissascha.mangoverlay.jpeg",
+        "install -Dm644 com.github.loissascha.mangoverlay.desktop /app/share/applications/com.github.loissascha.mangoverlay.desktop"
+      ],
+      "sources": [
+        {
+          "type": "dir",
+          "path": "./"
+        }
+      ]
+    }
+  ],
+  "finish-args": [
+    "--share=network",
+    "--socket=x11",
+    "--socket=wayland",
+    "--device=dri",
+    "--filesystem=host",
+    "--talk-name=org.gnome.Platform"
+  ]
+}
