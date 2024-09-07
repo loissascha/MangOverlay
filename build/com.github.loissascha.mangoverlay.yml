@@ -10,6 +10,7 @@ finish-args:
   - --share=ipc
   - --share=network
   - --filesystem=home
+  - --filesystem=host
 modules:
   - shared-modules/libappindicator/libappindicator-gtk3-12.10.json
   - name: webkit2gtk-4.0
@@ -59,7 +60,7 @@ modules:
             x-checker-data:
               type: git
               tag-pattern: ^v([\d.]+)$
-  - name: mangoverlay
+  - name: MangOverlay
     #
     # Just install the binary from the local filesystem.
     #
@@ -69,3 +70,5 @@ modules:
     buildsystem: simple
     build-commands:
       - install -D bin/mangoverlay /app/bin/mangoverlay
+      - install -D com.github.loissascha.mangoverlay.jpeg /app/share/icons/hicolor/64x64/apps/com.github.loissascha.mangoverlay.jpeg
+      - install -D com.github.loissascha.mangoverlay.desktop /app/share/applications/com.github.loissascha.mangoverlay.desktop

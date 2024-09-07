@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=MangOverlay
 Exec=mangoverlay
-Icon=com.github.loissascha.mangoverlay.jpeg
+Icon=/app/share/icons/com.github.loissascha.mangoverlay.jpeg
 Type=Application
 Categories=Utility;
