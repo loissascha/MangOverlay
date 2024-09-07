@@ -1,0 +1,4 @@
+flatpak-builder --repo=flatpak-repo --force-clean build-dir com.github.loissascha.mangoverlay.yml
+flatpak-builder --install --force-clean build-dir com.github.loissascha.mangoverlay.yml    # Optional: direct install
+flatpak build-bundle flatpak-repo mangoverlay.flatpak com.github.loissascha.mangoverlay
+flatpak install --user mangoverlay.flatpak    # Install finished .flatpak file
