@@ -17,7 +17,7 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:  "mangohud-configurator",
+		Title:  "MangOverlay",
 		Width:  924,
 		Height: 998,
 		AssetServer: &assetserver.Options{
