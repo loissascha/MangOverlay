@@ -4,6 +4,7 @@ import { ResetConfig, RestartVkcube } from "../wailsjs/go/main/App";
 import Button from "./ui/Button";
 import ElementsSettings from "./pages/ElementsSettings";
 import KeybindSettings from "./pages/KeybindSettings";
+import MetricsSettings from "./pages/MetricsSettings";
 
 function App() {
     const [activeMenu, setActiveMenu] = useState<string>("general");
@@ -52,7 +53,7 @@ function App() {
                             activeMenu == "elements" ?
                                 (<ElementsSettings />) :
                                 activeMenu == "metrics" ?
-                                    (<div>Metrics</div>) : null
+                                    (<MetricsSettings />) : null
                 }
             </main>
             <footer className="bg-gray-700 p-2">

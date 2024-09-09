@@ -7,6 +7,8 @@ function ElementsSettings() {
     const [activeElements, setActiveElements] = useState<any>([])
     const [inactiveElements, setInactiveElements] = useState<any>([])
 
+    const ignore_elements = ["cpu", "gpu", "core", "vram"]
+
     useEffect(() => {
         GetElements().then((r) => {
             setElements(r)
@@ -23,6 +25,16 @@ function ElementsSettings() {
                 if (!element.Active) {
                     continue
                 }
+                let ignore = false
+                for (var ie of ignore_elements) {
+                    if (element.Name.includes(ie)) {
+                        ignore = true
+                        break
+                    }
+                }
+                if (ignore) {
+                    continue
+                }
                 data.push(element)
             }
             data.sort((a, b) => a.Index - b.Index)
@@ -37,6 +49,16 @@ function ElementsSettings() {
             let newId = 100000
             for (var element of elements) {
                 if (element.Active) {
+                    continue
+                }
+                let ignore = false
+                for (var ie of ignore_elements) {
+                    if (element.Name.includes(ie)) {
+                        ignore = true
+                        break
+                    }
+                }
+                if (ignore) {
                     continue
                 }
                 var newe = element
