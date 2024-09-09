@@ -7,7 +7,7 @@ function ElementsSettings() {
     const [activeElements, setActiveElements] = useState<any>([])
     const [inactiveElements, setInactiveElements] = useState<any>([])
 
-    const ignore_elements = ["cpu", "gpu", "core", "vram"]
+    const ignore_elements = ["cpu", "gpu", "core", "vram", "procmem"]
 
     useEffect(() => {
         GetElements().then((r) => {
@@ -23,6 +23,9 @@ function ElementsSettings() {
             let data = []
             for (var element of elements) {
                 if (!element.Active) {
+                    continue
+                }
+                if (element.Name == "ram") {
                     continue
                 }
                 let ignore = false
@@ -49,6 +52,9 @@ function ElementsSettings() {
             let newId = 100000
             for (var element of elements) {
                 if (element.Active) {
+                    continue
+                }
+                if (element.Name == "ram") {
                     continue
                 }
                 let ignore = false

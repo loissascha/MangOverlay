@@ -34,6 +34,7 @@ function MetricsSettings() {
     const [elements, setElements] = useState<any>()
     const [cpuElements, setCpuElements] = useState<any>([])
     const [gpuElements, setGpuElements] = useState<any>([])
+    const [memoryElements, setMemoryElements] = useState<any>([])
 
     useEffect(() => {
         GetElements().then((r) => {
@@ -72,9 +73,25 @@ function MetricsSettings() {
             }
             setGpuElements(newGpuElements)
         }
+        function getMemoryElements() {
+            let newMemoryElements = []
+            let index = 3000
+            for (const e of elements) {
+                if (e.Name == "ram" || e.Name.includes("procmem")) {
+                    newMemoryElements.push({
+                        Index: index,
+                        Name: e.Name,
+                        Active: e.Active
+                    })
+                    index++
+                }
+            }
+            setMemoryElements(newMemoryElements)
+        }
         if (elements !== undefined) {
             getCpuElements()
             getGpuElements()
+            getMemoryElements()
         }
     }, [elements])
 
@@ -101,6 +118,25 @@ function MetricsSettings() {
                     </SettingBox>
                     <SettingBox header="GPU Metrics">
                         {gpuElements.map((e: any) => (
+                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                                ActivateElement(e.Name).then(() => {
+                                    GetElements().then((r) => {
+                                        setElements(r)
+                                    })
+                                })
+                            }} deactivate={() => {
+                                DeactivateElement(e.Name).then(() => {
+                                    GetElements().then((r) => {
+                                        setElements(r)
+                                    })
+                                })
+                            }} />
+                        ))}
+                    </SettingBox>
+                </div>
+                <div>
+                    <SettingBox header="Memory Metrics">
+                        {memoryElements.map((e: any) => (
                             <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
                                     GetElements().then((r) => {
