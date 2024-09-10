@@ -37,11 +37,6 @@ function App() {
                         className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg " + (activeMenu == "fpslimits" ? "bg-gray-800" : "bg-gray-900")}>
                         FPS Limits
                     </li>
-                    <li
-                        onClick={() => { setActiveMenuButton("elements"); }}
-                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg " + (activeMenu == "elements" ? "bg-gray-800" : "bg-gray-900")}>
-                        Extra Elements
-                    </li>
                 </ul>
             </nav>
             <main className="bg-gray-800 p-3">
