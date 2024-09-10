@@ -35,6 +35,10 @@ function MetricsSettings() {
     const [cpuElements, setCpuElements] = useState<any>([])
     const [gpuElements, setGpuElements] = useState<any>([])
     const [memoryElements, setMemoryElements] = useState<any>([])
+    const [batteryElements, setBatteryElements] = useState<any>([])
+    const [frameElements, setFrameElements] = useState<any>([])
+    const [displayElements, setDisplayElements] = useState<any>([])
+    const [versionElements, setVersionElements] = useState<any>([])
 
     useEffect(() => {
         GetElements().then((r) => {
@@ -88,10 +92,74 @@ function MetricsSettings() {
             }
             setMemoryElements(newMemoryElements)
         }
+        function getDisplayElements() {
+            let newDisplayElements = []
+            let index = 4000
+            for (const e of elements) {
+                if (e.Name.includes("time") || e.Name.includes("fsr") || e.Name.includes("hdr") || e.Name.includes("resolution") || e.Name.includes("refresh_rate")) {
+                    newDisplayElements.push({
+                        Index: index,
+                        Name: e.Name,
+                        Active: e.Active
+                    })
+                    index++
+                }
+            }
+            setDisplayElements(newDisplayElements)
+        }
+        function getBatteryElements() {
+            let newBatteryElements = []
+            let index = 5000
+            for (const e of elements) {
+                if (e.Name.includes("battery")) {
+                    newBatteryElements.push({
+                        Index: index,
+                        Name: e.Name,
+                        Active: e.Active
+                    })
+                    index++
+                }
+            }
+            setBatteryElements(newBatteryElements)
+        }
+        function getFrameElements() {
+            let newFrameElements = []
+            let index = 6000
+            for (const e of elements) {
+                if (e.Name.includes("frame") || e.Name.includes("fps")) {
+                    newFrameElements.push({
+                        Index: index,
+                        Name: e.Name,
+                        Active: e.Active
+                    })
+                    index++
+                }
+            }
+            setFrameElements(newFrameElements)
+        }
+        function getVersionElements() {
+            let newVersionElements = []
+            let index = 6000
+            for (const e of elements) {
+                if (e.Name.includes("version") || e.Name.includes("wine") || e.Name.includes("engine") || e.Name.includes("vulkan") || e.Name.includes("arch")) {
+                    newVersionElements.push({
+                        Index: index,
+                        Name: e.Name,
+                        Active: e.Active
+                    })
+                    index++
+                }
+            }
+            setVersionElements(newVersionElements)
+        }
         if (elements !== undefined) {
             getCpuElements()
             getGpuElements()
             getMemoryElements()
+            getBatteryElements()
+            getFrameElements()
+            getDisplayElements()
+            getVersionElements()
         }
     }, [elements])
 
@@ -99,7 +167,7 @@ function MetricsSettings() {
         <>
             <div className="flex gap-5 flex-auto flex-wrap">
                 <div>
-                    <SettingBox header="CPU Metrics">
+                    <SettingBox header="CPU">
                         {cpuElements.map((e: any) => (
                             <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
@@ -116,7 +184,7 @@ function MetricsSettings() {
                             }} />
                         ))}
                     </SettingBox>
-                    <SettingBox header="GPU Metrics">
+                    <SettingBox header="GPU">
                         {gpuElements.map((e: any) => (
                             <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
@@ -135,8 +203,78 @@ function MetricsSettings() {
                     </SettingBox>
                 </div>
                 <div>
-                    <SettingBox header="Memory Metrics">
+                    <SettingBox header="Memory">
                         {memoryElements.map((e: any) => (
+                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                                ActivateElement(e.Name).then(() => {
+                                    GetElements().then((r) => {
+                                        setElements(r)
+                                    })
+                                })
+                            }} deactivate={() => {
+                                DeactivateElement(e.Name).then(() => {
+                                    GetElements().then((r) => {
+                                        setElements(r)
+                                    })
+                                })
+                            }} />
+                        ))}
+                    </SettingBox>
+                    <SettingBox header="Battery">
+                        {batteryElements.map((e: any) => (
+                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                                ActivateElement(e.Name).then(() => {
+                                    GetElements().then((r) => {
+                                        setElements(r)
+                                    })
+                                })
+                            }} deactivate={() => {
+                                DeactivateElement(e.Name).then(() => {
+                                    GetElements().then((r) => {
+                                        setElements(r)
+                                    })
+                                })
+                            }} />
+                        ))}
+                    </SettingBox>
+                    <SettingBox header="FPS">
+                        {frameElements.map((e: any) => (
+                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                                ActivateElement(e.Name).then(() => {
+                                    GetElements().then((r) => {
+                                        setElements(r)
+                                    })
+                                })
+                            }} deactivate={() => {
+                                DeactivateElement(e.Name).then(() => {
+                                    GetElements().then((r) => {
+                                        setElements(r)
+                                    })
+                                })
+                            }} />
+                        ))}
+                    </SettingBox>
+                </div>
+                <div>
+                    <SettingBox header="Display">
+                        {displayElements.map((e: any) => (
+                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                                ActivateElement(e.Name).then(() => {
+                                    GetElements().then((r) => {
+                                        setElements(r)
+                                    })
+                                })
+                            }} deactivate={() => {
+                                DeactivateElement(e.Name).then(() => {
+                                    GetElements().then((r) => {
+                                        setElements(r)
+                                    })
+                                })
+                            }} />
+                        ))}
+                    </SettingBox>
+                    <SettingBox header="Versions">
+                        {versionElements.map((e: any) => (
                             <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
                                     GetElements().then((r) => {
