@@ -92,6 +92,7 @@ func LoadConfig() {
 	}
 
 	conf := getConfigFile()
+	hasLegacyLayoutSet := false
 
 	for index, v := range conf {
 
@@ -104,6 +105,9 @@ func LoadConfig() {
 		if strings.Contains(v, "=") {
 			cmd, val, _ := strings.Cut(v, "=")
 			switch cmd {
+			case "legacy_layout":
+				hasLegacyLayoutSet = true
+				break
 			case "round_corners":
 				r := strings.TrimSpace(val)
 				CG.RoundCorners = (r != "0")
@@ -362,11 +366,11 @@ func LoadConfig() {
 		}
 
 	}
-	fmt.Println("finished")
-	fmt.Println(GPUElementsAvailable)
-	fmt.Println(CPUElementsAvailable)
-	fmt.Println(MemoryElementsAvailable)
-	fmt.Println(ExtraElementsAvailable)
+
+	if !hasLegacyLayoutSet {
+		fmt.Println("doesn't have legacy layout set. Setting it!")
+		addLegacyLayoutStartLine()
+	}
 }
 
 func getConfigFilePath() string {
