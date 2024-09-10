@@ -54,6 +54,9 @@ function MetricsSettings() {
             let newCpuElements = []
             let index = 1000
             for (const e of elements) {
+                if (e.Name == "gpu_core_clock") {
+                    continue
+                }
                 if (e.Name.includes("cpu") || e.Name.includes("core")) {
                     newCpuElements.push({
                         Index: index,
