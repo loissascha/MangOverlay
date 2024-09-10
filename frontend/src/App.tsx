@@ -14,7 +14,7 @@ function App() {
     }
 
     return (
-        <div className='w-full h-full text-white grid grid-rows-[auto_1fr_auto]'>
+        <div className='w-full h-full text-white grid grid-rows-[auto_1fr_auto] select-none cursor-default'>
             <nav className="bg-gray-700 pt-2 px-3">
                 <ul className="flex gap-3 list-none">
                     <li
