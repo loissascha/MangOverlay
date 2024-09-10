@@ -7,7 +7,7 @@ function ElementsSettings() {
     const [activeElements, setActiveElements] = useState<any>([])
     const [inactiveElements, setInactiveElements] = useState<any>([])
 
-    const ignore_elements = ["cpu", "gpu", "core", "vram", "procmem", "battery", "frame", "fps", "time", "hdr", "fsr", "refresh_rate", "resolution", "version", "wine", "arch", "vulkan", "engine"]
+    const ignore_elements = ["cpu", "gpu", "core", "vram", "procmem", "battery", "frame", "fps", "time", "hdr", "fsr", "refresh_rate", "resolution", "version", "wine", "arch", "vulkan", "engine", "hud", "no_small_font", "no_display", "present_mode", "io_read", "io_write", "throttling", "exec_name", "network"]
 
     useEffect(() => {
         GetElements().then((r) => {
