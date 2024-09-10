@@ -1,10 +1,11 @@
-import { act, useState } from "react"
+import { useState } from "react"
 import GeneralSettings from "./pages/GeneralSettings";
-import { ResetConfig, RestartVkcube } from "../wailsjs/go/main/App";
+import { RestartVkcube } from "../wailsjs/go/main/App";
 import Button from "./ui/Button";
 import ElementsSettings from "./pages/ElementsSettings";
 import KeybindSettings from "./pages/KeybindSettings";
 import MetricsSettings from "./pages/MetricsSettings";
+import FpsLimitSettings from "./pages/FpsLimitSettings";
 
 function App() {
     const [activeMenu, setActiveMenu] = useState<string>("general");
@@ -48,7 +49,9 @@ function App() {
                             activeMenu == "elements" ?
                                 (<ElementsSettings />) :
                                 activeMenu == "metrics" ?
-                                    (<MetricsSettings />) : null
+                                    (<MetricsSettings />) :
+                                    activeMenu == "fpslimits" ?
+                                        (<FpsLimitSettings />) : null
                 }
             </main>
             <footer className="bg-gray-700 p-2">
