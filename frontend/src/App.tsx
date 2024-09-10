@@ -34,6 +34,11 @@ function App() {
                         Metrics
                     </li>
                     <li
+                        onClick={() => { setActiveMenuButton("metrics-order"); }}
+                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg " + (activeMenu == "metrics-order" ? "bg-gray-800" : "bg-gray-900")}>
+                        Metrics Order
+                    </li>
+                    <li
                         onClick={() => { setActiveMenuButton("fpslimits"); }}
                         className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg " + (activeMenu == "fpslimits" ? "bg-gray-800" : "bg-gray-900")}>
                         FPS Limits
