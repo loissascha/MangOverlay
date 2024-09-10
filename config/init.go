@@ -2,7 +2,6 @@ package config
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strings"
 )
@@ -305,12 +304,10 @@ func LoadConfig() {
 		v = strings.TrimSpace(v)
 
 		if v == "horizontal" {
-			fmt.Println("horizontal found")
 			CG.Orientation = "horizontal"
 			continue
 		}
 		if v == "horizontal_stretch" {
-			fmt.Println("horizontal stretch found")
 			CG.Orientation = "horizontal_stretch"
 			continue
 		}
@@ -318,7 +315,6 @@ func LoadConfig() {
 		found := false
 		for i, cmd := range GPUElementsAvailable {
 			if cmd.Name == v {
-				fmt.Println("found cmd", cmd, index)
 				GPUElementsAvailable[i].Active = true
 				GPUElementsAvailable[i].Index = index
 				found = true
@@ -330,7 +326,6 @@ func LoadConfig() {
 		}
 		for i, cmd := range CPUElementsAvailable {
 			if cmd.Name == v {
-				fmt.Println("found cmd", cmd, index)
 				CPUElementsAvailable[i].Active = true
 				CPUElementsAvailable[i].Index = index
 				found = true
@@ -342,7 +337,6 @@ func LoadConfig() {
 		}
 		for i, cmd := range MemoryElementsAvailable {
 			if cmd.Name == v {
-				fmt.Println("found cmd", cmd, index)
 				MemoryElementsAvailable[i].Active = true
 				MemoryElementsAvailable[i].Index = index
 				found = true
@@ -354,7 +348,6 @@ func LoadConfig() {
 		}
 		for i, cmd := range ExtraElementsAvailable {
 			if cmd.Name == v {
-				fmt.Println("found cmd", cmd, index)
 				ExtraElementsAvailable[i].Active = true
 				ExtraElementsAvailable[i].Index = index
 				found = true
@@ -368,7 +361,6 @@ func LoadConfig() {
 	}
 
 	if !hasLegacyLayoutSet {
-		fmt.Println("doesn't have legacy layout set. Setting it!")
 		addLegacyLayoutStartLine()
 	}
 }
