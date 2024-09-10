@@ -12,7 +12,7 @@ function MetricItem({ name, active, activate, deactivate }: MetricItemProps) {
     return (
         <div className="flex">
             <div className="me-2">
-                <input id={name} type="checkbox" checked={active} readOnly={true} onClick={() => {
+                <input id={name} type="checkbox" className="cursor-pointer" checked={active} readOnly={true} onClick={() => {
                     if (active) {
                         deactivate()
                     }
@@ -22,7 +22,7 @@ function MetricItem({ name, active, activate, deactivate }: MetricItemProps) {
                 }} />
             </div>
             <div>
-                <label htmlFor={name}>
+                <label htmlFor={name} className="cursor-pointer">
                     {name}
                 </label>
             </div>
