@@ -93,16 +93,19 @@ func LoadConfig() {
 	conf := getConfigFile()
 	hasLegacyLayoutSet := false
 
-	for index, v := range conf {
+	for index, lineOrg := range conf {
 
-		if strings.Contains(v, "#") {
-			before, _, _ := strings.Cut(v, "#")
-			v = before
+		lineNoComments := lineOrg
+		if strings.Contains(lineOrg, "#") {
+			before, _, _ := strings.Cut(lineOrg, "#")
+			lineNoComments = before
 		}
 
 		// all which have a = sign
-		if strings.Contains(v, "=") {
-			cmd, val, _ := strings.Cut(v, "=")
+		if strings.Contains(lineNoComments, "=") {
+			cmd, val, _ := strings.Cut(lineNoComments, "=")
+			cmd = strings.TrimSpace(cmd)
+			val = strings.TrimSpace(val)
 			switch cmd {
 			case "legacy_layout":
 				hasLegacyLayoutSet = true
@@ -301,60 +304,62 @@ func LoadConfig() {
 
 			continue
 		}
-		v = strings.TrimSpace(v)
 
-		if v == "horizontal" {
+		// statements without =
+		lineNoComments = strings.TrimSpace(lineNoComments)
+
+		if lineNoComments == "horizontal" {
 			CG.Orientation = "horizontal"
 			continue
 		}
-		if v == "horizontal_stretch" {
+		if lineNoComments == "horizontal_stretch" {
 			CG.Orientation = "horizontal_stretch"
 			continue
 		}
 
-		found := false
+		foundElement := false
 		for i, cmd := range GPUElementsAvailable {
-			if cmd.Name == v {
+			if cmd.Name == lineNoComments {
 				GPUElementsAvailable[i].Active = true
 				GPUElementsAvailable[i].Index = index
-				found = true
+				foundElement = true
 				break
 			}
 		}
-		if found {
+		if foundElement {
 			continue
 		}
 		for i, cmd := range CPUElementsAvailable {
-			if cmd.Name == v {
+			if cmd.Name == lineNoComments {
 				CPUElementsAvailable[i].Active = true
 				CPUElementsAvailable[i].Index = index
-				found = true
+				foundElement = true
 				break
 			}
 		}
-		if found {
+		if foundElement {
 			continue
 		}
 		for i, cmd := range MemoryElementsAvailable {
-			if cmd.Name == v {
+			if cmd.Name == lineNoComments {
 				MemoryElementsAvailable[i].Active = true
 				MemoryElementsAvailable[i].Index = index
-				found = true
+				foundElement = true
 				break
 			}
 		}
-		if found {
+		if foundElement {
 			continue
 		}
 		for i, cmd := range ExtraElementsAvailable {
-			if cmd.Name == v {
+			if cmd.Name == lineNoComments {
 				ExtraElementsAvailable[i].Active = true
 				ExtraElementsAvailable[i].Index = index
-				found = true
+				foundElement = true
 				break
 			}
 		}
-		if found {
+		if foundElement {
 			continue
 		}
 
