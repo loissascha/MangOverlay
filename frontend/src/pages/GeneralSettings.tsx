@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetOrientation, GetPosition, GetKbToggleHud, GetKbToggleHudPosition, GetKbTogglePreset, GetKbToggleFpsLimit, GetKbToggleLogging, GetKbReloadCfg, GetKbUploadLog, SetKbToggleHud, SetKbToggleHudPosition, SetKbTogglePreset, SetKbToggleFpsLimit, SetKbToggleLogging, SetKbReloadCfg, SetKbUploadLog } from "../../wailsjs/go/main/App";
+import { GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetOrientation } from "../../wailsjs/go/main/App";
 import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
 import Colors from "../generalSettings/Colors";
