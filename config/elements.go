@@ -1,5 +1,64 @@
 package config
 
+func (c *Config) ReplaceElements(first string, second string) {
+	replaceConfigLines(first, second)
+	firstIndex := getElementIndex(first)
+	secondIndex := getElementIndex(second)
+
+	for i, v := range GPUElementsAvailable {
+		if v.Name == first {
+			GPUElementsAvailable[i].Index = secondIndex
+		} else if v.Name == second {
+			GPUElementsAvailable[i].Index = firstIndex
+		}
+	}
+	for i, v := range CPUElementsAvailable {
+		if v.Name == first {
+			CPUElementsAvailable[i].Index = secondIndex
+		} else if v.Name == second {
+			CPUElementsAvailable[i].Index = firstIndex
+		}
+	}
+	for i, v := range MemoryElementsAvailable {
+		if v.Name == first {
+			MemoryElementsAvailable[i].Index = secondIndex
+		} else if v.Name == second {
+			MemoryElementsAvailable[i].Index = firstIndex
+		}
+	}
+	for i, v := range ExtraElementsAvailable {
+		if v.Name == first {
+			ExtraElementsAvailable[i].Index = secondIndex
+		} else if v.Name == second {
+			ExtraElementsAvailable[i].Index = firstIndex
+		}
+	}
+}
+
+func getElementIndex(name string) int {
+	for i, v := range GPUElementsAvailable {
+		if v.Name == name {
+			return GPUElementsAvailable[i].Index
+		}
+	}
+	for i, v := range CPUElementsAvailable {
+		if v.Name == name {
+			return CPUElementsAvailable[i].Index
+		}
+	}
+	for i, v := range MemoryElementsAvailable {
+		if v.Name == name {
+			return MemoryElementsAvailable[i].Index
+		}
+	}
+	for i, v := range ExtraElementsAvailable {
+		if v.Name == name {
+			return ExtraElementsAvailable[i].Index
+		}
+	}
+	return 0
+}
+
 func (c *Config) ActiveElement(e string) int {
 	cf := getConfigFile()
 	newIndex := len(cf) + 1

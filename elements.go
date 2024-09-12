@@ -39,3 +39,7 @@ func (a *App) ActivateElement(n string) int {
 func (a *App) DeactivateElement(n string) {
 	config.CG.DeactivateElement(n)
 }
+
+func (a *App) ReplaceElements(first string, second string) {
+	config.CG.ReplaceElements(first, second)
+}

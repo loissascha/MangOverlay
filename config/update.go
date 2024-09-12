@@ -324,6 +324,24 @@ func addConfigLine(n string) {
 	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
 }
 
+func replaceConfigLines(first string, second string) {
+	cf := getConfigFile()
+	newFile := ""
+	for _, v := range cf {
+		noSpace := strings.TrimSpace(v)
+		if noSpace == first {
+			newFile += second + "\n"
+			continue
+		}
+		if noSpace == second {
+			newFile += first + "\n"
+			continue
+		}
+		newFile += v + "\n"
+	}
+	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
+}
+
 func updateConfigLine(c string, n string, addIfMissing bool) {
 	fmt.Println("updateConfigLine:", c, "=", n)
 	cf := getConfigFile()
