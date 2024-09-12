@@ -170,6 +170,10 @@ export function GetWineColor() {
   return window['go']['main']['App']['GetWineColor']();
 }
 
+export function ReplaceElements(arg1, arg2) {
+  return window['go']['main']['App']['ReplaceElements'](arg1, arg2);
+}
+
 export function ResetConfig() {
   return window['go']['main']['App']['ResetConfig']();
 }

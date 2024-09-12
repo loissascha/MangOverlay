@@ -86,6 +86,8 @@ export function GetVramColor():Promise<string>;
 
 export function GetWineColor():Promise<string>;
 
+export function ReplaceElements(arg1:string,arg2:string):Promise<void>;
+
 export function ResetConfig():Promise<void>;
 
 export function RestartVkcube():Promise<void>;

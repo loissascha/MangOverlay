@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { GetElements } from "../../wailsjs/go/main/App"
+import { GetElements, ReplaceElements } from "../../wailsjs/go/main/App"
 import SettingBox from "../ui/SettingBox"
 
 function MetricsOrderSettings() {
@@ -32,6 +32,11 @@ function MetricsOrderSettings() {
             if (e.Name == name) {
                 if (lastElement !== undefined) {
                     // GoReplaceFunc(name, lastElement.Name)
+                    ReplaceElements(name, lastElement.Name).then(() => {
+                        GetElements().then((r) => {
+                            setElements(r)
+                        })
+                    })
                     console.log("replace " + name + " with " + lastElement.Name)
                 }
                 break
@@ -45,6 +50,12 @@ function MetricsOrderSettings() {
         for (const e of activeElements) {
             if (doNow) {
                 // GoReplaceFunc(name, e.Name)
+                ReplaceElements(name, e.Name).then(() => {
+                    GetElements().then((r) => {
+                        setElements(r)
+                    })
+                })
+
                 console.log("replace " + name + " with " + e.Name)
                 break
             }
