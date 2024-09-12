@@ -6,6 +6,7 @@ import ElementsSettings from "./pages/ElementsSettings";
 import KeybindSettings from "./pages/KeybindSettings";
 import MetricsSettings from "./pages/MetricsSettings";
 import FpsLimitSettings from "./pages/FpsLimitSettings";
+import MetricsOrderSettings from "./pages/MetricsOrderSettings";
 
 function App() {
     const [activeMenu, setActiveMenu] = useState<string>("general");
@@ -55,8 +56,10 @@ function App() {
                                 (<ElementsSettings />) :
                                 activeMenu == "metrics" ?
                                     (<MetricsSettings />) :
-                                    activeMenu == "fpslimits" ?
-                                        (<FpsLimitSettings />) : null
+                                    activeMenu == "metrics-order" ?
+                                        (<MetricsOrderSettings />) :
+                                        activeMenu == "fpslimits" ?
+                                            (<FpsLimitSettings />) : null
                 }
             </main>
             <footer className="bg-gray-700 p-2">
