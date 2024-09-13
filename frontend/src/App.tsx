@@ -37,7 +37,7 @@ function App() {
                     <li
                         onClick={() => { setActiveMenuButton("metrics-order"); }}
                         className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg " + (activeMenu == "metrics-order" ? "bg-gray-800" : "bg-gray-900")}>
-                        Metrics Order
+                        Change Order
                     </li>
                     <li
                         onClick={() => { setActiveMenuButton("fpslimits"); }}
