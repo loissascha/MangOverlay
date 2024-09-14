@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import { GetElements, ReplaceElements } from "../../wailsjs/go/main/App"
 import SettingBox from "../ui/SettingBox"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSortUp, faSortDown, faShuffle } from '@fortawesome/free-solid-svg-icons'
+import { faCircle, faCircleXmark } from "@fortawesome/free-regular-svg-icons"
 
 function MetricsOrderSettings() {
     const [elements, setElements] = useState<any>([])
@@ -103,34 +106,39 @@ function MetricsOrderSettings() {
                                                 onClick={() => {
                                                     UnselectElement()
                                                 }}
-                                            >Unselect</a>
+                                                title="Unselect"
+                                            ><FontAwesomeIcon icon={faCircleXmark} /></a>
                                         ) : (
                                             <a
                                                 className="cursor-pointer ms-3 me-3"
                                                 onClick={() => {
                                                     SwapSelectionWith(e.Name)
                                                 }}
-                                            >Swap</a>
+                                                title="Swap with selection"
+                                            ><FontAwesomeIcon icon={faShuffle} /></a>
                                         ) : (
                                             <a
                                                 className="cursor-pointer ms-3 me-3"
                                                 onClick={() => {
                                                     SelectElement(e.Name)
                                                 }}
-                                            >Select</a>
+                                                title="Select"
+                                            ><FontAwesomeIcon icon={faCircle} /></a>
                                         )}
                                     <a
                                         className="cursor-pointer ms-3 me-3"
                                         onClick={() => {
                                             ElementUp(e.Name)
                                         }}
-                                    >Up</a>
+                                        title="Sort Up"
+                                    ><FontAwesomeIcon icon={faSortUp} /></a>
                                     <a
                                         className="cursor-pointer"
                                         onClick={() => {
                                             ElementDown(e.Name)
                                         }}
-                                    >Down</a>
+                                        title="Sort Down"
+                                    ><FontAwesomeIcon icon={faSortDown} /></a>
                                 </div>
                             </div>
                         ))}
