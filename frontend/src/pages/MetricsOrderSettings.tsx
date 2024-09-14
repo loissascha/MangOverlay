@@ -94,10 +94,7 @@ function MetricsOrderSettings() {
                 <div>
                     <SettingBox header="Active Elements">
                         {activeElements.map((e: any) => (
-                            <div key={e.Index} className="grid grid-cols-[1fr_auto]">
-                                <div>
-                                    {e.Name}
-                                </div>
+                            <div key={e.Index} className="grid grid-cols-[auto_1fr_auto]">
                                 <div>
                                     {hasSelection ?
                                         e.Name == selected ? (
@@ -125,6 +122,11 @@ function MetricsOrderSettings() {
                                                 title="Select"
                                             ><FontAwesomeIcon icon={faCircle} /></a>
                                         )}
+                                </div>
+                                <div>
+                                    {e.Name}
+                                </div>
+                                <div>
                                     <a
                                         className="cursor-pointer ms-3 me-3"
                                         onClick={() => {
