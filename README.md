@@ -7,3 +7,4 @@ MangOverlay is an open source GUI app for managing your MangoHud settings. It ai
 ![General Settings](readme/generalSettings.png)
 ![Keybinding Settings](readme/keybindSettings.png)
 ![Metrics Settings](readme/metricsSettings.png)
+![Order Settings](readme/orderSettings.png)
