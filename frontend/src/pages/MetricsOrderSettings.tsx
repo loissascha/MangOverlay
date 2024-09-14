@@ -5,6 +5,8 @@ import SettingBox from "../ui/SettingBox"
 function MetricsOrderSettings() {
     const [elements, setElements] = useState<any>([])
     const [activeElements, setActiveElements] = useState<any>([])
+    const [hasSelection, setHasSelection] = useState<boolean>(false)
+    const [selected, setSelected] = useState<string>("")
 
     useEffect(() => {
         GetElements().then((r) => {
@@ -65,6 +67,24 @@ function MetricsOrderSettings() {
         }
     }
 
+    function SelectElement(name: string) {
+        setHasSelection(true)
+        setSelected(name)
+    }
+
+    function UnselectElement() {
+        setHasSelection(false)
+    }
+
+    function SwapSelectionWith(name: string) {
+        ReplaceElements(selected, name).then(() => {
+            setHasSelection(false)
+            GetElements().then((r) => {
+                setElements(r)
+            })
+        })
+    }
+
     return (
         <>
             <div className="flex gap-5 flex-auto flex-wrap">
@@ -76,6 +96,29 @@ function MetricsOrderSettings() {
                                     {e.Name}
                                 </div>
                                 <div>
+                                    {hasSelection ?
+                                        e.Name == selected ? (
+                                            <a
+                                                className="cursor-pointer ms-3 me-3"
+                                                onClick={() => {
+                                                    UnselectElement()
+                                                }}
+                                            >Unselect</a>
+                                        ) : (
+                                            <a
+                                                className="cursor-pointer ms-3 me-3"
+                                                onClick={() => {
+                                                    SwapSelectionWith(e.Name)
+                                                }}
+                                            >Swap</a>
+                                        ) : (
+                                            <a
+                                                className="cursor-pointer ms-3 me-3"
+                                                onClick={() => {
+                                                    SelectElement(e.Name)
+                                                }}
+                                            >Select</a>
+                                        )}
                                     <a
                                         className="cursor-pointer ms-3 me-3"
                                         onClick={() => {
