@@ -99,7 +99,7 @@ function MetricsOrderSettings() {
                                     {hasSelection ?
                                         e.Name == selected ? (
                                             <a
-                                                className="cursor-pointer ms-3 me-3"
+                                                className="cursor-pointer me-3"
                                                 onClick={() => {
                                                     UnselectElement()
                                                 }}
@@ -107,7 +107,7 @@ function MetricsOrderSettings() {
                                             ><FontAwesomeIcon icon={faCircleXmark} /></a>
                                         ) : (
                                             <a
-                                                className="cursor-pointer ms-3 me-3"
+                                                className="cursor-pointer me-3"
                                                 onClick={() => {
                                                     SwapSelectionWith(e.Name)
                                                 }}
@@ -115,7 +115,7 @@ function MetricsOrderSettings() {
                                             ><FontAwesomeIcon icon={faShuffle} /></a>
                                         ) : (
                                             <a
-                                                className="cursor-pointer ms-3 me-3"
+                                                className="cursor-pointer me-3"
                                                 onClick={() => {
                                                     SelectElement(e.Name)
                                                 }}
