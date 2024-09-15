@@ -94,7 +94,7 @@ function MetricsOrderSettings() {
                 <div>
                     <SettingBox header="Active Elements">
                         {activeElements.map((e: any) => (
-                            <div key={e.Index} className="grid grid-cols-[auto_1fr_auto]">
+                            <div key={e.Index} className="grid grid-cols-[1fr_auto]">
                                 <div>
                                     {hasSelection ?
                                         e.Name == selected ? (
@@ -104,7 +104,7 @@ function MetricsOrderSettings() {
                                                     UnselectElement()
                                                 }}
                                                 title="Unselect"
-                                            ><FontAwesomeIcon icon={faCircleXmark} /></a>
+                                            ><FontAwesomeIcon icon={faCircleXmark} className="me-2" />{e.Name}</a>
                                         ) : (
                                             <a
                                                 className="cursor-pointer me-3"
@@ -112,7 +112,7 @@ function MetricsOrderSettings() {
                                                     SwapSelectionWith(e.Name)
                                                 }}
                                                 title="Swap with selection"
-                                            ><FontAwesomeIcon icon={faShuffle} /></a>
+                                            ><FontAwesomeIcon icon={faShuffle} className="me-2" />{e.Name}</a>
                                         ) : (
                                             <a
                                                 className="cursor-pointer me-3"
@@ -120,11 +120,8 @@ function MetricsOrderSettings() {
                                                     SelectElement(e.Name)
                                                 }}
                                                 title="Select"
-                                            ><FontAwesomeIcon icon={faCircle} /></a>
+                                            ><FontAwesomeIcon icon={faCircle} className="me-2" />{e.Name}</a>
                                         )}
-                                </div>
-                                <div>
-                                    {e.Name}
                                 </div>
                                 <div>
                                     <a
