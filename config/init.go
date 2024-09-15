@@ -526,6 +526,7 @@ func DisableGlobally() {
 	// source file
 	cmd := exec.Command("bash", "-c", "source ~/.profile")
 	cmd.Run()
+	GlobalEnabled = false
 }
 
 func EnableGlobally() {
@@ -560,6 +561,7 @@ func EnableGlobally() {
 	// source file
 	cmd := exec.Command("bash", "-c", "source ~/.profile")
 	cmd.Run()
+	GlobalEnabled = true
 }
 
 func createBackupConfig() {
