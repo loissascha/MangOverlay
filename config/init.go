@@ -493,21 +493,21 @@ func EnableGlobally() {
 	}
 	defer file.Close()
 
-	result := []string{}
+	newFile := ""
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
 		if line == "export MANGOHUD=1" {
 			return
 		}
-		result = append(result, line)
+		newFile += line + "\n"
 	}
-	result = append(result, "export MANGOHUD=1")
+	newFile += "export MANGOHUD=1\n"
+	os.WriteFile(profileFile, []byte(newFile), 0766)
 
 	// source file
 	cmd := exec.Command("bash", "-c", "source ~/.profile")
 	cmd.Run()
-
 }
 
 func createBackupConfig() {
