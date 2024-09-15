@@ -43,6 +43,12 @@ func (a *App) RestartVkcube() {
 func (a *App) EnableGlobally() {
 	config.EnableGlobally()
 }
+func (a *App) DisableGlobally() {
+	config.DisableGlobally()
+}
+func (a *App) GloballyEnabled() bool {
+	return config.GlobalEnabled
+}
 
 func (a *App) StartVkcube() {
 	go func() {

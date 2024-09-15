@@ -6,6 +6,8 @@ export function ActivateElement(arg1:string):Promise<number>;
 
 export function DeactivateElement(arg1:string):Promise<void>;
 
+export function DisableGlobally():Promise<void>;
+
 export function EnableGlobally():Promise<void>;
 
 export function GetBackgroundAlpha():Promise<string>;
@@ -87,6 +89,8 @@ export function GetTextColor():Promise<string>;
 export function GetVramColor():Promise<string>;
 
 export function GetWineColor():Promise<string>;
+
+export function GloballyEnabled():Promise<boolean>;
 
 export function ReplaceElements(arg1:string,arg2:string):Promise<void>;
 

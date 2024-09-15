@@ -16,6 +16,7 @@ func LoadConfig() {
 	createConfigIfNotExist()
 	createBackupConfig()
 	setDefaults()
+	initGlobalEnabled()
 
 	Elements = []Element{}
 	GPUElementsAvailable = []Element{
@@ -474,6 +475,57 @@ func createConfigIfNotExist() {
 	if !configExists {
 		os.WriteFile(configDir+"/MangoHud.conf", []byte("Hello"), 0666)
 	}
+}
+
+func initGlobalEnabled() {
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		panic("can't load user home dir")
+	}
+	profileFile := homeDir + "/.profile"
+	file, err := os.Open(profileFile)
+	if err != nil {
+		return
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		if strings.Contains(line, "export MANGOHUD=1") {
+			GlobalEnabled = true
+			return
+		}
+	}
+	GlobalEnabled = false
+}
+
+func DisableGlobally() {
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		panic("can't load user home dir")
+	}
+	profileFile := homeDir + "/.profile"
+	file, err := os.Open(profileFile)
+	if err != nil {
+		return
+	}
+	defer file.Close()
+
+	newFile := ""
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		if strings.Contains(line, "export MANGOHUD=1") {
+			continue
+		}
+		newFile += line + "\n"
+	}
+	os.WriteFile(profileFile, []byte(newFile), 0766)
+
+	// source file
+	cmd := exec.Command("bash", "-c", "source ~/.profile")
+	cmd.Run()
 }
 
 func EnableGlobally() {

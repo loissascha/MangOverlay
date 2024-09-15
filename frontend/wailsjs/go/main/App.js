@@ -10,6 +10,10 @@ export function DeactivateElement(arg1) {
   return window['go']['main']['App']['DeactivateElement'](arg1);
 }
 
+export function DisableGlobally() {
+  return window['go']['main']['App']['DisableGlobally']();
+}
+
 export function EnableGlobally() {
   return window['go']['main']['App']['EnableGlobally']();
 }
@@ -172,6 +176,10 @@ export function GetVramColor() {
 
 export function GetWineColor() {
   return window['go']['main']['App']['GetWineColor']();
+}
+
+export function GloballyEnabled() {
+  return window['go']['main']['App']['GloballyEnabled']();
 }
 
 export function ReplaceElements(arg1, arg2) {

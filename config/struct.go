@@ -51,3 +51,4 @@ type Config struct {
 }
 
 var CG Config
+var GlobalEnabled bool = false
