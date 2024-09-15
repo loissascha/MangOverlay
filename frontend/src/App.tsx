@@ -1,6 +1,6 @@
 import { useState } from "react"
 import GeneralSettings from "./pages/GeneralSettings";
-import { RestartVkcube } from "../wailsjs/go/main/App";
+import { EnableGlobally, RestartVkcube } from "../wailsjs/go/main/App";
 import Button from "./ui/Button";
 import ElementsSettings from "./pages/ElementsSettings";
 import KeybindSettings from "./pages/KeybindSettings";
@@ -72,6 +72,11 @@ function App() {
             <footer className="bg-gray-700 p-2">
                 <Button click={() => { RestartVkcube(); }}>
                     Restart VkCube
+                </Button>
+                <Button click={() => {
+                    EnableGlobally()
+                }}>
+                    Enable Globally
                 </Button>
             </footer>
         </div>
