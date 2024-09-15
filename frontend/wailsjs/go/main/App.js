@@ -10,6 +10,10 @@ export function DeactivateElement(arg1) {
   return window['go']['main']['App']['DeactivateElement'](arg1);
 }
 
+export function EnableGlobally() {
+  return window['go']['main']['App']['EnableGlobally']();
+}
+
 export function GetBackgroundAlpha() {
   return window['go']['main']['App']['GetBackgroundAlpha']();
 }

@@ -40,6 +40,10 @@ func (a *App) RestartVkcube() {
 	a.StartVkcube()
 }
 
+func (a *App) EnableGlobally() {
+	config.EnableGlobally()
+}
+
 func (a *App) StartVkcube() {
 	go func() {
 		VkCubeCmd = exec.Command("bash", "-c", "mangohud vkcube")

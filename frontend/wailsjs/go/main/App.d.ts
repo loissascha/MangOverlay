@@ -6,6 +6,8 @@ export function ActivateElement(arg1:string):Promise<number>;
 
 export function DeactivateElement(arg1:string):Promise<void>;
 
+export function EnableGlobally():Promise<void>;
+
 export function GetBackgroundAlpha():Promise<string>;
 
 export function GetBackgroundColor():Promise<string>;

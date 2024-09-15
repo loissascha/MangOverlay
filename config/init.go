@@ -2,7 +2,9 @@ package config
 
 import (
 	"bufio"
+	"fmt"
 	"os"
+	"os/exec"
 	"strings"
 )
 
@@ -472,6 +474,40 @@ func createConfigIfNotExist() {
 	if !configExists {
 		os.WriteFile(configDir+"/MangoHud.conf", []byte("Hello"), 0666)
 	}
+}
+
+func EnableGlobally() {
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		panic("can't load user home dir")
+	}
+	profileFile := homeDir + "/.profile"
+	file, err := os.Open(profileFile)
+	if err != nil {
+		fmt.Println("profile file not found! creating it!")
+		os.WriteFile(profileFile, []byte{}, 0766)
+		file, err = os.Open(profileFile)
+		if err != nil {
+			panic("profile file broken")
+		}
+	}
+	defer file.Close()
+
+	result := []string{}
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		if line == "export MANGOHUD=1" {
+			return
+		}
+		result = append(result, line)
+	}
+	result = append(result, "export MANGOHUD=1")
+
+	// source file
+	cmd := exec.Command("bash", "-c", "source ~/.profile")
+	cmd.Run()
+
 }
 
 func createBackupConfig() {
