@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import GeneralSettings from "./pages/GeneralSettings";
-import { EnableGlobally, RestartVkcube } from "../wailsjs/go/main/App";
+import { DisableGlobally, EnableGlobally, GloballyEnabled, RestartVkcube } from "../wailsjs/go/main/App";
 import Button from "./ui/Button";
 import ElementsSettings from "./pages/ElementsSettings";
 import KeybindSettings from "./pages/KeybindSettings";
@@ -8,10 +8,18 @@ import MetricsSettings from "./pages/MetricsSettings";
 import FpsLimitSettings from "./pages/FpsLimitSettings";
 import MetricsOrderSettings from "./pages/MetricsOrderSettings";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faDisplay, faGears, faKeyboard, faSort } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faCheck, faDisplay, faGears, faKeyboard, faSort } from "@fortawesome/free-solid-svg-icons";
+import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 
 function App() {
     const [activeMenu, setActiveMenu] = useState<string>("general");
+    const [globallyEnabled, setGloballyEnabled] = useState<boolean>(false)
+
+    useEffect(() => {
+        GloballyEnabled().then((r) => {
+            setGloballyEnabled(r)
+        })
+    }, [])
 
     function setActiveMenuButton(am: string) {
         setActiveMenu(am);
@@ -73,13 +81,34 @@ function App() {
                 <Button click={() => { RestartVkcube(); }}>
                     Restart VkCube
                 </Button>
-                <Button click={() => {
-                    EnableGlobally()
-                }}>
-                    Enable Globally
-                </Button>
+                {globallyEnabled ? (
+                    <Button click={
+                        () => {
+                            DisableGlobally().then(() => {
+                                GloballyEnabled().then((r) => {
+                                    setGloballyEnabled(r)
+                                })
+                            })
+                        }
+                    }>
+                        <FontAwesomeIcon icon={faSquareCheck} className="me-2" />Globally Enabled
+                    </Button>
+
+                ) : (
+                    <Button click={
+                        () => {
+                            EnableGlobally().then(() => {
+                                GloballyEnabled().then((r) => {
+                                    setGloballyEnabled(r)
+                                })
+                            })
+                        }
+                    }>
+                        <FontAwesomeIcon icon={faSquare} className="me-2" />Globally Enabled
+                    </Button>
+                )}
             </footer>
-        </div>
+        </div >
     )
 }
 
