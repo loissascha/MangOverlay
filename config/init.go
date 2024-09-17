@@ -3,6 +3,7 @@ package config
 import (
 	"bufio"
 	"fmt"
+	"mangohud-configurator/logger"
 	"os"
 	"os/exec"
 	"strings"
@@ -12,7 +13,11 @@ func ResetConfig() {
 
 }
 
-func LoadConfig() {
+var Logger *logger.Logger
+
+func LoadConfig(l *logger.Logger) {
+	Logger = l
+	Logger.Log("Load Config!")
 	createConfigIfNotExist()
 	createBackupConfig()
 	setDefaults()

@@ -4,8 +4,11 @@ import (
 	"context"
 	"fmt"
 	"mangohud-configurator/config"
+	"mangohud-configurator/logger"
 	"os/exec"
 )
+
+var Logger logger.Logger
 
 // App struct
 type App struct {
@@ -15,6 +18,8 @@ type App struct {
 // NewApp creates a new App application struct
 func NewApp() *App {
 	config.CG = config.Config{}
+	Logger = logger.NewLogger("App")
+	Logger.AddLoggerTarget(logger.NewLoggerTarget("console"))
 	return &App{}
 }
 
@@ -22,14 +27,14 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
-	fmt.Println("Welcome!")
-	config.LoadConfig()
+	Logger.Log("Welcome!")
+	config.LoadConfig(&Logger)
 	a.StartVkcube()
 }
 
 func (a *App) shutdown(ctx context.Context) {
 	a.StopVkcube()
-	fmt.Println("Goodbye!")
+	Logger.Log("Goodbye!")
 }
 
 var VkCubeCmd *exec.Cmd
