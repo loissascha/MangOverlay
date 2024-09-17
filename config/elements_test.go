@@ -4,6 +4,39 @@ import (
 	"testing"
 )
 
+func TestGetElementIndex(t *testing.T) {
+	GPUElementsAvailable = []Element{
+		{Name: "test_gpu", Active: false, Index: 15},
+	}
+	CPUElementsAvailable = []Element{
+		{Name: "test_cpu", Active: false, Index: 11},
+	}
+	MemoryElementsAvailable = []Element{
+		{Name: "test_memory", Active: false, Index: 99},
+	}
+	ExtraElementsAvailable = []Element{
+		{Name: "test_extra", Active: false, Index: 3393},
+	}
+
+	gpuindex := getElementIndex("test_gpu")
+	cpuindex := getElementIndex("test_cpu")
+	memoryindex := getElementIndex("test_memory")
+	extraindex := getElementIndex("test_extra")
+
+	if gpuindex != 15 {
+		t.Errorf("GPU Index wrong!")
+	}
+	if cpuindex != 11 {
+		t.Errorf("CPU Index wrong!")
+	}
+	if memoryindex != 99 {
+		t.Errorf("Memory Index wrong!")
+	}
+	if extraindex != 3393 {
+		t.Errorf("Extra Index wrong!")
+	}
+}
+
 func TestActivateElement(t *testing.T) {
 	config := Config{}
 
