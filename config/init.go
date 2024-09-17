@@ -13,10 +13,11 @@ func ResetConfig() {
 
 }
 
-var Logger *logger.Logger
+var Logger logger.Logger
 
-func LoadConfig(l *logger.Logger) {
-	Logger = l
+func LoadConfig() {
+	Logger = logger.NewLogger("Config")
+	Logger.AddLoggerTarget(logger.NewLoggerTarget("console"))
 	Logger.Log("Load Config!")
 	createConfigIfNotExist()
 	createBackupConfig()

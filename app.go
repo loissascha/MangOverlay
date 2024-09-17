@@ -28,7 +28,7 @@ func NewApp() *App {
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 	Logger.Log("Welcome!")
-	config.LoadConfig(&Logger)
+	config.LoadConfig()
 	a.StartVkcube()
 }
 
