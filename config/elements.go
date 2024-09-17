@@ -59,7 +59,7 @@ func getElementIndex(name string) int {
 	return 0
 }
 
-func (c *Config) ActiveElement(e string) int {
+func (c *Config) ActivateElement(e string) int {
 	cf := getConfigFile()
 	newIndex := len(cf) + 1
 	for i, v := range GPUElementsAvailable {

@@ -33,7 +33,7 @@ func (a *App) GetElements() []config.Element {
 }
 
 func (a *App) ActivateElement(n string) int {
-	return config.CG.ActiveElement(n)
+	return config.CG.ActivateElement(n)
 }
 
 func (a *App) DeactivateElement(n string) {
