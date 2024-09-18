@@ -20,7 +20,6 @@ func NewApp() *App {
 	config.CG = config.Config{}
 	Logger = logger.NewLogger("App")
 	Logger.AddLoggerTarget(&logger.ConsoleLoggerTarget{})
-	Logger.AddLoggerTarget(&logger.SqliteLoggerTarget{})
 	return &App{}
 }
 
