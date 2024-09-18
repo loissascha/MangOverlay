@@ -16,6 +16,7 @@ func NewLogger(name string) Logger {
 
 func (l *Logger) AddLoggerTarget(t ILoggerTarget) {
 	l.loggerTypes = append(l.loggerTypes, t)
+	l.loggerTypes[len(l.loggerTypes)-1].Init()
 }
 
 func (l *Logger) Log(text string) {
