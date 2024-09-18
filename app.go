@@ -9,6 +9,8 @@ import (
 )
 
 var Logger logger.Logger
+var VkCubeCmd *exec.Cmd
+var VkCubeRunning bool = false
 
 // App struct
 type App struct {
@@ -37,14 +39,6 @@ func (a *App) shutdown(ctx context.Context) {
 	Logger.Log("Goodbye!")
 }
 
-var VkCubeCmd *exec.Cmd
-var VkCubeRunning bool = false
-
-func (a *App) RestartVkcube() {
-	a.StopVkcube()
-	a.StartVkcube()
-}
-
 func (a *App) EnableGlobally() {
 	config.EnableGlobally()
 }
@@ -55,6 +49,10 @@ func (a *App) GloballyEnabled() bool {
 	return config.GlobalEnabled
 }
 
+func (a *App) RestartVkcube() {
+	a.StopVkcube()
+	a.StartVkcube()
+}
 func (a *App) StartVkcube() {
 	go func() {
 		VkCubeCmd = exec.Command("bash", "-c", "mangohud vkcube")
@@ -67,7 +65,6 @@ func (a *App) StartVkcube() {
 		}
 	}()
 }
-
 func (a *App) StopVkcube() {
 	if VkCubeRunning {
 		err := VkCubeCmd.Process.Kill()
