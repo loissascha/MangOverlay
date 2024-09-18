@@ -2,7 +2,6 @@ package config
 
 import (
 	"bufio"
-	"fmt"
 	"mangohud-configurator/logger"
 	"os"
 	"os/exec"
@@ -544,7 +543,7 @@ func EnableGlobally() {
 	profileFile := homeDir + "/.profile"
 	file, err := os.Open(profileFile)
 	if err != nil {
-		fmt.Println("profile file not found! creating it!")
+		Logger.Log("profile file not found! creating it!")
 		os.WriteFile(profileFile, []byte{}, 0766)
 		file, err = os.Open(profileFile)
 		if err != nil {

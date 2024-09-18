@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"os"
 	"strings"
 )
@@ -16,7 +15,6 @@ func (c *Config) SetRoundedCorners(n bool) {
 }
 
 func (c *Config) SetOrientation(n string) {
-	fmt.Println("SetOrientation", n)
 	c.Orientation = n
 	deleteConfigLine("horizontal")
 	deleteConfigLine("horizontal_stretch")
@@ -49,7 +47,6 @@ func (c *Config) SetBackgroundColor(n string) {
 
 func (c *Config) SetBackgroundAlpha(n string) {
 	c.BackgroundAlpha = n
-	fmt.Println("SetBackgroundAlpha update")
 	updateConfigLine("background_alpha", n, true)
 }
 
@@ -343,7 +340,7 @@ func replaceConfigLines(first string, second string) {
 }
 
 func updateConfigLine(c string, n string, addIfMissing bool) {
-	fmt.Println("updateConfigLine:", c, "=", n)
+	Logger.Log("updateConfigLine:", c, "=", n)
 	cf := getConfigFile()
 	newFile := ""
 	lineFound := false
