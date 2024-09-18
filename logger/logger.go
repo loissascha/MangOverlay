@@ -7,16 +7,6 @@ type Logger struct {
 	loggerTypes []ILoggerTarget
 }
 
-type ILoggerTarget interface {
-	Log(text string)
-}
-
-type ConsoleLoggerTarget struct {
-}
-
-type SqliteLoggerTarget struct {
-}
-
 func NewLogger(name string) Logger {
 	logger := Logger{name: name}
 	logger.loggerTypes = []ILoggerTarget{}
@@ -39,11 +29,4 @@ func (l *Logger) Panic(text string) {
 		v.Log(fmt.Sprintf("%s SYSTEM PANIC: %s", l.name, text))
 	}
 	panic(text)
-}
-
-func (t *ConsoleLoggerTarget) Log(text string) {
-	fmt.Println(text)
-}
-func (t *SqliteLoggerTarget) Log(text string) {
-	// TODO: add sqlite
 }
