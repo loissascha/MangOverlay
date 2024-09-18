@@ -36,3 +36,16 @@ func checkIfConfigContainsTestlineGo() bool {
 	}
 	return hasTestline
 }
+
+func TestCheckIfConfigContainsTestlineGo(t *testing.T) {
+	deleteConfigLine("testline_go")
+	addConfigLine("testline_go")
+
+	if !checkIfConfigContainsTestlineGo() {
+		t.Errorf("TestCheckIfConfigContainsTestlineGo: didn't exist!")
+	}
+	deleteConfigLine("testline_go")
+	if checkIfConfigContainsTestlineGo() {
+		t.Errorf("TestCheckIfConfigContainsTestlineGo: shouldn't exist!")
+	}
+}
