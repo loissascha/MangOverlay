@@ -4,26 +4,27 @@ import "fmt"
 
 type Logger struct {
 	name        string
-	loggerTypes []LoggerTarget
+	loggerTypes []ILoggerTarget
 }
 
-type LoggerTarget struct {
-	name string
+type ILoggerTarget interface {
+	Log(text string)
+}
+
+type ConsoleLoggerTarget struct {
+}
+
+type SqliteLoggerTarget struct {
 }
 
 func NewLogger(name string) Logger {
 	logger := Logger{name: name}
-	logger.loggerTypes = []LoggerTarget{}
+	logger.loggerTypes = []ILoggerTarget{}
 	logger.Log(fmt.Sprintf("logger %s created", name))
 	return logger
 }
 
-func NewLoggerTarget(name string) LoggerTarget {
-	t := LoggerTarget{name: name}
-	return t
-}
-
-func (l *Logger) AddLoggerTarget(t LoggerTarget) {
+func (l *Logger) AddLoggerTarget(t ILoggerTarget) {
 	l.loggerTypes = append(l.loggerTypes, t)
 }
 
@@ -40,14 +41,9 @@ func (l *Logger) Panic(text string) {
 	panic(text)
 }
 
-func (t *LoggerTarget) Log(text string) {
-	if t.name == "console" {
-		fmt.Println(text)
-	} else if t.name == "sqlite" {
-		// TODO: add sqlite
-	}
+func (t *ConsoleLoggerTarget) Log(text string) {
+	fmt.Println(text)
 }
-
-func (t *LoggerTarget) SetName(name string) {
-	t.name = name
+func (t *SqliteLoggerTarget) Log(text string) {
+	// TODO: add sqlite
 }

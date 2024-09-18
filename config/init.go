@@ -17,7 +17,8 @@ var Logger logger.Logger
 
 func LoadConfig() {
 	Logger = logger.NewLogger("Config")
-	Logger.AddLoggerTarget(logger.NewLoggerTarget("console"))
+	Logger.AddLoggerTarget(&logger.ConsoleLoggerTarget{})
+	Logger.AddLoggerTarget(&logger.SqliteLoggerTarget{})
 	Logger.Log("Load Config!")
 	createConfigIfNotExist()
 	createBackupConfig()

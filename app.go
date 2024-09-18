@@ -19,7 +19,8 @@ type App struct {
 func NewApp() *App {
 	config.CG = config.Config{}
 	Logger = logger.NewLogger("App")
-	Logger.AddLoggerTarget(logger.NewLoggerTarget("console"))
+	Logger.AddLoggerTarget(&logger.ConsoleLoggerTarget{})
+	Logger.AddLoggerTarget(&logger.SqliteLoggerTarget{})
 	return &App{}
 }
 
