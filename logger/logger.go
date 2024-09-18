@@ -16,9 +16,9 @@ func NewLogger(name string) Logger {
 
 func (l *Logger) AddLoggerTarget(t ILoggerTarget) {
 	l.loggerTypes = append(l.loggerTypes, t)
-	s, ok := l.loggerTypes[len(l.loggerTypes)-1].(ILoggerTargetInitable)
-	if ok {
-		s.Init()
+	initable, hasInitable := l.loggerTypes[len(l.loggerTypes)-1].(ILoggerTargetInitable)
+	if hasInitable {
+		initable.Init()
 	}
 }
 
