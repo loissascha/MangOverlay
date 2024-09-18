@@ -18,6 +18,7 @@ func LoadConfig() {
 	setDefaults()
 	initGlobalEnabled()
 	initElements()
+	initFpsLimits()
 	readConfigs()
 }
 
@@ -39,6 +40,10 @@ func readConfigs() {
 			cmd = strings.TrimSpace(cmd)
 			val = strings.TrimSpace(val)
 			switch cmd {
+			case "fps_limit":
+				r := strings.TrimSpace(val)
+				addFpsLimitsFromConfig(r)
+				break
 			case "legacy_layout":
 				hasLegacyLayoutSet = true
 				break
