@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"strings"
 )
@@ -340,7 +341,7 @@ func replaceConfigLines(first string, second string) {
 }
 
 func updateConfigLine(c string, n string, addIfMissing bool) {
-	Logger.Log("updateConfigLine:", c, "=", n)
+	Logger.Log(fmt.Sprintf("updateConfigLine: %s=%s", c, n))
 	cf := getConfigFile()
 	newFile := ""
 	lineFound := false
