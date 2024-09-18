@@ -26,7 +26,6 @@ func (a *App) SetRoundedCorners(n bool) {
 }
 
 func (a *App) ResetConfig() {
-	config.ResetConfig()
 }
 
 func (a *App) GetBackgroundColor() string {
