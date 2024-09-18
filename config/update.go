@@ -1,8 +1,6 @@
 package config
 
 import (
-	"fmt"
-	"os"
 	"strings"
 )
 
@@ -281,93 +279,4 @@ func (c *Config) SetKbReloadCfg(n string) {
 func (c *Config) SetKbUploadLog(n string) {
 	c.KbUploadLog = n
 	updateConfigLine("upload_log", n, true)
-}
-
-func deleteConfigLine(n string) {
-	cf := getConfigFile()
-	newFile := ""
-	for _, v := range cf {
-		org := v
-		if strings.Contains(v, "#") {
-			before, _, _ := strings.Cut(v, "#")
-			v = before
-		}
-
-		// all which have a = sign
-		if strings.Contains(v, "=") {
-			cmd, _, _ := strings.Cut(v, "=")
-			cmd = strings.TrimSpace(cmd)
-			if cmd == n {
-				continue
-			}
-			newFile += org + "\n"
-			continue
-		}
-		nv := strings.TrimSpace(v)
-		if nv == n {
-			continue
-		}
-		newFile += org + "\n"
-	}
-	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
-}
-
-func addConfigLine(n string) {
-	cf := getConfigFile()
-	newFile := ""
-	for _, v := range cf {
-		newFile += v + "\n"
-	}
-	newFile += n
-	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
-}
-
-func replaceConfigLines(first string, second string) {
-	cf := getConfigFile()
-	newFile := ""
-	for _, v := range cf {
-		noSpace := strings.TrimSpace(v)
-		if noSpace == first {
-			newFile += second + "\n"
-			continue
-		}
-		if noSpace == second {
-			newFile += first + "\n"
-			continue
-		}
-		newFile += v + "\n"
-	}
-	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
-}
-
-func updateConfigLine(c string, n string, addIfMissing bool) {
-	Logger.Log(fmt.Sprintf("updateConfigLine: %s=%s", c, n))
-	cf := getConfigFile()
-	newFile := ""
-	lineFound := false
-	for _, v := range cf {
-		org := v
-		if strings.Contains(v, "#") {
-			before, _, _ := strings.Cut(v, "#")
-			v = before
-		}
-
-		if strings.Contains(v, "=") {
-			cmd, _, _ := strings.Cut(v, "=")
-			cmd = strings.TrimSpace(cmd)
-			if cmd == c {
-				newFile += cmd + "=" + n + "\n"
-				lineFound = true
-				continue
-			}
-			newFile += org + "\n"
-			continue
-		}
-		newFile += org + "\n"
-	}
-	if !lineFound && addIfMissing {
-		newFile += c + "=" + n
-	}
-	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
-
 }
