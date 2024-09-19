@@ -76,7 +76,7 @@ function Colors() {
 
 
     return (
-        <SettingBox nomargin={true} classes="mb-80" header="Colors">
+        <SettingBox nomargin={true} header="Colors">
             <div className="grid grid-cols-2 gap-3">
                 <label htmlFor="cpucolor" className="me-2">CPU:</label>
                 <div>

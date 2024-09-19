@@ -7,6 +7,7 @@ import Text from "../generalSettings/Text";
 import Position from "../generalSettings/Position";
 import Gpu from "../generalSettings/Gpu";
 import Cpu from "../generalSettings/Cpu";
+import Fps from "../generalSettings/Fps";
 
 function GeneralSettings() {
     const [orientation, setOrientation] = useState<string>("");
@@ -38,8 +39,8 @@ function GeneralSettings() {
 
     return (
         <>
-            <div className="flex gap-5 flex-auto flex-wrap">
-                <div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 flex-auto flex-wrap">
+                <div className="mb-72">
                     <SettingBox header="Orientation">
                         <div>
                             <input
@@ -137,13 +138,13 @@ function GeneralSettings() {
                     <Text />
                 </div>
 
-                <div>
-
+                <div className="mb-72">
                     <Cpu />
                     <Gpu />
+                    <Fps />
                 </div>
 
-                <div>
+                <div className="mb-72">
                     <Colors />
                 </div>
             </div>
