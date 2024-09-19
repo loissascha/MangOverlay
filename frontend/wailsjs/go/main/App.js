@@ -6,6 +6,10 @@ export function ActivateElement(arg1) {
   return window['go']['main']['App']['ActivateElement'](arg1);
 }
 
+export function AddFPSLimit(arg1) {
+  return window['go']['main']['App']['AddFPSLimit'](arg1);
+}
+
 export function DeactivateElement(arg1) {
   return window['go']['main']['App']['DeactivateElement'](arg1);
 }
@@ -68,6 +72,10 @@ export function GetEngineColor() {
 
 export function GetExtraElements() {
   return window['go']['main']['App']['GetExtraElements']();
+}
+
+export function GetFPSLimits() {
+  return window['go']['main']['App']['GetFPSLimits']();
 }
 
 export function GetFontSize() {
@@ -180,6 +188,14 @@ export function GetWineColor() {
 
 export function GloballyEnabled() {
   return window['go']['main']['App']['GloballyEnabled']();
+}
+
+export function RemoveFPSLimit(arg1) {
+  return window['go']['main']['App']['RemoveFPSLimit'](arg1);
+}
+
+export function ReorderFPSLimit(arg1, arg2) {
+  return window['go']['main']['App']['ReorderFPSLimit'](arg1, arg2);
 }
 
 export function ReplaceElements(arg1, arg2) {

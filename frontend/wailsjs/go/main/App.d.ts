@@ -4,6 +4,8 @@ import {config} from '../models';
 
 export function ActivateElement(arg1:string):Promise<number>;
 
+export function AddFPSLimit(arg1:string):Promise<void>;
+
 export function DeactivateElement(arg1:string):Promise<void>;
 
 export function DisableGlobally():Promise<void>;
@@ -35,6 +37,8 @@ export function GetElements():Promise<Array<config.Element>>;
 export function GetEngineColor():Promise<string>;
 
 export function GetExtraElements():Promise<Array<config.Element>>;
+
+export function GetFPSLimits():Promise<Array<config.FPSLimit>>;
 
 export function GetFontSize():Promise<string>;
 
@@ -91,6 +95,10 @@ export function GetVramColor():Promise<string>;
 export function GetWineColor():Promise<string>;
 
 export function GloballyEnabled():Promise<boolean>;
+
+export function RemoveFPSLimit(arg1:number):Promise<void>;
+
+export function ReorderFPSLimit(arg1:number,arg2:number):Promise<void>;
 
 export function ReplaceElements(arg1:string,arg2:string):Promise<void>;
 
