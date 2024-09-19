@@ -16,7 +16,7 @@ function FpsLimitSettings() {
 
     return (
         <>
-            <div className="grid grid-rows-2 gap-3">
+            <div className="">
                 <div>
                     <SettingBox header="FPS Limits" subheader="0 = unlimited">
                         <div className="flex gap-3 justify-end">
@@ -65,10 +65,6 @@ function FpsLimitSettings() {
                                 </div>
                             ))}
                         </div>
-                    </SettingBox>
-                </div>
-                <div>
-                    <SettingBox header="Config">
                     </SettingBox>
                 </div>
             </div>
