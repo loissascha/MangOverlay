@@ -38,7 +38,7 @@ export function GetEngineColor():Promise<string>;
 
 export function GetExtraElements():Promise<Array<config.Element>>;
 
-export function GetFPSLimits():Promise<Array<config.FPSLimit>>;
+export function GetFPSLimits():Promise<Array<string>>;
 
 export function GetFontSize():Promise<string>;
 
@@ -171,3 +171,5 @@ export function SetWineColor(arg1:string):Promise<void>;
 export function StartVkcube():Promise<void>;
 
 export function StopVkcube():Promise<void>;
+
+export function UpdateFPSLimit(arg1:number,arg2:string):Promise<void>;

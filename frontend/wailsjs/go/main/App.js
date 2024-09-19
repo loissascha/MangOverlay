@@ -341,3 +341,7 @@ export function StartVkcube() {
 export function StopVkcube() {
   return window['go']['main']['App']['StopVkcube']();
 }
+
+export function UpdateFPSLimit(arg1, arg2) {
+  return window['go']['main']['App']['UpdateFPSLimit'](arg1, arg2);
+}
