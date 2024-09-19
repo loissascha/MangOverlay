@@ -42,6 +42,10 @@ type Config struct {
 	KbToggleLogging     string
 	KbReloadCfg         string
 	KbUploadLog         string
+	FpsLoadValue        string
+	FpsLoadColor0       string
+	FpsLoadColor1       string
+	FpsLoadColor2       string
 }
 
 var CG Config
@@ -63,6 +67,10 @@ func setDefaults() {
 	CG.GpuLoadColor0 = "39F900"
 	CG.GpuLoadColor1 = "FDFD09"
 	CG.GpuLoadColor2 = "B22222"
+	CG.FpsLoadValue = "60,90"
+	CG.FpsLoadColor0 = "39F900"
+	CG.FpsLoadColor1 = "FDFD09"
+	CG.FpsLoadColor2 = "B22222"
 	CG.CpuColor = "2E97CB"
 	CG.CpuLoadColor0 = "39F900"
 	CG.CpuLoadColor1 = "FDFD09"

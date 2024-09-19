@@ -41,9 +41,25 @@ func readConfigs() {
 			val = strings.TrimSpace(val)
 			switch cmd {
 			case "fps_limit":
-				Logger.Log("found fps_limit!")
 				r := strings.TrimSpace(val)
 				addFpsLimitsFromConfig(r)
+				break
+			case "fps_value":
+				r := strings.TrimSpace(val)
+				CG.FpsLoadValue = r
+				break
+			case "fps_color":
+				r := strings.TrimSpace(val)
+				if r == "" {
+					break
+				}
+				sep := strings.Split(r, ",")
+				if len(sep) != 3 {
+					break
+				}
+				CG.FpsLoadColor0 = sep[0]
+				CG.FpsLoadColor1 = sep[1]
+				CG.FpsLoadColor2 = sep[2]
 				break
 			case "legacy_layout":
 				hasLegacyLayoutSet = true

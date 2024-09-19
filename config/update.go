@@ -183,6 +183,26 @@ func (c *Config) SetGpuText(n string) {
 	updateConfigLine("gpu_text", n, true)
 }
 
+func (c *Config) SetFpsLoadChange(n string) {
+	c.FpsLoadValue = n
+	if n == "" {
+		deleteConfigLine("fps_value")
+		return
+	}
+	if !strings.Contains(n, ",") {
+		deleteConfigLine("fps_value")
+		return
+	}
+	b, a, found := strings.Cut(n, ",")
+	if !found {
+		return
+	}
+	if b == "" || a == "" {
+		return
+	}
+	updateConfigLine("fps_value", n, true)
+}
+
 func (c *Config) SetGpuLoadChange(n string) {
 	c.GpuLoadValue = n
 	if n == "" {
@@ -230,6 +250,16 @@ func (c *Config) SetCpuLoadChange(n string) {
 		return
 	}
 	updateConfigLine("cpu_load_value", n, true)
+}
+
+func (c *Config) SetFpsLoadColor(n0 string, n1 string, n2 string) {
+	if n0 == "" || n1 == "" || n2 == "" {
+		return
+	}
+	c.FpsLoadColor0 = n0
+	c.FpsLoadColor1 = n1
+	c.FpsLoadColor2 = n2
+	updateConfigLine("fps_color", n0+","+n1+","+n2, true)
 }
 
 func (c *Config) SetGpuLoadColor(n0 string, n1 string, n2 string) {

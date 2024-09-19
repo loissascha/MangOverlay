@@ -130,6 +130,22 @@ func (a *App) GetGpuLoadColor2() string {
 	return config.CG.GpuLoadColor2
 }
 
+func (a *App) GetFpsLoadColor0() string {
+	return config.CG.FpsLoadColor0
+}
+
+func (a *App) GetFpsLoadColor1() string {
+	return config.CG.FpsLoadColor1
+}
+
+func (a *App) GetFpsLoadColor2() string {
+	return config.CG.FpsLoadColor2
+}
+
 func (a *App) SetGpuLoadColors(n0 string, n1 string, n2 string) {
 	config.CG.SetGpuLoadColor(n0, n1, n2)
+}
+
+func (a *App) SetFpsLoadColors(n0 string, n1 string, n2 string) {
+	config.CG.SetFpsLoadColor(n0, n1, n2)
 }

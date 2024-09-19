@@ -42,6 +42,14 @@ export function GetFPSLimits():Promise<Array<string>>;
 
 export function GetFontSize():Promise<string>;
 
+export function GetFpsLoadColor0():Promise<string>;
+
+export function GetFpsLoadColor1():Promise<string>;
+
+export function GetFpsLoadColor2():Promise<string>;
+
+export function GetFpsLoadValue():Promise<string>;
+
 export function GetFrametimeColor():Promise<string>;
 
 export function GetGpuColor():Promise<string>;
@@ -123,6 +131,10 @@ export function SetCpuText(arg1:string):Promise<void>;
 export function SetEngineColor(arg1:string):Promise<void>;
 
 export function SetFontSize(arg1:string):Promise<void>;
+
+export function SetFpsLoadColors(arg1:string,arg2:string,arg3:string):Promise<void>;
+
+export function SetFpsLoadValue(arg1:string):Promise<void>;
 
 export function SetFrametimeColor(arg1:string):Promise<void>;
 

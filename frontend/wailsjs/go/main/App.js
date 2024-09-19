@@ -82,6 +82,22 @@ export function GetFontSize() {
   return window['go']['main']['App']['GetFontSize']();
 }
 
+export function GetFpsLoadColor0() {
+  return window['go']['main']['App']['GetFpsLoadColor0']();
+}
+
+export function GetFpsLoadColor1() {
+  return window['go']['main']['App']['GetFpsLoadColor1']();
+}
+
+export function GetFpsLoadColor2() {
+  return window['go']['main']['App']['GetFpsLoadColor2']();
+}
+
+export function GetFpsLoadValue() {
+  return window['go']['main']['App']['GetFpsLoadValue']();
+}
+
 export function GetFrametimeColor() {
   return window['go']['main']['App']['GetFrametimeColor']();
 }
@@ -244,6 +260,14 @@ export function SetEngineColor(arg1) {
 
 export function SetFontSize(arg1) {
   return window['go']['main']['App']['SetFontSize'](arg1);
+}
+
+export function SetFpsLoadColors(arg1, arg2, arg3) {
+  return window['go']['main']['App']['SetFpsLoadColors'](arg1, arg2, arg3);
+}
+
+export function SetFpsLoadValue(arg1) {
+  return window['go']['main']['App']['SetFpsLoadValue'](arg1);
 }
 
 export function SetFrametimeColor(arg1) {

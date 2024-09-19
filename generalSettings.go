@@ -46,6 +46,13 @@ func (a *App) SetGpuLoadValue(n string) {
 	config.CG.SetGpuLoadChange(n)
 }
 
+func (a *App) GetFpsLoadValue() string {
+	return config.CG.FpsLoadValue
+}
+func (a *App) SetFpsLoadValue(n string) {
+	config.CG.SetFpsLoadChange(n)
+}
+
 func (a *App) GetCpuText() string {
 	return config.CG.CpuText
 }
