@@ -1,4 +1,4 @@
-import { faMinus, faPlus, faSortDown, faSortUp, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faMinus, faPlus, faSortDown, faSortUp } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react"
 import { AddFPSLimit, GetFPSLimits, RemoveFPSLimit, ReorderFPSLimit, UpdateFPSLimit } from "../../wailsjs/go/main/App"
@@ -16,7 +16,7 @@ function FpsLimitSettings() {
 
     return (
         <>
-            <div className="">
+            <div className="flex gap-5 flex-auto flex-wrap">
                 <div>
                     <SettingBox header="FPS Limits" subheader="0 = unlimited">
                         <div className="flex gap-3 justify-end">
@@ -31,7 +31,7 @@ function FpsLimitSettings() {
                         <div className="flex flex-col gap-3">
                             {fpsLimits.map((limit: any, index: number) => (
                                 <div key={index} className="grid grid-cols-[1fr_auto] gap-2">
-                                    <input value={limit} className="bg-gray-700 border border-gray-500 p-1 rounded" onChange={(event: any) => {
+                                    <input value={limit} className="bg-gray-700 border border-gray-500 p-1 rounded w-60" onChange={(event: any) => {
                                         const value = event.target.value
                                         UpdateFPSLimit(index, value).then(() => {
                                             GetFPSLimits().then((r) => {
