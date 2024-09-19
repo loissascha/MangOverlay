@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import SettingBox from "../ui/SettingBox";
-import { GetPosition, SetPosition } from "../../wailsjs/go/main/App";
+import { ActivateElement, DeactivateElement, GetElements, GetPosition, SetPosition } from "../../wailsjs/go/main/App";
 
 function Position() {
     const [position, setPosition] = useState<string>("");
+    const [compactMode, setCompactMode] = useState<boolean>(false)
+    const [noMargin, setNoMargin] = useState<boolean>(false)
 
     useEffect(() => {
         GetPosition().then((r) => {
@@ -12,12 +14,28 @@ function Position() {
         })
     }, [])
 
+    function reloadElements() {
+        GetElements().then((r: any) => {
+            for (var element of r) {
+                if (element.Name == "hud_compact") {
+                    setCompactMode(element.Active)
+                } else if (element.Name == "hud_no_margin") {
+                    setNoMargin(element.Active)
+                }
+            }
+        })
+    }
+
+    useEffect(() => {
+        reloadElements()
+    }, [])
+
     if (position == "") {
         return null
     }
 
     return (
-        <SettingBox header="Position">
+        <SettingBox header="HUD">
             <div className="grid grid-cols-2 gap-3">
                 <div>Position</div>
                 <div>
@@ -71,6 +89,38 @@ function Position() {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+                <div><label htmlFor="compactMode" className="cursor-pointer">Compact Mode</label></div>
+                <div>
+                    <input id="compactMode" type="checkbox" checked={compactMode} onChange={() => {
+                        if (compactMode) {
+                            DeactivateElement("hud_compact").then(() => {
+                                reloadElements()
+                            })
+                        } else {
+                            ActivateElement("hud_compact").then(() => {
+                                reloadElements()
+                            })
+                        }
+                    }} />
+                </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+                <div><label htmlFor="noMargin" className="cursor-pointer">No Margin</label></div>
+                <div>
+                    <input id="noMargin" type="checkbox" checked={noMargin} onChange={() => {
+                        if (noMargin) {
+                            DeactivateElement("hud_no_margin").then(() => {
+                                reloadElements()
+                            })
+                        } else {
+                            ActivateElement("hud_no_margin").then(() => {
+                                reloadElements()
+                            })
+                        }
+                    }} />
                 </div>
             </div>
         </SettingBox>

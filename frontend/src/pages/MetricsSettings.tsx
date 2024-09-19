@@ -165,7 +165,7 @@ function MetricsSettings() {
             let newHudElements = []
             let index = 8000
             for (const e of elements) {
-                if (e.Name.includes("hud") || e.Name.includes("no_small_font") || e.Name.includes("no_display") || e.Name.includes("present_mode")) {
+                if (e.Name.includes("no_small_font") || e.Name.includes("no_display") || e.Name.includes("present_mode")) {
                     newHudElements.push({
                         Index: index,
                         Name: e.Name,
