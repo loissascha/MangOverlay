@@ -118,21 +118,21 @@ function GeneralSettings() {
                                     SetBackgroundAlpha(event.target.value)
                                 }}
                             />
-                        </div>
-                        <div>
-                            <input
-                                onClick={() => {
-                                    const newV = !rounded;
-                                    setRounded(newV);
-                                    SetRoundedCorners(newV)
-                                }}
-                                type="checkbox"
-                                id="roundedCheck"
-                                className="me-2"
-                                readOnly={true}
-                                checked={rounded}
-                            />
                             <label htmlFor="roundedCheck">Rounded Corners</label>
+                            <div>
+                                <input
+                                    onClick={() => {
+                                        const newV = !rounded;
+                                        setRounded(newV);
+                                        SetRoundedCorners(newV)
+                                    }}
+                                    type="checkbox"
+                                    id="roundedCheck"
+                                    className="me-2"
+                                    readOnly={true}
+                                    checked={rounded}
+                                />
+                            </div>
                         </div>
                     </SettingBox>
                     <Text />
@@ -147,7 +147,7 @@ function GeneralSettings() {
                 <div>
                     <Colors />
                 </div>
-            </div>
+            </div >
 
         </>
     );
