@@ -30,6 +30,11 @@ func (c *Config) AddFPSLimit(amount string) {
 	saveFpsLimits()
 }
 
+func (c *Config) UpdateFPSLimit(index int, amount string) {
+	FPSLimits[index] = amount
+	saveFpsLimits()
+}
+
 func (c *Config) RemoveFPSLimit(index int) {
 	newFpsLimits := []string{}
 	for i, fps := range FPSLimits {

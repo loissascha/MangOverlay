@@ -17,3 +17,7 @@ func (a *App) RemoveFPSLimit(index int) {
 func (a *App) ReorderFPSLimit(firstIndex int, secondIndex int) {
 	config.CG.ReorderFPSLimit(firstIndex, secondIndex)
 }
+
+func (a *App) UpdateFPSLimit(index int, amount string) {
+	config.CG.UpdateFPSLimit(index, amount)
+}
