@@ -41,6 +41,7 @@ func readConfigs() {
 			val = strings.TrimSpace(val)
 			switch cmd {
 			case "fps_limit":
+				Logger.Log("found fps_limit!")
 				r := strings.TrimSpace(val)
 				addFpsLimitsFromConfig(r)
 				break
