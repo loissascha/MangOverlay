@@ -18,7 +18,7 @@ func main() {
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:  "MangOverlay",
-		Width:  998,
+		Width:  1100,
 		Height: 998,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
