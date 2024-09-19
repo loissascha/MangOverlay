@@ -2,7 +2,7 @@ package main
 
 import "mangohud-configurator/config"
 
-func (a *App) GetFPSLimits() []config.FPSLimit {
+func (a *App) GetFPSLimits() []string {
 	return config.CG.GetFPSLimits()
 }
 

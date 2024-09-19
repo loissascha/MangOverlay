@@ -4,38 +4,34 @@ import (
 	"strings"
 )
 
-type FPSLimit struct {
-	amount string
-}
-
-var FPSLimits []FPSLimit
+var FPSLimits []string
 
 func initFpsLimits() {
-	FPSLimits = []FPSLimit{}
+	FPSLimits = []string{}
 }
 
 func addFpsLimitsFromConfig(r string) {
 	if strings.Contains(r, ",") {
 		split := strings.Split(r, ",")
 		for _, s := range split {
-			FPSLimits = append(FPSLimits, FPSLimit{amount: s})
+			FPSLimits = append(FPSLimits, s)
 		}
 	} else {
-		FPSLimits = append(FPSLimits, FPSLimit{amount: r})
+		FPSLimits = append(FPSLimits, r)
 	}
 }
 
-func (c *Config) GetFPSLimits() []FPSLimit {
+func (c *Config) GetFPSLimits() []string {
 	return FPSLimits
 }
 
 func (c *Config) AddFPSLimit(amount string) {
-	FPSLimits = append(FPSLimits, FPSLimit{amount: amount})
+	FPSLimits = append(FPSLimits, amount)
 	saveFpsLimits()
 }
 
 func (c *Config) RemoveFPSLimit(index int) {
-	newFpsLimits := []FPSLimit{}
+	newFpsLimits := []string{}
 	for i, fps := range FPSLimits {
 		if i == index {
 			continue
@@ -51,21 +47,16 @@ func (c *Config) ReorderFPSLimit(firstIndex int, secondIndex int) {
 	var secondElement string
 	for i, fps := range FPSLimits {
 		if i == firstIndex {
-			firstElement = fps.amount
+			firstElement = fps
 		} else if i == secondIndex {
-			secondElement = fps.amount
+			secondElement = fps
 		}
 	}
 	if firstElement == "" || secondElement == "" {
 		Logger.Log("can't reorder fps limits, one of the indexes does not exist!")
 	}
-	for i, fps := range FPSLimits {
-		if i == firstIndex {
-			fps.amount = secondElement
-		} else if i == secondIndex {
-			fps.amount = firstElement
-		}
-	}
+	FPSLimits[firstIndex] = secondElement
+	FPSLimits[secondIndex] = firstElement
 	saveFpsLimits()
 }
 
@@ -75,7 +66,7 @@ func saveFpsLimits() {
 		if newVal != "" {
 			newVal += ","
 		}
-		newVal += fps.amount
+		newVal += fps
 	}
 
 	if newVal == "" {
