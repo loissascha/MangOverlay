@@ -1,7 +1,7 @@
-import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faMinus, faPlus, faSortDown, faSortUp, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react"
-import { AddFPSLimit, GetFPSLimits } from "../../wailsjs/go/main/App"
+import { AddFPSLimit, GetFPSLimits, RemoveFPSLimit, ReorderFPSLimit, UpdateFPSLimit } from "../../wailsjs/go/main/App"
 import SettingBox from "../ui/SettingBox"
 
 function FpsLimitSettings() {
@@ -28,10 +28,40 @@ function FpsLimitSettings() {
                                 })
                             }} className="cursor-pointer"><FontAwesomeIcon icon={faPlus} /></a>
                         </div>
-                        <div>
+                        <div className="flex flex-col gap-3">
                             {fpsLimits.map((limit: any, index: number) => (
-                                <div key={index}>
-                                    {limit}
+                                <div key={index} className="grid grid-cols-[1fr_auto] gap-2">
+                                    <input value={limit} className="bg-gray-600 p-2 rounded" onChange={(event: any) => {
+                                        const value = event.target.value
+                                        UpdateFPSLimit(index, value).then(() => {
+                                            GetFPSLimits().then((r) => {
+                                                setFpsLimits(r)
+                                            })
+                                        })
+                                    }} />
+                                    <div className="flex gap-2">
+                                        <button className="p-2 bg-gray-600 rounded cursor-pointer hover:bg-gray-700" onClick={() => {
+                                            ReorderFPSLimit(index, index - 1).then(() => {
+                                                GetFPSLimits().then((r) => {
+                                                    setFpsLimits(r)
+                                                })
+                                            })
+                                        }}><FontAwesomeIcon icon={faSortUp} /></button>
+                                        <button className="p-2 bg-gray-600 rounded cursor-pointer hover:bg-gray-700" onClick={() => {
+                                            ReorderFPSLimit(index, index + 1).then(() => {
+                                                GetFPSLimits().then((r) => {
+                                                    setFpsLimits(r)
+                                                })
+                                            })
+                                        }}><FontAwesomeIcon icon={faSortDown} /></button>
+                                        <button className="p-2 bg-gray-600 rounded cursor-pointer hover:bg-gray-700" onClick={() => {
+                                            RemoveFPSLimit(index).then(() => {
+                                                GetFPSLimits().then((r) => {
+                                                    setFpsLimits(r)
+                                                })
+                                            })
+                                        }}><FontAwesomeIcon icon={faMinus} /></button>
+                                    </div>
                                 </div>
                             ))}
                         </div>
