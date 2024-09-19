@@ -16,9 +16,9 @@ function FpsLimitSettings() {
 
     return (
         <>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-rows-2 gap-3">
                 <div>
-                    <SettingBox header="FPS Limits">
+                    <SettingBox header="FPS Limits" subheader="0 = unlimited">
                         <div className="flex gap-3 justify-end">
                             <a onClick={() => {
                                 AddFPSLimit("0").then(() => {
