@@ -95,49 +95,51 @@ function MetricsOrderSettings() {
                     <SettingBox header="Active Elements">
                         {activeElements.map((e: any) => (
                             <div key={e.Index} className="grid grid-cols-[1fr_auto]">
-                                <div>
+                                <div className="bg-gray-700 p-2 rounded cursor-pointer border border-gray-500" onClick={() => {
+                                    if (hasSelection) {
+                                        if (e.Name == selected) {
+                                            UnselectElement()
+                                        }
+                                        else {
+                                            SwapSelectionWith(e.Name)
+                                        }
+                                    } else {
+                                        SelectElement(e.Name)
+                                    }
+                                }}>
                                     {hasSelection ?
                                         e.Name == selected ? (
                                             <a
                                                 className="cursor-pointer me-3"
-                                                onClick={() => {
-                                                    UnselectElement()
-                                                }}
                                                 title="Unselect"
                                             ><FontAwesomeIcon icon={faCircleXmark} className="me-2" />{e.Name}</a>
                                         ) : (
                                             <a
                                                 className="cursor-pointer me-3"
-                                                onClick={() => {
-                                                    SwapSelectionWith(e.Name)
-                                                }}
                                                 title="Swap with selection"
                                             ><FontAwesomeIcon icon={faShuffle} className="me-2" />{e.Name}</a>
                                         ) : (
                                             <a
                                                 className="cursor-pointer me-3"
-                                                onClick={() => {
-                                                    SelectElement(e.Name)
-                                                }}
                                                 title="Select"
                                             ><FontAwesomeIcon icon={faCircle} className="me-2" />{e.Name}</a>
                                         )}
                                 </div>
-                                <div>
-                                    <a
-                                        className="cursor-pointer ms-3 me-3"
+                                <div className="flex gap-1 ms-2">
+                                    <button
+                                        className="cursor-pointer bg-gray-700 p-2 rounded border border-gray-500 hover:bg-gray-600"
                                         onClick={() => {
                                             ElementUp(e.Name)
                                         }}
                                         title="Sort Up"
-                                    ><FontAwesomeIcon icon={faSortUp} /></a>
-                                    <a
-                                        className="cursor-pointer"
+                                    ><FontAwesomeIcon icon={faSortUp} /></button>
+                                    <button
+                                        className="cursor-pointer bg-gray-700 p-2 rounded border border-gray-500 hover:bg-gray-600"
                                         onClick={() => {
                                             ElementDown(e.Name)
                                         }}
                                         title="Sort Down"
-                                    ><FontAwesomeIcon icon={faSortDown} /></a>
+                                    ><FontAwesomeIcon icon={faSortDown} /></button>
                                 </div>
                             </div>
                         ))}
