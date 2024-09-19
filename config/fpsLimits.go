@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -20,8 +19,6 @@ func addFpsLimitsFromConfig(r string) {
 	} else {
 		FPSLimits = append(FPSLimits, r)
 	}
-	Logger.Log("added fps limits")
-	fmt.Println(FPSLimits)
 }
 
 func (c *Config) GetFPSLimits() []string {
@@ -76,7 +73,6 @@ func saveFpsLimits() {
 		}
 		newVal += fps
 	}
-
 	if newVal == "" {
 		deleteConfigLine("fps_limit")
 		return
