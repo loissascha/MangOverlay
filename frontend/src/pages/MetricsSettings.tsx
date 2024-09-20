@@ -54,7 +54,7 @@ function MetricsSettings() {
             let newCpuElements = []
             let index = 1000
             for (const e of elements) {
-                if (e.Name == "gpu_core_clock") {
+                if (e.Name == "gpu_core_clock" || e.Name == "cpu_stats") {
                     continue
                 }
                 if (e.Name.includes("cpu") || e.Name.includes("core")) {
@@ -72,6 +72,9 @@ function MetricsSettings() {
             let newGpuElements = []
             let index = 2000
             for (const e of elements) {
+                if (e.Name == "gpu_stats") {
+                    continue
+                }
                 if (e.Name.includes("gpu") || e.Name.includes("vram")) {
                     newGpuElements.push({
                         Index: index,
