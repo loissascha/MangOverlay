@@ -22,6 +22,8 @@ function MetricsOrderSettings() {
             let data = []
             for (const element of elements) {
                 if (!element.Active) continue
+                if (element.Name.includes("cpu_") && element.Name != "cpu_stats") continue
+                if (element.Name.includes("gpu_") && element.Name != "gpu_stats" && element.Name != "gpu_name") continue
                 data.push(element)
             }
             data.sort((a, b) => a.Index - b.Index)
