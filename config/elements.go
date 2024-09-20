@@ -65,6 +65,52 @@ func getElementIndex(name string) int {
 	return 0
 }
 
+func (c *Config) activateCpuStats() {
+	for i, v := range CPUElementsAvailable {
+		if v.Name == "cpu_stats" {
+			if !v.Active {
+				CPUElementsAvailable[i].Active = true
+				addConfigLine("cpu_stats")
+			}
+			return
+		}
+	}
+}
+func (c *Config) deactivateCpuStats() {
+	for i, v := range CPUElementsAvailable {
+		if v.Name == "cpu_stats" {
+			if v.Active {
+				CPUElementsAvailable[i].Active = false
+				deleteConfigLine("cpu_stats")
+			}
+			return
+		}
+	}
+}
+
+func (c *Config) activateGpuStats() {
+	for i, v := range GPUElementsAvailable {
+		if v.Name == "gpu_stats" {
+			if !v.Active {
+				GPUElementsAvailable[i].Active = true
+				addConfigLine("gpu_stats")
+			}
+			return
+		}
+	}
+}
+func (c *Config) deactivateGpuStats() {
+	for i, v := range GPUElementsAvailable {
+		if v.Name == "gpu_stats" {
+			if v.Active {
+				GPUElementsAvailable[i].Active = false
+				deleteConfigLine("gpu_stats")
+			}
+			return
+		}
+	}
+}
+
 func (c *Config) ActivateElement(e string) int {
 	cf := getConfigFile()
 	newIndex := len(cf) + 1
@@ -75,6 +121,7 @@ func (c *Config) ActivateElement(e string) int {
 		GPUElementsAvailable[i].Active = true
 		GPUElementsAvailable[i].Index = newIndex
 		addConfigLine(e)
+		c.activateGpuStats()
 		return newIndex
 	}
 	for i, v := range CPUElementsAvailable {
@@ -84,6 +131,7 @@ func (c *Config) ActivateElement(e string) int {
 		CPUElementsAvailable[i].Active = true
 		CPUElementsAvailable[i].Index = newIndex
 		addConfigLine(e)
+		c.activateCpuStats()
 		return newIndex
 	}
 	for i, v := range MemoryElementsAvailable {
@@ -114,6 +162,18 @@ func (c *Config) DeactivateElement(e string) {
 		}
 		GPUElementsAvailable[i].Active = false
 		deleteConfigLine(e)
+		hasActiveGpuElement := false
+		for _, cv := range GPUElementsAvailable {
+			if cv.Name == "gpu_stats" {
+				continue
+			}
+			if cv.Active {
+				hasActiveGpuElement = true
+			}
+		}
+		if !hasActiveGpuElement {
+			c.deactivateGpuStats()
+		}
 		return
 	}
 	for i, v := range CPUElementsAvailable {
@@ -122,6 +182,18 @@ func (c *Config) DeactivateElement(e string) {
 		}
 		CPUElementsAvailable[i].Active = false
 		deleteConfigLine(e)
+		hasActiveCpuElement := false
+		for _, cv := range CPUElementsAvailable {
+			if cv.Name == "cpu_stats" {
+				continue
+			}
+			if cv.Active {
+				hasActiveCpuElement = true
+			}
+		}
+		if !hasActiveCpuElement {
+			c.deactivateCpuStats()
+		}
 		return
 	}
 	for i, v := range MemoryElementsAvailable {

@@ -40,10 +40,19 @@ func addConfigLine(n string) {
 	Logger.Log(fmt.Sprintf("addConfigLine: %s", n))
 	cf := getConfigFile()
 	newFile := ""
+	hasConfigLine := false
 	for _, v := range cf {
+		if strings.Contains(v, "#") {
+			before, _, _ := strings.Cut(v, "#")
+			if strings.TrimSpace(before) == n {
+				hasConfigLine = true
+			}
+		}
 		newFile += v + "\n"
 	}
-	newFile += n
+	if !hasConfigLine {
+		newFile += n
+	}
 	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
 }
 
