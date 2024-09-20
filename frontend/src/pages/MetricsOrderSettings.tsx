@@ -22,8 +22,11 @@ function MetricsOrderSettings() {
             let data = []
             for (const element of elements) {
                 if (!element.Active) continue
-                if (element.Name.includes("cpu_") && element.Name != "cpu_stats") continue
-                if (element.Name.includes("gpu_") && element.Name != "gpu_stats" && element.Name != "gpu_name") continue
+                let name = element.Name
+                if (name.includes("cpu_") && name != "cpu_stats") continue
+                if (name.includes("gpu_") && name != "gpu_stats" && name != "gpu_name") continue
+                if (name == "engine_short_names") continue
+                if (name == "frametime" || name == "throttling_status_graph" || name == "fps_color_change") continue
                 data.push(element)
             }
             data.sort((a, b) => a.Index - b.Index)
