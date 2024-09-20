@@ -65,11 +65,12 @@ func getElementIndex(name string) int {
 	return 0
 }
 
-func (c *Config) activateCpuStats() {
+func (c *Config) activateCpuStats(newIndex int) {
 	for i, v := range CPUElementsAvailable {
 		if v.Name == "cpu_stats" {
 			if !v.Active {
 				CPUElementsAvailable[i].Active = true
+				CPUElementsAvailable[i].Index = newIndex
 				addConfigLine("cpu_stats")
 			}
 			return
@@ -88,11 +89,12 @@ func (c *Config) deactivateCpuStats() {
 	}
 }
 
-func (c *Config) activateGpuStats() {
+func (c *Config) activateGpuStats(newIndex int) {
 	for i, v := range GPUElementsAvailable {
 		if v.Name == "gpu_stats" {
 			if !v.Active {
 				GPUElementsAvailable[i].Active = true
+				GPUElementsAvailable[i].Index = newIndex
 				addConfigLine("gpu_stats")
 			}
 			return
@@ -121,7 +123,7 @@ func (c *Config) ActivateElement(e string) int {
 		GPUElementsAvailable[i].Active = true
 		GPUElementsAvailable[i].Index = newIndex
 		addConfigLine(e)
-		c.activateGpuStats()
+		c.activateGpuStats(newIndex + 1)
 		return newIndex
 	}
 	for i, v := range CPUElementsAvailable {
@@ -131,7 +133,7 @@ func (c *Config) ActivateElement(e string) int {
 		CPUElementsAvailable[i].Active = true
 		CPUElementsAvailable[i].Index = newIndex
 		addConfigLine(e)
-		c.activateCpuStats()
+		c.activateCpuStats(newIndex + 1)
 		return newIndex
 	}
 	for i, v := range MemoryElementsAvailable {
