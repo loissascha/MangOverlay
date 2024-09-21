@@ -14,6 +14,7 @@ import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 function App() {
     const [activeMenu, setActiveMenu] = useState<string>("general");
     const [globallyEnabled, setGloballyEnabled] = useState<boolean>(false)
+    const [showRestartModal, setShowRestartModal] = useState<boolean>(false)
 
     useEffect(() => {
         GloballyEnabled().then((r) => {
@@ -26,7 +27,7 @@ function App() {
     }
 
     return (
-        <div className='w-full h-full text-white grid grid-rows-[auto_1fr_auto] select-none cursor-default'>
+        <div className={'w-full h-full text-white grid grid-rows-[auto_1fr_auto] select-none cursor-default ' + (showRestartModal ? ('overflow-hidden') : null)}>
             <nav className="bg-gray-700 pt-2 px-3">
                 <ul className="flex gap-3 list-none">
                     <li
@@ -97,6 +98,7 @@ function App() {
                             DisableGlobally().then(() => {
                                 GloballyEnabled().then((r) => {
                                     setGloballyEnabled(r)
+                                    setShowRestartModal(true)
                                 })
                             })
                         }
@@ -110,6 +112,7 @@ function App() {
                             EnableGlobally().then(() => {
                                 GloballyEnabled().then((r) => {
                                     setGloballyEnabled(r)
+                                    setShowRestartModal(true)
                                 })
                             })
                         }
@@ -118,6 +121,18 @@ function App() {
                     </Button>
                 )}
             </footer>
+            {showRestartModal ? (
+                <div className="fixed left-0 right-0 top-0 bottom-0 bg-black bg-opacity-50 content-center">
+                    <div className="w-96 max-w-full bg-gray-600 mx-auto px-8 py-6 rounded">
+                        <p>To apply this change, please restart your device.</p>
+                        <div className="text-center">
+                            <button className="mt-2 bg-green-700 hover:bg-green-600 cursor-pointer border border-green-600 px-4 py-2 rounded-md" onClick={() => {
+                                setShowRestartModal(false)
+                            }}>Okay</button>
+                        </div>
+                    </div>
+                </div>
+            ) : null}
         </div >
     )
 }
