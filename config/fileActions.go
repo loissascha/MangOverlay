@@ -96,30 +96,24 @@ func replaceConfigLines(first string, second string) {
 			cmd, _, _ := strings.Cut(noSpace, "=")
 			if cmd == first {
 				newFile += secondLine + "\n"
-				Logger.Log("= first to second")
 				continue
 			}
 			if cmd == second {
 				newFile += firstLine + "\n"
-				Logger.Log("= second to first")
 				continue
 			}
 			newFile += v + "\n"
-			Logger.Log("= normal line")
 			continue
 		}
 
 		if noSpace == first {
 			newFile += secondLine + "\n"
-			Logger.Log("first to second")
 			continue
 		}
 		if noSpace == second {
 			newFile += firstLine + "\n"
-			Logger.Log("second to first")
 			continue
 		}
-		Logger.Log("normal line")
 		newFile += v + "\n"
 	}
 	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
