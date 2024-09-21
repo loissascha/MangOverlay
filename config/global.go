@@ -2,8 +2,10 @@ package config
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"os/exec"
+	"strconv"
 	"strings"
 )
 
@@ -54,18 +56,45 @@ func DisableGlobally() {
 		Logger.Log("DisableGlobally cant get homeDir")
 		return
 	}
-	err = os.WriteFile(homeDir+"/tmpfileenvironment0001", []byte(newContent), 0766)
+	tmpfilename := getFreeFileName(homeDir)
+	err = os.WriteFile(homeDir+"/"+tmpfilename, []byte(newContent), 0766)
 	if err != nil {
 		Logger.Log("DisableGlobally cant write tmp environment file")
 		return
 	}
-	cmd := exec.Command("pkexec", "bash", "-c", "mv /etc/environment /etc/environment.bak && mv "+homeDir+"/tmpfileenvironment0001 /etc/environment")
+	cmd := exec.Command("pkexec", "bash", "-c", "mv /etc/environment /etc/environment.bak && mv "+homeDir+"/"+tmpfilename+" /etc/environment")
 	err = cmd.Run()
 	if err != nil {
 		Logger.Log("DisableGlobally error moving files")
+		err = os.Remove(homeDir + "/" + tmpfilename)
+		if err != nil {
+			Logger.Log("DisableGlobally error removing tmp file")
+		}
 		return
 	}
 	GlobalEnabled = false
+}
+
+func getFreeFileName(startPath string) string {
+	fileStartPath := strings.TrimSuffix(startPath, "/") + "/"
+	fileName := ""
+	fileE := true
+	for fileE {
+		rnd := rand.Intn(10)
+		fileName += strconv.Itoa(rnd)
+		if !fileExists(fileStartPath + fileName) {
+			fileE = false
+		}
+	}
+	return fileName
+}
+
+func fileExists(filename string) bool {
+	_, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return err == nil
 }
 
 func EnableGlobally() {
@@ -75,7 +104,7 @@ func EnableGlobally() {
 	cmd := exec.Command("pkexec", "bash", "-c", "echo \"MANGOHUD=1\" >> /etc/environment")
 	err := cmd.Run()
 	if err != nil {
-		fmt.Println(err)
+		Logger.Log(fmt.Sprintf("EnableGlobally error: %s", err))
 		return
 	}
 	GlobalEnabled = true
