@@ -8,6 +8,7 @@ import Position from "../generalSettings/Position";
 import Gpu from "../generalSettings/Gpu";
 import Cpu from "../generalSettings/Cpu";
 import Fps from "../generalSettings/Fps";
+import Graphs from "../generalSettings/Graphs";
 
 function GeneralSettings() {
     const [orientation, setOrientation] = useState<string>("");
@@ -136,6 +137,7 @@ function GeneralSettings() {
                         </div>
                     </SettingBox>
                     <Text />
+                    <Graphs />
                 </div>
 
                 <div>
