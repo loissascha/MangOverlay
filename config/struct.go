@@ -46,6 +46,14 @@ type Config struct {
 	FpsLoadColor0       string
 	FpsLoadColor1       string
 	FpsLoadColor2       string
+	GraphGpuLoad        bool
+	GraphCpuLoad        bool
+	GraphGpuCoreClock   bool
+	GraphGpuMemClock    bool
+	GraphVram           bool
+	GraphRam            bool
+	GraphCpuTemp        bool
+	GraphGpuTemp        bool
 }
 
 var CG Config

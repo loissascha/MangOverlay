@@ -34,22 +34,32 @@ func readConfigs() {
 			lineNoComments = before
 		}
 
+		foundElement := false
+
 		// all which have a = sign
 		if strings.Contains(lineNoComments, "=") {
 			cmd, val, _ := strings.Cut(lineNoComments, "=")
 			cmd = strings.TrimSpace(cmd)
 			val = strings.TrimSpace(val)
 			switch cmd {
+			case "graphs":
+				r := strings.TrimSpace(val)
+				initGraphs(r)
+				foundElement = true
+				break
 			case "fps_limit":
 				r := strings.TrimSpace(val)
 				addFpsLimitsFromConfig(r)
+				foundElement = true
 				break
 			case "fps_value":
 				r := strings.TrimSpace(val)
 				CG.FpsLoadValue = r
+				foundElement = true
 				break
 			case "fps_color":
 				r := strings.TrimSpace(val)
+				foundElement = true
 				if r == "" {
 					break
 				}
@@ -63,23 +73,28 @@ func readConfigs() {
 				break
 			case "legacy_layout":
 				hasLegacyLayoutSet = true
+				foundElement = true
 				break
 			case "round_corners":
 				r := strings.TrimSpace(val)
 				CG.RoundCorners = (r != "0")
+				foundElement = true
 				break
 			case "position":
 				r := strings.TrimSpace(val)
+				foundElement = true
 				if r == "" {
 					break
 				}
 				CG.Position = r
 				break
 			case "gpu_text":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				CG.GpuText = r
 				break
 			case "gpu_load_value":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -87,10 +102,12 @@ func readConfigs() {
 				CG.GpuLoadValue = r
 				break
 			case "cpu_text":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				CG.CpuText = r
 				break
 			case "cpu_load_value":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -99,6 +116,7 @@ func readConfigs() {
 				break
 
 			case "background_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -106,6 +124,7 @@ func readConfigs() {
 				CG.Background = r
 				break
 			case "text_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -113,6 +132,7 @@ func readConfigs() {
 				CG.TextColor = r
 				break
 			case "gpu_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -120,6 +140,7 @@ func readConfigs() {
 				CG.GpuColor = r
 				break
 			case "gpu_load_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -133,6 +154,7 @@ func readConfigs() {
 				CG.GpuLoadColor2 = sep[2]
 				break
 			case "cpu_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -140,6 +162,7 @@ func readConfigs() {
 				CG.CpuColor = r
 				break
 			case "cpu_load_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -153,6 +176,7 @@ func readConfigs() {
 				CG.CpuLoadColor2 = sep[2]
 				break
 			case "vram_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -160,6 +184,7 @@ func readConfigs() {
 				CG.VramColor = r
 				break
 			case "ram_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -167,6 +192,7 @@ func readConfigs() {
 				CG.RamColor = r
 				break
 			case "engine_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -174,6 +200,7 @@ func readConfigs() {
 				CG.EngineColor = r
 				break
 			case "io_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -181,6 +208,7 @@ func readConfigs() {
 				CG.IoColor = r
 				break
 			case "frametime_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -188,6 +216,7 @@ func readConfigs() {
 				CG.FrametimeColor = r
 				break
 			case "media_player_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -195,6 +224,7 @@ func readConfigs() {
 				CG.MediaColor = r
 				break
 			case "wine_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -202,6 +232,7 @@ func readConfigs() {
 				CG.WineColor = r
 				break
 			case "battery_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -209,6 +240,7 @@ func readConfigs() {
 				CG.BatteryColor = r
 				break
 			case "network_color":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				if r == "" {
 					break
@@ -217,44 +249,58 @@ func readConfigs() {
 				break
 
 			case "background_alpha":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				CG.BackgroundAlpha = r
 				break
 			case "font_size":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				CG.FontSize = r
 				break
 
 			case "toggle_hud":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				CG.KbToggleHud = r
 				break
 			case "toggle_hud_position":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				CG.KbToggleHudPosition = r
 				break
 			case "toggle_preset":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				CG.KbTogglePreset = r
 				break
 			case "toggle_fps_limit":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				CG.KbToggleFpsLimit = r
 				break
 			case "toggle_logging":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				CG.KbToggleLogging = r
 				break
 			case "reload_cfg":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				CG.KbReloadCfg = r
 				break
 			case "upload_cfg":
+				foundElement = true
 				r := strings.TrimSpace(val)
 				CG.KbUploadLog = r
 				break
 
 			}
+			if foundElement {
+				continue
+			}
+
+			// TODO: User created element
 
 			continue
 		}
@@ -271,7 +317,6 @@ func readConfigs() {
 			continue
 		}
 
-		foundElement := false
 		for i, cmd := range GPUElementsAvailable {
 			if cmd.Name == lineNoComments {
 				GPUElementsAvailable[i].Active = true
@@ -316,6 +361,7 @@ func readConfigs() {
 		if foundElement {
 			continue
 		}
+		// TODO: User Created element
 	}
 	if !hasLegacyLayoutSet {
 		addLegacyLayoutStartLine()
