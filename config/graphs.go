@@ -35,7 +35,7 @@ func initGraphs(r string) {
 }
 
 func toggleCmd(cmdname string) bool {
-	currentLine := getConfigLine("graphs")
+	currentLine, graphsExists := getConfigLine("graphs")
 	split := strings.Split(currentLine, ",")
 	contains := false
 	newGraphLine := ""
@@ -63,7 +63,11 @@ func toggleCmd(cmdname string) bool {
 		newGraphLine += ","
 	}
 	newGraphLine += cmdname
-	addConfigLine("graphs=" + newGraphLine)
+	if !graphsExists {
+		addConfigLine("graphs=" + newGraphLine)
+	} else {
+		updateConfigLine("graphs", newGraphLine, true)
+	}
 	return true
 }
 

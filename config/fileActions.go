@@ -75,7 +75,7 @@ func replaceConfigLines(first string, second string) {
 	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
 }
 
-func getConfigLine(cmd string) string {
+func getConfigLine(cmd string) (args string, exists bool) {
 	cf := getConfigFile()
 	for _, v := range cf {
 		if strings.Contains(v, "#") {
@@ -88,11 +88,11 @@ func getConfigLine(cmd string) string {
 			c = strings.TrimSpace(c)
 			a = strings.TrimSpace(a)
 			if cmd == c {
-				return a
+				return a, true
 			}
 		}
 	}
-	return ""
+	return "", false
 }
 
 func updateConfigLine(c string, n string, addIfMissing bool) {
