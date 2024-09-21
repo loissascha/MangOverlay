@@ -2,6 +2,31 @@ package main
 
 import "mangohud-configurator/config"
 
+func (c *App) ToggleGraphGpuLoad() {
+	config.CG.ToggleGraphGpuLoad()
+}
+func (c *App) ToggleGraphCpuLoad() {
+	config.CG.ToggleGraphCpuLoad()
+}
+func (c *App) ToggleGraphGpuCoreClock() {
+	config.CG.ToggleGraphGpuCoreClock()
+}
+func (c *App) ToggleGraphGpuMemClock() {
+	config.CG.ToggleGraphGpuMemClock()
+}
+func (c *App) ToggleGraphVram() {
+	config.CG.ToggleGraphVram()
+}
+func (c *App) ToggleGraphRam() {
+	config.CG.ToggleGraphRam()
+}
+func (c *App) ToggleGraphCpuTemp() {
+	config.CG.ToggleGraphCpuTemp()
+}
+func (c *App) ToggleGraphGpuTemp() {
+	config.CG.ToggleGraphGpuTemp()
+}
+
 func (c *App) GetGraphGpuLoad() bool {
 	return config.CG.GetGraphGpuLoad()
 }

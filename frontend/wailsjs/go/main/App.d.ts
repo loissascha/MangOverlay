@@ -66,6 +66,22 @@ export function GetGpuLoadValue():Promise<string>;
 
 export function GetGpuText():Promise<string>;
 
+export function GetGraphCpuLoad():Promise<boolean>;
+
+export function GetGraphCpuTemp():Promise<boolean>;
+
+export function GetGraphGpuCoreClock():Promise<boolean>;
+
+export function GetGraphGpuLoad():Promise<boolean>;
+
+export function GetGraphGpuMemClock():Promise<boolean>;
+
+export function GetGraphGpuTemp():Promise<boolean>;
+
+export function GetGraphRam():Promise<boolean>;
+
+export function GetGraphVram():Promise<boolean>;
+
 export function GetIoColor():Promise<string>;
 
 export function GetKbReloadCfg():Promise<string>;
@@ -183,5 +199,21 @@ export function SetWineColor(arg1:string):Promise<void>;
 export function StartVkcube():Promise<void>;
 
 export function StopVkcube():Promise<void>;
+
+export function ToggleGraphCpuLoad():Promise<void>;
+
+export function ToggleGraphCpuTemp():Promise<void>;
+
+export function ToggleGraphGpuCoreClock():Promise<void>;
+
+export function ToggleGraphGpuLoad():Promise<void>;
+
+export function ToggleGraphGpuMemClock():Promise<void>;
+
+export function ToggleGraphGpuTemp():Promise<void>;
+
+export function ToggleGraphRam():Promise<void>;
+
+export function ToggleGraphVram():Promise<void>;
 
 export function UpdateFPSLimit(arg1:number,arg2:string):Promise<void>;

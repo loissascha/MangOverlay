@@ -130,6 +130,38 @@ export function GetGpuText() {
   return window['go']['main']['App']['GetGpuText']();
 }
 
+export function GetGraphCpuLoad() {
+  return window['go']['main']['App']['GetGraphCpuLoad']();
+}
+
+export function GetGraphCpuTemp() {
+  return window['go']['main']['App']['GetGraphCpuTemp']();
+}
+
+export function GetGraphGpuCoreClock() {
+  return window['go']['main']['App']['GetGraphGpuCoreClock']();
+}
+
+export function GetGraphGpuLoad() {
+  return window['go']['main']['App']['GetGraphGpuLoad']();
+}
+
+export function GetGraphGpuMemClock() {
+  return window['go']['main']['App']['GetGraphGpuMemClock']();
+}
+
+export function GetGraphGpuTemp() {
+  return window['go']['main']['App']['GetGraphGpuTemp']();
+}
+
+export function GetGraphRam() {
+  return window['go']['main']['App']['GetGraphRam']();
+}
+
+export function GetGraphVram() {
+  return window['go']['main']['App']['GetGraphVram']();
+}
+
 export function GetIoColor() {
   return window['go']['main']['App']['GetIoColor']();
 }
@@ -364,6 +396,38 @@ export function StartVkcube() {
 
 export function StopVkcube() {
   return window['go']['main']['App']['StopVkcube']();
+}
+
+export function ToggleGraphCpuLoad() {
+  return window['go']['main']['App']['ToggleGraphCpuLoad']();
+}
+
+export function ToggleGraphCpuTemp() {
+  return window['go']['main']['App']['ToggleGraphCpuTemp']();
+}
+
+export function ToggleGraphGpuCoreClock() {
+  return window['go']['main']['App']['ToggleGraphGpuCoreClock']();
+}
+
+export function ToggleGraphGpuLoad() {
+  return window['go']['main']['App']['ToggleGraphGpuLoad']();
+}
+
+export function ToggleGraphGpuMemClock() {
+  return window['go']['main']['App']['ToggleGraphGpuMemClock']();
+}
+
+export function ToggleGraphGpuTemp() {
+  return window['go']['main']['App']['ToggleGraphGpuTemp']();
+}
+
+export function ToggleGraphRam() {
+  return window['go']['main']['App']['ToggleGraphRam']();
+}
+
+export function ToggleGraphVram() {
+  return window['go']['main']['App']['ToggleGraphVram']();
 }
 
 export function UpdateFPSLimit(arg1, arg2) {
