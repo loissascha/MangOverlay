@@ -1,28 +1,25 @@
 package config
 
 import (
-	"bufio"
+	"fmt"
 	"os"
 	"os/exec"
 	"strings"
 )
 
 func initGlobalEnabled() {
-	homeDir, err := os.UserHomeDir()
+	filePath := "/etc/environment"
+	content, err := os.ReadFile(filePath)
 	if err != nil {
-		panic("can't load user home dir")
+		Logger.Log(fmt.Sprintf("InitGlobalEnabled error %s", err))
 	}
-	profileFile := homeDir + "/.profile"
-	file, err := os.Open(profileFile)
-	if err != nil {
-		return
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := scanner.Text()
-		if strings.Contains(line, "export MANGOHUD=1") {
+	file := strings.Split(string(content), "\n")
+	for _, line := range file {
+		command := line
+		if strings.Contains(line, "#") {
+			command, _, _ = strings.Cut(line, "#")
+		}
+		if strings.Contains(command, "MANGOHUD=1") {
 			GlobalEnabled = true
 			return
 		}
@@ -31,66 +28,55 @@ func initGlobalEnabled() {
 }
 
 func DisableGlobally() {
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		panic("can't load user home dir")
-	}
-	profileFile := homeDir + "/.profile"
-	file, err := os.Open(profileFile)
-	if err != nil {
+	if !GlobalEnabled {
 		return
 	}
-	defer file.Close()
-
-	newFile := ""
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := scanner.Text()
-		if strings.Contains(line, "export MANGOHUD=1") {
+	filePath := "/etc/environment"
+	content, err := os.ReadFile(filePath)
+	if err != nil {
+		Logger.Log(fmt.Sprintf("DisableGlobally error %s", err))
+	}
+	file := strings.Split(string(content), "\n")
+	newContent := ""
+	for _, line := range file {
+		command := line
+		if strings.Contains(line, "#") {
+			command, _, _ = strings.Cut(line, "#")
+		}
+		if strings.Contains(command, "MANGOHUD=1") {
 			continue
 		}
-		newFile += line + "\n"
+		newContent += line + "\n"
 	}
-	os.WriteFile(profileFile, []byte(newFile), 0766)
-
-	// source file
-	cmd := exec.Command("bash", "-c", "source ~/.profile")
-	cmd.Run()
+	newContent = strings.TrimSuffix(newContent, "\n")
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		Logger.Log("DisableGlobally cant get homeDir")
+		return
+	}
+	err = os.WriteFile(homeDir+"/tmpfileenvironment0001", []byte(newContent), 0766)
+	if err != nil {
+		Logger.Log("DisableGlobally cant write tmp environment file")
+		return
+	}
+	cmd := exec.Command("pkexec", "bash", "-c", "mv /etc/environment /etc/environment.bak && mv "+homeDir+"/tmpfileenvironment0001 /etc/environment")
+	err = cmd.Run()
+	if err != nil {
+		Logger.Log("DisableGlobally error moving files")
+		return
+	}
 	GlobalEnabled = false
 }
 
-// TODO: this does not work; instead it should enable it in /etc/environment
 func EnableGlobally() {
-	homeDir, err := os.UserHomeDir()
+	if GlobalEnabled {
+		return
+	}
+	cmd := exec.Command("pkexec", "bash", "-c", "echo \"MANGOHUD=1\" >> /etc/environment")
+	err := cmd.Run()
 	if err != nil {
-		panic("can't load user home dir")
+		fmt.Println(err)
+		return
 	}
-	profileFile := homeDir + "/.profile"
-	file, err := os.Open(profileFile)
-	if err != nil {
-		Logger.Log("profile file not found! creating it!")
-		os.WriteFile(profileFile, []byte{}, 0766)
-		file, err = os.Open(profileFile)
-		if err != nil {
-			panic("profile file broken")
-		}
-	}
-	defer file.Close()
-
-	newFile := ""
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := scanner.Text()
-		if line == "export MANGOHUD=1" {
-			return
-		}
-		newFile += line + "\n"
-	}
-	newFile += "export MANGOHUD=1\n"
-	os.WriteFile(profileFile, []byte(newFile), 0766)
-
-	// source file
-	cmd := exec.Command("bash", "-c", "source ~/.profile")
-	cmd.Run()
 	GlobalEnabled = true
 }
