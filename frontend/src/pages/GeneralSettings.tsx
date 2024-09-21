@@ -40,7 +40,7 @@ function GeneralSettings() {
 
     return (
         <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 flex-auto flex-wrap pb-72">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 flex-auto flex-wrap">
                 <div>
                     <SettingBox header="Orientation">
                         <div>
