@@ -63,7 +63,7 @@ func toggleCmd(cmdname string) bool {
 		newGraphLine += ","
 	}
 	newGraphLine += cmdname
-	addConfigLine(newGraphLine)
+	addConfigLine("graphs=" + newGraphLine)
 	return true
 }
 
