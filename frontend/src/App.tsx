@@ -31,33 +31,43 @@ function App() {
                 <ul className="flex gap-3 list-none">
                     <li
                         onClick={() => { setActiveMenuButton("general"); }}
-                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg " + (activeMenu == "general" ? "bg-gray-800" : "bg-gray-900")}>
-                        <FontAwesomeIcon icon={faGears} className="me-2" />
-                        General
+                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " + (activeMenu == "general" ? "bg-gray-800" : "bg-gray-900")}>
+                        <div>
+                            <FontAwesomeIcon icon={faGears} title="General" />
+                        </div>
+                        <a className="hidden md:inline-block">General</a>
                     </li>
                     <li
                         onClick={() => { setActiveMenuButton("keybinds"); }}
-                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg " + (activeMenu == "keybinds" ? "bg-gray-800" : "bg-gray-900")}>
-                        <FontAwesomeIcon icon={faKeyboard} className="me-2" />
-                        Keybinds
+                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " + (activeMenu == "keybinds" ? "bg-gray-800" : "bg-gray-900")}>
+                        <div>
+                            <FontAwesomeIcon icon={faKeyboard} title="Keybinds" />
+                        </div>
+                        <a className="hidden md:inline-block">Keybinds</a>
                     </li>
                     <li
                         onClick={() => { setActiveMenuButton("metrics"); }}
-                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg " + (activeMenu == "metrics" ? "bg-gray-800" : "bg-gray-900")}>
-                        <FontAwesomeIcon icon={faBars} className="me-2" />
-                        Metrics
+                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " + (activeMenu == "metrics" ? "bg-gray-800" : "bg-gray-900")}>
+                        <div>
+                            <FontAwesomeIcon icon={faBars} title="Metrics" />
+                        </div>
+                        <a className="hidden md:inline-block">Metrics</a>
                     </li>
                     <li
                         onClick={() => { setActiveMenuButton("metrics-order"); }}
-                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg " + (activeMenu == "metrics-order" ? "bg-gray-800" : "bg-gray-900")}>
-                        <FontAwesomeIcon icon={faSort} className="me-2" />
-                        Change Order
+                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " + (activeMenu == "metrics-order" ? "bg-gray-800" : "bg-gray-900")}>
+                        <div>
+                            <FontAwesomeIcon icon={faSort} title="Change Order" />
+                        </div>
+                        <a className="hidden md:inline-block">Change Order</a>
                     </li>
                     <li
                         onClick={() => { setActiveMenuButton("fpslimits"); }}
-                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg " + (activeMenu == "fpslimits" ? "bg-gray-800" : "bg-gray-900")}>
-                        <FontAwesomeIcon icon={faDisplay} className="me-2" />
-                        FPS Limits
+                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " + (activeMenu == "fpslimits" ? "bg-gray-800" : "bg-gray-900")}>
+                        <div>
+                            <FontAwesomeIcon icon={faDisplay} title="FPS Limits" />
+                        </div>
+                        <a className="hidden md:inline-block">FPS Limits</a>
                     </li>
                 </ul>
             </nav>
