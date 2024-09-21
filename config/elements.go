@@ -283,6 +283,7 @@ func initElements() {
 		{Name: "hud_no_margin", Active: false},
 		{Name: "hud_compact", Active: false},
 		{Name: "no_display", Active: false},
+		{Name: "graphs", Active: false},
 	}
 	MemoryElementsAvailable = []Element{
 		{Name: "ram", Active: false},

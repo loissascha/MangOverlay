@@ -36,11 +36,12 @@ func deleteConfigLine(n string) {
 	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
 }
 
-func addConfigLine(n string) {
+func addConfigLine(n string) int {
 	Logger.Log(fmt.Sprintf("addConfigLine: %s", n))
 	cf := getConfigFile()
 	newFile := ""
 	hasConfigLine := false
+	onLine := 0
 	for _, v := range cf {
 		if strings.Contains(v, "#") {
 			before, _, _ := strings.Cut(v, "#")
@@ -49,27 +50,76 @@ func addConfigLine(n string) {
 			}
 		}
 		newFile += v + "\n"
+		onLine++
 	}
 	if !hasConfigLine {
 		newFile += n
 	}
 	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
+	return onLine
 }
 
 func replaceConfigLines(first string, second string) {
 	Logger.Log(fmt.Sprintf("replaceConfigLines: %s with %s", first, second))
 	cf := getConfigFile()
 	newFile := ""
+
+	firstLine := ""
+	secondLine := ""
 	for _, v := range cf {
 		noSpace := strings.TrimSpace(v)
+
+		if strings.Contains(noSpace, "=") {
+			cmd, _, _ := strings.Cut(noSpace, "=")
+			if cmd == first {
+				firstLine = noSpace
+			}
+			if cmd == second {
+				secondLine = noSpace
+			}
+			continue
+		}
+
 		if noSpace == first {
-			newFile += second + "\n"
+			firstLine = noSpace
+		}
+		if noSpace == second {
+			secondLine = noSpace
+		}
+	}
+
+	for _, v := range cf {
+		noSpace := strings.TrimSpace(v)
+
+		// containing =
+		if strings.Contains(noSpace, "=") {
+			cmd, _, _ := strings.Cut(noSpace, "=")
+			if cmd == first {
+				newFile += secondLine + "\n"
+				Logger.Log("= first to second")
+				continue
+			}
+			if cmd == second {
+				newFile += firstLine + "\n"
+				Logger.Log("= second to first")
+				continue
+			}
+			newFile += v + "\n"
+			Logger.Log("= normal line")
+			continue
+		}
+
+		if noSpace == first {
+			newFile += secondLine + "\n"
+			Logger.Log("first to second")
 			continue
 		}
 		if noSpace == second {
-			newFile += first + "\n"
+			newFile += firstLine + "\n"
+			Logger.Log("second to first")
 			continue
 		}
+		Logger.Log("normal line")
 		newFile += v + "\n"
 	}
 	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)

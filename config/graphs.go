@@ -52,6 +52,11 @@ func toggleCmd(cmdname string) bool {
 	if contains { // deactivate
 		if newGraphLine == "" {
 			deleteConfigLine("graphs")
+			for index, extra := range ExtraElementsAvailable {
+				if extra.Name == "graphs" {
+					ExtraElementsAvailable[index].Active = false
+				}
+			}
 		} else {
 			updateConfigLine("graphs", newGraphLine, false)
 		}
@@ -64,7 +69,13 @@ func toggleCmd(cmdname string) bool {
 	}
 	newGraphLine += cmdname
 	if !graphsExists {
-		addConfigLine("graphs=" + newGraphLine)
+		onLine := addConfigLine("graphs=" + newGraphLine)
+		for index, extra := range ExtraElementsAvailable {
+			if extra.Name == "graphs" {
+				ExtraElementsAvailable[index].Active = true
+				ExtraElementsAvailable[index].Index = onLine
+			}
+		}
 	} else {
 		updateConfigLine("graphs", newGraphLine, true)
 	}

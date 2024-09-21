@@ -46,6 +46,14 @@ func readConfigs() {
 				r := strings.TrimSpace(val)
 				initGraphs(r)
 				foundElement = true
+				for i, cmd := range ExtraElementsAvailable {
+					if cmd.Name == "graphs" {
+						ExtraElementsAvailable[i].Active = true
+						ExtraElementsAvailable[i].Index = index
+						foundElement = true
+						break
+					}
+				}
 				break
 			case "fps_limit":
 				r := strings.TrimSpace(val)
