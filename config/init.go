@@ -32,8 +32,10 @@ func ReloadConfig() {
 func readConfigs() {
 	conf := getConfigFile()
 	hasLegacyLayoutSet := false
+	Logger.Log("ReadConfigs")
 
 	for index, lineOrg := range conf {
+		index = index + 1
 
 		lineNoComments := lineOrg
 		if strings.Contains(lineOrg, "#") {
@@ -309,7 +311,6 @@ func readConfigs() {
 				r := strings.TrimSpace(val)
 				CG.KbUploadLog = r
 				break
-
 			}
 			if foundElement {
 				continue

@@ -34,6 +34,7 @@ func deleteConfigLine(n string) {
 		newFile += org + "\n"
 	}
 	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
+	ReloadConfig()
 }
 
 func addConfigLine(n string) int {
@@ -41,7 +42,7 @@ func addConfigLine(n string) int {
 	cf := getConfigFile()
 	newFile := ""
 	hasConfigLine := false
-	onLine := 0
+	onLine := 1
 	for _, v := range cf {
 		if strings.Contains(v, "#") {
 			before, _, _ := strings.Cut(v, "#")

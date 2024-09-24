@@ -1,5 +1,7 @@
 package config
 
+import "fmt"
+
 var Elements []Element
 var GPUElementsAvailable []Element
 var CPUElementsAvailable []Element
@@ -247,6 +249,7 @@ func (c *Config) RemoveUnorderedElement(index int) {
 		newElements = append(newElements, v)
 	}
 	UnorderedActiveElements = newElements
+	ReloadConfig()
 }
 
 func initElements() {
@@ -332,5 +335,6 @@ func AddUnorderedActiveElement(name string, index int) {
 	if name == "" {
 		return
 	}
+	Logger.Log(fmt.Sprintf("AddUnorderedActiveElement %s %d", name, index))
 	UnorderedActiveElements = append(UnorderedActiveElements, Element{Name: name, Active: true, Index: index})
 }
