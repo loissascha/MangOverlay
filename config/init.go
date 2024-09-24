@@ -22,6 +22,13 @@ func LoadConfig() {
 	readConfigs()
 }
 
+func ReloadConfig() {
+	initGlobalEnabled()
+	initElements()
+	initFpsLimits()
+	readConfigs()
+}
+
 func readConfigs() {
 	conf := getConfigFile()
 	hasLegacyLayoutSet := false
@@ -308,8 +315,7 @@ func readConfigs() {
 				continue
 			}
 
-			// TODO: User created element
-
+			AddUnorderedActiveElement(cmd, index)
 			continue
 		}
 
@@ -369,7 +375,7 @@ func readConfigs() {
 		if foundElement {
 			continue
 		}
-		// TODO: User Created element
+		AddUnorderedActiveElement(lineNoComments, index)
 	}
 	if !hasLegacyLayoutSet {
 		addLegacyLayoutStartLine()

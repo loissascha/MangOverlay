@@ -206,6 +206,10 @@ export function GetNetworkColor() {
   return window['go']['main']['App']['GetNetworkColor']();
 }
 
+export function GetOrderElements() {
+  return window['go']['main']['App']['GetOrderElements']();
+}
+
 export function GetOrientation() {
   return window['go']['main']['App']['GetOrientation']();
 }
@@ -236,6 +240,10 @@ export function GetWineColor() {
 
 export function GloballyEnabled() {
   return window['go']['main']['App']['GloballyEnabled']();
+}
+
+export function ReloadConfig() {
+  return window['go']['main']['App']['ReloadConfig']();
 }
 
 export function RemoveFPSLimit(arg1) {

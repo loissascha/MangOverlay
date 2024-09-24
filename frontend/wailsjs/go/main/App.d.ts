@@ -104,6 +104,8 @@ export function GetMemoryElements():Promise<Array<config.Element>>;
 
 export function GetNetworkColor():Promise<string>;
 
+export function GetOrderElements():Promise<Array<config.Element>>;
+
 export function GetOrientation():Promise<string>;
 
 export function GetPosition():Promise<string>;
@@ -119,6 +121,8 @@ export function GetVramColor():Promise<string>;
 export function GetWineColor():Promise<string>;
 
 export function GloballyEnabled():Promise<boolean>;
+
+export function ReloadConfig():Promise<void>;
 
 export function RemoveFPSLimit(arg1:number):Promise<void>;
 
