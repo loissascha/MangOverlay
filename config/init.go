@@ -315,7 +315,7 @@ func readConfigs() {
 				continue
 			}
 
-			AddUnorderedActiveElement(cmd, index)
+			AddUnorderedActiveElement(lineNoComments, index)
 			continue
 		}
 
