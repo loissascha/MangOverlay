@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
-import { SetCpuLoadColors, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetCpuLoadValue, GetCpuText, SetCpuLoadValue, SetCpuText } from "../../wailsjs/go/main/App";
+import { SetCpuLoadColors, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetCpuLoadValue, GetCpuText, SetCpuLoadValue, SetCpuText, GetElements, DeactivateElement, ActivateElement } from "../../wailsjs/go/main/App";
 
 function Cpu() {
     const [cpuLoadColor0, setCpuLoadColor0] = useState<string>("");
@@ -15,6 +15,8 @@ function Cpu() {
 
     const [cpuText, setCpuText] = useState<string>("")
     const [cpuLoadValue, setCpuLoadValue] = useState<string>("")
+
+    const [cpuLoadChange, setCpuLoadChange] = useState<boolean>(false)
 
     useEffect(() => {
         GetCpuText().then((r) => {
@@ -32,7 +34,18 @@ function Cpu() {
         GetCpuLoadColor2().then((r) => {
             setCpuLoadColor2(r)
         })
+        reloadElement()
     }, [])
+
+    function reloadElement() {
+        GetElements().then((r: any) => {
+            for (var element of r) {
+                if (element.Name == "cpu_load_change") {
+                    setCpuLoadChange(element.Active)
+                }
+            }
+        })
+    }
 
     return (
         <SettingBox header="CPU">
@@ -51,6 +64,25 @@ function Cpu() {
                         SetCpuText(nv)
                     }}
                 />
+                <label htmlFor="showCpuLoadColors" className="cursor-pointer">CPU Color Change</label>
+                <div>
+                    <input
+                        id="showCpuLoadColors"
+                        type="checkbox"
+                        checked={cpuLoadChange}
+                        onChange={() => {
+                            if (cpuLoadChange) {
+                                DeactivateElement("cpu_load_change").then(() => {
+                                    reloadElement()
+                                })
+                            } else {
+                                ActivateElement("cpu_load_change").then(() => {
+                                    reloadElement()
+                                })
+                            }
+                        }}
+                    />
+                </div>
                 <label htmlFor="cpuloadvalue">Load Value:</label>
                 <input
                     type="text"

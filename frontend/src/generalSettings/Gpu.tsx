@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetGpuLoadValue, SetGpuLoadColors, GetGpuLoadColor0, GetGpuLoadColor1, GetGpuLoadColor2, GetGpuText, SetGpuLoadValue, SetGpuText } from "../../wailsjs/go/main/App";
+import { GetGpuLoadValue, SetGpuLoadColors, GetGpuLoadColor0, GetGpuLoadColor1, GetGpuLoadColor2, GetGpuText, SetGpuLoadValue, SetGpuText, GetElements, DeactivateElement, ActivateElement } from "../../wailsjs/go/main/App";
 import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
 
@@ -15,6 +15,8 @@ function Gpu() {
 
     const [gpuLoadColor2, setGpuLoadColor2] = useState<string>("");
     const [showGpuLoadPicker2, setShowGpuLoadPicker2] = useState<boolean>(false);
+
+    const [gpuLoadChange, setGpuLoadChange] = useState<boolean>(false)
 
     useEffect(() => {
         GetGpuText().then((r) => {
@@ -32,7 +34,18 @@ function Gpu() {
         GetGpuLoadColor2().then((r) => {
             setGpuLoadColor2(r)
         })
+        reloadElement()
     }, [])
+
+    function reloadElement() {
+        GetElements().then((r: any) => {
+            for (var element of r) {
+                if (element.Name == "gpu_load_change") {
+                    setGpuLoadChange(element.Active)
+                }
+            }
+        })
+    }
 
     return (
         <SettingBox header="GPU">
@@ -51,6 +64,25 @@ function Gpu() {
                         SetGpuText(nv)
                     }}
                 />
+                <label htmlFor="showGpuLoadColors" className="cursor-pointer">GPU Color Change</label>
+                <div>
+                    <input
+                        id="showGpuLoadColors"
+                        type="checkbox"
+                        checked={gpuLoadChange}
+                        onChange={() => {
+                            if (gpuLoadChange) {
+                                DeactivateElement("gpu_load_change").then(() => {
+                                    reloadElement()
+                                })
+                            } else {
+                                ActivateElement("gpu_load_change").then(() => {
+                                    reloadElement()
+                                })
+                            }
+                        }}
+                    />
+                </div>
                 <label htmlFor="gpuloadvalue" className="me-2">Load Value:</label>
                 <input
                     type="text"
