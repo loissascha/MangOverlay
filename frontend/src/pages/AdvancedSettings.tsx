@@ -1,11 +1,12 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons"
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useEffect, useState } from "react"
-import { GetUnorderedElements } from "../../wailsjs/go/main/App"
+import { useEffect, useRef, useState } from "react"
+import { AddUnorderedElement, GetUnorderedElements, RemoveUnorderedElement } from "../../wailsjs/go/main/App"
 import SettingBox from "../ui/SettingBox"
 
 function AdvancedSettings() {
     const [elements, setElements] = useState<any>([])
+    const customLineInput = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
         reloadUnorderedElements()
@@ -24,19 +25,42 @@ function AdvancedSettings() {
                     <div>
                         <div className="flex gap-3">
                             <div>
-                                <input type="text"
+                                <input
+                                    ref={customLineInput}
+                                    type="text"
                                     className="bg-gray-700 border border-gray-500 p-2 rounded w-60"
                                 />
                             </div>
                             <div className="flex items-center">
                                 <a onClick={() => {
+                                    const value = customLineInput.current?.value
+                                    if (value != "") {
+                                        AddUnorderedElement("" + value).then(() => {
+                                            reloadUnorderedElements()
+                                            customLineInput.current!.value = ""
+                                        })
+                                    }
                                 }} className="cursor-pointer text-lg"><FontAwesomeIcon icon={faPlus} /></a>
                             </div>
                         </div>
-                        <div>
+                        <div className="mt-3">
                             {elements.map((e: any) => (
-                                <div key={e.Index}>
-                                    {e.Name}
+                                <div key={e.Index} className="grid grid-cols-[1fr_auto]">
+                                    <div>
+                                        {e.Name}
+                                    </div>
+                                    <div>
+                                        <a
+                                            className="cursor-pointer"
+                                            onClick={() => {
+                                                RemoveUnorderedElement(e.Index).then(() => {
+                                                    reloadUnorderedElements()
+                                                })
+                                            }}
+                                        >
+                                            <FontAwesomeIcon icon={faMinus} />
+                                        </a>
+                                    </div>
                                 </div>
                             ))}
                         </div>
