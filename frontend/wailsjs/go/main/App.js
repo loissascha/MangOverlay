@@ -10,6 +10,10 @@ export function AddFPSLimit(arg1) {
   return window['go']['main']['App']['AddFPSLimit'](arg1);
 }
 
+export function AddUnorderedElement(arg1) {
+  return window['go']['main']['App']['AddUnorderedElement'](arg1);
+}
+
 export function DeactivateElement(arg1) {
   return window['go']['main']['App']['DeactivateElement'](arg1);
 }
@@ -230,6 +234,10 @@ export function GetTextColor() {
   return window['go']['main']['App']['GetTextColor']();
 }
 
+export function GetUnorderedElements() {
+  return window['go']['main']['App']['GetUnorderedElements']();
+}
+
 export function GetVramColor() {
   return window['go']['main']['App']['GetVramColor']();
 }
@@ -248,6 +256,10 @@ export function ReloadConfig() {
 
 export function RemoveFPSLimit(arg1) {
   return window['go']['main']['App']['RemoveFPSLimit'](arg1);
+}
+
+export function RemoveUnorderedElement(arg1) {
+  return window['go']['main']['App']['RemoveUnorderedElement'](arg1);
 }
 
 export function ReorderFPSLimit(arg1, arg2) {
