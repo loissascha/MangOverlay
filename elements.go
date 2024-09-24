@@ -67,6 +67,22 @@ func (a *App) GetOrderElements() []config.Element {
 	return elements
 }
 
+func (a *App) GetUnorderedElements() []config.Element {
+	elements := []config.Element{}
+	for _, v := range config.UnorderedActiveElements {
+		elements = append(elements, v)
+	}
+	return elements
+}
+
+func (a *App) AddUnorderedElement(name string) {
+	config.CG.AddUnorderedElement(name)
+}
+
+func (a *App) RemoveUnorderedElement(index int) {
+	config.CG.RemoveUnorderedElement(index)
+}
+
 func (a *App) ActivateElement(n string) int {
 	return config.CG.ActivateElement(n)
 }

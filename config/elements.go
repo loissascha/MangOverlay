@@ -229,6 +229,19 @@ func (c *Config) DeactivateElement(e string) {
 	}
 }
 
+func (c *Config) AddUnorderedElement(name string) {
+	index := addConfigLine(name)
+	UnorderedActiveElements = append(UnorderedActiveElements, Element{Name: name, Index: index, Active: true})
+}
+
+func (c *Config) RemoveUnorderedElement(index int) {
+	for _, v := range UnorderedActiveElements {
+		if v.Index == index {
+			deleteConfigLine(v.Name)
+		}
+	}
+}
+
 func initElements() {
 	Elements = []Element{}
 	GPUElementsAvailable = []Element{
