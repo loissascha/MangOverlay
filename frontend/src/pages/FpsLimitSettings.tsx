@@ -8,11 +8,14 @@ function FpsLimitSettings() {
     const [fpsLimits, setFpsLimits] = useState<any>([])
 
     useEffect(() => {
-        GetFPSLimits().then((r) => {
-            console.log(r)
-            setFpsLimits(r)
-        })
+        reloadFpsLimits()
     }, [])
+
+    async function reloadFpsLimits() {
+        const r = await GetFPSLimits()
+        console.log(r)
+        setFpsLimits(r)
+    }
 
     return (
         <>
@@ -22,11 +25,9 @@ function FpsLimitSettings() {
                         <div className="flex gap-3 justify-end">
                             <a onClick={() => {
                                 AddFPSLimit("0").then(() => {
-                                    GetFPSLimits().then((r) => {
-                                        setFpsLimits(r)
-                                    })
+                                    reloadFpsLimits()
                                 })
-                            }} className="cursor-pointer"><FontAwesomeIcon icon={faPlus} /></a>
+                            }} className="cursor-pointer text-lg"><FontAwesomeIcon icon={faPlus} /></a>
                         </div>
                         <div className="flex flex-col gap-3">
                             {fpsLimits.map((limit: any, index: number) => (
@@ -34,31 +35,23 @@ function FpsLimitSettings() {
                                     <input value={limit} className="bg-gray-700 border border-gray-500 p-2 rounded w-60" onChange={(event: any) => {
                                         const value = event.target.value
                                         UpdateFPSLimit(index, value).then(() => {
-                                            GetFPSLimits().then((r) => {
-                                                setFpsLimits(r)
-                                            })
+                                            reloadFpsLimits()
                                         })
                                     }} />
                                     <div className="flex gap-1">
                                         <button className="p-2 bg-gray-700 rounded border border-gray-500 cursor-pointer hover:bg-gray-600" onClick={() => {
                                             ReorderFPSLimit(index, index - 1).then(() => {
-                                                GetFPSLimits().then((r) => {
-                                                    setFpsLimits(r)
-                                                })
+                                                reloadFpsLimits()
                                             })
                                         }}><FontAwesomeIcon icon={faSortUp} /></button>
                                         <button className="p-2 bg-gray-700 rounded border border-gray-500 cursor-pointer hover:bg-gray-600" onClick={() => {
                                             ReorderFPSLimit(index, index + 1).then(() => {
-                                                GetFPSLimits().then((r) => {
-                                                    setFpsLimits(r)
-                                                })
+                                                reloadFpsLimits()
                                             })
                                         }}><FontAwesomeIcon icon={faSortDown} /></button>
                                         <button className="p-2 bg-gray-700 rounded border border-gray-500 cursor-pointer hover:bg-gray-600" onClick={() => {
                                             RemoveFPSLimit(index).then(() => {
-                                                GetFPSLimits().then((r) => {
-                                                    setFpsLimits(r)
-                                                })
+                                                reloadFpsLimits()
                                             })
                                         }}><FontAwesomeIcon icon={faMinus} /></button>
                                     </div>
