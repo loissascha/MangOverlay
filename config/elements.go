@@ -5,6 +5,7 @@ var GPUElementsAvailable []Element
 var CPUElementsAvailable []Element
 var MemoryElementsAvailable []Element
 var ExtraElementsAvailable []Element
+var UnorderedActiveElements []Element
 
 func (c *Config) ReplaceElements(first string, second string) {
 	replaceConfigLines(first, second)
@@ -39,6 +40,13 @@ func (c *Config) ReplaceElements(first string, second string) {
 			ExtraElementsAvailable[i].Index = firstIndex
 		}
 	}
+	for i, v := range UnorderedActiveElements {
+		if v.Name == first {
+			UnorderedActiveElements[i].Index = secondIndex
+		} else if v.Name == second {
+			UnorderedActiveElements[i].Index = firstIndex
+		}
+	}
 }
 
 func getElementIndex(name string) int {
@@ -60,6 +68,11 @@ func getElementIndex(name string) int {
 	for i, v := range ExtraElementsAvailable {
 		if v.Name == name {
 			return ExtraElementsAvailable[i].Index
+		}
+	}
+	for i, v := range UnorderedActiveElements {
+		if v.Name == name {
+			return UnorderedActiveElements[i].Index
 		}
 	}
 	return 0
@@ -292,4 +305,12 @@ func initElements() {
 		{Name: "procmem_shared", Active: false},
 		{Name: "procmem_virt", Active: false},
 	}
+	UnorderedActiveElements = []Element{}
+}
+
+func AddUnorderedActiveElement(name string, index int) {
+	if name == "" {
+		return
+	}
+	UnorderedActiveElements = append(UnorderedActiveElements, Element{Name: name, Active: true, Index: index})
 }

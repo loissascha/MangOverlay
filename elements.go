@@ -32,6 +32,41 @@ func (a *App) GetElements() []config.Element {
 	return elements
 }
 
+func (a *App) GetOrderElements() []config.Element {
+	elements := []config.Element{}
+	for _, v := range config.CPUElementsAvailable {
+		if !v.Active {
+			continue
+		}
+		elements = append(elements, v)
+	}
+	for _, v := range config.GPUElementsAvailable {
+		if !v.Active {
+			continue
+		}
+		elements = append(elements, v)
+	}
+	for _, v := range config.MemoryElementsAvailable {
+		if !v.Active {
+			continue
+		}
+		elements = append(elements, v)
+	}
+	for _, v := range config.ExtraElementsAvailable {
+		if !v.Active {
+			continue
+		}
+		elements = append(elements, v)
+	}
+	for _, v := range config.UnorderedActiveElements {
+		if !v.Active {
+			continue
+		}
+		elements = append(elements, v)
+	}
+	return elements
+}
+
 func (a *App) ActivateElement(n string) int {
 	return config.CG.ActivateElement(n)
 }
