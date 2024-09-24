@@ -236,7 +236,7 @@ func (c *Config) AddUnorderedElement(name string) {
 		return
 	}
 	index := addConfigLine(name)
-	UnorderedActiveElements = append(UnorderedActiveElements, Element{Name: name, Index: index, Active: true})
+	UnorderedActiveElements = append(UnorderedActiveElements, Element{Name: name, Index: index, Active: true, IsCustom: true})
 }
 
 func (c *Config) RemoveUnorderedElement(index int) {
@@ -336,5 +336,5 @@ func AddUnorderedActiveElement(name string, index int) {
 		return
 	}
 	Logger.Log(fmt.Sprintf("AddUnorderedActiveElement %s %d", name, index))
-	UnorderedActiveElements = append(UnorderedActiveElements, Element{Name: name, Active: true, Index: index})
+	UnorderedActiveElements = append(UnorderedActiveElements, Element{Name: name, Active: true, Index: index, IsCustom: true})
 }

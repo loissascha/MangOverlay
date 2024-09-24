@@ -4,6 +4,7 @@ export namespace config {
 	    Name: string;
 	    Active: boolean;
 	    Index: number;
+	    IsCustom: boolean;
 	
 	    static createFrom(source: any = {}) {
 	        return new Element(source);
@@ -14,6 +15,7 @@ export namespace config {
 	        this.Name = source["Name"];
 	        this.Active = source["Active"];
 	        this.Index = source["Index"];
+	        this.IsCustom = source["IsCustom"];
 	    }
 	}
 

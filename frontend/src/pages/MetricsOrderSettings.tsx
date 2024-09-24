@@ -23,10 +23,12 @@ function MetricsOrderSettings() {
             for (const element of elements) {
                 if (!element.Active) continue
                 let name = element.Name
-                if (name.includes("cpu_") && name != "cpu_stats") continue
-                if (name.includes("gpu_") && name != "gpu_stats" && name != "gpu_name") continue
-                if (name == "engine_short_names") continue
-                if (name == "frametime" || name == "throttling_status_graph" || name == "fps_color_change") continue
+                if (!element.IsCustom) {
+                    if (name.includes("cpu_") && name != "cpu_stats") continue
+                    if (name.includes("gpu_") && name != "gpu_stats" && name != "gpu_name") continue
+                    if (name == "engine_short_names") continue
+                    if (name == "frametime" || name == "throttling_status_graph" || name == "fps_color_change") continue
+                }
                 data.push(element)
             }
             data.sort((a, b) => a.Index - b.Index)
