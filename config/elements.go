@@ -230,16 +230,23 @@ func (c *Config) DeactivateElement(e string) {
 }
 
 func (c *Config) AddUnorderedElement(name string) {
+	if name == "" {
+		return
+	}
 	index := addConfigLine(name)
 	UnorderedActiveElements = append(UnorderedActiveElements, Element{Name: name, Index: index, Active: true})
 }
 
 func (c *Config) RemoveUnorderedElement(index int) {
+	newElements := []Element{}
 	for _, v := range UnorderedActiveElements {
 		if v.Index == index {
 			deleteConfigLine(v.Name)
+			continue
 		}
+		newElements = append(newElements, v)
 	}
+	UnorderedActiveElements = newElements
 }
 
 func initElements() {
