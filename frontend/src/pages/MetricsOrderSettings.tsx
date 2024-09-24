@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { GetElements, ReplaceElements } from "../../wailsjs/go/main/App"
+import { GetOrderElements, ReplaceElements } from "../../wailsjs/go/main/App"
 import SettingBox from "../ui/SettingBox"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSortUp, faSortDown, faShuffle } from '@fortawesome/free-solid-svg-icons'
@@ -12,7 +12,7 @@ function MetricsOrderSettings() {
     const [selected, setSelected] = useState<string>("")
 
     useEffect(() => {
-        GetElements().then((r) => {
+        GetOrderElements().then((r) => {
             setElements(r)
         })
     }, [])
@@ -43,7 +43,7 @@ function MetricsOrderSettings() {
                 if (lastElement !== undefined) {
                     // GoReplaceFunc(name, lastElement.Name)
                     ReplaceElements(name, lastElement.Name).then(() => {
-                        GetElements().then((r) => {
+                        GetOrderElements().then((r) => {
                             setElements(r)
                         })
                     })
@@ -61,7 +61,7 @@ function MetricsOrderSettings() {
             if (doNow) {
                 // GoReplaceFunc(name, e.Name)
                 ReplaceElements(name, e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetOrderElements().then((r) => {
                         setElements(r)
                     })
                 })
@@ -87,7 +87,7 @@ function MetricsOrderSettings() {
     function SwapSelectionWith(name: string) {
         ReplaceElements(selected, name).then(() => {
             setHasSelection(false)
-            GetElements().then((r) => {
+            GetOrderElements().then((r) => {
                 setElements(r)
             })
         })
@@ -117,17 +117,17 @@ function MetricsOrderSettings() {
                                             <a
                                                 className="cursor-pointer me-3"
                                                 title="Unselect"
-                                            ><FontAwesomeIcon icon={faCircleXmark} className="me-2" />{e.Name}</a>
+                                            ><FontAwesomeIcon icon={faCircleXmark} className="me-2" />{e.Name} ({e.Index})</a>
                                         ) : (
                                             <a
                                                 className="cursor-pointer me-3"
                                                 title="Swap with selection"
-                                            ><FontAwesomeIcon icon={faShuffle} className="me-2" />{e.Name}</a>
+                                            ><FontAwesomeIcon icon={faShuffle} className="me-2" />{e.Name} ({e.Index})</a>
                                         ) : (
                                             <a
                                                 className="cursor-pointer me-3"
                                                 title="Select"
-                                            ><FontAwesomeIcon icon={faCircle} className="me-2" />{e.Name}</a>
+                                            ><FontAwesomeIcon icon={faCircle} className="me-2" />{e.Name} ({e.Index})</a>
                                         )}
                                 </div>
                                 <div className="flex gap-1 ms-2">
