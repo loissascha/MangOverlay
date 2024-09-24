@@ -9,6 +9,7 @@ import Gpu from "../generalSettings/Gpu";
 import Cpu from "../generalSettings/Cpu";
 import Fps from "../generalSettings/Fps";
 import Graphs from "../generalSettings/Graphs";
+import Keybinds from "../generalSettings/Keybinds";
 
 function GeneralSettings() {
     const [orientation, setOrientation] = useState<string>("");
@@ -41,7 +42,7 @@ function GeneralSettings() {
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 flex-auto flex-wrap">
-                <div>
+                <div className="flex flex-col gap-2">
                     <SettingBox header="Orientation">
                         <div>
                             <input
@@ -140,14 +141,15 @@ function GeneralSettings() {
                     <Graphs />
                 </div>
 
-                <div>
+                <div className="flex flex-col gap-2">
                     <Cpu />
                     <Gpu />
                     <Fps />
                 </div>
 
-                <div>
+                <div className="flex flex-col gap-2">
                     <Colors />
+                    <Keybinds />
                 </div>
             </div >
 

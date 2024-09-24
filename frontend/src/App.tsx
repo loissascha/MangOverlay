@@ -3,7 +3,6 @@ import GeneralSettings from "./pages/GeneralSettings";
 import { DisableGlobally, EnableGlobally, GloballyEnabled, RestartVkcube } from "../wailsjs/go/main/App";
 import Button from "./ui/Button";
 import ElementsSettings from "./pages/ElementsSettings";
-import KeybindSettings from "./pages/KeybindSettings";
 import MetricsSettings from "./pages/MetricsSettings";
 import FpsLimitSettings from "./pages/FpsLimitSettings";
 import MetricsOrderSettings from "./pages/MetricsOrderSettings";
@@ -37,14 +36,6 @@ function App() {
                             <FontAwesomeIcon icon={faGears} title="General" />
                         </div>
                         <a className="hidden md:inline-block">General</a>
-                    </li>
-                    <li
-                        onClick={() => { setActiveMenuButton("keybinds"); }}
-                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " + (activeMenu == "keybinds" ? "bg-gray-800" : "bg-gray-900")}>
-                        <div>
-                            <FontAwesomeIcon icon={faKeyboard} title="Keybinds" />
-                        </div>
-                        <a className="hidden md:inline-block">Keybinds</a>
                     </li>
                     <li
                         onClick={() => { setActiveMenuButton("metrics"); }}
