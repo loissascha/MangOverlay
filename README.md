@@ -13,7 +13,7 @@ You can find installation instructions on the [Releases](https://github.com/lois
 
 
 ![General Settings](readme/generalSettings.png)
-![Keybinding Settings](readme/keybindSettings.png)
 ![Metrics Settings](readme/metricsSettings.png)
 ![Order Settings](readme/orderSettings.png)
 ![FPS Limits](readme/fpsLimits.png)
+![Advanced Config](readme/advancedConfig.png)
