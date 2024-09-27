@@ -9,6 +9,7 @@ import (
 func deleteConfigLine(n string) {
 	Logger.Log(fmt.Sprintf("deleteConfigLine: %s", n))
 	cf := getConfigFile()
+	Logger.Log(fmt.Sprintf("org: %s", cf))
 	newFile := ""
 	for _, v := range cf {
 		org := v
@@ -19,18 +20,28 @@ func deleteConfigLine(n string) {
 
 		// all which have a = sign
 		if strings.Contains(v, "=") {
+			Logger.Log(fmt.Sprintf("has =: %s", v))
 			cmd, _, _ := strings.Cut(v, "=")
 			cmd = strings.TrimSpace(cmd)
-			if cmd == n {
-				continue
+			if !strings.Contains(n, "=") {
+				if cmd == n {
+					continue
+				}
+			} else {
+				if v == n {
+					continue
+				}
 			}
+			Logger.Log("adding to newFile")
 			newFile += org + "\n"
 			continue
 		}
+		Logger.Log(fmt.Sprintf("nas no =: %s", v))
 		nv := strings.TrimSpace(v)
 		if nv == n {
 			continue
 		}
+		Logger.Log("adding to newFile")
 		newFile += org + "\n"
 	}
 	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
@@ -72,11 +83,23 @@ func replaceConfigLines(first string, second string) {
 
 		if strings.Contains(noSpace, "=") {
 			cmd, _, _ := strings.Cut(noSpace, "=")
-			if cmd == first {
-				firstLine = noSpace
+			if strings.Contains(first, "=") {
+				if noSpace == first {
+					firstLine = noSpace
+				}
+			} else {
+				if cmd == first {
+					firstLine = noSpace
+				}
 			}
-			if cmd == second {
-				secondLine = noSpace
+			if strings.Contains(second, "=") {
+				if noSpace == second {
+					secondLine = noSpace
+				}
+			} else {
+				if cmd == second {
+					secondLine = noSpace
+				}
 			}
 			continue
 		}
@@ -95,13 +118,27 @@ func replaceConfigLines(first string, second string) {
 		// containing =
 		if strings.Contains(noSpace, "=") {
 			cmd, _, _ := strings.Cut(noSpace, "=")
-			if cmd == first {
-				newFile += secondLine + "\n"
-				continue
+			if strings.Contains(first, "=") {
+				if noSpace == first {
+					newFile += secondLine + "\n"
+					continue
+				}
+			} else {
+				if cmd == first {
+					newFile += secondLine + "\n"
+					continue
+				}
 			}
-			if cmd == second {
-				newFile += firstLine + "\n"
-				continue
+			if strings.Contains(second, "=") {
+				if noSpace == second {
+					newFile += firstLine + "\n"
+					continue
+				}
+			} else {
+				if cmd == second {
+					newFile += firstLine + "\n"
+					continue
+				}
 			}
 			newFile += v + "\n"
 			continue
