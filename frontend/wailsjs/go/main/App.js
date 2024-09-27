@@ -254,6 +254,10 @@ export function GloballyEnabled() {
   return window['go']['main']['App']['GloballyEnabled']();
 }
 
+export function OrderElementUnderneathElement(arg1, arg2) {
+  return window['go']['main']['App']['OrderElementUnderneathElement'](arg1, arg2);
+}
+
 export function ReloadConfig() {
   return window['go']['main']['App']['ReloadConfig']();
 }

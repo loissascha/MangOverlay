@@ -94,3 +94,7 @@ func (a *App) DeactivateElement(n string) {
 func (a *App) ReplaceElements(first string, second string) {
 	config.CG.ReplaceElements(first, second)
 }
+
+func (a *App) OrderElementUnderneathElement(toOrder string, underneath string) {
+	config.CG.OrderElementUnderneathElement(toOrder, underneath)
+}

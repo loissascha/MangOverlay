@@ -252,6 +252,11 @@ func (c *Config) RemoveUnorderedElement(index int) {
 	ReloadConfig()
 }
 
+func (c *Config) OrderElementUnderneathElement(toOrder string, underneath string) {
+	placeConfigLineUnderneathOther(toOrder, underneath)
+	ReloadConfig()
+}
+
 func initElements() {
 	Elements = []Element{}
 	GPUElementsAvailable = []Element{

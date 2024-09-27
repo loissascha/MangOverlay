@@ -128,6 +128,8 @@ export function GetWineColor():Promise<string>;
 
 export function GloballyEnabled():Promise<boolean>;
 
+export function OrderElementUnderneathElement(arg1:string,arg2:string):Promise<void>;
+
 export function ReloadConfig():Promise<void>;
 
 export function RemoveFPSLimit(arg1:number):Promise<void>;

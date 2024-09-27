@@ -1,9 +1,91 @@
 import { useEffect, useState } from "react"
-import { GetOrderElements, ReplaceElements } from "../../wailsjs/go/main/App"
+import { GetOrderElements, OrderElementUnderneathElement, ReplaceElements } from "../../wailsjs/go/main/App"
 import SettingBox from "../ui/SettingBox"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSortUp, faSortDown, faShuffle } from '@fortawesome/free-solid-svg-icons'
 import { faCircle, faCircleXmark } from "@fortawesome/free-regular-svg-icons"
+import { DndProvider, useDrag, useDrop } from "react-dnd"
+import { HTML5Backend } from "react-dnd-html5-backend"
+
+interface DraggableElementInterface {
+    e: any
+    hasSelection: any
+    selected: any
+    SelectElement: any
+    UnselectElement: any
+    SwapSelectionWith: any
+    ElementUp: any
+    ElementDown: any
+    onDropElement: any
+}
+
+const DraggableElement = ({ e, hasSelection, selected, SelectElement, UnselectElement, SwapSelectionWith, ElementUp, ElementDown, onDropElement }: DraggableElementInterface) => {
+    const [{ isDragging }, drag] = useDrag({
+        type: 'ELEMENT',
+        item: () => {
+            return { name: e.Name }
+        },
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+        }),
+    });
+
+    const [{ isOver }, drop] = useDrop({
+        accept: 'ELEMENT',
+        drop: (item: any) => {
+            onDropElement(item.name, e.Name)
+        },
+        collect: (monitor) => ({
+            isOver: monitor.isOver(),
+        }),
+    })
+
+    return (
+        <div className="">
+            <div ref={drag} className={`grid grid-cols-[1fr_auto] ${isDragging ? 'opacity-50' : ''}`}>
+                <div className="bg-gray-700 p-2 rounded cursor-pointer border border-gray-500" onClick={() => {
+                    if (hasSelection) {
+                        if (e.Name == selected) {
+                            UnselectElement();
+                        } else {
+                            SwapSelectionWith(e.Name);
+                        }
+                    } else {
+                        SelectElement(e.Name);
+                    }
+                }}>
+                    {hasSelection ? (
+                        e.Name == selected ? (
+                            <a className="cursor-pointer me-3" title="Unselect">
+                                <FontAwesomeIcon icon={faCircleXmark} className="me-2" />
+                                {e.Name}
+                            </a>
+                        ) : (
+                            <a className="cursor-pointer me-3" title="Swap with selection">
+                                <FontAwesomeIcon icon={faShuffle} className="me-2" />
+                                {e.Name}
+                            </a>
+                        )
+                    ) : (
+                        <a className="cursor-pointer me-3" title="Select">
+                            <FontAwesomeIcon icon={faCircle} className="me-2" />
+                            {e.Name}
+                        </a>
+                    )}
+                </div>
+                <div className="flex gap-1 ms-2">
+                    <button className="cursor-pointer bg-gray-700 p-2 rounded border border-gray-500 hover:bg-gray-600" onClick={() => ElementUp(e.Name)} title="Sort Up">
+                        <FontAwesomeIcon icon={faSortUp} />
+                    </button>
+                    <button className="cursor-pointer bg-gray-700 p-2 rounded border border-gray-500 hover:bg-gray-600" onClick={() => ElementDown(e.Name)} title="Sort Down">
+                        <FontAwesomeIcon icon={faSortDown} />
+                    </button>
+                </div>
+            </div>
+            <div ref={drop} className={`h-4 ${isOver ? 'bg-gray-400' : isDragging ? 'bg-gray-600' : ''}`}> </div>
+        </div>
+    );
+};
 
 function MetricsOrderSettings() {
     const [elements, setElements] = useState<any>([])
@@ -12,9 +94,7 @@ function MetricsOrderSettings() {
     const [selected, setSelected] = useState<string>("")
 
     useEffect(() => {
-        GetOrderElements().then((r) => {
-            setElements(r)
-        })
+        reloadElement()
     }, [])
 
     useEffect(() => {
@@ -38,6 +118,11 @@ function MetricsOrderSettings() {
         getActiveElements()
     }, [elements])
 
+    async function reloadElement() {
+        const r = await GetOrderElements()
+        setElements(r)
+    }
+
     function ElementUp(name: string) {
         let lastElement = undefined
         for (const e of activeElements) {
@@ -45,9 +130,7 @@ function MetricsOrderSettings() {
                 if (lastElement !== undefined) {
                     // GoReplaceFunc(name, lastElement.Name)
                     ReplaceElements(name, lastElement.Name).then(() => {
-                        GetOrderElements().then((r) => {
-                            setElements(r)
-                        })
+                        reloadElement()
                     })
                     console.log("replace " + name + " with " + lastElement.Name)
                 }
@@ -63,9 +146,7 @@ function MetricsOrderSettings() {
             if (doNow) {
                 // GoReplaceFunc(name, e.Name)
                 ReplaceElements(name, e.Name).then(() => {
-                    GetOrderElements().then((r) => {
-                        setElements(r)
-                    })
+                    reloadElement()
                 })
 
                 console.log("replace " + name + " with " + e.Name)
@@ -89,71 +170,46 @@ function MetricsOrderSettings() {
     function SwapSelectionWith(name: string) {
         ReplaceElements(selected, name).then(() => {
             setHasSelection(false)
-            GetOrderElements().then((r) => {
-                setElements(r)
-            })
+            reloadElement()
         })
     }
 
     return (
-        <>
+        <DndProvider backend={HTML5Backend}>
             <div className="flex gap-5 flex-auto flex-wrap">
                 <div>
-                    <SettingBox header="Active Elements">
+                    <SettingBox header="Active Elements" noGap={true}>
                         {activeElements.map((e: any) => (
-                            <div key={e.Index} className="grid grid-cols-[1fr_auto]">
-                                <div className="bg-gray-700 p-2 rounded cursor-pointer border border-gray-500" onClick={() => {
-                                    if (hasSelection) {
-                                        if (e.Name == selected) {
-                                            UnselectElement()
-                                        }
-                                        else {
-                                            SwapSelectionWith(e.Name)
-                                        }
-                                    } else {
-                                        SelectElement(e.Name)
-                                    }
-                                }}>
-                                    {hasSelection ?
-                                        e.Name == selected ? (
-                                            <a
-                                                className="cursor-pointer me-3"
-                                                title="Unselect"
-                                            ><FontAwesomeIcon icon={faCircleXmark} className="me-2" />{e.Name}</a>
-                                        ) : (
-                                            <a
-                                                className="cursor-pointer me-3"
-                                                title="Swap with selection"
-                                            ><FontAwesomeIcon icon={faShuffle} className="me-2" />{e.Name}</a>
-                                        ) : (
-                                            <a
-                                                className="cursor-pointer me-3"
-                                                title="Select"
-                                            ><FontAwesomeIcon icon={faCircle} className="me-2" />{e.Name}</a>
-                                        )}
-                                </div>
-                                <div className="flex gap-1 ms-2">
-                                    <button
-                                        className="cursor-pointer bg-gray-700 p-2 rounded border border-gray-500 hover:bg-gray-600"
-                                        onClick={() => {
-                                            ElementUp(e.Name)
-                                        }}
-                                        title="Sort Up"
-                                    ><FontAwesomeIcon icon={faSortUp} /></button>
-                                    <button
-                                        className="cursor-pointer bg-gray-700 p-2 rounded border border-gray-500 hover:bg-gray-600"
-                                        onClick={() => {
-                                            ElementDown(e.Name)
-                                        }}
-                                        title="Sort Down"
-                                    ><FontAwesomeIcon icon={faSortDown} /></button>
-                                </div>
-                            </div>
+                            <DraggableElement key={e.Index} e={e}
+                                hasSelection={hasSelection}
+                                selected={selected}
+                                SelectElement={(name: string) => {
+                                    SelectElement(name)
+                                }}
+                                UnselectElement={() => {
+                                    UnselectElement()
+                                }}
+                                SwapSelectionWith={(name: string) => {
+                                    SwapSelectionWith(name)
+                                }} ElementUp={(name: string) => {
+                                    ElementUp(name)
+                                }}
+                                ElementDown={(name: string) => {
+                                    ElementDown(name)
+                                }}
+                                onDropElement={(dragged: string, dropped: string) => {
+                                    if (dragged == dropped) return
+                                    OrderElementUnderneathElement(dragged, dropped).then(() => {
+                                        reloadElement()
+                                    })
+                                    console.log("drop", dragged, dropped)
+                                }}
+                            />
                         ))}
                     </SettingBox>
                 </div>
             </div>
-        </>
+        </DndProvider>
     )
 }
 export default MetricsOrderSettings

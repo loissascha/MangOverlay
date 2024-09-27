@@ -71,6 +71,76 @@ func addConfigLine(n string) int {
 	return onLine
 }
 
+func placeConfigLineUnderneathOther(toMove string, underneath string) {
+	Logger.Log(fmt.Sprintf("placeConfigLineUnderneathOther: put %s underneath %s", toMove, underneath))
+	cf := getConfigFile()
+	newFile := ""
+
+	toMoveLine := ""
+	for _, v := range cf {
+		noSpace := strings.TrimSpace(v)
+
+		if strings.Contains(noSpace, "=") {
+			cmd, _, _ := strings.Cut(noSpace, "=")
+			if strings.Contains(toMove, "=") {
+				if noSpace == toMove {
+					toMoveLine = v
+				}
+			} else {
+				if cmd == toMove {
+					toMoveLine = v
+				}
+			}
+			continue
+		}
+
+		if noSpace == toMove {
+			toMoveLine = v
+		}
+	}
+
+	for _, v := range cf {
+		noSpace := strings.TrimSpace(v)
+
+		if strings.Contains(noSpace, "=") {
+			cmd, _, _ := strings.Cut(noSpace, "=")
+			if strings.Contains(underneath, "=") {
+				if noSpace == underneath {
+					newFile += v + "\n" + toMoveLine + "\n"
+					continue
+				}
+			} else {
+				if cmd == underneath {
+					newFile += v + "\n" + toMoveLine + "\n"
+					continue
+				}
+			}
+			if strings.Contains(toMove, "=") { // dont show original
+				if noSpace == toMove {
+					continue
+				}
+			} else {
+				if cmd == toMove {
+					continue
+				}
+			}
+			newFile += v + "\n"
+			continue
+		}
+
+		if noSpace == underneath {
+			newFile += v + "\n" + toMoveLine + "\n"
+			continue
+		}
+		if noSpace == toMove {
+			continue
+		}
+
+		newFile += v + "\n"
+	}
+	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
+}
+
 func replaceConfigLines(first string, second string) {
 	Logger.Log(fmt.Sprintf("replaceConfigLines: %s with %s", first, second))
 	cf := getConfigFile()
