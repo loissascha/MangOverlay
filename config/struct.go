@@ -8,6 +8,7 @@ type Element struct {
 }
 
 type Config struct {
+	TableColumns        string
 	Orientation         string
 	Position            string
 	RoundCorners        bool
@@ -61,6 +62,7 @@ var CG Config
 var GlobalEnabled bool = false
 
 func setDefaults() {
+	CG.TableColumns = "3"
 	CG.Orientation = "vertical"
 	CG.Position = "top-left"
 	CG.RoundCorners = false

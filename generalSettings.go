@@ -10,6 +10,14 @@ func (a *App) SetOrientation(n string) {
 	config.CG.SetOrientation(n)
 }
 
+func (a *App) GetTableColumns() string {
+	return config.CG.TableColumns
+}
+
+func (a *App) SetTableColumns(n string) {
+	config.CG.SetTableColumns(n)
+}
+
 func (a *App) GetPosition() string {
 	return config.CG.Position
 }

@@ -116,6 +116,8 @@ export function GetRamColor():Promise<string>;
 
 export function GetRoundCorners():Promise<boolean>;
 
+export function GetTableColumns():Promise<string>;
+
 export function GetTextColor():Promise<string>;
 
 export function GetUnorderedElements():Promise<Array<config.Element>>;
@@ -199,6 +201,8 @@ export function SetPosition(arg1:string):Promise<void>;
 export function SetRamColor(arg1:string):Promise<void>;
 
 export function SetRoundedCorners(arg1:boolean):Promise<void>;
+
+export function SetTableColumns(arg1:string):Promise<void>;
 
 export function SetTextColor(arg1:string):Promise<void>;
 

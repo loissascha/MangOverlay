@@ -25,6 +25,15 @@ func (c *Config) SetOrientation(n string) {
 	}
 }
 
+func (c *Config) SetTableColumns(n string) {
+	c.TableColumns = n
+	if n != "" {
+		updateConfigLine("table_columns", n, true)
+	} else {
+		updateConfigLine("table_columns", "3", true)
+	}
+}
+
 func (c *Config) SetPosition(n string) {
 	c.Position = n
 	if n == "" {

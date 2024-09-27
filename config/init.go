@@ -64,6 +64,11 @@ func readConfigs() {
 					}
 				}
 				break
+			case "table_columns":
+				r := strings.TrimSpace(val)
+				foundElement = true
+				CG.TableColumns = r
+				break
 			case "fps_limit":
 				r := strings.TrimSpace(val)
 				addFpsLimitsFromConfig(r)

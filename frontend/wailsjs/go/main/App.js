@@ -230,6 +230,10 @@ export function GetRoundCorners() {
   return window['go']['main']['App']['GetRoundCorners']();
 }
 
+export function GetTableColumns() {
+  return window['go']['main']['App']['GetTableColumns']();
+}
+
 export function GetTextColor() {
   return window['go']['main']['App']['GetTextColor']();
 }
@@ -396,6 +400,10 @@ export function SetRamColor(arg1) {
 
 export function SetRoundedCorners(arg1) {
   return window['go']['main']['App']['SetRoundedCorners'](arg1);
+}
+
+export function SetTableColumns(arg1) {
+  return window['go']['main']['App']['SetTableColumns'](arg1);
 }
 
 export function SetTextColor(arg1) {

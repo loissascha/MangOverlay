@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import SettingBox from "../ui/SettingBox";
-import { ActivateElement, DeactivateElement, GetElements, GetPosition, SetPosition } from "../../wailsjs/go/main/App";
+import { ActivateElement, DeactivateElement, GetElements, GetPosition, GetTableColumns, SetPosition, SetTableColumns } from "../../wailsjs/go/main/App";
 
 function Position() {
     const [position, setPosition] = useState<string>("");
     const [compactMode, setCompactMode] = useState<boolean>(false)
     const [noMargin, setNoMargin] = useState<boolean>(false)
+    const [tableColumns, setTableColumns] = useState<string>("3")
 
     useEffect(() => {
         GetPosition().then((r) => {
             setPosition(r)
             console.log("position: ", r)
         })
+        reloadTableColumns()
     }, [])
+
+    async function reloadTableColumns() {
+        setTableColumns(await GetTableColumns())
+    }
 
     function reloadElements() {
         GetElements().then((r: any) => {
@@ -121,6 +127,23 @@ function Position() {
                             })
                         }
                     }} />
+                </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+                <div><label htmlFor="tableColumns" className="cursor-pointer">Columns</label></div>
+                <div>
+                    <input id="tableColumns"
+                        type="number"
+                        min="1"
+                        max="10"
+                        step="1"
+                        className="w-28 bg-gray-700 p-1 text-center border border-gray-500 rounded"
+                        defaultValue={tableColumns}
+                        onChange={(event) => {
+                            setTableColumns(event.target.value)
+                            SetTableColumns(event.target.value)
+                        }}
+                    />
                 </div>
             </div>
         </SettingBox>
