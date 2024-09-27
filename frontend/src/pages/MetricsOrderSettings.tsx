@@ -2,24 +2,18 @@ import { useEffect, useState } from "react"
 import { GetOrderElements, OrderElementUnderneathElement, ReplaceElements } from "../../wailsjs/go/main/App"
 import SettingBox from "../ui/SettingBox"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSortUp, faSortDown, faShuffle } from '@fortawesome/free-solid-svg-icons'
-import { faCircle, faCircleXmark } from "@fortawesome/free-regular-svg-icons"
+import { faSortUp, faSortDown, faUpDownLeftRight } from '@fortawesome/free-solid-svg-icons'
 import { DndProvider, useDrag, useDrop } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
 
 interface DraggableElementInterface {
     e: any
-    hasSelection: any
-    selected: any
-    SelectElement: any
-    UnselectElement: any
-    SwapSelectionWith: any
     ElementUp: any
     ElementDown: any
     onDropElement: any
 }
 
-const DraggableElement = ({ e, hasSelection, selected, SelectElement, UnselectElement, SwapSelectionWith, ElementUp, ElementDown, onDropElement }: DraggableElementInterface) => {
+const DraggableElement = ({ e, ElementUp, ElementDown, onDropElement }: DraggableElementInterface) => {
     const [{ isDragging }, drag] = useDrag({
         type: 'ELEMENT',
         item: () => {
@@ -42,36 +36,12 @@ const DraggableElement = ({ e, hasSelection, selected, SelectElement, UnselectEl
 
     return (
         <div className="">
-            <div ref={drag} className={`grid grid-cols-[1fr_auto] ${isDragging ? 'opacity-50' : ''}`}>
-                <div className="bg-gray-700 p-2 rounded cursor-pointer border border-gray-500" onClick={() => {
-                    if (hasSelection) {
-                        if (e.Name == selected) {
-                            UnselectElement();
-                        } else {
-                            SwapSelectionWith(e.Name);
-                        }
-                    } else {
-                        SelectElement(e.Name);
-                    }
-                }}>
-                    {hasSelection ? (
-                        e.Name == selected ? (
-                            <a className="cursor-pointer me-3" title="Unselect">
-                                <FontAwesomeIcon icon={faCircleXmark} className="me-2" />
-                                {e.Name}
-                            </a>
-                        ) : (
-                            <a className="cursor-pointer me-3" title="Swap with selection">
-                                <FontAwesomeIcon icon={faShuffle} className="me-2" />
-                                {e.Name}
-                            </a>
-                        )
-                    ) : (
-                        <a className="cursor-pointer me-3" title="Select">
-                            <FontAwesomeIcon icon={faCircle} className="me-2" />
-                            {e.Name}
-                        </a>
-                    )}
+            <div className={`grid grid-cols-[1fr_auto] ${isDragging ? 'opacity-50' : ''}`}>
+                <div ref={drag} className={"bg-gray-700 p-2 rounded cursor-pointer border border-gray-500"}>
+                    <a className="cursor-pointer me-3" title="Unselect">
+                        <FontAwesomeIcon icon={faUpDownLeftRight} className="me-2" />
+                        {e.Name}
+                    </a>
                 </div>
                 <div className="flex gap-1 ms-2">
                     <button className="cursor-pointer bg-gray-700 p-2 rounded border border-gray-500 hover:bg-gray-600" onClick={() => ElementUp(e.Name)} title="Sort Up">
@@ -90,8 +60,6 @@ const DraggableElement = ({ e, hasSelection, selected, SelectElement, UnselectEl
 function MetricsOrderSettings() {
     const [elements, setElements] = useState<any>([])
     const [activeElements, setActiveElements] = useState<any>([])
-    const [hasSelection, setHasSelection] = useState<boolean>(false)
-    const [selected, setSelected] = useState<string>("")
 
     useEffect(() => {
         reloadElement()
@@ -158,22 +126,6 @@ function MetricsOrderSettings() {
         }
     }
 
-    function SelectElement(name: string) {
-        setHasSelection(true)
-        setSelected(name)
-    }
-
-    function UnselectElement() {
-        setHasSelection(false)
-    }
-
-    function SwapSelectionWith(name: string) {
-        ReplaceElements(selected, name).then(() => {
-            setHasSelection(false)
-            reloadElement()
-        })
-    }
-
     return (
         <DndProvider backend={HTML5Backend}>
             <div className="flex gap-5 flex-auto flex-wrap">
@@ -181,17 +133,7 @@ function MetricsOrderSettings() {
                     <SettingBox header="Active Elements" noGap={true}>
                         {activeElements.map((e: any) => (
                             <DraggableElement key={e.Index} e={e}
-                                hasSelection={hasSelection}
-                                selected={selected}
-                                SelectElement={(name: string) => {
-                                    SelectElement(name)
-                                }}
-                                UnselectElement={() => {
-                                    UnselectElement()
-                                }}
-                                SwapSelectionWith={(name: string) => {
-                                    SwapSelectionWith(name)
-                                }} ElementUp={(name: string) => {
+                                ElementUp={(name: string) => {
                                     ElementUp(name)
                                 }}
                                 ElementDown={(name: string) => {
