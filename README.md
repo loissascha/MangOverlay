@@ -2,7 +2,7 @@
 
 ## About
 
-MangOverlay is an open source GUI app for managing your MangoHud configuration. It aims to provide as much flexibility with it's settings as possible. 
+MangOverlay is an open source GUI app for managing your [MangoHud](https://github.com/flightlessmango/MangoHud) configuration. It aims to provide as much flexibility with it's settings as possible. 
 
 
 ## Building from source
