@@ -21,5 +21,4 @@ You can find installation instructions on the [Releases](https://github.com/lois
 ![General Settings](readme/generalSettings.png)
 ![Metrics Settings](readme/metricsSettings.png)
 ![Order Settings](readme/orderSettings.png)
-![FPS Limits](readme/fpsLimits.png)
 ![Advanced Config](readme/advancedConfig.png)
