@@ -55,14 +55,6 @@ function App() {
                         <a className="hidden md:inline-block">Change Order</a>
                     </li>
                     <li
-                        onClick={() => { setActiveMenuButton("fpslimits"); }}
-                        className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " + (activeMenu == "fpslimits" ? "bg-gray-800" : "bg-gray-900")}>
-                        <div>
-                            <FontAwesomeIcon icon={faDisplay} title="FPS Limits" />
-                        </div>
-                        <a className="hidden md:inline-block">FPS Limits</a>
-                    </li>
-                    <li
                         onClick={() => { setActiveMenuButton("manual"); }}
                         className={"pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " + (activeMenu == "manual" ? "bg-gray-800" : "bg-gray-900")}>
                         <div>
@@ -81,8 +73,6 @@ function App() {
                             return <MetricsSettings />
                         case "metrics-order":
                             return <MetricsOrderSettings />
-                        case "fpslimits":
-                            return <FpsLimitSettings />
                         case "manual":
                             return <AdvancedSettings />
                         default:
