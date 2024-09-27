@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { ActivateElement, DeactivateElement, GetElements, GetFpsLoadColor0, GetFpsLoadColor1, GetFpsLoadColor2, GetFpsLoadValue, SetFpsLoadColors, SetFpsLoadValue } from "../../wailsjs/go/main/App";
 import SettingBox from "../ui/SettingBox"
 import { SketchPicker } from "react-color";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 
 function Fps() {
     const [fpsLoadColor0, setFpsLoadColor0] = useState<string>("");
@@ -15,6 +17,10 @@ function Fps() {
 
     const [fpsLoadValue, setFpsLoadValue] = useState<string>("")
     const [fpsColorChange, setFpsColorChange] = useState<boolean>(false)
+
+    const defaultFpsLoadColor0 = "39F900"
+    const defaultFpsLoadColor1 = "FDFD09"
+    const defaultFpsLoadColor2 = "B22222"
 
     useEffect(() => {
         GetFpsLoadValue().then((r) => {
@@ -80,17 +86,28 @@ function Fps() {
                 />
                 <label htmlFor="fpsloadcolors">Load Colors:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + fpsLoadColor0
-                        }}
-                        onClick={() => {
-                            setShowFpsLoadPicker0(!showFpsLoadPicker0)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
-                    >
-                        {fpsLoadColor0}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + fpsLoadColor0
+                            }}
+                            onClick={() => {
+                                setShowFpsLoadPicker0(!showFpsLoadPicker0)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
+                        >
+                            {fpsLoadColor0}
+                        </button>
+                        {fpsLoadColor0 != defaultFpsLoadColor0 && (
+                            <button
+                                onClick={() => {
+                                    setFpsLoadColor0(defaultFpsLoadColor0)
+                                    SetFpsLoadColors(defaultFpsLoadColor0, fpsLoadColor1, fpsLoadColor2)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showFpsLoadPicker0 ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -105,17 +122,28 @@ function Fps() {
                                 SetFpsLoadColors(col, fpsLoadColor1, fpsLoadColor2)
                             }} />
                         </div>) : null}
-                    <button
-                        style={{
-                            backgroundColor: "#" + fpsLoadColor1
-                        }}
-                        onClick={() => {
-                            setShowFpsLoadPicker1(!showFpsLoadPicker1)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
-                    >
-                        {fpsLoadColor1}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + fpsLoadColor1
+                            }}
+                            onClick={() => {
+                                setShowFpsLoadPicker1(!showFpsLoadPicker1)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
+                        >
+                            {fpsLoadColor1}
+                        </button>
+                        {fpsLoadColor1 != defaultFpsLoadColor1 && (
+                            <button
+                                onClick={() => {
+                                    setFpsLoadColor1(defaultFpsLoadColor1)
+                                    SetFpsLoadColors(fpsLoadColor0, defaultFpsLoadColor1, fpsLoadColor2)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showFpsLoadPicker1 ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -130,17 +158,28 @@ function Fps() {
                                 SetFpsLoadColors(fpsLoadColor0, col, fpsLoadColor2)
                             }} />
                         </div>) : null}
-                    <button
-                        style={{
-                            backgroundColor: "#" + fpsLoadColor2
-                        }}
-                        onClick={() => {
-                            setShowFpsLoadPicker2(!showFpsLoadPicker2)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28 block"
-                    >
-                        {fpsLoadColor2}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + fpsLoadColor2
+                            }}
+                            onClick={() => {
+                                setShowFpsLoadPicker2(!showFpsLoadPicker2)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block"
+                        >
+                            {fpsLoadColor2}
+                        </button>
+                        {fpsLoadColor2 != defaultFpsLoadColor2 && (
+                            <button
+                                onClick={() => {
+                                    setFpsLoadColor2(defaultFpsLoadColor2)
+                                    SetFpsLoadColors(fpsLoadColor0, fpsLoadColor1, defaultFpsLoadColor2)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showFpsLoadPicker2 ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
