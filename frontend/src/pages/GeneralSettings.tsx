@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetOrientation } from "../../wailsjs/go/main/App";
 import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
-import Colors from "../generalSettings/Colors";
-import Text from "../generalSettings/Text";
-import Position from "../generalSettings/Position";
-import Gpu from "../generalSettings/Gpu";
-import Cpu from "../generalSettings/Cpu";
-import Fps from "../generalSettings/Fps";
-import Graphs from "../generalSettings/Graphs";
-import Keybinds from "../generalSettings/Keybinds";
+import Colors from "../settings/Colors";
+import Text from "../settings/Text";
+import Position from "../settings/Position";
+import Gpu from "../settings/Gpu";
+import Cpu from "../settings/Cpu";
+import Fps from "../settings/Fps";
+import Graphs from "../settings/Graphs";
+import Keybinds from "../settings/Keybinds";
 
 function GeneralSettings() {
     const [orientation, setOrientation] = useState<string>("");
