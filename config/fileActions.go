@@ -9,7 +9,6 @@ import (
 func deleteConfigLine(n string) {
 	Logger.Log(fmt.Sprintf("deleteConfigLine: %s", n))
 	cf := getConfigFile()
-	Logger.Log(fmt.Sprintf("org: %s", cf))
 	newFile := ""
 	for _, v := range cf {
 		org := v
@@ -20,7 +19,6 @@ func deleteConfigLine(n string) {
 
 		// all which have a = sign
 		if strings.Contains(v, "=") {
-			Logger.Log(fmt.Sprintf("has =: %s", v))
 			cmd, _, _ := strings.Cut(v, "=")
 			cmd = strings.TrimSpace(cmd)
 			if !strings.Contains(n, "=") {
@@ -32,16 +30,13 @@ func deleteConfigLine(n string) {
 					continue
 				}
 			}
-			Logger.Log("adding to newFile")
 			newFile += org + "\n"
 			continue
 		}
-		Logger.Log(fmt.Sprintf("nas no =: %s", v))
 		nv := strings.TrimSpace(v)
 		if nv == n {
 			continue
 		}
-		Logger.Log("adding to newFile")
 		newFile += org + "\n"
 	}
 	os.WriteFile(getConfigFilePath(), []byte(newFile), 0766)
