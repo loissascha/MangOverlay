@@ -2,10 +2,14 @@ import SettingBox from "../ui/SettingBox";
 import { GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, GetFontSize, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetFontSize, SetOrientation, GetTextColor, SetTextColor, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, SetCpuLoadColors, GetGpuLoadColor0, GetGpuLoadColor1, GetGpuLoadColor2, SetGpuLoadColors } from "../../wailsjs/go/main/App";
 import { useEffect, useState } from "react";
 import { SketchPicker } from "react-color";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 
 function Text() {
     const [textColor, setTextColor] = useState<string>("");
     const [showTextPicker, setShowTextPicker] = useState<boolean>(false);
+
+    const defaultTextColor = "FFFFFF"
 
 
     const [fontSize, setFontSize] = useState<string>("");
@@ -44,17 +48,28 @@ function Text() {
                 />
                 <label htmlFor="textcolor" className="me-2">Color:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + textColor
-                        }}
-                        onClick={() => {
-                            setShowTextPicker(!showTextPicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {textColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + textColor
+                            }}
+                            onClick={() => {
+                                setShowTextPicker(!showTextPicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {textColor}
+                        </button>
+                        {textColor != defaultTextColor && (
+                            <button
+                                onClick={() => {
+                                    setTextColor(defaultTextColor)
+                                    SetTextColor(defaultTextColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showTextPicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {

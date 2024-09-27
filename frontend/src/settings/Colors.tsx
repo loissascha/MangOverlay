@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
 import { GetBatteryColor, GetCpuColor, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetEngineColor, GetFrametimeColor, GetGpuColor, GetGpuLoadColor0, GetGpuLoadColor1, GetGpuLoadColor2, GetIoColor, GetMediaColor, GetNetworkColor, GetRamColor, GetVramColor, GetWineColor, SetBatteryColor, SetCpuColor, SetCpuLoadColors, SetEngineColor, SetFrametimeColor, SetGpuColor, SetGpuLoadColors, SetIoColor, SetMediaColor, SetNetworkColor, SetRamColor, SetVramColor, SetWineColor } from "../../wailsjs/go/main/App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 
 function Colors() {
     const [gpuColor, setGpuColor] = useState<string>("");
@@ -37,6 +39,18 @@ function Colors() {
 
     const [networkColor, setNetworkColor] = useState<string>("");
     const [showNetworkPicker, setShowNetworkPicker] = useState<boolean>(false);
+
+    const defaultCpuColor = "2E97CB"
+    const defaultGpuColor = "2E9762"
+    const defaultVramColor = "AD64C1"
+    const defaultRamColor = "C26693"
+    const defaultEngineColor = "EB5B5B"
+    const defaultIoColor = "A491D3"
+    const defaultFrametimeColor = "00FF00"
+    const defaultMediaPlayerColor = "FFFFFF"
+    const defaultWineColor = "EB4B4B"
+    const defaultBatteryColor = "FF9078"
+    const defaultNetworkColor = "E07B85"
 
     useEffect(() => {
         GetGpuColor().then((r) => {
@@ -80,17 +94,28 @@ function Colors() {
             <div className="grid grid-cols-2 gap-3">
                 <label htmlFor="cpucolor" className="me-2">CPU:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + cpuColor
-                        }}
-                        onClick={() => {
-                            setShowCpuPicker(!showCpuPicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {cpuColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + cpuColor
+                            }}
+                            onClick={() => {
+                                setShowCpuPicker(!showCpuPicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {cpuColor}
+                        </button>
+                        {cpuColor != defaultCpuColor && (
+                            <button
+                                onClick={() => {
+                                    setCpuColor(defaultCpuColor)
+                                    SetCpuColor(defaultCpuColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showCpuPicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -108,17 +133,28 @@ function Colors() {
                 </div>
                 <label htmlFor="gpucolor" className="me-2">GPU:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + gpuColor
-                        }}
-                        onClick={() => {
-                            setShowGpuPicker(!showGpuPicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {gpuColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + gpuColor
+                            }}
+                            onClick={() => {
+                                setShowGpuPicker(!showGpuPicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {gpuColor}
+                        </button>
+                        {gpuColor != defaultGpuColor && (
+                            <button
+                                onClick={() => {
+                                    setGpuColor(defaultGpuColor)
+                                    SetGpuColor(defaultGpuColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showGpuPicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -136,17 +172,28 @@ function Colors() {
                 </div>
                 <label htmlFor="vramcolor" className="me-2">VRAM:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + vramColor
-                        }}
-                        onClick={() => {
-                            setShowVramPicker(!showVramPicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {vramColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + vramColor
+                            }}
+                            onClick={() => {
+                                setShowVramPicker(!showVramPicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {vramColor}
+                        </button>
+                        {vramColor != defaultVramColor && (
+                            <button
+                                onClick={() => {
+                                    setVramColor(defaultVramColor)
+                                    SetVramColor(defaultVramColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showVramPicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -164,17 +211,28 @@ function Colors() {
                 </div>
                 <label htmlFor="ramcolor" className="me-2">RAM:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + ramColor
-                        }}
-                        onClick={() => {
-                            setShowRamPicker(!showRamPicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {ramColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + ramColor
+                            }}
+                            onClick={() => {
+                                setShowRamPicker(!showRamPicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {ramColor}
+                        </button>
+                        {ramColor != defaultRamColor && (
+                            <button
+                                onClick={() => {
+                                    setRamColor(defaultRamColor)
+                                    SetRamColor(defaultRamColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showRamPicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -192,17 +250,28 @@ function Colors() {
                 </div>
                 <label htmlFor="enginecolor" className="me-2">Engine:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + engineColor
-                        }}
-                        onClick={() => {
-                            setShowEnginePicker(!showEnginePicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {engineColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + engineColor
+                            }}
+                            onClick={() => {
+                                setShowEnginePicker(!showEnginePicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {engineColor}
+                        </button>
+                        {engineColor != defaultEngineColor && (
+                            <button
+                                onClick={() => {
+                                    setEngineColor(defaultEngineColor)
+                                    SetEngineColor(defaultEngineColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showEnginePicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -220,17 +289,28 @@ function Colors() {
                 </div>
                 <label htmlFor="iocolor" className="me-2">IO:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + ioColor
-                        }}
-                        onClick={() => {
-                            setShowIoPicker(!showIoPicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {ioColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + ioColor
+                            }}
+                            onClick={() => {
+                                setShowIoPicker(!showIoPicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {ioColor}
+                        </button>
+                        {ioColor != defaultIoColor && (
+                            <button
+                                onClick={() => {
+                                    setIoColor(defaultIoColor)
+                                    SetIoColor(defaultIoColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showIoPicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -248,17 +328,28 @@ function Colors() {
                 </div>
                 <label htmlFor="frametimecolor" className="me-2">Frametime:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + frametimeColor
-                        }}
-                        onClick={() => {
-                            setShowFrametimePicker(!showFrametimePicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {frametimeColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + frametimeColor
+                            }}
+                            onClick={() => {
+                                setShowFrametimePicker(!showFrametimePicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {frametimeColor}
+                        </button>
+                        {frametimeColor != defaultFrametimeColor && (
+                            <button
+                                onClick={() => {
+                                    setFrametimeColor(defaultFrametimeColor)
+                                    SetFrametimeColor(defaultFrametimeColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showFrametimePicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -276,17 +367,28 @@ function Colors() {
                 </div>
                 <label htmlFor="mediacolor" className="me-2">Media Player:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + mediaColor
-                        }}
-                        onClick={() => {
-                            setShowMediaPicker(!showMediaPicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {mediaColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + mediaColor
+                            }}
+                            onClick={() => {
+                                setShowMediaPicker(!showMediaPicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {mediaColor}
+                        </button>
+                        {mediaColor != defaultMediaPlayerColor && (
+                            <button
+                                onClick={() => {
+                                    setMediaColor(defaultMediaPlayerColor)
+                                    SetMediaColor(defaultMediaPlayerColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showMediaPicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -304,17 +406,28 @@ function Colors() {
                 </div>
                 <label htmlFor="winecolor" className="me-2">Wine:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + wineColor
-                        }}
-                        onClick={() => {
-                            setShowWinePicker(!showWinePicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {wineColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + wineColor
+                            }}
+                            onClick={() => {
+                                setShowWinePicker(!showWinePicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {wineColor}
+                        </button>
+                        {wineColor != defaultWineColor && (
+                            <button
+                                onClick={() => {
+                                    setWineColor(defaultWineColor)
+                                    SetWineColor(defaultWineColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showWinePicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -332,17 +445,28 @@ function Colors() {
                 </div>
                 <label htmlFor="batterycolor" className="me-2">Battery:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + batteryColor
-                        }}
-                        onClick={() => {
-                            setShowBatteryPicker(!showBatteryPicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {batteryColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + batteryColor
+                            }}
+                            onClick={() => {
+                                setShowBatteryPicker(!showBatteryPicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {batteryColor}
+                        </button>
+                        {batteryColor != defaultBatteryColor && (
+                            <button
+                                onClick={() => {
+                                    setBatteryColor(defaultBatteryColor)
+                                    SetBatteryColor(defaultBatteryColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showBatteryPicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -360,17 +484,28 @@ function Colors() {
                 </div>
                 <label htmlFor="networkcolor" className="me-2">Network:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + networkColor
-                        }}
-                        onClick={() => {
-                            setShowNetworkPicker(!showNetworkPicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {networkColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + networkColor
+                            }}
+                            onClick={() => {
+                                setShowNetworkPicker(!showNetworkPicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {networkColor}
+                        </button>
+                        {networkColor != defaultNetworkColor && (
+                            <button
+                                onClick={() => {
+                                    setNetworkColor(defaultNetworkColor)
+                                    SetNetworkColor(defaultNetworkColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showNetworkPicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
 import { SetCpuLoadColors, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetCpuLoadValue, GetCpuText, SetCpuLoadValue, SetCpuText, GetElements, DeactivateElement, ActivateElement } from "../../wailsjs/go/main/App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 
 function Cpu() {
     const [cpuLoadColor0, setCpuLoadColor0] = useState<string>("");
@@ -17,6 +19,10 @@ function Cpu() {
     const [cpuLoadValue, setCpuLoadValue] = useState<string>("")
 
     const [cpuLoadChange, setCpuLoadChange] = useState<boolean>(false)
+
+    const defaultCpuLoadColor0 = "39F900"
+    const defaultCpuLoadColor1 = "FDFD09"
+    const defaultCpuLoadColor2 = "B22222"
 
     useEffect(() => {
         GetCpuText().then((r) => {
@@ -99,17 +105,28 @@ function Cpu() {
                 />
                 <label htmlFor="cpucolor" className="me-2">Load Colors:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + cpuLoadColor0
-                        }}
-                        onClick={() => {
-                            setShowCpuLoadPicker0(!showCpuLoadPicker0)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
-                    >
-                        {cpuLoadColor0}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + cpuLoadColor0
+                            }}
+                            onClick={() => {
+                                setShowCpuLoadPicker0(!showCpuLoadPicker0)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
+                        >
+                            {cpuLoadColor0}
+                        </button>
+                        {cpuLoadColor0 != defaultCpuLoadColor0 && (
+                            <button
+                                onClick={() => {
+                                    setCpuLoadColor0(defaultCpuLoadColor0)
+                                    SetCpuLoadColors(defaultCpuLoadColor0, cpuLoadColor1, cpuLoadColor2)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showCpuLoadPicker0 ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -124,17 +141,28 @@ function Cpu() {
                                 SetCpuLoadColors(col, cpuLoadColor1, cpuLoadColor2)
                             }} />
                         </div>) : null}
-                    <button
-                        style={{
-                            backgroundColor: "#" + cpuLoadColor1
-                        }}
-                        onClick={() => {
-                            setShowCpuLoadPicker1(!showCpuLoadPicker1)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
-                    >
-                        {cpuLoadColor1}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + cpuLoadColor1
+                            }}
+                            onClick={() => {
+                                setShowCpuLoadPicker1(!showCpuLoadPicker1)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
+                        >
+                            {cpuLoadColor1}
+                        </button>
+                        {cpuLoadColor1 != defaultCpuLoadColor1 && (
+                            <button
+                                onClick={() => {
+                                    setCpuLoadColor1(defaultCpuLoadColor1)
+                                    SetCpuLoadColors(cpuLoadColor0, defaultCpuLoadColor1, cpuLoadColor2)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showCpuLoadPicker1 ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -149,17 +177,28 @@ function Cpu() {
                                 SetCpuLoadColors(cpuLoadColor0, col, cpuLoadColor2)
                             }} />
                         </div>) : null}
-                    <button
-                        style={{
-                            backgroundColor: "#" + cpuLoadColor2
-                        }}
-                        onClick={() => {
-                            setShowCpuLoadPicker2(!showCpuLoadPicker2)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28 block"
-                    >
-                        {cpuLoadColor2}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + cpuLoadColor2
+                            }}
+                            onClick={() => {
+                                setShowCpuLoadPicker2(!showCpuLoadPicker2)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block"
+                        >
+                            {cpuLoadColor2}
+                        </button>
+                        {cpuLoadColor2 != defaultCpuLoadColor2 && (
+                            <button
+                                onClick={() => {
+                                    setCpuLoadColor2(defaultCpuLoadColor2)
+                                    SetCpuLoadColors(cpuLoadColor0, cpuLoadColor1, defaultCpuLoadColor2)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showCpuLoadPicker2 ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
