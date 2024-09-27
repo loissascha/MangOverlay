@@ -13,7 +13,7 @@ interface DraggableElementInterface {
     onDropElement: any
 }
 
-const DraggableElement = ({ e, ElementUp, ElementDown, onDropElement }: DraggableElementInterface) => {
+function DraggableElement({ e, ElementUp, ElementDown, onDropElement }: DraggableElementInterface) {
     const [{ isDragging }, drag] = useDrag({
         type: 'ELEMENT',
         item: () => {
