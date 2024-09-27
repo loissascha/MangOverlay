@@ -18,8 +18,8 @@ function UserLines() {
         setElements(r)
     }
     return (
-        <SettingBox header="Add custom lines in config">
-            <div>
+        <SettingBox header="Additional config" subheader="Add your own custom text into your configuration file!">
+            <div className="flex">
                 <div className="flex gap-3">
                     <div>
                         <input
