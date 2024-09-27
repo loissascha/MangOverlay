@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
 import { GetBatteryColor, GetCpuColor, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetEngineColor, GetFrametimeColor, GetGpuColor, GetGpuLoadColor0, GetGpuLoadColor1, GetGpuLoadColor2, GetIoColor, GetMediaColor, GetNetworkColor, GetRamColor, GetVramColor, GetWineColor, SetBatteryColor, SetCpuColor, SetCpuLoadColors, SetEngineColor, SetFrametimeColor, SetGpuColor, SetGpuLoadColors, SetIoColor, SetMediaColor, SetNetworkColor, SetRamColor, SetVramColor, SetWineColor } from "../../wailsjs/go/main/App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 
 function Colors() {
     const [gpuColor, setGpuColor] = useState<string>("");
@@ -37,6 +39,9 @@ function Colors() {
 
     const [networkColor, setNetworkColor] = useState<string>("");
     const [showNetworkPicker, setShowNetworkPicker] = useState<boolean>(false);
+
+    const defaultCpuColor = "2E97CB"
+    const defaultGpuColor = "2E9762"
 
     useEffect(() => {
         GetGpuColor().then((r) => {
@@ -80,17 +85,28 @@ function Colors() {
             <div className="grid grid-cols-2 gap-3">
                 <label htmlFor="cpucolor" className="me-2">CPU:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + cpuColor
-                        }}
-                        onClick={() => {
-                            setShowCpuPicker(!showCpuPicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {cpuColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + cpuColor
+                            }}
+                            onClick={() => {
+                                setShowCpuPicker(!showCpuPicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {cpuColor}
+                        </button>
+                        {cpuColor != defaultCpuColor && (
+                            <button
+                                onClick={() => {
+                                    setCpuColor(defaultCpuColor)
+                                    SetCpuColor(defaultCpuColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showCpuPicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
@@ -108,17 +124,28 @@ function Colors() {
                 </div>
                 <label htmlFor="gpucolor" className="me-2">GPU:</label>
                 <div>
-                    <button
-                        style={{
-                            backgroundColor: "#" + gpuColor
-                        }}
-                        onClick={() => {
-                            setShowGpuPicker(!showGpuPicker)
-                        }}
-                        className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                    >
-                        {gpuColor}
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            style={{
+                                backgroundColor: "#" + gpuColor
+                            }}
+                            onClick={() => {
+                                setShowGpuPicker(!showGpuPicker)
+                            }}
+                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
+                        >
+                            {gpuColor}
+                        </button>
+                        {gpuColor != defaultGpuColor && (
+                            <button
+                                onClick={() => {
+                                    setGpuColor(defaultGpuColor)
+                                    SetGpuColor(defaultGpuColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
                     {showGpuPicker ? (
                         <div className="absolute z-50 text-black">
                             <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
