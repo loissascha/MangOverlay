@@ -10,15 +10,13 @@ import Cpu from "../settings/Cpu";
 import Fps from "../settings/Fps";
 import Graphs from "../settings/Graphs";
 import Keybinds from "../settings/Keybinds";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 
 function GeneralSettings() {
     const [orientation, setOrientation] = useState<string>("");
     const [rounded, setRounded] = useState<boolean>(false);
 
-
     const [backgroundColor, setBackgroundColor] = useState<string>("");
-    const [showBackgroundPicker, setShowBackgroundPicker] = useState<boolean>(false);
-
     const [backgroundAlpha, setBackgroundAlpha] = useState<string>("");
 
     useEffect(() => {
@@ -80,22 +78,11 @@ function GeneralSettings() {
                         <div className="grid grid-cols-2 gap-3">
                             <label htmlFor="bgcolor" className="me-2">Color:</label>
                             <div>
-                                <button
-                                    style={{
+                                <Popover className="relative">
+                                    <PopoverButton style={{
                                         backgroundColor: "#" + backgroundColor
-                                    }}
-                                    onClick={() => {
-                                        setShowBackgroundPicker(!showBackgroundPicker)
-                                    }}
-                                    className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                                >
-                                    {backgroundColor}
-                                </button>
-                                {showBackgroundPicker ? (
-                                    <div className="absolute z-50 text-black">
-                                        <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                            setShowBackgroundPicker(false)
-                                        }}> </div>
+                                    }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{backgroundColor}</PopoverButton>
+                                    <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
                                         <SketchPicker color={backgroundColor} onChange={(color) => {
                                             let col = color.hex;
                                             if (col[0] == "#") {
@@ -104,7 +91,8 @@ function GeneralSettings() {
                                             setBackgroundColor(col)
                                             SetBackgroundColor(col)
                                         }} />
-                                    </div>) : null}
+                                    </PopoverPanel>
+                                </Popover>
                             </div>
                             <label htmlFor="bgalpha" className="me-2">Alpha:</label>
                             <input
