@@ -13,6 +13,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@headlessui/react": "^2.1.8",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.42",
     "react": "^18.2.0",
