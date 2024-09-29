@@ -4,19 +4,15 @@ import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 
 function Gpu() {
     const [gpuText, setGpuText] = useState<string>("")
     const [gpuLoadValue, setGpuLoadValue] = useState<string>("")
 
     const [gpuLoadColor0, setGpuLoadColor0] = useState<string>("");
-    const [showGpuLoadPicker0, setShowGpuLoadPicker0] = useState<boolean>(false);
-
     const [gpuLoadColor1, setGpuLoadColor1] = useState<string>("");
-    const [showGpuLoadPicker1, setShowGpuLoadPicker1] = useState<boolean>(false);
-
     const [gpuLoadColor2, setGpuLoadColor2] = useState<string>("");
-    const [showGpuLoadPicker2, setShowGpuLoadPicker2] = useState<boolean>(false);
 
     const [gpuLoadChange, setGpuLoadChange] = useState<boolean>(false)
 
@@ -106,17 +102,21 @@ function Gpu() {
                 <label htmlFor="cpucolor" className="me-2">Load Colors:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + gpuLoadColor0
-                            }}
-                            onClick={() => {
-                                setShowGpuLoadPicker0(!showGpuLoadPicker0)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
-                        >
-                            {gpuLoadColor0}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28 mb-2">{gpuLoadColor0}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={gpuLoadColor0} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setGpuLoadColor0(col)
+                                    SetGpuLoadColors(col, gpuLoadColor1, gpuLoadColor2)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {gpuLoadColor0 != defaultGpuLoadColor0 && (
                             <button
                                 onClick={() => {
@@ -127,32 +127,22 @@ function Gpu() {
                             </button>
                         )}
                     </div>
-                    {showGpuLoadPicker0 ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowGpuLoadPicker0(false)
-                            }}> </div>
-                            <SketchPicker color={gpuLoadColor0} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setGpuLoadColor0(col)
-                                SetGpuLoadColors(col, gpuLoadColor1, gpuLoadColor2)
-                            }} />
-                        </div>) : null}
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + gpuLoadColor1
-                            }}
-                            onClick={() => {
-                                setShowGpuLoadPicker1(!showGpuLoadPicker1)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
-                        >
-                            {gpuLoadColor1}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28 mb-2">{gpuLoadColor1}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={gpuLoadColor1} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setGpuLoadColor1(col)
+                                    SetGpuLoadColors(gpuLoadColor0, col, gpuLoadColor2)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {gpuLoadColor1 != defaultGpuLoadColor1 && (
                             <button
                                 onClick={() => {
@@ -163,32 +153,22 @@ function Gpu() {
                             </button>
                         )}
                     </div>
-                    {showGpuLoadPicker1 ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowGpuLoadPicker1(false)
-                            }}> </div>
-                            <SketchPicker color={gpuLoadColor1} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setGpuLoadColor1(col)
-                                SetGpuLoadColors(gpuLoadColor0, col, gpuLoadColor2)
-                            }} />
-                        </div>) : null}
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + gpuLoadColor2
-                            }}
-                            onClick={() => {
-                                setShowGpuLoadPicker2(!showGpuLoadPicker2)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block"
-                        >
-                            {gpuLoadColor2}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{gpuLoadColor2}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={gpuLoadColor2} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setGpuLoadColor2(col)
+                                    SetGpuLoadColors(gpuLoadColor0, gpuLoadColor1, col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {gpuLoadColor2 != defaultGpuLoadColor2 && (
                             <button
                                 onClick={() => {
@@ -199,20 +179,6 @@ function Gpu() {
                             </button>
                         )}
                     </div>
-                    {showGpuLoadPicker2 ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowGpuLoadPicker2(false)
-                            }}> </div>
-                            <SketchPicker color={gpuLoadColor2} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setGpuLoadColor2(col)
-                                SetGpuLoadColors(gpuLoadColor0, gpuLoadColor1, col)
-                            }} />
-                        </div>) : null}
                 </div>
             </div>
         </SettingBox>

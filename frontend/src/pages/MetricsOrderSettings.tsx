@@ -130,7 +130,7 @@ function MetricsOrderSettings() {
         <DndProvider backend={HTML5Backend}>
             <div className="flex gap-5 flex-auto flex-wrap">
                 <div>
-                    <SettingBox header="Active Elements" noGap={true}>
+                    <SettingBox header="Active Elements" subheader="Drag and Drop elements to change their order" noGap={true}>
                         {activeElements.map((e: any) => (
                             <DraggableElement key={e.Index} e={e}
                                 ElementUp={(name: string) => {

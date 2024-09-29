@@ -4,41 +4,20 @@ import { SketchPicker } from "react-color";
 import { GetBatteryColor, GetCpuColor, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetEngineColor, GetFrametimeColor, GetGpuColor, GetGpuLoadColor0, GetGpuLoadColor1, GetGpuLoadColor2, GetIoColor, GetMediaColor, GetNetworkColor, GetRamColor, GetVramColor, GetWineColor, SetBatteryColor, SetCpuColor, SetCpuLoadColors, SetEngineColor, SetFrametimeColor, SetGpuColor, SetGpuLoadColors, SetIoColor, SetMediaColor, SetNetworkColor, SetRamColor, SetVramColor, SetWineColor } from "../../wailsjs/go/main/App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 
 function Colors() {
     const [gpuColor, setGpuColor] = useState<string>("");
-    const [showGpuPicker, setShowGpuPicker] = useState<boolean>(false);
-
-
     const [cpuColor, setCpuColor] = useState<string>("");
-    const [showCpuPicker, setShowCpuPicker] = useState<boolean>(false);
-
     const [vramColor, setVramColor] = useState<string>("");
-    const [showVramPicker, setShowVramPicker] = useState<boolean>(false);
-
     const [ramColor, setRamColor] = useState<string>("");
-    const [showRamPicker, setShowRamPicker] = useState<boolean>(false);
-
     const [engineColor, setEngineColor] = useState<string>("");
-    const [showEnginePicker, setShowEnginePicker] = useState<boolean>(false);
-
     const [ioColor, setIoColor] = useState<string>("");
-    const [showIoPicker, setShowIoPicker] = useState<boolean>(false);
-
     const [frametimeColor, setFrametimeColor] = useState<string>("");
-    const [showFrametimePicker, setShowFrametimePicker] = useState<boolean>(false);
-
     const [mediaColor, setMediaColor] = useState<string>("");
-    const [showMediaPicker, setShowMediaPicker] = useState<boolean>(false);
-
     const [wineColor, setWineColor] = useState<string>("");
-    const [showWinePicker, setShowWinePicker] = useState<boolean>(false);
-
     const [batteryColor, setBatteryColor] = useState<string>("");
-    const [showBatteryPicker, setShowBatteryPicker] = useState<boolean>(false);
-
     const [networkColor, setNetworkColor] = useState<string>("");
-    const [showNetworkPicker, setShowNetworkPicker] = useState<boolean>(false);
 
     const defaultCpuColor = "2E97CB"
     const defaultGpuColor = "2E9762"
@@ -95,17 +74,21 @@ function Colors() {
                 <label htmlFor="cpucolor" className="me-2">CPU:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + cpuColor
-                            }}
-                            onClick={() => {
-                                setShowCpuPicker(!showCpuPicker)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                        >
-                            {cpuColor}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{cpuColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={cpuColor} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setCpuColor(col)
+                                    SetCpuColor(col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {cpuColor != defaultCpuColor && (
                             <button
                                 onClick={() => {
@@ -116,35 +99,25 @@ function Colors() {
                             </button>
                         )}
                     </div>
-                    {showCpuPicker ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowCpuPicker(false)
-                            }}> </div>
-                            <SketchPicker color={cpuColor} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setCpuColor(col)
-                                SetCpuColor(col)
-                            }} />
-                        </div>) : null}
                 </div>
                 <label htmlFor="gpucolor" className="me-2">GPU:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + gpuColor
-                            }}
-                            onClick={() => {
-                                setShowGpuPicker(!showGpuPicker)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                        >
-                            {gpuColor}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{gpuColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={gpuColor} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setGpuColor(col)
+                                    SetGpuColor(col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {gpuColor != defaultGpuColor && (
                             <button
                                 onClick={() => {
@@ -155,35 +128,25 @@ function Colors() {
                             </button>
                         )}
                     </div>
-                    {showGpuPicker ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowGpuPicker(false)
-                            }}> </div>
-                            <SketchPicker color={gpuColor} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setGpuColor(col)
-                                SetGpuColor(col)
-                            }} />
-                        </div>) : null}
                 </div>
                 <label htmlFor="vramcolor" className="me-2">VRAM:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + vramColor
-                            }}
-                            onClick={() => {
-                                setShowVramPicker(!showVramPicker)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                        >
-                            {vramColor}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{vramColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={vramColor} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setVramColor(col)
+                                    SetVramColor(col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {vramColor != defaultVramColor && (
                             <button
                                 onClick={() => {
@@ -194,35 +157,25 @@ function Colors() {
                             </button>
                         )}
                     </div>
-                    {showVramPicker ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowVramPicker(false)
-                            }}> </div>
-                            <SketchPicker color={vramColor} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setVramColor(col)
-                                SetVramColor(col)
-                            }} />
-                        </div>) : null}
                 </div>
                 <label htmlFor="ramcolor" className="me-2">RAM:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + ramColor
-                            }}
-                            onClick={() => {
-                                setShowRamPicker(!showRamPicker)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                        >
-                            {ramColor}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{ramColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={ramColor} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setRamColor(col)
+                                    SetRamColor(col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {ramColor != defaultRamColor && (
                             <button
                                 onClick={() => {
@@ -233,35 +186,25 @@ function Colors() {
                             </button>
                         )}
                     </div>
-                    {showRamPicker ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowRamPicker(false)
-                            }}> </div>
-                            <SketchPicker color={ramColor} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setRamColor(col)
-                                SetRamColor(col)
-                            }} />
-                        </div>) : null}
                 </div>
                 <label htmlFor="enginecolor" className="me-2">Engine:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + engineColor
-                            }}
-                            onClick={() => {
-                                setShowEnginePicker(!showEnginePicker)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                        >
-                            {engineColor}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{engineColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={engineColor} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setEngineColor(col)
+                                    SetEngineColor(col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {engineColor != defaultEngineColor && (
                             <button
                                 onClick={() => {
@@ -272,35 +215,25 @@ function Colors() {
                             </button>
                         )}
                     </div>
-                    {showEnginePicker ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowEnginePicker(false)
-                            }}> </div>
-                            <SketchPicker color={engineColor} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setEngineColor(col)
-                                SetEngineColor(col)
-                            }} />
-                        </div>) : null}
                 </div>
                 <label htmlFor="iocolor" className="me-2">IO:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + ioColor
-                            }}
-                            onClick={() => {
-                                setShowIoPicker(!showIoPicker)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                        >
-                            {ioColor}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{ioColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={ioColor} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setIoColor(col)
+                                    SetIoColor(col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {ioColor != defaultIoColor && (
                             <button
                                 onClick={() => {
@@ -311,35 +244,25 @@ function Colors() {
                             </button>
                         )}
                     </div>
-                    {showIoPicker ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowIoPicker(false)
-                            }}> </div>
-                            <SketchPicker color={ioColor} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setIoColor(col)
-                                SetIoColor(col)
-                            }} />
-                        </div>) : null}
                 </div>
                 <label htmlFor="frametimecolor" className="me-2">Frametime:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + frametimeColor
-                            }}
-                            onClick={() => {
-                                setShowFrametimePicker(!showFrametimePicker)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                        >
-                            {frametimeColor}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{frametimeColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={frametimeColor} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setFrametimeColor(col)
+                                    SetFrametimeColor(col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {frametimeColor != defaultFrametimeColor && (
                             <button
                                 onClick={() => {
@@ -350,35 +273,25 @@ function Colors() {
                             </button>
                         )}
                     </div>
-                    {showFrametimePicker ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowFrametimePicker(false)
-                            }}> </div>
-                            <SketchPicker color={frametimeColor} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setFrametimeColor(col)
-                                SetFrametimeColor(col)
-                            }} />
-                        </div>) : null}
                 </div>
                 <label htmlFor="mediacolor" className="me-2">Media Player:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + mediaColor
-                            }}
-                            onClick={() => {
-                                setShowMediaPicker(!showMediaPicker)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                        >
-                            {mediaColor}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{mediaColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={mediaColor} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setMediaColor(col)
+                                    SetMediaColor(col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {mediaColor != defaultMediaPlayerColor && (
                             <button
                                 onClick={() => {
@@ -389,35 +302,25 @@ function Colors() {
                             </button>
                         )}
                     </div>
-                    {showMediaPicker ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowMediaPicker(false)
-                            }}> </div>
-                            <SketchPicker color={mediaColor} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setMediaColor(col)
-                                SetMediaColor(col)
-                            }} />
-                        </div>) : null}
                 </div>
                 <label htmlFor="winecolor" className="me-2">Wine:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + wineColor
-                            }}
-                            onClick={() => {
-                                setShowWinePicker(!showWinePicker)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                        >
-                            {wineColor}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{wineColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={wineColor} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setWineColor(col)
+                                    SetWineColor(col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {wineColor != defaultWineColor && (
                             <button
                                 onClick={() => {
@@ -428,35 +331,25 @@ function Colors() {
                             </button>
                         )}
                     </div>
-                    {showWinePicker ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowWinePicker(false)
-                            }}> </div>
-                            <SketchPicker color={wineColor} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setWineColor(col)
-                                SetWineColor(col)
-                            }} />
-                        </div>) : null}
                 </div>
                 <label htmlFor="batterycolor" className="me-2">Battery:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + batteryColor
-                            }}
-                            onClick={() => {
-                                setShowBatteryPicker(!showBatteryPicker)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                        >
-                            {batteryColor}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{batteryColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={batteryColor} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setBatteryColor(col)
+                                    SetBatteryColor(col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {batteryColor != defaultBatteryColor && (
                             <button
                                 onClick={() => {
@@ -467,35 +360,25 @@ function Colors() {
                             </button>
                         )}
                     </div>
-                    {showBatteryPicker ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowBatteryPicker(false)
-                            }}> </div>
-                            <SketchPicker color={batteryColor} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setBatteryColor(col)
-                                SetBatteryColor(col)
-                            }} />
-                        </div>) : null}
                 </div>
                 <label htmlFor="networkcolor" className="me-2">Network:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + networkColor
-                            }}
-                            onClick={() => {
-                                setShowNetworkPicker(!showNetworkPicker)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                        >
-                            {networkColor}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{networkColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={networkColor} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setNetworkColor(col)
+                                    SetNetworkColor(col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {networkColor != defaultNetworkColor && (
                             <button
                                 onClick={() => {
@@ -506,20 +389,6 @@ function Colors() {
                             </button>
                         )}
                     </div>
-                    {showNetworkPicker ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowNetworkPicker(false)
-                            }}> </div>
-                            <SketchPicker color={networkColor} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setNetworkColor(col)
-                                SetNetworkColor(col)
-                            }} />
-                        </div>) : null}
                 </div>
             </div>
         </SettingBox>

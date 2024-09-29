@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { GetOrientation, GetRoundCorners, GetBackgroundAlpha, GetBackgroundColor, SetBackgroundColor, SetBackgroundAlpha, SetRoundedCorners, SetOrientation } from "../../wailsjs/go/main/App";
 import SettingBox from "../ui/SettingBox";
-import { SketchPicker } from "react-color";
 import Colors from "../settings/Colors";
 import Text from "../settings/Text";
 import Position from "../settings/Position";
@@ -10,32 +9,14 @@ import Cpu from "../settings/Cpu";
 import Fps from "../settings/Fps";
 import Graphs from "../settings/Graphs";
 import Keybinds from "../settings/Keybinds";
+import Background from "../settings/Background";
 
 function GeneralSettings() {
     const [orientation, setOrientation] = useState<string>("");
-    const [rounded, setRounded] = useState<boolean>(false);
-
-
-    const [backgroundColor, setBackgroundColor] = useState<string>("");
-    const [showBackgroundPicker, setShowBackgroundPicker] = useState<boolean>(false);
-
-    const [backgroundAlpha, setBackgroundAlpha] = useState<string>("");
 
     useEffect(() => {
         GetOrientation().then((or) => {
             setOrientation(or)
-        })
-        GetRoundCorners().then((r: boolean) => {
-            setRounded(r)
-        })
-        GetBackgroundColor().then((r) => {
-            setBackgroundColor(r)
-        })
-        GetBackgroundAlpha().then((r) => {
-            if (r == "") {
-                r = "0.8"
-            }
-            setBackgroundAlpha(r)
         })
     }, [])
 
@@ -76,67 +57,7 @@ function GeneralSettings() {
                         </div>
                     </SettingBox>
                     <Position />
-                    <SettingBox header="Background">
-                        <div className="grid grid-cols-2 gap-3">
-                            <label htmlFor="bgcolor" className="me-2">Color:</label>
-                            <div>
-                                <button
-                                    style={{
-                                        backgroundColor: "#" + backgroundColor
-                                    }}
-                                    onClick={() => {
-                                        setShowBackgroundPicker(!showBackgroundPicker)
-                                    }}
-                                    className="cursor-pointer p-1 rounded border border-gray-500 w-28"
-                                >
-                                    {backgroundColor}
-                                </button>
-                                {showBackgroundPicker ? (
-                                    <div className="absolute z-50 text-black">
-                                        <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                            setShowBackgroundPicker(false)
-                                        }}> </div>
-                                        <SketchPicker color={backgroundColor} onChange={(color) => {
-                                            let col = color.hex;
-                                            if (col[0] == "#") {
-                                                col = col.substring(1)
-                                            }
-                                            setBackgroundColor(col)
-                                            SetBackgroundColor(col)
-                                        }} />
-                                    </div>) : null}
-                            </div>
-                            <label htmlFor="bgalpha" className="me-2">Alpha:</label>
-                            <input
-                                type="number"
-                                min="0.1"
-                                max="1"
-                                step="0.1"
-                                id="bgalpha"
-                                className="w-28 bg-gray-700 p-1 text-center border border-gray-500 rounded"
-                                defaultValue={backgroundAlpha}
-                                onChange={(event) => {
-                                    setBackgroundAlpha(event.target.value);
-                                    SetBackgroundAlpha(event.target.value)
-                                }}
-                            />
-                            <label htmlFor="roundedCheck">Rounded Corners</label>
-                            <div>
-                                <input
-                                    onClick={() => {
-                                        const newV = !rounded;
-                                        setRounded(newV);
-                                        SetRoundedCorners(newV)
-                                    }}
-                                    type="checkbox"
-                                    id="roundedCheck"
-                                    className="me-2"
-                                    readOnly={true}
-                                    checked={rounded}
-                                />
-                            </div>
-                        </div>
-                    </SettingBox>
+                    <Background />
                     <Text />
                     <Graphs />
                 </div>

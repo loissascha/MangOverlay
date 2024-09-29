@@ -4,16 +4,12 @@ import SettingBox from "../ui/SettingBox"
 import { SketchPicker } from "react-color";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 
 function Fps() {
     const [fpsLoadColor0, setFpsLoadColor0] = useState<string>("");
-    const [showFpsLoadPicker0, setShowFpsLoadPicker0] = useState<boolean>(false);
-
     const [fpsLoadColor1, setFpsLoadColor1] = useState<string>("");
-    const [showFpsLoadPicker1, setShowFpsLoadPicker1] = useState<boolean>(false);
-
     const [fpsLoadColor2, setFpsLoadColor2] = useState<string>("");
-    const [showFpsLoadPicker2, setShowFpsLoadPicker2] = useState<boolean>(false);
 
     const [fpsLoadValue, setFpsLoadValue] = useState<string>("")
     const [fpsColorChange, setFpsColorChange] = useState<boolean>(false)
@@ -87,17 +83,21 @@ function Fps() {
                 <label htmlFor="fpsloadcolors">Load Colors:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + fpsLoadColor0
-                            }}
-                            onClick={() => {
-                                setShowFpsLoadPicker0(!showFpsLoadPicker0)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
-                        >
-                            {fpsLoadColor0}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28 mb-2">{fpsLoadColor0}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={fpsLoadColor0} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setFpsLoadColor0(col)
+                                    SetFpsLoadColors(col, fpsLoadColor1, fpsLoadColor2)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {fpsLoadColor0 != defaultFpsLoadColor0 && (
                             <button
                                 onClick={() => {
@@ -108,32 +108,22 @@ function Fps() {
                             </button>
                         )}
                     </div>
-                    {showFpsLoadPicker0 ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowFpsLoadPicker0(false)
-                            }}> </div>
-                            <SketchPicker color={fpsLoadColor0} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setFpsLoadColor0(col)
-                                SetFpsLoadColors(col, fpsLoadColor1, fpsLoadColor2)
-                            }} />
-                        </div>) : null}
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + fpsLoadColor1
-                            }}
-                            onClick={() => {
-                                setShowFpsLoadPicker1(!showFpsLoadPicker1)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
-                        >
-                            {fpsLoadColor1}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28 mb-2">{fpsLoadColor1}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={fpsLoadColor1} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setFpsLoadColor1(col)
+                                    SetFpsLoadColors(fpsLoadColor0, col, fpsLoadColor2)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {fpsLoadColor1 != defaultFpsLoadColor1 && (
                             <button
                                 onClick={() => {
@@ -144,32 +134,22 @@ function Fps() {
                             </button>
                         )}
                     </div>
-                    {showFpsLoadPicker1 ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowFpsLoadPicker1(false)
-                            }}> </div>
-                            <SketchPicker color={fpsLoadColor1} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setFpsLoadColor1(col)
-                                SetFpsLoadColors(fpsLoadColor0, col, fpsLoadColor2)
-                            }} />
-                        </div>) : null}
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + fpsLoadColor2
-                            }}
-                            onClick={() => {
-                                setShowFpsLoadPicker2(!showFpsLoadPicker2)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block"
-                        >
-                            {fpsLoadColor2}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{fpsLoadColor2}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={fpsLoadColor2} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setFpsLoadColor2(col)
+                                    SetFpsLoadColors(fpsLoadColor0, fpsLoadColor1, col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {fpsLoadColor2 != defaultFpsLoadColor2 && (
                             <button
                                 onClick={() => {
@@ -180,20 +160,6 @@ function Fps() {
                             </button>
                         )}
                     </div>
-                    {showFpsLoadPicker2 ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowFpsLoadPicker2(false)
-                            }}> </div>
-                            <SketchPicker color={fpsLoadColor2} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setFpsLoadColor2(col)
-                                SetFpsLoadColors(fpsLoadColor0, fpsLoadColor1, col)
-                            }} />
-                        </div>) : null}
                 </div>
             </div>
         </SettingBox>

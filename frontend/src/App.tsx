@@ -1,13 +1,11 @@
-import { act, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import GeneralSettings from "./pages/GeneralSettings";
 import { DisableGlobally, EnableGlobally, GloballyEnabled, RestartVkcube } from "../wailsjs/go/main/App";
 import Button from "./ui/Button";
-import ElementsSettings from "./pages/ElementsSettings";
 import MetricsSettings from "./pages/MetricsSettings";
-import FpsLimitSettings from "./pages/FpsLimitSettings";
 import MetricsOrderSettings from "./pages/MetricsOrderSettings";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faCheck, faDisplay, faGears, faKeyboard, faPlus, faSort, faWrench } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faGears, faSort, faWrench } from "@fortawesome/free-solid-svg-icons";
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 import AdvancedSettings from "./pages/AdvancedSettings";
 
