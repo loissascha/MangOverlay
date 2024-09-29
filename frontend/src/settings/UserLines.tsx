@@ -17,26 +17,35 @@ function UserLines() {
         console.log(r)
         setElements(r)
     }
+
+    async function addLine() {
+        const value = customLineInput.current?.value
+        if (value != "") {
+            await AddUnorderedElement("" + value)
+            reloadUnorderedElements()
+            customLineInput.current!.value = ""
+        }
+    }
+
     return (
         <SettingBox header="Additional config" subheader="Add your own custom text into your configuration file!">
             <div className="grid">
                 <div className="flex gap-3">
                     <div>
-                        <input
-                            ref={customLineInput}
-                            type="text"
-                            className="bg-gray-700 border border-gray-500 p-2 rounded w-60"
-                        />
+                        <form onSubmit={(event) => {
+                            event.preventDefault()
+                            addLine()
+                        }}>
+                            <input
+                                ref={customLineInput}
+                                type="text"
+                                className="bg-gray-700 border border-gray-500 p-2 rounded w-60"
+                            />
+                        </form>
                     </div>
                     <div className="flex items-center">
                         <a onClick={() => {
-                            const value = customLineInput.current?.value
-                            if (value != "") {
-                                AddUnorderedElement("" + value).then(() => {
-                                    reloadUnorderedElements()
-                                    customLineInput.current!.value = ""
-                                })
-                            }
+                            addLine()
                         }} className="cursor-pointer text-lg"><FontAwesomeIcon icon={faPlus} /></a>
                     </div>
                 </div>
