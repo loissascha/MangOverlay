@@ -4,17 +4,12 @@ import { SketchPicker } from "react-color";
 import { SetCpuLoadColors, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetCpuLoadValue, GetCpuText, SetCpuLoadValue, SetCpuText, GetElements, DeactivateElement, ActivateElement } from "../../wailsjs/go/main/App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 
 function Cpu() {
     const [cpuLoadColor0, setCpuLoadColor0] = useState<string>("");
-    const [showCpuLoadPicker0, setShowCpuLoadPicker0] = useState<boolean>(false);
-
     const [cpuLoadColor1, setCpuLoadColor1] = useState<string>("");
-    const [showCpuLoadPicker1, setShowCpuLoadPicker1] = useState<boolean>(false);
-
     const [cpuLoadColor2, setCpuLoadColor2] = useState<string>("");
-    const [showCpuLoadPicker2, setShowCpuLoadPicker2] = useState<boolean>(false);
-
     const [cpuText, setCpuText] = useState<string>("")
     const [cpuLoadValue, setCpuLoadValue] = useState<string>("")
 
@@ -106,17 +101,21 @@ function Cpu() {
                 <label htmlFor="cpucolor" className="me-2">Load Colors:</label>
                 <div>
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + cpuLoadColor0
-                            }}
-                            onClick={() => {
-                                setShowCpuLoadPicker0(!showCpuLoadPicker0)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
-                        >
-                            {cpuLoadColor0}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28 mb-2">{cpuLoadColor0}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={cpuLoadColor0} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setCpuLoadColor0(col)
+                                    SetCpuLoadColors(col, cpuLoadColor1, cpuLoadColor2)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {cpuLoadColor0 != defaultCpuLoadColor0 && (
                             <button
                                 onClick={() => {
@@ -127,32 +126,22 @@ function Cpu() {
                             </button>
                         )}
                     </div>
-                    {showCpuLoadPicker0 ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowCpuLoadPicker0(false)
-                            }}> </div>
-                            <SketchPicker color={cpuLoadColor0} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setCpuLoadColor0(col)
-                                SetCpuLoadColors(col, cpuLoadColor1, cpuLoadColor2)
-                            }} />
-                        </div>) : null}
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + cpuLoadColor1
-                            }}
-                            onClick={() => {
-                                setShowCpuLoadPicker1(!showCpuLoadPicker1)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block mb-2"
-                        >
-                            {cpuLoadColor1}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28 mb-2">{cpuLoadColor1}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={cpuLoadColor1} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setCpuLoadColor1(col)
+                                    SetCpuLoadColors(cpuLoadColor0, col, cpuLoadColor2)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {cpuLoadColor1 != defaultCpuLoadColor1 && (
                             <button
                                 onClick={() => {
@@ -163,32 +152,22 @@ function Cpu() {
                             </button>
                         )}
                     </div>
-                    {showCpuLoadPicker1 ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowCpuLoadPicker1(false)
-                            }}> </div>
-                            <SketchPicker color={cpuLoadColor1} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setCpuLoadColor1(col)
-                                SetCpuLoadColors(cpuLoadColor0, col, cpuLoadColor2)
-                            }} />
-                        </div>) : null}
                     <div className="flex gap-2">
-                        <button
-                            style={{
+                        <Popover className="relative">
+                            <PopoverButton style={{
                                 backgroundColor: "#" + cpuLoadColor2
-                            }}
-                            onClick={() => {
-                                setShowCpuLoadPicker2(!showCpuLoadPicker2)
-                            }}
-                            className="cursor-pointer p-1 rounded border border-gray-500 w-28 block"
-                        >
-                            {cpuLoadColor2}
-                        </button>
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{cpuLoadColor2}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={cpuLoadColor2} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setCpuLoadColor2(col)
+                                    SetCpuLoadColors(cpuLoadColor0, cpuLoadColor1, col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
                         {cpuLoadColor2 != defaultCpuLoadColor2 && (
                             <button
                                 onClick={() => {
@@ -199,20 +178,6 @@ function Cpu() {
                             </button>
                         )}
                     </div>
-                    {showCpuLoadPicker2 ? (
-                        <div className="absolute z-50 text-black">
-                            <div className="fixed top-0 left-0 right-0 bottom-0" onClick={() => {
-                                setShowCpuLoadPicker2(false)
-                            }}> </div>
-                            <SketchPicker color={cpuLoadColor2} onChange={(color) => {
-                                let col = color.hex;
-                                if (col[0] == "#") {
-                                    col = col.substring(1)
-                                }
-                                setCpuLoadColor2(col)
-                                SetCpuLoadColors(cpuLoadColor0, cpuLoadColor1, col)
-                            }} />
-                        </div>) : null}
                 </div>
             </div>
         </SettingBox>
