@@ -138,7 +138,7 @@ function MetricsSettings() {
             let newFrameElements = []
             let index = 6000
             for (const e of elements) {
-                if (e.Name == "fps_color_change") {
+                if (e.Name == "fps_color_change" || e.Name == "frametime" || e.Name == "frame_timing") {
                     continue
                 }
                 if (e.Name.includes("frame") || e.Name.includes("fps")) {

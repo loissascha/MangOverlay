@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { GetGraphCpuLoad, GetGraphCpuTemp, GetGraphGpuCoreClock, GetGraphGpuLoad, GetGraphGpuMemClock, GetGraphGpuTemp, GetGraphRam, GetGraphVram, ToggleGraphCpuLoad, ToggleGraphCpuTemp, ToggleGraphGpuCoreClock, ToggleGraphGpuLoad, ToggleGraphGpuMemClock, ToggleGraphGpuTemp, ToggleGraphRam, ToggleGraphVram } from "../../wailsjs/go/main/App"
+import { ActivateElement, DeactivateElement, GetElements, GetGraphCpuLoad, GetGraphCpuTemp, GetGraphGpuCoreClock, GetGraphGpuLoad, GetGraphGpuMemClock, GetGraphGpuTemp, GetGraphRam, GetGraphVram, ToggleGraphCpuLoad, ToggleGraphCpuTemp, ToggleGraphGpuCoreClock, ToggleGraphGpuLoad, ToggleGraphGpuMemClock, ToggleGraphGpuTemp, ToggleGraphRam, ToggleGraphVram } from "../../wailsjs/go/main/App"
 import SettingBox from "../ui/SettingBox"
 
 function Graphs() {
@@ -11,10 +11,22 @@ function Graphs() {
     const [ram, setRam] = useState<boolean>(false)
     const [cpuTemp, setCpuTemp] = useState<boolean>(false)
     const [gpuTemp, setGpuTemp] = useState<boolean>(false)
+    const [frameTiming, setFrameTiming] = useState<boolean>(false)
 
     useEffect(() => {
         updateGraphs()
+        reloadElement()
     }, [])
+
+    function reloadElement() {
+        GetElements().then((r: any) => {
+            for (var element of r) {
+                if (element.Name == "frame_timing") {
+                    setFrameTiming(element.Active)
+                }
+            }
+        })
+    }
 
     function updateGraphs() {
         GetGraphGpuLoad().then((r) => {
@@ -46,6 +58,25 @@ function Graphs() {
     return (
         <SettingBox header="Graphs">
             <div className="grid grid-cols-2 gap-3">
+                <label htmlFor="frametiming" className="cursor-pointer me-2">Frametime:</label>
+                <div>
+                    <input
+                        type="checkbox"
+                        id="frametiming"
+                        checked={frameTiming}
+                        onChange={() => {
+                            if (frameTiming) {
+                                DeactivateElement("frame_timing").then(() => {
+                                    reloadElement()
+                                })
+                            } else {
+                                ActivateElement("frame_timing").then(() => {
+                                    reloadElement()
+                                })
+                            }
+                        }}
+                    />
+                </div>
                 <label htmlFor="gpuload" className="cursor-pointer me-2">GPU Load:</label>
                 <div>
                     <input
