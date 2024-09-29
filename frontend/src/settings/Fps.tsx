@@ -8,13 +8,8 @@ import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 
 function Fps() {
     const [fpsLoadColor0, setFpsLoadColor0] = useState<string>("");
-    const [showFpsLoadPicker0, setShowFpsLoadPicker0] = useState<boolean>(false);
-
     const [fpsLoadColor1, setFpsLoadColor1] = useState<string>("");
-    const [showFpsLoadPicker1, setShowFpsLoadPicker1] = useState<boolean>(false);
-
     const [fpsLoadColor2, setFpsLoadColor2] = useState<string>("");
-    const [showFpsLoadPicker2, setShowFpsLoadPicker2] = useState<boolean>(false);
 
     const [fpsLoadValue, setFpsLoadValue] = useState<string>("")
     const [fpsColorChange, setFpsColorChange] = useState<boolean>(false)

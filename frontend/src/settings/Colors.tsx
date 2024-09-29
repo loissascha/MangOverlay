@@ -8,38 +8,16 @@ import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 
 function Colors() {
     const [gpuColor, setGpuColor] = useState<string>("");
-    const [showGpuPicker, setShowGpuPicker] = useState<boolean>(false);
-
-
     const [cpuColor, setCpuColor] = useState<string>("");
-    const [showCpuPicker, setShowCpuPicker] = useState<boolean>(false);
-
     const [vramColor, setVramColor] = useState<string>("");
-    const [showVramPicker, setShowVramPicker] = useState<boolean>(false);
-
     const [ramColor, setRamColor] = useState<string>("");
-    const [showRamPicker, setShowRamPicker] = useState<boolean>(false);
-
     const [engineColor, setEngineColor] = useState<string>("");
-    const [showEnginePicker, setShowEnginePicker] = useState<boolean>(false);
-
     const [ioColor, setIoColor] = useState<string>("");
-    const [showIoPicker, setShowIoPicker] = useState<boolean>(false);
-
     const [frametimeColor, setFrametimeColor] = useState<string>("");
-    const [showFrametimePicker, setShowFrametimePicker] = useState<boolean>(false);
-
     const [mediaColor, setMediaColor] = useState<string>("");
-    const [showMediaPicker, setShowMediaPicker] = useState<boolean>(false);
-
     const [wineColor, setWineColor] = useState<string>("");
-    const [showWinePicker, setShowWinePicker] = useState<boolean>(false);
-
     const [batteryColor, setBatteryColor] = useState<string>("");
-    const [showBatteryPicker, setShowBatteryPicker] = useState<boolean>(false);
-
     const [networkColor, setNetworkColor] = useState<string>("");
-    const [showNetworkPicker, setShowNetworkPicker] = useState<boolean>(false);
 
     const defaultCpuColor = "2E97CB"
     const defaultGpuColor = "2E9762"
