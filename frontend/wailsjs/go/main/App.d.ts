@@ -120,6 +120,10 @@ export function GetTableColumns():Promise<string>;
 
 export function GetTextColor():Promise<string>;
 
+export function GetTextOutlineColor():Promise<string>;
+
+export function GetTextOutlineThickness():Promise<string>;
+
 export function GetUnorderedElements():Promise<Array<config.Element>>;
 
 export function GetVramColor():Promise<string>;
@@ -207,6 +211,10 @@ export function SetRoundedCorners(arg1:boolean):Promise<void>;
 export function SetTableColumns(arg1:string):Promise<void>;
 
 export function SetTextColor(arg1:string):Promise<void>;
+
+export function SetTextOutlineColor(arg1:string):Promise<void>;
+
+export function SetTextOutlineThickness(arg1:string):Promise<void>;
 
 export function SetVramColor(arg1:string):Promise<void>;
 

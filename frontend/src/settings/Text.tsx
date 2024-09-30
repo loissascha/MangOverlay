@@ -1,5 +1,5 @@
 import SettingBox from "../ui/SettingBox";
-import { GetFontSize, SetFontSize, GetTextColor, SetTextColor } from "../../wailsjs/go/main/App";
+import { GetFontSize, SetFontSize, GetTextColor, SetTextColor, GetTextOutlineColor, SetTextOutlineColor, GetElements, DeactivateElement, ActivateElement, GetTextOutlineThickness, SetTextOutlineThickness } from "../../wailsjs/go/main/App";
 import { useEffect, useState } from "react";
 import { SketchPicker } from "react-color";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,8 +8,11 @@ import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 
 function Text() {
     const [textColor, setTextColor] = useState<string>("");
+    const [textOutlineColor, setTextOutlineColor] = useState<string>("")
+    const [textOutlineThickness, setTextOutlineThickness] = useState<string>("")
 
     const defaultTextColor = "FFFFFF"
+    const defaultTextOutlineColor = "000000"
 
     const [fontSize, setFontSize] = useState<string>("");
 
@@ -23,7 +26,14 @@ function Text() {
             }
             setFontSize(r)
         })
+        GetTextOutlineColor().then((r) => {
+            setTextOutlineColor(r)
+        })
+        GetTextOutlineThickness().then((r) => {
+            setTextOutlineThickness(r)
+        })
     }, [])
+
 
     return (
         <SettingBox header="Text">
@@ -74,6 +84,48 @@ function Text() {
                         )}
                     </div>
                 </div>
+                <label htmlFor="textoutlinecolor" className="me-2">Outline Color:</label>
+                <div>
+                    <div className="flex gap-2">
+                        <Popover className="relative">
+                            <PopoverButton style={{
+                                backgroundColor: "#" + textOutlineColor
+                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{textOutlineColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                                <SketchPicker color={textOutlineColor} onChange={(color) => {
+                                    let col = color.hex;
+                                    if (col[0] == "#") {
+                                        col = col.substring(1)
+                                    }
+                                    setTextOutlineColor(col)
+                                    SetTextOutlineColor(col)
+                                }} />
+                            </PopoverPanel>
+                        </Popover>
+                        {textOutlineColor != defaultTextOutlineColor && (
+                            <button
+                                onClick={() => {
+                                    setTextOutlineColor(defaultTextOutlineColor)
+                                    SetTextOutlineColor(defaultTextOutlineColor)
+                                }}>
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                            </button>
+                        )}
+                    </div>
+                </div>
+                <label htmlFor="outlinethickness" className="me-2">Outline Thickness:</label>
+                <input
+                    type="number"
+                    id="outlinethickness"
+                    className="w-28 bg-gray-700 p-1 border border-gray-500 rounded text-center"
+                    defaultValue={textOutlineThickness}
+                    step="0.1"
+                    onChange={(event) => {
+                        let num = event.target.value
+                        setTextOutlineThickness(num)
+                        SetTextOutlineThickness(num)
+                    }}
+                />
             </div>
         </SettingBox>
     );
