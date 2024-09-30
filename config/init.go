@@ -153,6 +153,14 @@ func readConfigs() {
 				}
 				CG.TextColor = r
 				break
+			case "text_outline_color":
+				foundElement = true
+				r := strings.TrimSpace(val)
+				if r == "" {
+					break
+				}
+				CG.TextOutlineColor = r
+				break
 			case "gpu_color":
 				foundElement = true
 				r := strings.TrimSpace(val)

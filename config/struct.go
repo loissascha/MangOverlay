@@ -37,6 +37,7 @@ type Config struct {
 	WineColor           string
 	BatteryColor        string
 	NetworkColor        string
+	TextOutlineColor    string
 	KbToggleHud         string
 	KbToggleHudPosition string
 	KbTogglePreset      string
@@ -95,6 +96,7 @@ func setDefaults() {
 	CG.WineColor = "EB4B4B"
 	CG.BatteryColor = "FF9078"
 	CG.NetworkColor = "E07B85"
+	CG.TextOutlineColor = "000000"
 	CG.KbToggleHud = "Shift_R+F12"
 	CG.KbToggleHudPosition = "Shift_R+F11"
 	CG.KbTogglePreset = "Shift_R+F10"

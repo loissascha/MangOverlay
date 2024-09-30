@@ -25,6 +25,13 @@ func (a *App) SetTextColor(n string) {
 	config.CG.SetTextColor(n)
 }
 
+func (a *App) GetTextOutlineColor() string {
+	return config.CG.TextOutlineColor
+}
+func (a *App) SetTextOutlineColor(n string) {
+	config.CG.SetTextOutlineColor(n)
+}
+
 func (a *App) GetGpuColor() string {
 	return config.CG.GpuColor
 }
