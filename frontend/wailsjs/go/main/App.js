@@ -238,6 +238,10 @@ export function GetTextColor() {
   return window['go']['main']['App']['GetTextColor']();
 }
 
+export function GetTextOutlineColor() {
+  return window['go']['main']['App']['GetTextOutlineColor']();
+}
+
 export function GetUnorderedElements() {
   return window['go']['main']['App']['GetUnorderedElements']();
 }
@@ -412,6 +416,10 @@ export function SetTableColumns(arg1) {
 
 export function SetTextColor(arg1) {
   return window['go']['main']['App']['SetTextColor'](arg1);
+}
+
+export function SetTextOutlineColor(arg1) {
+  return window['go']['main']['App']['SetTextOutlineColor'](arg1);
 }
 
 export function SetVramColor(arg1) {
