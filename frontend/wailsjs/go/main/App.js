@@ -242,6 +242,10 @@ export function GetTextOutlineColor() {
   return window['go']['main']['App']['GetTextOutlineColor']();
 }
 
+export function GetTextOutlineThickness() {
+  return window['go']['main']['App']['GetTextOutlineThickness']();
+}
+
 export function GetUnorderedElements() {
   return window['go']['main']['App']['GetUnorderedElements']();
 }
@@ -420,6 +424,10 @@ export function SetTextColor(arg1) {
 
 export function SetTextOutlineColor(arg1) {
   return window['go']['main']['App']['SetTextOutlineColor'](arg1);
+}
+
+export function SetTextOutlineThickness(arg1) {
+  return window['go']['main']['App']['SetTextOutlineThickness'](arg1);
 }
 
 export function SetVramColor(arg1) {

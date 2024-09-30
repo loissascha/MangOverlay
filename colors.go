@@ -32,6 +32,13 @@ func (a *App) SetTextOutlineColor(n string) {
 	config.CG.SetTextOutlineColor(n)
 }
 
+func (a *App) GetTextOutlineThickness() string {
+	return config.CG.TextOutlineThickness
+}
+func (a *App) SetTextOutlineThickness(n string) {
+	config.CG.SetTextOutlineThickness(n)
+}
+
 func (a *App) GetGpuColor() string {
 	return config.CG.GpuColor
 }

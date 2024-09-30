@@ -93,6 +93,15 @@ func (c *Config) SetTextOutlineColor(n string) {
 	updateConfigLine("text_outline_color", n, true)
 }
 
+func (c *Config) SetTextOutlineThickness(n string) {
+	c.TextOutlineThickness = n
+	if n == "" {
+		deleteConfigLine("text_outline_thickness")
+		return
+	}
+	updateConfigLine("text_outline_thickness", n, true)
+}
+
 func (c *Config) SetCpuColor(n string) {
 	c.CpuColor = n
 	n = strings.TrimPrefix(n, "#")
