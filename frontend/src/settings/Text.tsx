@@ -1,5 +1,5 @@
 import SettingBox from "../ui/SettingBox";
-import { GetFontSize, SetFontSize, GetTextColor, SetTextColor, GetTextOutlineColor, SetTextOutlineColor, GetElements, DeactivateElement, ActivateElement, GetTextOutlineThickness, SetTextOutlineThickness } from "../../wailsjs/go/main/App";
+import { GetFontSize, SetFontSize, GetTextColor, SetTextColor, GetTextOutlineColor, SetTextOutlineColor, GetTextOutlineThickness, SetTextOutlineThickness } from "../../wailsjs/go/main/App";
 import { useEffect, useState } from "react";
 import { SketchPicker } from "react-color";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
