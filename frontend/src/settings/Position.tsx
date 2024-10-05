@@ -45,8 +45,8 @@ function Position() {
             <div className="grid grid-cols-2 gap-3">
                 <div>Position</div>
                 <div>
-                    <div className="w-28 h-20 bg-gray-500 grid grid-cols-2 p-1">
-                        <div className="grid grid-rows-2">
+                    <div className="w-28 h-20 bg-gray-500 grid grid-cols-3 p-1">
+                        <div className="grid grid-rows-3">
                             <div className="flex items-start">
                                 <input
                                     type="radio"
@@ -55,6 +55,17 @@ function Position() {
                                     onChange={() => {
                                         setPosition("top-left")
                                         SetPosition("top-left")
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <input
+                                    type="radio"
+                                    name="position"
+                                    checked={(position == "middle-left")}
+                                    onChange={() => {
+                                        setPosition("middle-left")
+                                        SetPosition("middle-left")
                                     }}
                                 />
                             </div>
@@ -70,7 +81,33 @@ function Position() {
                                 />
                             </div>
                         </div>
-                        <div className="grid grid-rows-2">
+                        <div className="grid grid-rows-3">
+                            <div className="flex items-start justify-center">
+                                <input
+                                    type="radio"
+                                    name="position"
+                                    checked={(position == "top-center")}
+                                    onChange={() => {
+                                        setPosition("top-center")
+                                        SetPosition("top-center")
+                                    }}
+                                />
+                            </div>
+                            <div>
+                            </div>
+                            <div className="flex items-end justify-center">
+                                <input
+                                    type="radio"
+                                    name="position"
+                                    checked={(position == "bottom-center")}
+                                    onChange={() => {
+                                        setPosition("bottom-center")
+                                        SetPosition("bottom-center")
+                                    }}
+                                />
+                            </div>
+                        </div>
+                        <div className="grid grid-rows-3">
                             <div className="flex justify-end">
                                 <input
                                     type="radio"
@@ -79,6 +116,17 @@ function Position() {
                                     onChange={() => {
                                         setPosition("top-right")
                                         SetPosition("top-right")
+                                    }}
+                                />
+                            </div>
+                            <div className="flex justify-end items-center">
+                                <input
+                                    type="radio"
+                                    name="position"
+                                    checked={(position == "middle-right")}
+                                    onChange={() => {
+                                        setPosition("middle-right")
+                                        SetPosition("middle-right")
                                     }}
                                 />
                             </div>
