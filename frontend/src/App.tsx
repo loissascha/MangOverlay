@@ -137,7 +137,9 @@ function App() {
             {showHelpModal ? (
                 <div className="fixed left-0 right-0 top-0 bottom-0 bg-black bg-opacity-50 content-center">
                     <div className="w-96 max-w-full bg-gray-600 mx-auto px-8 py-6 rounded">
+                        <h1 className="text-lg">MangOverlay</h1>
                         <p>Version: {Version}</p>
+                        <p className="text-sm">github.com/loissascha/mangoverlay</p>
                         <div className="text-center">
                             <button className="mt-2 bg-red-900 hover:bg-red-800 cursor-pointer border border-red-900 px-4 py-2 rounded-md" onClick={() => {
                                 setShowHelpModal(false)
