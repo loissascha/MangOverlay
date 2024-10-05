@@ -61,7 +61,8 @@ function MetricsSettings() {
                     newCpuElements.push({
                         Index: index,
                         Name: e.Name,
-                        Active: e.Active
+                        Active: e.Active,
+                        DisplayName: e.DisplayName
                     })
                     index++
                 }
@@ -79,7 +80,8 @@ function MetricsSettings() {
                     newGpuElements.push({
                         Index: index,
                         Name: e.Name,
-                        Active: e.Active
+                        Active: e.Active,
+                        DisplayName: e.DisplayName
                     })
                     index++
                 }
@@ -94,7 +96,8 @@ function MetricsSettings() {
                     newMemoryElements.push({
                         Index: index,
                         Name: e.Name,
-                        Active: e.Active
+                        Active: e.Active,
+                        DisplayName: e.DisplayName
                     })
                     index++
                 }
@@ -112,7 +115,8 @@ function MetricsSettings() {
                     newDisplayElements.push({
                         Index: index,
                         Name: e.Name,
-                        Active: e.Active
+                        Active: e.Active,
+                        DisplayName: e.DisplayName
                     })
                     index++
                 }
@@ -127,7 +131,8 @@ function MetricsSettings() {
                     newBatteryElements.push({
                         Index: index,
                         Name: e.Name,
-                        Active: e.Active
+                        Active: e.Active,
+                        DisplayName: e.DisplayName
                     })
                     index++
                 }
@@ -145,7 +150,8 @@ function MetricsSettings() {
                     newFrameElements.push({
                         Index: index,
                         Name: e.Name,
-                        Active: e.Active
+                        Active: e.Active,
+                        DisplayName: e.DisplayName
                     })
                     index++
                 }
@@ -160,7 +166,8 @@ function MetricsSettings() {
                     newVersionElements.push({
                         Index: index,
                         Name: e.Name,
-                        Active: e.Active
+                        Active: e.Active,
+                        DisplayName: e.DisplayName
                     })
                     index++
                 }
@@ -175,7 +182,8 @@ function MetricsSettings() {
                     newHudElements.push({
                         Index: index,
                         Name: e.Name,
-                        Active: e.Active
+                        Active: e.Active,
+                        DisplayName: e.DisplayName
                     })
                     index++
                 }
@@ -190,7 +198,8 @@ function MetricsSettings() {
                     newSystemElements.push({
                         Index: index,
                         Name: e.Name,
-                        Active: e.Active
+                        Active: e.Active,
+                        DisplayName: e.DisplayName
                     })
                     index++
                 }
@@ -205,7 +214,8 @@ function MetricsSettings() {
                     newExtraElements.push({
                         Index: index,
                         Name: e.Name,
-                        Active: e.Active
+                        Active: e.Active,
+                        DisplayName: e.DisplayName
                     })
                     index++
                 }
@@ -232,7 +242,7 @@ function MetricsSettings() {
                 <div>
                     <SettingBox header="CPU">
                         {cpuElements.map((e: any) => (
-                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                            <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
                                     GetElements().then((r) => {
                                         setElements(r)
@@ -249,7 +259,7 @@ function MetricsSettings() {
                     </SettingBox>
                     <SettingBox header="GPU">
                         {gpuElements.map((e: any) => (
-                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                            <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
                                     GetElements().then((r) => {
                                         setElements(r)
@@ -268,7 +278,7 @@ function MetricsSettings() {
                 <div>
                     <SettingBox header="Memory">
                         {memoryElements.map((e: any) => (
-                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                            <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
                                     GetElements().then((r) => {
                                         setElements(r)
@@ -285,7 +295,7 @@ function MetricsSettings() {
                     </SettingBox>
                     <SettingBox header="Battery">
                         {batteryElements.map((e: any) => (
-                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                            <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
                                     GetElements().then((r) => {
                                         setElements(r)
@@ -302,7 +312,7 @@ function MetricsSettings() {
                     </SettingBox>
                     <SettingBox header="FPS">
                         {frameElements.map((e: any) => (
-                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                            <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
                                     GetElements().then((r) => {
                                         setElements(r)
@@ -321,7 +331,7 @@ function MetricsSettings() {
                 <div>
                     <SettingBox header="Display">
                         {displayElements.map((e: any) => (
-                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                            <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
                                     GetElements().then((r) => {
                                         setElements(r)
@@ -338,7 +348,7 @@ function MetricsSettings() {
                     </SettingBox>
                     <SettingBox header="Versions">
                         {versionElements.map((e: any) => (
-                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                            <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
                                     GetElements().then((r) => {
                                         setElements(r)
@@ -357,7 +367,7 @@ function MetricsSettings() {
                 <div>
                     <SettingBox header="HUD">
                         {hudElements.map((e: any) => (
-                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                            <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
                                     GetElements().then((r) => {
                                         setElements(r)
@@ -374,7 +384,7 @@ function MetricsSettings() {
                     </SettingBox>
                     <SettingBox header="System">
                         {systemElements.map((e: any) => (
-                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                            <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
                                     GetElements().then((r) => {
                                         setElements(r)
@@ -391,7 +401,7 @@ function MetricsSettings() {
                     </SettingBox>
                     <SettingBox header="Extra">
                         {extraElements.map((e: any) => (
-                            <MetricItem key={e.Index} name={e.Name} active={e.Active} activate={() => {
+                            <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
                                 ActivateElement(e.Name).then(() => {
                                     GetElements().then((r) => {
                                         setElements(r)

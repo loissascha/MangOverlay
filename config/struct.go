@@ -1,10 +1,11 @@
 package config
 
 type Element struct {
-	Name     string
-	Active   bool
-	Index    int
-	IsCustom bool
+	Name        string
+	DisplayName string
+	Active      bool
+	Index       int
+	IsCustom    bool
 }
 
 type Config struct {

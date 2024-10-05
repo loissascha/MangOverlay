@@ -40,7 +40,7 @@ function DraggableElement({ e, ElementUp, ElementDown, onDropElement }: Draggabl
                 <div ref={drag} className={"bg-gray-700 p-2 rounded cursor-pointer border border-gray-500"}>
                     <a className="cursor-pointer me-3" title="Unselect">
                         <FontAwesomeIcon icon={faUpDownLeftRight} className="me-2" />
-                        {e.Name}
+                        {e.DisplayName != "" ? e.DisplayName : e.Name}
                     </a>
                 </div>
                 <div className="flex gap-1 ms-2">
