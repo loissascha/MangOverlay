@@ -5,7 +5,7 @@ import Button from "./ui/Button";
 import MetricsSettings from "./pages/MetricsSettings";
 import MetricsOrderSettings from "./pages/MetricsOrderSettings";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faGears, faSort, faWrench } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faGears, faQuestion, faSort, faWrench } from "@fortawesome/free-solid-svg-icons";
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 import AdvancedSettings from "./pages/AdvancedSettings";
 
@@ -78,38 +78,45 @@ function App() {
                     }
                 })()}
             </main>
-            <footer className="bg-gray-700 p-2">
-                <Button click={() => { RestartVkcube(); }}>
-                    Restart VkCube
-                </Button>
-                {globallyEnabled ? (
-                    <Button click={
-                        () => {
-                            DisableGlobally().then(() => {
-                                GloballyEnabled().then((r) => {
-                                    setGloballyEnabled(r)
-                                    setShowRestartModal(true)
-                                })
-                            })
-                        }
-                    }>
-                        <FontAwesomeIcon icon={faSquareCheck} className="me-2" />Globally Enabled
+            <footer className="bg-gray-700 p-2 grid grid-cols-[1fr_auto]">
+                <div>
+                    <Button click={() => { RestartVkcube(); }}>
+                        Restart VkCube
                     </Button>
+                    {globallyEnabled ? (
+                        <Button click={
+                            () => {
+                                DisableGlobally().then(() => {
+                                    GloballyEnabled().then((r) => {
+                                        setGloballyEnabled(r)
+                                        setShowRestartModal(true)
+                                    })
+                                })
+                            }
+                        }>
+                            <FontAwesomeIcon icon={faSquareCheck} className="me-2" />Globally Enabled
+                        </Button>
 
-                ) : (
-                    <Button click={
-                        () => {
-                            EnableGlobally().then(() => {
-                                GloballyEnabled().then((r) => {
-                                    setGloballyEnabled(r)
-                                    setShowRestartModal(true)
+                    ) : (
+                        <Button click={
+                            () => {
+                                EnableGlobally().then(() => {
+                                    GloballyEnabled().then((r) => {
+                                        setGloballyEnabled(r)
+                                        setShowRestartModal(true)
+                                    })
                                 })
-                            })
-                        }
-                    }>
-                        <FontAwesomeIcon icon={faSquare} className="me-2" />Globally Enabled
-                    </Button>
-                )}
+                            }
+                        }>
+                            <FontAwesomeIcon icon={faSquare} className="me-2" />Globally Enabled
+                        </Button>
+                    )}
+                </div>
+                <div className="flex items-center justify-end me-2">
+                    <a className="cursor-pointer">
+                        <FontAwesomeIcon icon={faQuestion} />
+                    </a>
+                </div>
             </footer>
             {showRestartModal ? (
                 <div className="fixed left-0 right-0 top-0 bottom-0 bg-black bg-opacity-50 content-center">
