@@ -3,8 +3,9 @@ import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
 import { SetCpuLoadColors, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetCpuLoadValue, GetCpuText, SetCpuLoadValue, SetCpuText, GetElements, DeactivateElement, ActivateElement } from "../../wailsjs/go/main/App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+import { faCheckSquare, faSquare } from "@fortawesome/free-regular-svg-icons";
 
 function Cpu() {
     const [cpuLoadColor0, setCpuLoadColor0] = useState<string>("");
@@ -67,10 +68,24 @@ function Cpu() {
                 />
                 <label htmlFor="showCpuLoadColors" className="cursor-pointer">CPU Color Change</label>
                 <div>
+                    {cpuLoadChange ? (
+                        <FontAwesomeIcon icon={faCheckSquare} className="cursor-pointer" onClick={() => {
+                            DeactivateElement("cpu_load_change").then(() => {
+                                reloadElement()
+                            })
+                        }} />
+                    ) : (
+                        <FontAwesomeIcon icon={faSquare} className="cursor-pointer" onClick={() => {
+                            ActivateElement("cpu_load_change").then(() => {
+                                reloadElement()
+                            })
+                        }} />
+                    )}
                     <input
                         id="showCpuLoadColors"
                         type="checkbox"
                         checked={cpuLoadChange}
+                        className="hidden"
                         onChange={() => {
                             if (cpuLoadChange) {
                                 DeactivateElement("cpu_load_change").then(() => {
