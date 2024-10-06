@@ -22,19 +22,19 @@ function Orientation() {
         <SettingBox header="Orientation">
             <div>
                 {orientation == "vertical" ? (
-                    <FontAwesomeIcon icon={faCircleDot} onClick={() => { updateOrientation("vertical") }} />
+                    <FontAwesomeIcon icon={faCircleDot} className="cursor-pointer" onClick={() => { updateOrientation("vertical") }} />
                 ) : (
-                    <FontAwesomeIcon icon={faCircle} onClick={() => { updateOrientation("vertical") }} />
+                    <FontAwesomeIcon icon={faCircle} className="cursor-pointer" onClick={() => { updateOrientation("vertical") }} />
                 )}
-                <a className="ms-2" onClick={() => { updateOrientation("vertical") }}>Vertical</a>
+                <a className="ms-2 cursor-pointer" onClick={() => { updateOrientation("vertical") }}>Vertical</a>
             </div>
             <div>
                 {orientation == "horizontal" ? (
-                    <FontAwesomeIcon icon={faCircleDot} onClick={() => { updateOrientation("horizontal") }} />
+                    <FontAwesomeIcon icon={faCircleDot} className="cursor-pointer" onClick={() => { updateOrientation("horizontal") }} />
                 ) : (
-                    <FontAwesomeIcon icon={faCircle} onClick={() => { updateOrientation("horizontal") }} />
+                    <FontAwesomeIcon icon={faCircle} className="cursor-pointer" onClick={() => { updateOrientation("horizontal") }} />
                 )}
-                <a className="ms-2" onClick={() => { updateOrientation("horizontal") }}>Horizontal</a>
+                <a className="ms-2 cursor-pointer" onClick={() => { updateOrientation("horizontal") }}>Horizontal</a>
             </div>
         </SettingBox>
     )
