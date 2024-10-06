@@ -12,6 +12,11 @@ var Logger logger.Logger
 var VkCubeCmd *exec.Cmd
 var VkCubeRunning bool = false
 
+// var VkCubePath = "vkcube"
+// var MangohudPath = "mangohud"
+var VkCubePath = "/run/host/bin/vkcube"
+var MangohudPath = "/run/host/bin/mangohud"
+
 // App struct
 type App struct {
 	ctx context.Context
@@ -55,10 +60,11 @@ func (a *App) RestartVkcube() {
 }
 func (a *App) StartVkcube() {
 	go func() {
-		VkCubeCmd = exec.Command("bash", "-c", "mangohud vkcube")
+		// VkCubeCmd = exec.Command("bash", "-c", VkCubePath)
+		VkCubeCmd = exec.Command(VkCubePath)
 		err := VkCubeCmd.Start()
 		if err != nil {
-			fmt.Println("Error Starting VkCube")
+			fmt.Println("Error Starting VkCube", err)
 			return
 		} else {
 			VkCubeRunning = true
