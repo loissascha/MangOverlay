@@ -1,4 +1,4 @@
-app-id: com.github.loissascha.mangoverlay
+app-id: io.github.loissascha.mangoverlay
 runtime: org.gnome.Platform
 runtime-version: '46'
 sdk: org.gnome.Sdk
