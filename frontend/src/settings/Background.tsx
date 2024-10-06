@@ -3,6 +3,8 @@ import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
 import { useEffect, useState } from "react";
 import { GetBackgroundAlpha, GetBackgroundColor, GetRoundCorners, SetBackgroundAlpha, SetBackgroundColor, SetRoundedCorners } from "../../wailsjs/go/main/App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircle, faCircleDot, faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 
 function Background() {
     const [backgroundColor, setBackgroundColor] = useState<string>("");
@@ -23,6 +25,12 @@ function Background() {
             setRounded(r)
         })
     }, [])
+
+    function toggleRounded() {
+        const newV = !rounded;
+        setRounded(newV);
+        SetRoundedCorners(newV)
+    }
 
     return (
         <SettingBox header="Background">
@@ -59,17 +67,20 @@ function Background() {
                         SetBackgroundAlpha(event.target.value)
                     }}
                 />
-                <label htmlFor="roundedCheck">Rounded Corners</label>
+                <label htmlFor="roundedCheck" className="cursor-pointer">Rounded Corners</label>
                 <div>
+                    {rounded ? (
+                        <FontAwesomeIcon icon={faSquareCheck} className="cursor-pointer" onClick={() => { toggleRounded() }} />
+                    ) : (
+                        <FontAwesomeIcon icon={faSquare} className="cursor-pointer" onClick={() => { toggleRounded() }} />
+                    )}
                     <input
                         onClick={() => {
-                            const newV = !rounded;
-                            setRounded(newV);
-                            SetRoundedCorners(newV)
+                            toggleRounded()
                         }}
                         type="checkbox"
                         id="roundedCheck"
-                        className="me-2"
+                        className="hidden"
                         readOnly={true}
                         checked={rounded}
                     />
