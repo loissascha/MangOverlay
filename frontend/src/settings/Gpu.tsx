@@ -5,6 +5,7 @@ import { SketchPicker } from "react-color";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+import { faCheckSquare, faSquare } from "@fortawesome/free-regular-svg-icons";
 
 function Gpu() {
     const [gpuText, setGpuText] = useState<string>("")
@@ -68,10 +69,24 @@ function Gpu() {
                 />
                 <label htmlFor="showGpuLoadColors" className="cursor-pointer">GPU Color Change</label>
                 <div>
+                    {gpuLoadChange ? (
+                        <FontAwesomeIcon icon={faCheckSquare} className="cursor-pointer" onClick={() => {
+                            DeactivateElement("gpu_load_change").then(() => {
+                                reloadElement()
+                            })
+                        }} />
+                    ) : (
+                        <FontAwesomeIcon icon={faSquare} className="cursor-pointer" onClick={() => {
+                            ActivateElement("gpu_load_change").then(() => {
+                                reloadElement()
+                            })
+                        }} />
+                    )}
                     <input
                         id="showGpuLoadColors"
                         type="checkbox"
                         checked={gpuLoadChange}
+                        className="hidden"
                         onChange={() => {
                             if (gpuLoadChange) {
                                 DeactivateElement("gpu_load_change").then(() => {

@@ -1,3 +1,5 @@
+import { faCircle, faCircleDot } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { GetOrientation, SetOrientation } from "../../wailsjs/go/main/App";
 import SettingBox from "../ui/SettingBox";
@@ -11,37 +13,28 @@ function Orientation() {
         })
     }, [])
 
+    function updateOrientation(orientation: string) {
+        setOrientation(orientation)
+        SetOrientation(orientation)
+    }
+
     return (
         <SettingBox header="Orientation">
             <div>
-                <input
-                    onClick={() => {
-                        setOrientation("vertical");
-                        SetOrientation("vertical")
-                    }}
-                    type="radio"
-                    name="orientationRadio"
-                    className="me-2"
-                    id="orientationVertical"
-                    readOnly={true}
-                    checked={(orientation == "vertical")}
-                />
-                <label htmlFor="orientationVertical">Vertical</label>
+                {orientation == "vertical" ? (
+                    <FontAwesomeIcon icon={faCircleDot} className="cursor-pointer" onClick={() => { updateOrientation("vertical") }} />
+                ) : (
+                    <FontAwesomeIcon icon={faCircle} className="cursor-pointer" onClick={() => { updateOrientation("vertical") }} />
+                )}
+                <a className="ms-2 cursor-pointer" onClick={() => { updateOrientation("vertical") }}>Vertical</a>
             </div>
             <div>
-                <input
-                    onClick={() => {
-                        setOrientation("horizontal");
-                        SetOrientation("horizontal")
-                    }}
-                    type="radio"
-                    name="orientationRadio"
-                    className="me-2"
-                    id="orientationHorizontal"
-                    readOnly={true}
-                    checked={(orientation == "horizontal")}
-                />
-                <label htmlFor="orientationHorizontal">Horizontal</label>
+                {orientation == "horizontal" ? (
+                    <FontAwesomeIcon icon={faCircleDot} className="cursor-pointer" onClick={() => { updateOrientation("horizontal") }} />
+                ) : (
+                    <FontAwesomeIcon icon={faCircle} className="cursor-pointer" onClick={() => { updateOrientation("horizontal") }} />
+                )}
+                <a className="ms-2 cursor-pointer" onClick={() => { updateOrientation("horizontal") }}>Horizontal</a>
             </div>
         </SettingBox>
     )
