@@ -249,7 +249,7 @@ function MetricsSettings() {
 
     return (
         <>
-            <div className="flex gap-5 flex-auto flex-wrap">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 flex-auto flex-wrap">
                 <div>
                     <SettingBox header="CPU">
                         {cpuElements.map((e: any) => (
