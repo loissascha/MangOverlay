@@ -1,4 +1,4 @@
-import { faCircle, faCheckCircle } from "@fortawesome/free-regular-svg-icons";
+import { faCircle, faCircleDot } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { GetOrientation, SetOrientation } from "../../wailsjs/go/main/App";
@@ -22,7 +22,7 @@ function Orientation() {
         <SettingBox header="Orientation">
             <div>
                 {orientation == "vertical" ? (
-                    <FontAwesomeIcon icon={faCheckCircle} onClick={() => { updateOrientation("vertical") }} />
+                    <FontAwesomeIcon icon={faCircleDot} onClick={() => { updateOrientation("vertical") }} />
                 ) : (
                     <FontAwesomeIcon icon={faCircle} onClick={() => { updateOrientation("vertical") }} />
                 )}
@@ -30,7 +30,7 @@ function Orientation() {
             </div>
             <div>
                 {orientation == "horizontal" ? (
-                    <FontAwesomeIcon icon={faCheckCircle} onClick={() => { updateOrientation("horizontal") }} />
+                    <FontAwesomeIcon icon={faCircleDot} onClick={() => { updateOrientation("horizontal") }} />
                 ) : (
                     <FontAwesomeIcon icon={faCircle} onClick={() => { updateOrientation("horizontal") }} />
                 )}
