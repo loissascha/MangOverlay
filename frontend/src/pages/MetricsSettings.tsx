@@ -1,3 +1,5 @@
+import { faCheckSquare, faSquare } from "@fortawesome/free-regular-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react"
 import { ActivateElement, DeactivateElement, GetElements } from "../../wailsjs/go/main/App"
 import SettingBox from "../ui/SettingBox"
@@ -12,7 +14,16 @@ function MetricItem({ name, active, activate, deactivate }: MetricItemProps) {
     return (
         <div className="flex">
             <div className="me-2">
-                <input id={name} type="checkbox" className="cursor-pointer" checked={active} readOnly={true} onClick={() => {
+                {active ? (
+                    <FontAwesomeIcon icon={faCheckSquare} className="cursor-pointer" onClick={() => {
+                        deactivate()
+                    }} />
+                ) : (
+                    <FontAwesomeIcon icon={faSquare} className="cursor-pointer" onClick={() => {
+                        activate()
+                    }} />
+                )}
+                <input id={name} type="checkbox" className="cursor-pointer hidden" checked={active} readOnly={true} onClick={() => {
                     if (active) {
                         deactivate()
                     }
