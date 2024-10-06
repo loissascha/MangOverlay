@@ -5,6 +5,7 @@ import { SketchPicker } from "react-color";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+import { faCheckSquare, faSquare } from "@fortawesome/free-regular-svg-icons";
 
 function Fps() {
     const [fpsLoadColor0, setFpsLoadColor0] = useState<string>("");
@@ -49,10 +50,24 @@ function Fps() {
             <div className="grid grid-cols-2 gap-3">
                 <label htmlFor="showLoadColors" className="cursor-pointer">FPS Color Change</label>
                 <div>
+                    {fpsColorChange ? (
+                        <FontAwesomeIcon icon={faCheckSquare} className="cursor-pointer" onClick={() => {
+                            DeactivateElement("fps_color_change").then(() => {
+                                reloadElement()
+                            })
+                        }} />
+                    ) : (
+                        <FontAwesomeIcon icon={faSquare} className="cursor-pointer" onClick={() => {
+                            ActivateElement("fps_color_change").then(() => {
+                                reloadElement()
+                            })
+                        }} />
+                    )}
                     <input
                         id="showLoadColors"
                         type="checkbox"
                         checked={fpsColorChange}
+                        className="hidden"
                         onChange={() => {
                             if (fpsColorChange) {
                                 DeactivateElement("fps_color_change").then(() => {
