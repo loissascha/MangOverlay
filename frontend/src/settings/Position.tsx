@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import SettingBox from "../ui/SettingBox";
 import { ActivateElement, DeactivateElement, GetElements, GetPosition, GetTableColumns, SetPosition, SetTableColumns } from "../../wailsjs/go/main/App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckSquare, faCircle, faCircleDot, faSquare } from "@fortawesome/free-regular-svg-icons";
 
 function Position() {
     const [position, setPosition] = useState<string>("");
@@ -32,6 +34,26 @@ function Position() {
         })
     }
 
+    async function toggleCompactMode() {
+        if (compactMode) {
+            await DeactivateElement("hud_compact")
+            reloadElements()
+        } else {
+            await ActivateElement("hud_compact")
+            reloadElements()
+        }
+    }
+
+    async function toggleNoMargin() {
+        if (noMargin) {
+            await DeactivateElement("hud_no_margin")
+            reloadElements()
+        } else {
+            await ActivateElement("hud_no_margin")
+            reloadElements()
+        }
+    }
+
     useEffect(() => {
         reloadElements()
     }, [])
@@ -48,98 +70,90 @@ function Position() {
                     <div className="w-28 h-20 bg-gray-500 grid grid-cols-3 p-1">
                         <div className="grid grid-rows-3">
                             <div className="flex items-start">
-                                <input
-                                    type="radio"
-                                    name="position"
-                                    checked={(position == "top-left")}
-                                    onChange={() => {
+                                {position == "top-left" ? (
+                                    <FontAwesomeIcon icon={faCircleDot} />
+                                ) : (
+                                    <FontAwesomeIcon className="cursor-pointer" icon={faCircle} onClick={() => {
                                         setPosition("top-left")
                                         SetPosition("top-left")
-                                    }}
-                                />
+                                    }} />
+                                )}
                             </div>
                             <div>
-                                <input
-                                    type="radio"
-                                    name="position"
-                                    checked={(position == "middle-left")}
-                                    onChange={() => {
+                                {position == "middle-left" ? (
+                                    <FontAwesomeIcon icon={faCircleDot} />
+                                ) : (
+                                    <FontAwesomeIcon className="cursor-pointer" icon={faCircle} onClick={() => {
                                         setPosition("middle-left")
                                         SetPosition("middle-left")
-                                    }}
-                                />
+                                    }} />
+                                )}
                             </div>
                             <div className="flex items-end">
-                                <input
-                                    type="radio"
-                                    name="position"
-                                    checked={(position == "bottom-left")}
-                                    onChange={() => {
+                                {position == "bottom-left" ? (
+                                    <FontAwesomeIcon icon={faCircleDot} />
+                                ) : (
+                                    <FontAwesomeIcon className="cursor-pointer" icon={faCircle} onClick={() => {
                                         setPosition("bottom-left")
                                         SetPosition("bottom-left")
-                                    }}
-                                />
+                                    }} />
+                                )}
                             </div>
                         </div>
                         <div className="grid grid-rows-3">
                             <div className="flex items-start justify-center">
-                                <input
-                                    type="radio"
-                                    name="position"
-                                    checked={(position == "top-center")}
-                                    onChange={() => {
+                                {position == "top-center" ? (
+                                    <FontAwesomeIcon icon={faCircleDot} />
+                                ) : (
+                                    <FontAwesomeIcon className="cursor-pointer" icon={faCircle} onClick={() => {
                                         setPosition("top-center")
                                         SetPosition("top-center")
-                                    }}
-                                />
+                                    }} />
+                                )}
                             </div>
                             <div>
                             </div>
                             <div className="flex items-end justify-center">
-                                <input
-                                    type="radio"
-                                    name="position"
-                                    checked={(position == "bottom-center")}
-                                    onChange={() => {
+                                {position == "bottom-center" ? (
+                                    <FontAwesomeIcon icon={faCircleDot} />
+                                ) : (
+                                    <FontAwesomeIcon className="cursor-pointer" icon={faCircle} onClick={() => {
                                         setPosition("bottom-center")
                                         SetPosition("bottom-center")
-                                    }}
-                                />
+                                    }} />
+                                )}
                             </div>
                         </div>
                         <div className="grid grid-rows-3">
                             <div className="flex justify-end">
-                                <input
-                                    type="radio"
-                                    name="position"
-                                    checked={(position == "top-right")}
-                                    onChange={() => {
+                                {position == "top-right" ? (
+                                    <FontAwesomeIcon icon={faCircleDot} />
+                                ) : (
+                                    <FontAwesomeIcon className="cursor-pointer" icon={faCircle} onClick={() => {
                                         setPosition("top-right")
                                         SetPosition("top-right")
-                                    }}
-                                />
+                                    }} />
+                                )}
                             </div>
                             <div className="flex justify-end items-center">
-                                <input
-                                    type="radio"
-                                    name="position"
-                                    checked={(position == "middle-right")}
-                                    onChange={() => {
+                                {position == "middle-right" ? (
+                                    <FontAwesomeIcon icon={faCircleDot} />
+                                ) : (
+                                    <FontAwesomeIcon className="cursor-pointer" icon={faCircle} onClick={() => {
                                         setPosition("middle-right")
                                         SetPosition("middle-right")
-                                    }}
-                                />
+                                    }} />
+                                )}
                             </div>
                             <div className="flex justify-end items-end">
-                                <input
-                                    type="radio"
-                                    name="position"
-                                    checked={(position == "bottom-right")}
-                                    onChange={() => {
+                                {position == "bottom-right" ? (
+                                    <FontAwesomeIcon icon={faCircleDot} />
+                                ) : (
+                                    <FontAwesomeIcon className="cursor-pointer" icon={faCircle} onClick={() => {
                                         setPosition("bottom-right")
                                         SetPosition("bottom-right")
-                                    }}
-                                />
+                                    }} />
+                                )}
                             </div>
                         </div>
                     </div>
@@ -148,33 +162,23 @@ function Position() {
             <div className="grid grid-cols-2 gap-3">
                 <div><label htmlFor="compactMode" className="cursor-pointer">Compact Mode</label></div>
                 <div>
-                    <input id="compactMode" type="checkbox" checked={compactMode} onChange={() => {
-                        if (compactMode) {
-                            DeactivateElement("hud_compact").then(() => {
-                                reloadElements()
-                            })
-                        } else {
-                            ActivateElement("hud_compact").then(() => {
-                                reloadElements()
-                            })
-                        }
-                    }} />
+                    {compactMode ? (
+                        <FontAwesomeIcon className="cursor-pointer" icon={faCheckSquare} onClick={() => { toggleCompactMode() }} />
+                    ) : (
+                        <FontAwesomeIcon className="cursor-pointer" icon={faSquare} onClick={() => { toggleCompactMode() }} />
+                    )}
+                    <input className="hidden" id="compactMode" type="checkbox" checked={compactMode} onChange={() => { toggleCompactMode() }} />
                 </div>
             </div>
             <div className="grid grid-cols-2 gap-3">
                 <div><label htmlFor="noMargin" className="cursor-pointer">No Margin</label></div>
                 <div>
-                    <input id="noMargin" type="checkbox" checked={noMargin} onChange={() => {
-                        if (noMargin) {
-                            DeactivateElement("hud_no_margin").then(() => {
-                                reloadElements()
-                            })
-                        } else {
-                            ActivateElement("hud_no_margin").then(() => {
-                                reloadElements()
-                            })
-                        }
-                    }} />
+                    {noMargin ? (
+                        <FontAwesomeIcon className="cursor-pointer" icon={faCheckSquare} onClick={() => { toggleNoMargin() }} />
+                    ) : (
+                        <FontAwesomeIcon className="cursor-pointer" icon={faSquare} onClick={() => { toggleNoMargin() }} />
+                    )}
+                    <input id="noMargin" type="checkbox" checked={noMargin} className="hidden" onChange={() => { toggleNoMargin() }} />
                 </div>
             </div>
             <div className="grid grid-cols-2 gap-3">
