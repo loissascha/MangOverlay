@@ -13,11 +13,15 @@ finish-args:
 modules:
   - name: MangOverlay
     sources:
+      - type: archive
+        url: https://github.com/loissascha/MangOverlay/releases/download/v0.2.8/mangoverlay-v0.2.8-linux-amd64.zip
+        sha256: e7c83ceca061a0c746b85577d79f94d6d42297696d2400e0c0c661c9383c65e5
       - type: dir
         path: .
     buildsystem: simple
     build-commands:
-      - install -D bin/mangoverlay /app/bin/mangoverlay
+      - ls -l
+      - install -D mangoverlay /app/bin/mangoverlay
       - install -D mangoverlay.png /app/share/icons/hicolor/256x256/apps/io.github.loissascha.mangoverlay.png
       - install -D io.github.loissascha.mangoverlay.desktop /app/share/applications/io.github.loissascha.mangoverlay.desktop
       - install -D io.github.loissascha.mangoverlay.metainfo.xml /app/share/metainfo/io.github.loissascha.mangoverlay.metainfo.xml
