@@ -14,13 +14,12 @@ modules:
   - name: MangOverlay
     sources:
       - type: archive
-        url: https://github.com/loissascha/MangOverlay/releases/download/v0.2.8/mangoverlay-v0.2.8-linux-amd64.zip
-        sha256: e7c83ceca061a0c746b85577d79f94d6d42297696d2400e0c0c661c9383c65e5
+        url: https://github.com/loissascha/MangOverlay/releases/download/v0.2.9/mangoverlay-v0.2.9-linux-amd64.zip
+        sha256: 25b1338e89a2881be55ebeaa38441606c2e7f7dcae5c2e18e5672f70c52337df
       - type: dir
         path: .
     buildsystem: simple
     build-commands:
-      - ls -l
       - install -D mangoverlay /app/bin/mangoverlay
       - install -D mangoverlay.png /app/share/icons/hicolor/256x256/apps/io.github.loissascha.mangoverlay.png
       - install -D io.github.loissascha.mangoverlay.desktop /app/share/applications/io.github.loissascha.mangoverlay.desktop
