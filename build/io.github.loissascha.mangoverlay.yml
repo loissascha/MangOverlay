@@ -1,6 +1,6 @@
 app-id: io.github.loissascha.mangoverlay
 runtime: org.gnome.Platform
-runtime-version: '46'
+runtime-version: '47'
 sdk: org.gnome.Sdk
 command: mangoverlay
 finish-args:
@@ -12,9 +12,6 @@ finish-args:
   - --talk-name=org.freedesktop.Flatpak
 modules:
   - name: MangOverlay
-    #
-    # Just install the binary from the local filesystem.
-    #
     sources:
       - type: dir
         path: .
