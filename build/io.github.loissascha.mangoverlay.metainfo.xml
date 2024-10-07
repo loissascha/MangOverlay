@@ -2,6 +2,7 @@
 <component type="desktop-application">
   <id>io.github.loissascha.mangoverlay</id>
   <url type="homepage">https://github.com/loissascha/MangOverlay</url>
+  <content_rating type="oars-1.1" />
   
   <name>MangOverlay</name>
   <summary>MangOverlay is an open source GUI app for managing your MangoHud configuration.</summary>
