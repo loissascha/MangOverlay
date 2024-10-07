@@ -6,7 +6,7 @@ command: mangoverlay
 finish-args:
   - --socket=fallback-x11
   - --socket=wayland
-  - --socket=x11
+  - --share=ipc
   - --filesystem=host:ro
   - --filesystem=home
   - --talk-name=org.freedesktop.Flatpak
@@ -20,3 +20,4 @@ modules:
       - install -D bin/mangoverlay /app/bin/mangoverlay
       - install -D mangoverlay.png /app/share/icons/hicolor/256x256/apps/io.github.loissascha.mangoverlay.png
       - install -D io.github.loissascha.mangoverlay.desktop /app/share/applications/io.github.loissascha.mangoverlay.desktop
+      - install -D io.github.loissascha.mangoverlay.metainfo.xml /app/share/metainfo/io.github.loissascha.mangoverlay.metainfo.xml

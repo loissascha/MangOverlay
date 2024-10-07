@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.loissascha.mangoverlay</id>
+  
+  <name>MangOverlay</name>
+  <summary>MangOverlay is an open source GUI app for managing your MangoHud configuration.</summary>
+
+  <developer id="io.github.loissascha">
+    <name>Sascha Loishandl</name>
+  </developer>
+  
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  
+  <description>
+    <p>
+      MangOverlay is an open source GUI app for managing your MangoHud configuration. It aims to provide as much flexibility with it&apos;s settings as possible.
+    </p>
+  </description>
+  
+  <launchable type="desktop-id">io.github.loissascha.mangoverlay.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>generalSettings.png</image>
+    </screenshot>
+    <screenshot>
+      <image>metricsSettings.png</image>
+    </screenshot>
+    <screenshot>
+      <image>advancedConfig.png</image>
+    </screenshot>
+  </screenshots>
+</component>
