@@ -7,11 +7,9 @@ finish-args:
   - --socket=fallback-x11
   - --socket=wayland
   - --socket=x11
-  - --device=all
-  - --env=DISPLAY=:0
-  - --share=network
   - --filesystem=host:ro
   - --filesystem=home
+  - --talk-name=org.freedesktop.Flatpak
 modules:
   - name: MangOverlay
     #
