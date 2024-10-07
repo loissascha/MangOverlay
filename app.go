@@ -12,6 +12,7 @@ import (
 var Logger logger.Logger
 var VkCubeCmd *exec.Cmd
 var VkCubeRunning bool = false
+var IsFlatpak = false
 
 // App struct
 type App struct {
@@ -58,6 +59,7 @@ func (a *App) StartVkcube() {
 	go func() {
 		VkCubeCmd = exec.Command("bash", "-c", "mangohud vkcube")
 		if commandExists("flatpak-spawn") {
+			IsFlatpak = true
 			mangohud := findHostMangohudInstallation()
 			vkcube := findHostVkcubeInstallation()
 			VkCubeCmd = exec.Command("bash", "-c", fmt.Sprintf("flatpak-spawn --host %s %s", mangohud, vkcube))
@@ -73,11 +75,16 @@ func (a *App) StartVkcube() {
 }
 func (a *App) StopVkcube() {
 	if VkCubeRunning {
-		err := VkCubeCmd.Process.Kill()
-		if err != nil {
-			fmt.Println("Error killing old process")
+		if IsFlatpak {
+			cmd := exec.Command("bash", "-c", "flatpak-spawn --host killall vkcube")
+			cmd.Run()
+		} else {
+			err := VkCubeCmd.Process.Kill()
+			if err != nil {
+				fmt.Println("Error killing old process")
+			}
+			VkCubeRunning = false
 		}
-		VkCubeRunning = false
 	}
 }
 
