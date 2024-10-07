@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=MangOverlay
+Exec=mangoverlay
+Icon=io.github.loissascha.mangoverlay
+Type=Application
+Categories=Utility
+Terminal=false
