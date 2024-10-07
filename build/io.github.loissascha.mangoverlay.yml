@@ -21,5 +21,5 @@ modules:
     buildsystem: simple
     build-commands:
       - install -D bin/mangoverlay /app/bin/mangoverlay
-      - install -D mangoverlay.png /app/share/icons/hicolor/64x64/apps/io.github.loissascha.mangoverlay.png
+      - install -D mangoverlay.png /app/share/icons/io.github.loissascha.mangoverlay.png
       - install -D io.github.loissascha.mangoverlay.desktop /app/share/applications/io.github.loissascha.mangoverlay.desktop

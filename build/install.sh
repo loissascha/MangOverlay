@@ -13,7 +13,7 @@ cp mangoverlay.png ~/.local/share/icons
 # Create .desktop file
 bash -c "cat <<EOF > "$DESKTOP_FILE"
 [Desktop Entry]
-Version=0.1
+Version=0.2.8
 Name=MangOverlay
 Comment=Run MangOverlay
 Exec=$HOME/.local/bin/mangoverlay
