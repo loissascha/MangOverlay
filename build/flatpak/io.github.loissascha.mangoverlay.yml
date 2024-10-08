@@ -11,14 +11,56 @@ finish-args:
   - --filesystem=home
   - --talk-name=org.freedesktop.Flatpak
 modules:
-  - name: MangOverlay
+  - name: go
+    buildsystem: simple
     sources:
       - type: archive
-        url: https://github.com/loissascha/MangOverlay/releases/download/v0.2.9/mangoverlay-v0.2.9-linux-amd64.zip
-        sha256: 519139e610797bf0c82e05fb8746faa1a75b14da285ed03da3de55932d9e8f22
+        url: https://go.dev/dl/go1.23.2.linux-amd64.tar.gz
+        sha256: 542d3c1705f1c6a1c5a80d5dc62e2e45171af291e755d591c5e6531ef63b454e
+    build-commands:
+      - mkdir -p /app/go
+      - cp -r * /app/go
+
+  - name: wails
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/wailsapp/wails.git
+        tag: v2.9.2
+    build-commands:
+      - export PATH=/app/go/bin/go:$PATH
+      - /app/go/bin/go version
+      - cd v2 && ls -l
+      - cd v2 && /app/go/bin/go build -o /app/bin/wails ./cmd/wails
+
+  - name: MangOverlay
+    sources:
+      - type: git
+        url: https://github.com/loissascha/MangOverlay.git
+        tag: v0.3.0
     buildsystem: simple
     build-commands:
-      - install -D mangoverlay /app/bin/mangoverlay
-      - install -D mangoverlay.png /app/share/icons/hicolor/256x256/apps/io.github.loissascha.mangoverlay.png
-      - install -D io.github.loissascha.mangoverlay.desktop /app/share/applications/io.github.loissascha.mangoverlay.desktop
-      - install -D io.github.loissascha.mangoverlay.metainfo.xml /app/share/metainfo/io.github.loissascha.mangoverlay.metainfo.xml
+      - ls -l /app/go/
+      - /app/go/bin/go version
+      - /app/bin/wails build -tags webkit2_41
+      # - export PATH=/app/go/bin/go:$PATH
+      # - go install github.com/wailsapp/wails/v2/cmd/wails@latest
+      # - wails build -tags webkit2_41
+      # - install -D build/mangoverlay.png /app/share/icons/hicolor/256x256/apps/io.github.loissascha.mangoverlay.png
+      # - install -D build/io.github.loissascha.mangoverlay.desktop /app/share/applications/io.github.loissascha.mangoverlay.desktop
+      # - install -D build/io.github.loissascha.mangoverlay.metainfo.xml /app/share/metainfo/io.github.loissascha.mangoverlay.metainfo.xml
+      
+      
+      
+      
+  # - name: MangOverlay
+  #   sources:
+  #     - type: archive
+  #       url: https://github.com/loissascha/MangOverlay/releases/download/v0.2.9/mangoverlay-v0.2.9-linux-amd64.zip
+  #       sha256: 519139e610797bf0c82e05fb8746faa1a75b14da285ed03da3de55932d9e8f22
+  #   buildsystem: simple
+  #   build-commands:
+  #     - install -D mangoverlay /app/bin/mangoverlay
+  #     - install -D mangoverlay.png /app/share/icons/hicolor/256x256/apps/io.github.loissascha.mangoverlay.png
+  #     - install -D io.github.loissascha.mangoverlay.desktop /app/share/applications/io.github.loissascha.mangoverlay.desktop
+  #     - install -D io.github.loissascha.mangoverlay.metainfo.xml /app/share/metainfo/io.github.loissascha.mangoverlay.metainfo.xml
