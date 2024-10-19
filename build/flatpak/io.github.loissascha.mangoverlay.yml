@@ -23,6 +23,9 @@ modules:
 
   - name: wails
     buildsystem: simple
+    build-options:
+      build-args:
+        - --share=network
     sources:
       - type: git
         url: https://github.com/wailsapp/wails.git
@@ -39,6 +42,9 @@ modules:
         url: https://github.com/loissascha/MangOverlay.git
         tag: v0.3.0
     buildsystem: simple
+    build-options:
+      build-args:
+        - --share=network
     build-commands:
       - ls -l /app/go/
       - /app/go/bin/go version
