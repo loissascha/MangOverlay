@@ -466,6 +466,6 @@ func createConfigIfNotExist() {
 	}
 
 	if !configExists {
-		os.WriteFile(configDir+"/MangoHud.conf", []byte("Hello"), 0666)
+		os.WriteFile(configDir+"/MangoHud.conf", []byte(""), 0666)
 	}
 }
