@@ -85,7 +85,7 @@ function Fps() {
                 <input
                     type="text"
                     id="fpsloadvalue"
-                    className="w-28 bg-gray-700 p-1 border border-gray-500 rounded text-center"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 border border-latte-surface2 dark:border-mocha-surface2 rounded text-center"
                     min="8"
                     max="50"
                     defaultValue={fpsLoadValue}
@@ -101,8 +101,8 @@ function Fps() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + fpsLoadColor0
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28 mb-2">{fpsLoadColor0}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28 mb-2">{fpsLoadColor0}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={fpsLoadColor0} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -127,8 +127,8 @@ function Fps() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + fpsLoadColor1
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28 mb-2">{fpsLoadColor1}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28 mb-2">{fpsLoadColor1}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={fpsLoadColor1} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -153,8 +153,8 @@ function Fps() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + fpsLoadColor2
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{fpsLoadColor2}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{fpsLoadColor2}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={fpsLoadColor2} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {

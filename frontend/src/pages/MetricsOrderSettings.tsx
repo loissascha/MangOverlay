@@ -37,22 +37,22 @@ function DraggableElement({ e, ElementUp, ElementDown, onDropElement }: Draggabl
     return (
         <div className="">
             <div className={`grid grid-cols-[1fr_auto] ${isDragging ? 'opacity-50' : ''}`}>
-                <div ref={drag} className={"bg-gray-700 p-2 rounded cursor-pointer border border-gray-500"}>
+                <div ref={drag} className={"bg-latte-surface0 dark:bg-mocha-surface0 p-2 rounded cursor-pointer border border-latte-surface2 dark:border-mocha-surface2"}>
                     <a className="cursor-pointer me-3" title="Unselect">
                         <FontAwesomeIcon icon={faUpDownLeftRight} className="me-2" />
                         {e.DisplayName != "" ? e.DisplayName : e.Name}
                     </a>
                 </div>
                 <div className="flex gap-1 ms-2">
-                    <button className="cursor-pointer bg-gray-700 p-2 rounded border border-gray-500 hover:bg-gray-600" onClick={() => ElementUp(e.Name)} title="Sort Up">
+                    <button className="cursor-pointer bg-latte-surface0 dark:bg-mocha-surface0 p-2 rounded border border-latte-surface2 dark:border-mocha-surface2 hover:bg-latte-surface1 dark:hover:bg-mocha-surface1" onClick={() => ElementUp(e.Name)} title="Sort Up">
                         <FontAwesomeIcon icon={faSortUp} />
                     </button>
-                    <button className="cursor-pointer bg-gray-700 p-2 rounded border border-gray-500 hover:bg-gray-600" onClick={() => ElementDown(e.Name)} title="Sort Down">
+                    <button className="cursor-pointer bg-latte-surface0 dark:bg-mocha-surface0 p-2 rounded border border-latte-surface2 dark:border-mocha-surface2 hover:bg-latte-surface1 dark:hover:bg-mocha-surface1" onClick={() => ElementDown(e.Name)} title="Sort Down">
                         <FontAwesomeIcon icon={faSortDown} />
                     </button>
                 </div>
             </div>
-            <div ref={drop} className={`h-4 ${isOver ? 'bg-gray-400' : isDragging ? 'bg-gray-600' : ''}`}> </div>
+            <div ref={drop} className={`h-4 ${isOver ? 'bg-latte-surface2 dark:bg-mocha-surface2' : isDragging ? 'bg-latte-surface0 dark:bg-mocha-surface0' : ''}`}> </div>
         </div>
     );
 };

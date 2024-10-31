@@ -67,7 +67,7 @@ function Position() {
             <div className="grid grid-cols-2 gap-3">
                 <div>Position</div>
                 <div>
-                    <div className="w-28 h-20 bg-gray-500 grid grid-cols-3 p-1">
+                    <div className="w-28 h-20 grid grid-cols-3 p-1">
                         <div className="grid grid-rows-3">
                             <div className="flex items-start">
                                 {position == "top-left" ? (
@@ -189,7 +189,7 @@ function Position() {
                         min="1"
                         max="10"
                         step="1"
-                        className="w-28 bg-gray-700 p-1 text-center border border-gray-500 rounded"
+                        className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 text-center border border-latte-surface2 dark:border-mocha-surface2 rounded"
                         defaultValue={tableColumns}
                         onChange={(event) => {
                             setTableColumns(event.target.value)

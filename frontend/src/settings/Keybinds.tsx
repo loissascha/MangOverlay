@@ -42,7 +42,7 @@ function Keybinds() {
                 <input
                     type="text"
                     id="togglehud"
-                    className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 rounded border border-latte-surface2 dark:border-mocha-surface2"
                     defaultValue={kbToggleHud}
                     onChange={(event) => {
                         const v = event.target.value
@@ -54,7 +54,7 @@ function Keybinds() {
                 <input
                     type="text"
                     id="togglehudposition"
-                    className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 rounded border border-latte-surface2 dark:border-mocha-surface2"
                     defaultValue={kbToggleHudPosition}
                     onChange={(event) => {
                         const v = event.target.value
@@ -66,7 +66,7 @@ function Keybinds() {
                 <input
                     type="text"
                     id="togglepreset"
-                    className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 rounded border border-latte-surface2 dark:border-mocha-surface2"
                     defaultValue={kbTogglePreset}
                     onChange={(event) => {
                         const v = event.target.value
@@ -78,7 +78,7 @@ function Keybinds() {
                 <input
                     type="text"
                     id="togglefpslimit"
-                    className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 rounded border border-latte-surface2 dark:border-mocha-surface2"
                     defaultValue={kbToggleFpsLimit}
                     onChange={(event) => {
                         const v = event.target.value
@@ -90,7 +90,7 @@ function Keybinds() {
                 <input
                     type="text"
                     id="togglelogging"
-                    className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 rounded border border-latte-surface2 dark:border-mocha-surface2"
                     defaultValue={kbToggleLogging}
                     onChange={(event) => {
                         const v = event.target.value
@@ -102,7 +102,7 @@ function Keybinds() {
                 <input
                     type="text"
                     id="reloadcfg"
-                    className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 rounded border border-latte-surface2 dark:border-mocha-surface2"
                     defaultValue={kbReloadCfg}
                     onChange={(event) => {
                         const v = event.target.value
@@ -114,7 +114,7 @@ function Keybinds() {
                 <input
                     type="text"
                     id="uploadlog"
-                    className="w-28 bg-gray-700 p-1 rounded border border-gray-500"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 rounded border border-latte-surface2 dark:border-mocha-surface2"
                     defaultValue={kbUploadLog}
                     onChange={(event) => {
                         const v = event.target.value

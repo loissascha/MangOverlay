@@ -77,8 +77,8 @@ function Colors() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + cpuColor
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{cpuColor}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{cpuColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={cpuColor} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -106,8 +106,8 @@ function Colors() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + gpuColor
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{gpuColor}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{gpuColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={gpuColor} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -135,8 +135,8 @@ function Colors() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + vramColor
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{vramColor}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{vramColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={vramColor} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -164,8 +164,8 @@ function Colors() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + ramColor
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{ramColor}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{ramColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={ramColor} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -193,8 +193,8 @@ function Colors() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + engineColor
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{engineColor}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{engineColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={engineColor} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -222,8 +222,8 @@ function Colors() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + ioColor
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{ioColor}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{ioColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={ioColor} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -251,8 +251,8 @@ function Colors() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + frametimeColor
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{frametimeColor}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{frametimeColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={frametimeColor} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -280,8 +280,8 @@ function Colors() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + mediaColor
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{mediaColor}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{mediaColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={mediaColor} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -309,8 +309,8 @@ function Colors() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + wineColor
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{wineColor}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{wineColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={wineColor} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -338,8 +338,8 @@ function Colors() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + batteryColor
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{batteryColor}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{batteryColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={batteryColor} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -367,8 +367,8 @@ function Colors() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + networkColor
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{networkColor}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{networkColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={networkColor} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {

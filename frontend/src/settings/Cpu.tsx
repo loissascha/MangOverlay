@@ -3,7 +3,7 @@ import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
 import { SetCpuLoadColors, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetCpuLoadValue, GetCpuText, SetCpuLoadValue, SetCpuText, GetElements, DeactivateElement, ActivateElement } from "../../wailsjs/go/main/App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { faCheckSquare, faSquare } from "@fortawesome/free-regular-svg-icons";
 
@@ -56,7 +56,7 @@ function Cpu() {
                 <input
                     type="text"
                     id="cputext"
-                    className="w-28 bg-gray-700 p-1 border border-gray-500 rounded text-center"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 border border-latte-surface2 dark:border-mocha-surface2 rounded text-center"
                     min="8"
                     max="50"
                     defaultValue={cpuText}
@@ -103,7 +103,7 @@ function Cpu() {
                 <input
                     type="text"
                     id="cpuloadvalue"
-                    className="w-28 bg-gray-700 p-1 border border-gray-500 rounded text-center"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 border border-latte-surface2 dark:border-mocha-surface2 rounded text-center"
                     min="8"
                     max="50"
                     defaultValue={cpuLoadValue}
@@ -119,8 +119,8 @@ function Cpu() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + cpuLoadColor0
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28 mb-2">{cpuLoadColor0}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28 mb-2">{cpuLoadColor0}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={cpuLoadColor0} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -145,8 +145,8 @@ function Cpu() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + cpuLoadColor1
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28 mb-2">{cpuLoadColor1}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28 mb-2">{cpuLoadColor1}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={cpuLoadColor1} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -171,8 +171,8 @@ function Cpu() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + cpuLoadColor2
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{cpuLoadColor2}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{cpuLoadColor2}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={cpuLoadColor2} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {

@@ -4,7 +4,7 @@ import { SketchPicker } from "react-color";
 import { useEffect, useState } from "react";
 import { GetBackgroundAlpha, GetBackgroundColor, GetRoundCorners, SetBackgroundAlpha, SetBackgroundColor, SetRoundedCorners } from "../../wailsjs/go/main/App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle, faCircleDot, faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
+import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 
 function Background() {
     const [backgroundColor, setBackgroundColor] = useState<string>("");
@@ -40,8 +40,8 @@ function Background() {
                     <Popover className="relative">
                         <PopoverButton style={{
                             backgroundColor: "#" + backgroundColor
-                        }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{backgroundColor}</PopoverButton>
-                        <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                        }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{backgroundColor}</PopoverButton>
+                        <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                             <SketchPicker color={backgroundColor} onChange={(color) => {
                                 let col = color.hex;
                                 if (col[0] == "#") {
@@ -60,7 +60,7 @@ function Background() {
                     max="1"
                     step="0.1"
                     id="bgalpha"
-                    className="w-28 bg-gray-700 p-1 text-center border border-gray-500 rounded"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 text-center border border-latte-surface2 dark:border-mocha-surface2 rounded"
                     defaultValue={backgroundAlpha}
                     onChange={(event) => {
                         setBackgroundAlpha(event.target.value);

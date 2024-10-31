@@ -42,7 +42,7 @@ function Text() {
                 <input
                     type="number"
                     id="fontsize"
-                    className="w-28 bg-gray-700 p-1 border border-gray-500 rounded text-center"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 border border-latte-surface2 dark:border-mocha-surface2 rounded text-center"
                     defaultValue={fontSize}
                     min="8"
                     max="50"
@@ -61,8 +61,8 @@ function Text() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + textColor
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{textColor}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{textColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={textColor} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -90,8 +90,8 @@ function Text() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + textOutlineColor
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{textOutlineColor}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{textOutlineColor}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={textOutlineColor} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -117,7 +117,7 @@ function Text() {
                 <input
                     type="number"
                     id="outlinethickness"
-                    className="w-28 bg-gray-700 p-1 border border-gray-500 rounded text-center"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 border border-latte-surface2 dark:border-mocha-surface2 rounded text-center"
                     defaultValue={textOutlineThickness}
                     step="0.1"
                     onChange={(event) => {

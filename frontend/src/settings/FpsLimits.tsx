@@ -29,24 +29,24 @@ function FpsLimits() {
             <div className="flex flex-col gap-3">
                 {fpsLimits.map((limit: any, index: number) => (
                     <div key={index} className="grid grid-cols-[1fr_auto] gap-2">
-                        <input value={limit} className="bg-gray-700 border border-gray-500 p-2 rounded w-60" onChange={(event: any) => {
+                        <input value={limit} className="bg-latte-surface0 dark:bg-mocha-surface0 border border-latte-surface2 dark:border-mocha-surface2 p-2 rounded w-60" onChange={(event: any) => {
                             const value = event.target.value
                             UpdateFPSLimit(index, value).then(() => {
                                 reloadFpsLimits()
                             })
                         }} />
                         <div className="flex gap-1">
-                            <button className="p-2 bg-gray-700 rounded border border-gray-500 cursor-pointer hover:bg-gray-600" onClick={() => {
+                            <button className="p-2 bg-latte-surface0 dark:bg-mocha-surface0 rounded border border-latte-surface2 dark:border-mocha-surface2 cursor-pointer hover:bg-latte-surface1 dark:hover:bg-mocha-surface2" onClick={() => {
                                 ReorderFPSLimit(index, index - 1).then(() => {
                                     reloadFpsLimits()
                                 })
                             }}><FontAwesomeIcon icon={faSortUp} /></button>
-                            <button className="p-2 bg-gray-700 rounded border border-gray-500 cursor-pointer hover:bg-gray-600" onClick={() => {
+                            <button className="p-2 bg-latte-surface0 dark:bg-mocha-surface0 rounded border border-latte-surface2 dark:border-mocha-surface2 cursor-pointer hover:bg-latte-surface1 dark:hover:bg-mocha-surface2" onClick={() => {
                                 ReorderFPSLimit(index, index + 1).then(() => {
                                     reloadFpsLimits()
                                 })
                             }}><FontAwesomeIcon icon={faSortDown} /></button>
-                            <button className="p-2 bg-gray-700 rounded border border-gray-500 cursor-pointer hover:bg-gray-600" onClick={() => {
+                            <button className="p-2 bg-latte-surface0 dark:bg-mocha-surface0 rounded border border-latte-surface2 dark:border-mocha-surface2 cursor-pointer hover:bg-latte-surface1 dark:hover:bg-mocha-surface2" onClick={() => {
                                 RemoveFPSLimit(index).then(() => {
                                     reloadFpsLimits()
                                 })

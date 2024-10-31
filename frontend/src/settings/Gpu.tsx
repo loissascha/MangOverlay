@@ -57,7 +57,7 @@ function Gpu() {
                 <input
                     type="text"
                     id="gputext"
-                    className="w-28 bg-gray-700 p-1 border border-gray-500 rounded text-center"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 border border-latte-surface2 dark:border-mocha-surface2 rounded text-center"
                     min="8"
                     max="50"
                     defaultValue={gpuText}
@@ -104,7 +104,7 @@ function Gpu() {
                 <input
                     type="text"
                     id="gpuloadvalue"
-                    className="w-28 bg-gray-700 p-1 border border-gray-500 rounded text-center"
+                    className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 border border-latte-surface2 dark:border-mocha-surface2 rounded text-center"
                     min="8"
                     max="50"
                     defaultValue={gpuLoadValue}
@@ -120,8 +120,8 @@ function Gpu() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + gpuLoadColor0
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28 mb-2">{gpuLoadColor0}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28 mb-2">{gpuLoadColor0}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={gpuLoadColor0} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -146,8 +146,8 @@ function Gpu() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + gpuLoadColor1
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28 mb-2">{gpuLoadColor1}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28 mb-2">{gpuLoadColor1}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={gpuLoadColor1} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {
@@ -172,8 +172,8 @@ function Gpu() {
                         <Popover className="relative">
                             <PopoverButton style={{
                                 backgroundColor: "#" + gpuLoadColor2
-                            }} className="cursor-pointer p-1 rounded border border-gray-500 w-28">{gpuLoadColor2}</PopoverButton>
-                            <PopoverPanel anchor="bottom" className="flex flex-col bg-gray-500">
+                            }} className="cursor-pointer p-1 rounded border border-latte-surface2 dark:border-mocha-surface2 w-28">{gpuLoadColor2}</PopoverButton>
+                            <PopoverPanel anchor="bottom" className="flex flex-col bg-latte-surface1 dark:bg-mocha-surface1">
                                 <SketchPicker color={gpuLoadColor2} onChange={(color) => {
                                     let col = color.hex;
                                     if (col[0] == "#") {

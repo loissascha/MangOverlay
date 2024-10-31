@@ -39,7 +39,7 @@ function UserLines() {
                             <input
                                 ref={customLineInput}
                                 type="text"
-                                className="bg-gray-700 border border-gray-500 p-2 rounded w-60"
+                                className="bg-latte-surface0 dark:bg-mocha-surface0 border border-latte-surface2 dark:border-mocha-surface2 p-2 rounded w-60"
                             />
                         </form>
                     </div>
