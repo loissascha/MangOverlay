@@ -14,6 +14,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faBars,
 	faCopy,
+	faDownload,
+	faFileImport,
 	faGears,
 	faQuestion,
 	faShare,
@@ -232,15 +234,18 @@ function App() {
 											navigator.clipboard
 												.writeText(text)
 												.then(() => {
-													alert("Copied!");
+													alert("Copied to clipboard!");
 												})
 												.catch((error) => {
-													alert("Failed");
+													alert("Error! If this issue persists, please report it on github! " + error);
 												});
 										}
 									}}
 								>
-									<FontAwesomeIcon icon={faCopy} />
+									<FontAwesomeIcon icon={faCopy} title="Copy to clipboard" />
+								</button>
+								<button className="me-3">
+									<FontAwesomeIcon icon={faDownload} title="Import" />
 								</button>
 								<button
 									className="bg-red-300 dark:bg-red-500 hover:bg-red-400 cursor-pointer px-2 py-1 rounded-md"
