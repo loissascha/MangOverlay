@@ -438,6 +438,10 @@ export function SetWineColor(arg1) {
   return window['go']['main']['App']['SetWineColor'](arg1);
 }
 
+export function ShareConfig() {
+  return window['go']['main']['App']['ShareConfig']();
+}
+
 export function StartVkcube() {
   return window['go']['main']['App']['StartVkcube']();
 }

@@ -8,3 +8,7 @@ func (a *App) ReloadConfig() {
 
 func (a *App) ResetConfig() {
 }
+
+func (a *App) ShareConfig() []string {
+	return config.ShareConfig()
+}

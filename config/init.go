@@ -29,6 +29,10 @@ func ReloadConfig() {
 	readConfigs()
 }
 
+func ShareConfig() []string {
+	return getConfigFile()
+}
+
 func readConfigs() {
 	conf := getConfigFile()
 	hasLegacyLayoutSet := false
