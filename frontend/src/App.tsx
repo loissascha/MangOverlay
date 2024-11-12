@@ -15,9 +15,9 @@ import {
 	faBars,
 	faCopy,
 	faDownload,
-	faFileImport,
 	faGears,
 	faQuestion,
+	faSave,
 	faShare,
 	faSort,
 	faWrench,
@@ -33,8 +33,10 @@ function App() {
 	const [showRestartModal, setShowRestartModal] = useState<boolean>(false);
 	const [showHelpModal, setShowHelpModal] = useState<boolean>(false);
 	const [showShareModal, setShowShareModal] = useState<boolean>(false);
+	const [showImportModal, setShowImportModal] = useState<boolean>(false);
 	const [shareConfig, setShareConfig] = useState<string[]>([]);
 	const shareRef = useRef<HTMLPreElement | null>(null);
+	const importTextRef = useRef<HTMLTextAreaElement | null>(null);
 
 	useEffect(() => {
 		GloballyEnabled().then((r) => {
@@ -50,7 +52,7 @@ function App() {
 		<div
 			className={
 				"w-full h-full text-latte-text dark:text-mocha-text grid grid-rows-[auto_1fr_auto] select-none cursor-default " +
-				(showRestartModal || showHelpModal || showShareModal
+				(showRestartModal || showHelpModal || showShareModal || showImportModal
 					? "overflow-hidden"
 					: null)
 			}
@@ -217,6 +219,53 @@ function App() {
 					</div>
 				</div>
 			) : null}
+			{showImportModal ? (
+				<div className="fixed left-0 right-0 top-0 bottom-0 bg-black bg-opacity-50 content-center">
+					<div className="w-96 max-w-full bg-latte-base dark:bg-mocha-base mx-auto px-8 py-6 rounded">
+						<div className="grid grid-cols-2 mb-3">
+							<h1 className="text-xl mb-2">Import Config</h1>
+							<div className="text-right">
+								<button
+									className="bg-red-300 dark:bg-red-500 hover:bg-red-400 cursor-pointer px-2 py-1 rounded-md"
+									onClick={() => {
+										setShowImportModal(false);
+									}}
+								>
+									<FontAwesomeIcon icon={faXmark} />
+								</button>
+							</div>
+						</div>
+						<div>
+							<textarea
+								ref={importTextRef}
+								className="dark:bg-mocha-surface0 w-full h-28"
+							></textarea>
+						</div>
+						<div className="text-center">
+							<button
+								onClick={() => {
+									if (importTextRef == null) {
+										return;
+									}
+									if (
+										confirm(
+											"This will overwrite your current configuration. Are you sure you want to proceed?",
+										)
+									) {
+										const text = importTextRef.current?.value;
+										if (text) {
+											alert("Text: " + text);
+										}
+									}
+								}}
+								className="bg-latte-green text-white dark:bg-mocha-green dark:text-black rounded px-3 py-2"
+							>
+								<FontAwesomeIcon icon={faSave} />
+							</button>
+						</div>
+					</div>
+				</div>
+			) : null}
 			{showShareModal ? (
 				<div className="fixed left-0 right-0 top-0 bottom-0 bg-black bg-opacity-50 content-center">
 					<div className="w-96 max-w-full max-h-96 overflow-auto bg-latte-base dark:bg-mocha-base mx-auto px-8 py-6 rounded">
@@ -237,14 +286,23 @@ function App() {
 													alert("Copied to clipboard!");
 												})
 												.catch((error) => {
-													alert("Error! If this issue persists, please report it on github! " + error);
+													alert(
+														"Error! If this issue persists, please report it on github! " +
+														error,
+													);
 												});
 										}
 									}}
 								>
 									<FontAwesomeIcon icon={faCopy} title="Copy to clipboard" />
 								</button>
-								<button className="me-3">
+								<button
+									className="me-3"
+									onClick={() => {
+										setShowShareModal(false);
+										setShowImportModal(true);
+									}}
+								>
 									<FontAwesomeIcon icon={faDownload} title="Import" />
 								</button>
 								<button
