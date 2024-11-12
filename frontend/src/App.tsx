@@ -4,6 +4,8 @@ import {
 	DisableGlobally,
 	EnableGlobally,
 	GloballyEnabled,
+	ImportConfig,
+	ReloadConfig,
 	RestartVkcube,
 	ShareConfig,
 } from "../wailsjs/go/main/App";
@@ -254,7 +256,14 @@ function App() {
 									) {
 										const text = importTextRef.current?.value;
 										if (text) {
-											alert("Text: " + text);
+											ImportConfig(text).then(() => {
+												ReloadConfig().then(() => {
+													setShowImportModal(false);
+													location.reload();
+												});
+											});
+										} else {
+											alert("Can't read text!");
 										}
 									}
 								}}
