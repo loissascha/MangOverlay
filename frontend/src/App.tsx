@@ -184,6 +184,7 @@ function App() {
 				</div>
 				<div className="flex items-center justify-end me-5">
 					<a
+						title="Export"
 						className="cursor-pointer me-5"
 						onClick={() => {
 							ShareConfig().then((r) => {
@@ -195,6 +196,7 @@ function App() {
 						<FontAwesomeIcon icon={faShare} />
 					</a>
 					<a
+						title="Help"
 						className="cursor-pointer"
 						onClick={() => {
 							setShowHelpModal(true);
