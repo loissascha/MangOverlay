@@ -33,6 +33,10 @@ func ShareConfig() []string {
 	return getConfigFile()
 }
 
+func ImportConfig(s string) {
+	writeConfigFile(s)
+}
+
 func readConfigs() {
 	conf := getConfigFile()
 	hasLegacyLayoutSet := false
@@ -441,6 +445,14 @@ func getConfigFile() []string {
 		result = append(result, line)
 	}
 	return result
+}
+
+func writeConfigFile(s string) {
+	configFile := getConfigFilePath()
+	err := os.WriteFile(configFile, []byte(s), os.ModePerm)
+	if err != nil {
+		panic("Can't write config!")
+	}
 }
 
 func createConfigIfNotExist() {
