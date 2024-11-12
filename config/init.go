@@ -23,10 +23,19 @@ func LoadConfig() {
 }
 
 func ReloadConfig() {
+	setDefaults()
 	initGlobalEnabled()
 	initElements()
 	initFpsLimits()
 	readConfigs()
+}
+
+func ShareConfig() []string {
+	return getConfigFile()
+}
+
+func ImportConfig(s string) {
+	writeConfigFile(s)
 }
 
 func readConfigs() {
@@ -437,6 +446,14 @@ func getConfigFile() []string {
 		result = append(result, line)
 	}
 	return result
+}
+
+func writeConfigFile(s string) {
+	configFile := getConfigFilePath()
+	err := os.WriteFile(configFile, []byte(s), os.ModePerm)
+	if err != nil {
+		panic("Can't write config!")
+	}
 }
 
 func createConfigIfNotExist() {

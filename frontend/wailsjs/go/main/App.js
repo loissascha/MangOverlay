@@ -262,6 +262,10 @@ export function GloballyEnabled() {
   return window['go']['main']['App']['GloballyEnabled']();
 }
 
+export function ImportConfig(arg1) {
+  return window['go']['main']['App']['ImportConfig'](arg1);
+}
+
 export function OrderElementUnderneathElement(arg1, arg2) {
   return window['go']['main']['App']['OrderElementUnderneathElement'](arg1, arg2);
 }
@@ -436,6 +440,10 @@ export function SetVramColor(arg1) {
 
 export function SetWineColor(arg1) {
   return window['go']['main']['App']['SetWineColor'](arg1);
+}
+
+export function ShareConfig() {
+  return window['go']['main']['App']['ShareConfig']();
 }
 
 export function StartVkcube() {
