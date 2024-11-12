@@ -23,6 +23,7 @@ func LoadConfig() {
 }
 
 func ReloadConfig() {
+	setDefaults()
 	initGlobalEnabled()
 	initElements()
 	initFpsLimits()
