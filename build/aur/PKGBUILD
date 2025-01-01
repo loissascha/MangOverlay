@@ -1,0 +1,40 @@
+# Maintainer Information
+# Maintainer: Sascha Loishandl <sascha.loishandl@gmail.com>
+
+pkgname=mangoverlay
+pkgver=0.3.5
+pkgrel=1
+pkgdesc="MangOverlay is an open source GUI app for managing your MangoHud configuration."
+arch=('x86_64')
+url="https://github.com/loissascha/MangOverlay"
+license=('MIT')
+depends=('webkit2gtk-4.1' 'vulkan-tools' 'mangohud') 
+makedepends=('go' 'git' 'npm' 'gcc' 'gtk3' 'webkit2gtk' 'pkgconf') 
+source=("https://github.com/loissascha/MangOverlay/archive/refs/tags/v$pkgver.tar.gz")
+sha256sums=('SKIP') 
+
+build() {
+	go version
+	go install github.com/wailsapp/wails/v2/cmd/wails@latest
+	wails doctor
+
+	cd "$srcdir/MangOverlay-$pkgver"
+
+	wails build -tags webkit2_41
+
+	cd build/bin
+	ls
+}
+
+package() {
+	cd "$srcdir/MangOverlay-$pkgver/build"
+
+	# Install binary
+	install -Dm755 "bin/mangoverlay" "$pkgdir/usr/bin/mangoverlay"
+  
+	# Install desktop entry (if applicable)
+	install -Dm644 "aur/mangoverlay.desktop" "$pkgdir/usr/share/applications/mangoverlay.desktop"
+
+	# Install icon (if applicable)
+	install -Dm644 "mangoverlay.png" "$pkgdir/usr/share/icons/hicolor/256x256/apps/mangoverlay.png"
+}
