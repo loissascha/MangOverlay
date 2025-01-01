@@ -2,7 +2,7 @@
 # Maintainer: Sascha Loishandl <sascha.loishandl@gmail.com>
 
 pkgname=mangoverlay
-pkgver=0.3.5
+pkgver=0.3.6
 pkgrel=1
 pkgdesc="MangOverlay is an open source GUI app for managing your MangoHud configuration."
 arch=('x86_64')
@@ -32,9 +32,9 @@ package() {
 	# Install binary
 	install -Dm755 "bin/mangoverlay" "$pkgdir/usr/bin/mangoverlay"
   
-	# Install desktop entry (if applicable)
+	# Install desktop entry
 	install -Dm644 "aur/mangoverlay.desktop" "$pkgdir/usr/share/applications/mangoverlay.desktop"
 
-	# Install icon (if applicable)
+	# Install icon
 	install -Dm644 "mangoverlay.png" "$pkgdir/usr/share/icons/hicolor/256x256/apps/mangoverlay.png"
 }
