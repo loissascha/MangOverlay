@@ -16,6 +16,7 @@ sha256sums=('SKIP')
 build() {
 	go version
 	go install github.com/wailsapp/wails/v2/cmd/wails@latest
+	export PATH=$PATH:~/go/bin
 	wails doctor
 
 	cd "$srcdir/MangOverlay-$pkgver"
