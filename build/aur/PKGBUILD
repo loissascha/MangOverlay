@@ -1,6 +1,4 @@
-# Maintainer Information
 # Maintainer: Sascha Loishandl <sascha.loishandl@gmail.com>
-
 pkgname=mangoverlay
 pkgver=0.3.6
 pkgrel=1
@@ -17,21 +15,13 @@ build() {
 	go version
 	go install github.com/wailsapp/wails/v2/cmd/wails@latest
 	export PATH=$PATH:~/go/bin
-
 	cd "$srcdir/MangOverlay-$pkgver"
-
 	wails build -tags webkit2_41
 }
 
 package() {
 	cd "$srcdir/MangOverlay-$pkgver/build"
-
-	# Install binary
 	install -Dm755 "bin/mangoverlay" "$pkgdir/usr/bin/mangoverlay"
-  
-	# Install desktop entry
 	install -Dm644 "aur/mangoverlay.desktop" "$pkgdir/usr/share/applications/mangoverlay.desktop"
-
-	# Install icon
 	install -Dm644 "mangoverlay.png" "$pkgdir/usr/share/icons/hicolor/256x256/apps/mangoverlay.png"
 }
