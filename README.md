@@ -7,7 +7,7 @@ MangOverlay is an open source GUI app for managing your [MangoHud](https://githu
 
 
 ## Installation
-The easiest way to get MangOverlay is by downloading it as AppImage [here](https://github.com/loissascha/MangOverlay/releases/latest/download/MangOverlay.AppImage).
+The easiest way to get MangOverlay is by downloading the AppImage [here](https://github.com/loissascha/MangOverlay/releases/latest/download/MangOverlay.AppImage).
 
 You can also find installation instructions on the [Releases](https://github.com/loissascha/MangOverlay/releases/latest) page.
 
