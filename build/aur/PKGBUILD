@@ -4,7 +4,7 @@
 pkgname=mangoverlay
 pkgver=0.3.6
 pkgrel=1
-pkgdesc="MangOverlay is an open source GUI app for managing your MangoHud configuration."
+pkgdesc="GUI app for managing your MangoHud configuration."
 arch=('x86_64')
 url="https://github.com/loissascha/MangOverlay"
 license=('MIT')
