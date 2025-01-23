@@ -5,18 +5,18 @@ export default {
     extend: {
       colors: {
         mocha: {
-          base: "#1e1e2e",
+          base: "#141414",
           mantle: "#181825",
           crust: "#11111b",
-          surface0: "#313244",
-          surface1: "#45475a",
-          surface2: "#585b70",
+          surface0: "#1c1c1c",
+          surface1: "#2c2c2c",
+          surface2: "#2c2c2c",
           overlay0: "#6c7086",
           overlay1: "#7f849c",
           overlay2: "#9399b2",
           subtext0: "#a6adc8",
           subtext1: "#bac2de",
-          text: "#cdd6f4",
+          text: "#e3e3e3",
           lavender: "#b4befe",
           blue: "#89b4fa",
           sapphire: "#74c7ec",
