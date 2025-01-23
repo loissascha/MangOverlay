@@ -18,6 +18,22 @@ func (a *App) SetTableColumns(n string) {
 	config.CG.SetTableColumns(n)
 }
 
+func (a *App) GetOffsetX() string {
+	return config.CG.OffsetX
+}
+
+func (a *App) GetOffsetY() string {
+	return config.CG.OffsetY
+}
+
+func (a *App) SetOffsetX(n string) {
+	config.CG.SetOffsetX(n)
+}
+
+func (a *App) SetOffsetY(n string) {
+	config.CG.SetOffsetY(n)
+}
+
 func (a *App) GetPosition() string {
 	return config.CG.Position
 }

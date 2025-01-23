@@ -78,6 +78,14 @@ func readConfigs() {
 				foundElement = true
 				CG.TableColumns = r
 				break
+			case "offset_x":
+				r := strings.TrimSpace(val)
+				foundElement = true
+				CG.OffsetX = r
+			case "offset_y":
+				r := strings.TrimSpace(val)
+				foundElement = true
+				CG.OffsetY = r
 			case "fps_limit":
 				r := strings.TrimSpace(val)
 				addFpsLimitsFromConfig(r)

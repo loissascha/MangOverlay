@@ -210,6 +210,14 @@ export function GetNetworkColor() {
   return window['go']['main']['App']['GetNetworkColor']();
 }
 
+export function GetOffsetX() {
+  return window['go']['main']['App']['GetOffsetX']();
+}
+
+export function GetOffsetY() {
+  return window['go']['main']['App']['GetOffsetY']();
+}
+
 export function GetOrderElements() {
   return window['go']['main']['App']['GetOrderElements']();
 }
@@ -400,6 +408,14 @@ export function SetMediaColor(arg1) {
 
 export function SetNetworkColor(arg1) {
   return window['go']['main']['App']['SetNetworkColor'](arg1);
+}
+
+export function SetOffsetX(arg1) {
+  return window['go']['main']['App']['SetOffsetX'](arg1);
+}
+
+export function SetOffsetY(arg1) {
+  return window['go']['main']['App']['SetOffsetY'](arg1);
 }
 
 export function SetOrientation(arg1) {

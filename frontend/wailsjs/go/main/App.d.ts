@@ -106,6 +106,10 @@ export function GetMemoryElements():Promise<Array<config.Element>>;
 
 export function GetNetworkColor():Promise<string>;
 
+export function GetOffsetX():Promise<string>;
+
+export function GetOffsetY():Promise<string>;
+
 export function GetOrderElements():Promise<Array<config.Element>>;
 
 export function GetOrientation():Promise<string>;
@@ -201,6 +205,10 @@ export function SetKbUploadLog(arg1:string):Promise<void>;
 export function SetMediaColor(arg1:string):Promise<void>;
 
 export function SetNetworkColor(arg1:string):Promise<void>;
+
+export function SetOffsetX(arg1:string):Promise<void>;
+
+export function SetOffsetY(arg1:string):Promise<void>;
 
 export function SetOrientation(arg1:string):Promise<void>;
 

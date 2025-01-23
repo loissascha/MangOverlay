@@ -25,6 +25,26 @@ func (c *Config) SetOrientation(n string) {
 	}
 }
 
+func (c *Config) SetOffsetX(n string) {
+	c.OffsetX = n
+	if n != "" {
+		updateConfigLine("offset_x", n, true)
+	} else {
+		updateConfigLine("offset_x", "0", true)
+	}
+	updateConfigLine("offset_y", c.OffsetY, true)
+}
+
+func (c *Config) SetOffsetY(n string) {
+	c.OffsetY = n
+	if n != "" {
+		updateConfigLine("offset_y", n, true)
+	} else {
+		updateConfigLine("offset_y", "0", true)
+	}
+	updateConfigLine("offset_x", c.OffsetX, true)
+}
+
 func (c *Config) SetTableColumns(n string) {
 	c.TableColumns = n
 	if n != "" {
