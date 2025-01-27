@@ -274,6 +274,10 @@ export function ImportConfig(arg1) {
   return window['go']['main']['App']['ImportConfig'](arg1);
 }
 
+export function OpenLink(arg1) {
+  return window['go']['main']['App']['OpenLink'](arg1);
+}
+
 export function OrderElementUnderneathElement(arg1, arg2) {
   return window['go']['main']['App']['OrderElementUnderneathElement'](arg1, arg2);
 }

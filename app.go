@@ -7,6 +7,8 @@ import (
 	"mangohud-configurator/logger"
 	"os"
 	"os/exec"
+
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
 var Logger logger.Logger
@@ -39,6 +41,10 @@ func (a *App) startup(ctx context.Context) {
 func (a *App) shutdown(ctx context.Context) {
 	a.StopVkcube()
 	Logger.Log("Goodbye!")
+}
+
+func (a *App) OpenLink(url string) {
+	runtime.BrowserOpenURL(a.ctx, url)
 }
 
 func (a *App) EnableGlobally() {

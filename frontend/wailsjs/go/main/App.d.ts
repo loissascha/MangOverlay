@@ -138,6 +138,8 @@ export function GloballyEnabled():Promise<boolean>;
 
 export function ImportConfig(arg1:string):Promise<void>;
 
+export function OpenLink(arg1:string):Promise<void>;
+
 export function OrderElementUnderneathElement(arg1:string,arg2:string):Promise<void>;
 
 export function ReloadConfig():Promise<void>;
