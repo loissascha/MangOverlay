@@ -1,6 +1,4 @@
 # Maintainer: Sascha Loishandl <sascha.loishandl@gmail.com>
-groups=('modified')
-
 pkgname=mangoverlay
 _app_id="io.github.loissascha.$pkgname"
 pkgver=0.3.7
