@@ -20,12 +20,23 @@ import SettingBox from "../ui/SettingBox";
 function KeybindConf() {
     return (
         <div>
-            <select className="p-1 me-1">
-                <option>Shift_L</option>
-                <option>Shift_R</option>
+            <select className="appearance-none py-2 px-3 me-2 bg-latte-surface0 dark:bg-mocha-surface0 rounded border border-latte-surface2 dark:border-mocha-surface2">
+                <option value="Shift_L">Shift_L</option>
+                <option value="Shift_R">Shift_R</option>
             </select>
-            <select className="p-1">
-                <option>F1</option>
+            <select className="appearance-none py-2 px-3 bg-latte-surface0 dark:bg-mocha-surface0 rounded border border-latte-surface2 dark:border-mocha-surface2">
+                <option value="F1">F1</option>
+                <option value="F2">F2</option>
+                <option value="F3">F3</option>
+                <option value="F4">F4</option>
+                <option value="F5">F5</option>
+                <option value="F6">F6</option>
+                <option value="F7">F7</option>
+                <option value="F8">F8</option>
+                <option value="F9">F9</option>
+                <option value="F10">F10</option>
+                <option value="F11">F11</option>
+                <option value="F12">F12</option>
             </select>
         </div>
     );
@@ -70,7 +81,7 @@ function Keybinds() {
                 <label htmlFor="togglehud" className="me-2">
                     Toggle HUD:
                 </label>
-				<KeybindConf />
+                <KeybindConf />
                 <input
                     type="text"
                     id="togglehud"
