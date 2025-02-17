@@ -1,8 +1,6 @@
 module mangohud-configurator
 
-go 1.22.0
-
-toolchain go1.23.4
+go 1.24
 
 require github.com/wailsapp/wails/v2 v2.10.0
 
