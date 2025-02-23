@@ -173,7 +173,7 @@ function MetricsOrderSettings() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="flex gap-5 flex-auto flex-wrap">
+      <div className="grid gap-5 flex-auto flex-wrap">
         <div>
           <SettingBox
             header="Active Elements"
