@@ -16,12 +16,12 @@ function SettingBox({
   children,
   noGap,
 }: Props) {
-  let marginBottom = "mb-3";
+  let marginBottom = "mb-3 ";
   if (nomargin) {
     marginBottom = "";
   }
   return (
-    <div className={marginBottom + classes + " mb-3"}>
+    <div className={marginBottom + classes}>
       <h1 className="text-xl tracking-wide mb-0 first-letter:font-bold">
         {header}
       </h1>
