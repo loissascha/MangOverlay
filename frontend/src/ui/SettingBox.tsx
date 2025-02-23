@@ -21,14 +21,14 @@ function SettingBox({
     marginBottom = "";
   }
   return (
-    <div className={marginBottom + classes}>
-      <h1 className="text-lg first-letter:text-xl tracking-wide mb-0">
+    <div className={marginBottom + classes + " mb-3"}>
+      <h1 className="text-xl tracking-wide mb-0 first-letter:font-bold">
         {header}
       </h1>
       <small className="mt-0">{subheader}</small>
       <div
         className={
-          "border-0 border-latte-surface2 dark:border-mocha-surface2 py-3 px-5 rounded flex flex-col " +
+          "border-0 border-latte-surface2 dark:border-mocha-surface2 pt-1 pb-3 px-1 rounded flex flex-col " +
           (!noGap ? "gap-3" : "")
         }
       >
