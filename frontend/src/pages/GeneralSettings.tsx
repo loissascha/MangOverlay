@@ -10,31 +10,23 @@ import Background from "../settings/Background";
 import Orientation from "../settings/Orientation";
 
 function GeneralSettings() {
+  return (
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <Position />
+        <Orientation />
+        <Background />
+        <Text />
+        <Graphs />
 
-    return (
-        <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 flex-auto flex-wrap">
-                <div className="flex flex-col gap-2">
-                    <Orientation />
-                    <Position />
-                    <Background />
-                    <Text />
-                    <Graphs />
-                </div>
+        <Cpu />
+        <Fps />
+        <Gpu />
 
-                <div className="flex flex-col gap-2">
-                    <Cpu />
-                    <Gpu />
-                    <Fps />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                    <Colors />
-                    <Keybinds />
-                </div>
-            </div >
-
-        </>
-    );
+        <Colors />
+        <Keybinds />
+      </div>
+    </>
+  );
 }
 export default GeneralSettings;
