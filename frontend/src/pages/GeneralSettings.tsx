@@ -1,10 +1,5 @@
-import Colors from "../settings/Colors";
 import Text from "../settings/Text";
 import Position from "../settings/Position";
-import Gpu from "../settings/Gpu";
-import Cpu from "../settings/Cpu";
-import Fps from "../settings/Fps";
-import Graphs from "../settings/Graphs";
 import Keybinds from "../settings/Keybinds";
 import Background from "../settings/Background";
 import Orientation from "../settings/Orientation";
@@ -17,13 +12,7 @@ function GeneralSettings() {
         <Orientation />
         <Background />
         <Text />
-        <Graphs />
 
-        <Cpu />
-        <Fps />
-        <Gpu />
-
-        <Colors />
         <Keybinds />
       </div>
     </>
