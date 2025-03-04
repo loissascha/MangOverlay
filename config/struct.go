@@ -10,6 +10,7 @@ type Element struct {
 
 type Config struct {
 	TableColumns         string
+	UseOffset            bool
 	OffsetX              string
 	OffsetY              string
 	Orientation          string
@@ -68,6 +69,7 @@ var GlobalEnabled bool = false
 
 func setDefaults() {
 	CG.TableColumns = "3"
+	CG.UseOffset = false
 	CG.OffsetX = "10"
 	CG.OffsetY = "10"
 	CG.Orientation = "vertical"

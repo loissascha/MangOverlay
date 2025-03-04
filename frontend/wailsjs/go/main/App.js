@@ -258,6 +258,10 @@ export function GetUnorderedElements() {
   return window['go']['main']['App']['GetUnorderedElements']();
 }
 
+export function GetUseOffset() {
+  return window['go']['main']['App']['GetUseOffset']();
+}
+
 export function GetVramColor() {
   return window['go']['main']['App']['GetVramColor']();
 }
@@ -452,6 +456,10 @@ export function SetTextOutlineColor(arg1) {
 
 export function SetTextOutlineThickness(arg1) {
   return window['go']['main']['App']['SetTextOutlineThickness'](arg1);
+}
+
+export function SetUseOffset(arg1) {
+  return window['go']['main']['App']['SetUseOffset'](arg1);
 }
 
 export function SetVramColor(arg1) {

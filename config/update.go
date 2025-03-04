@@ -25,24 +25,39 @@ func (c *Config) SetOrientation(n string) {
 	}
 }
 
+func (c *Config) SetUseOffset(n bool) {
+	c.UseOffset = n
+	if n {
+		updateConfigLine("offset_x", c.OffsetX, true)
+		updateConfigLine("offset_y", c.OffsetY, true)
+	} else {
+		deleteConfigLine("offset_x")
+		deleteConfigLine("offset_y")
+	}
+}
+
 func (c *Config) SetOffsetX(n string) {
 	c.OffsetX = n
-	if n != "" {
-		updateConfigLine("offset_x", n, true)
-	} else {
-		updateConfigLine("offset_x", "0", true)
+	if c.UseOffset {
+		if n != "" {
+			updateConfigLine("offset_x", n, true)
+		} else {
+			updateConfigLine("offset_x", "0", true)
+		}
+		updateConfigLine("offset_y", c.OffsetY, true)
 	}
-	updateConfigLine("offset_y", c.OffsetY, true)
 }
 
 func (c *Config) SetOffsetY(n string) {
 	c.OffsetY = n
-	if n != "" {
-		updateConfigLine("offset_y", n, true)
-	} else {
-		updateConfigLine("offset_y", "0", true)
+	if c.UseOffset {
+		if n != "" {
+			updateConfigLine("offset_y", n, true)
+		} else {
+			updateConfigLine("offset_y", "0", true)
+		}
+		updateConfigLine("offset_x", c.OffsetX, true)
 	}
-	updateConfigLine("offset_x", c.OffsetX, true)
 }
 
 func (c *Config) SetTableColumns(n string) {

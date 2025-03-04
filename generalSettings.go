@@ -18,6 +18,14 @@ func (a *App) SetTableColumns(n string) {
 	config.CG.SetTableColumns(n)
 }
 
+func (a *App) GetUseOffset() bool {
+	return config.CG.UseOffset
+}
+
+func (a *App) SetUseOffset(n bool) {
+	config.CG.SetUseOffset(n)
+}
+
 func (a *App) GetOffsetX() string {
 	return config.CG.OffsetX
 }

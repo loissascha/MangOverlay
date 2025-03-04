@@ -130,6 +130,8 @@ export function GetTextOutlineThickness():Promise<string>;
 
 export function GetUnorderedElements():Promise<Array<config.Element>>;
 
+export function GetUseOffset():Promise<boolean>;
+
 export function GetVramColor():Promise<string>;
 
 export function GetWineColor():Promise<string>;
@@ -227,6 +229,8 @@ export function SetTextColor(arg1:string):Promise<void>;
 export function SetTextOutlineColor(arg1:string):Promise<void>;
 
 export function SetTextOutlineThickness(arg1:string):Promise<void>;
+
+export function SetUseOffset(arg1:boolean):Promise<void>;
 
 export function SetVramColor(arg1:string):Promise<void>;
 
