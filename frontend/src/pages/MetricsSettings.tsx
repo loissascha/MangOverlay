@@ -250,7 +250,7 @@ function MetricsSettings() {
     return (
         <>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 flex-auto flex-wrap">
-                <div>
+                <div className="flex flex-col gap-5">
                     <SettingBox header="CPU">
                         {cpuElements.map((e: any) => (
                             <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
@@ -286,7 +286,7 @@ function MetricsSettings() {
                         ))}
                     </SettingBox>
                 </div>
-                <div>
+                <div className="flex flex-col gap-5">
                     <SettingBox header="Memory">
                         {memoryElements.map((e: any) => (
                             <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
@@ -339,7 +339,7 @@ function MetricsSettings() {
                         ))}
                     </SettingBox>
                 </div>
-                <div>
+                <div className="flex flex-col gap-5">
                     <SettingBox header="Display">
                         {displayElements.map((e: any) => (
                             <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
@@ -375,7 +375,7 @@ function MetricsSettings() {
                         ))}
                     </SettingBox>
                 </div>
-                <div>
+                <div className="flex flex-col gap-5">
                     <SettingBox header="HUD">
                         {hudElements.map((e: any) => (
                             <MetricItem key={e.Index} name={e.DisplayName != "" ? e.DisplayName : e.Name} active={e.Active} activate={() => {
