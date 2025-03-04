@@ -8,12 +8,15 @@ function GeneralSettings() {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <Position />
-        <Orientation />
-        <Background />
-        <Text />
-
-        <Keybinds />
+        <div className="flex flex-col gap-5">
+          <Position />
+          <Keybinds />
+        </div>
+        <div className="flex flex-col gap-5">
+          <Orientation />
+          <Background />
+          <Text />
+        </div>
       </div>
     </>
   );
