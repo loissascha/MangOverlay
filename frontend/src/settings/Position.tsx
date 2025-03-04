@@ -12,6 +12,8 @@ import {
   GetOffsetX,
   GetOffsetY,
   SetOffsetY,
+  SetUseOffset,
+  GetUseOffset,
 } from "../../wailsjs/go/main/App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -26,6 +28,7 @@ function Position() {
   const [compactMode, setCompactMode] = useState<boolean>(false);
   const [noMargin, setNoMargin] = useState<boolean>(false);
   const [tableColumns, setTableColumns] = useState<string>("3");
+  const [useOffset, setUseOffset] = useState<boolean>(false);
   const [offsetX, setOffsetX] = useState<string>("0");
   const [offsetY, setOffsetY] = useState<string>("0");
 
@@ -38,13 +41,22 @@ function Position() {
     reloadOffsets();
   }, []);
 
-  async function reloadOffsets() {
-    setOffsetX(await GetOffsetX());
-    setOffsetY(await GetOffsetY());
+  function reloadOffsets() {
+    GetUseOffset().then((r) => {
+      setUseOffset(r);
+    });
+    GetOffsetX().then((r) => {
+      setOffsetX(r);
+    });
+    GetOffsetY().then((r) => {
+      setOffsetY(r);
+    });
   }
 
-  async function reloadTableColumns() {
-    setTableColumns(await GetTableColumns());
+  function reloadTableColumns() {
+    GetTableColumns().then((r) => {
+      setTableColumns(r);
+    });
   }
 
   function reloadElements() {
@@ -59,14 +71,25 @@ function Position() {
     });
   }
 
-  async function toggleCompactMode() {
+  function toggleCompactMode() {
     if (compactMode) {
-      await DeactivateElement("hud_compact");
-      reloadElements();
+      DeactivateElement("hud_compact").then(() => {
+        reloadElements();
+      });
     } else {
-      await ActivateElement("hud_compact");
-      reloadElements();
+      ActivateElement("hud_compact").then(() => {
+        reloadElements();
+      });
     }
+  }
+
+  async function toggleUseOffset() {
+    if (useOffset) {
+      await SetUseOffset(false);
+    } else {
+      await SetUseOffset(true);
+    }
+    reloadOffsets();
   }
 
   async function toggleNoMargin() {
@@ -217,44 +240,83 @@ function Position() {
       </div>
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label htmlFor="offsetX" className="cursor-pointer">
-            OffsetX
+          <label htmlFor="offset" className="cursor-pointer">
+            UseOffset
           </label>
         </div>
         <div>
+          {useOffset ? (
+            <FontAwesomeIcon
+              className="cursor-pointer"
+              icon={faCheckSquare}
+              onClick={() => {
+                toggleUseOffset();
+              }}
+            />
+          ) : (
+            <FontAwesomeIcon
+              className="cursor-pointer"
+              icon={faSquare}
+              onClick={() => {
+                toggleUseOffset();
+              }}
+            />
+          )}
           <input
-            id="offsetX"
-            type="number"
-            step="1"
-            className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 text-center border border-latte-surface2 dark:border-mocha-surface2 rounded"
-            defaultValue={offsetX}
-            onChange={(event) => {
-              setOffsetX(event.target.value);
-              SetOffsetX(event.target.value);
+            className="hidden"
+            id="offset"
+            type="checkbox"
+            checked={useOffset}
+            onChange={() => {
+              toggleUseOffset();
             }}
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <label htmlFor="offsetY" className="cursor-pointer">
-            OffsetY
-          </label>
-        </div>
-        <div>
-          <input
-            id="offsetY"
-            type="number"
-            step="1"
-            className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 text-center border border-latte-surface2 dark:border-mocha-surface2 rounded"
-            defaultValue={offsetY}
-            onChange={(event) => {
-              setOffsetY(event.target.value);
-              SetOffsetY(event.target.value);
-            }}
-          />
-        </div>
-      </div>
+      {useOffset ? (
+        <>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label htmlFor="offsetX" className="cursor-pointer">
+                OffsetX
+              </label>
+            </div>
+            <div>
+              <input
+                id="offsetX"
+                type="number"
+                step="1"
+                className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 text-center border border-latte-surface2 dark:border-mocha-surface2 rounded"
+                defaultValue={offsetX}
+                onChange={(event) => {
+                  setOffsetX(event.target.value);
+                  SetOffsetX(event.target.value);
+                }}
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label htmlFor="offsetY" className="cursor-pointer">
+                OffsetY
+              </label>
+            </div>
+            <div>
+              <input
+                id="offsetY"
+                type="number"
+                step="1"
+                className="w-28 bg-latte-surface0 dark:bg-mocha-surface0 p-1 text-center border border-latte-surface2 dark:border-mocha-surface2 rounded"
+                defaultValue={offsetY}
+                onChange={(event) => {
+                  setOffsetY(event.target.value);
+                  SetOffsetY(event.target.value);
+                }}
+              />
+            </div>
+          </div>
+        </>
+      ) : null}
       <div className="grid grid-cols-2 gap-3">
         <div>
           <label htmlFor="compactMode" className="cursor-pointer">
