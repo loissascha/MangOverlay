@@ -6,7 +6,7 @@ function AdvancedSettings() {
   return (
     <>
       <div>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-5">
           <UserLines />
           <FpsLimits />
           <Graphs />
