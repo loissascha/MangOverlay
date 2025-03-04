@@ -19,7 +19,7 @@ func main() {
 	err := wails.Run(&options.App{
 		Title:  "MangOverlay",
 		Width:  1100,
-		Height: 998,
+		Height: 1000,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
