@@ -8,7 +8,9 @@ function AdvancedSettings() {
       <div>
         <div className="flex flex-col gap-5">
           <UserLines />
+          <div className="border-t border-latte-surface2 dark:border-mocha-surface2"></div>
           <FpsLimits />
+          <div className="border-t border-latte-surface2 dark:border-mocha-surface2"></div>
           <Graphs />
         </div>
       </div>
