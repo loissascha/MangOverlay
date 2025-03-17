@@ -33,6 +33,7 @@ import AdvancedSettings from "./pages/AdvancedSettings";
 import { Version } from "./consts";
 import Modal from "./ui/Modal";
 import ExtraSettings from "./pages/ExtraSettings";
+import PresetsSettings from "./pages/PresetsSettings";
 
 function App() {
   const [activeMenu, setActiveMenu] = useState<string>("general");
@@ -146,6 +147,22 @@ function App() {
             </div>
             <a className="hidden md:inline-block">Advanced Config</a>
           </li>
+          <li
+            onClick={() => {
+              setActiveMenuButton("presets");
+            }}
+            className={
+              "pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " +
+              (activeMenu == "presets"
+                ? "bg-latte-base dark:bg-mocha-base"
+                : "bg-latte-surface2 dark:bg-mocha-surface1")
+            }
+          >
+            <div>
+              <FontAwesomeIcon icon={faWrench} title="Presets" />
+            </div>
+            <a className="hidden md:inline-block">Presets</a>
+          </li>
         </ul>
       </nav>
       <main className="bg-latte-base dark:bg-mocha-base p-3">
@@ -161,6 +178,8 @@ function App() {
               return <MetricsOrderSettings />;
             case "manual":
               return <AdvancedSettings />;
+            case "presets":
+              return <PresetsSettings />;
             default:
               return null;
           }
