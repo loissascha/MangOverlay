@@ -127,9 +127,9 @@ function App() {
             }
           >
             <div>
-              <FontAwesomeIcon icon={faSort} title="Change Order" />
+              <FontAwesomeIcon icon={faSort} title="Order" />
             </div>
-            <a className="hidden md:inline-block">Change Order</a>
+            <a className="hidden md:inline-block">Order</a>
           </li>
           <li
             onClick={() => {
@@ -143,9 +143,9 @@ function App() {
             }
           >
             <div>
-              <FontAwesomeIcon icon={faWrench} title="Advanced Config" />
+              <FontAwesomeIcon icon={faWrench} title="Advanced" />
             </div>
-            <a className="hidden md:inline-block">Advanced Config</a>
+            <a className="hidden md:inline-block">Advanced</a>
           </li>
           <li
             onClick={() => {
