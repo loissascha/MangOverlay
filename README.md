@@ -15,6 +15,7 @@ You can also find detailed installation instructions for other distributions on 
 ![Metrics Settings](readme/metricsSettings.png)
 ![Order Settings](readme/orderSettings.png)
 ![Advanced Config](readme/advancedConfig.png)
+![Presets](readme/presets.png)
 
 ## Building from source
 
