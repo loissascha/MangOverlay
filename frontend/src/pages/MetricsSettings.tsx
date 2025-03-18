@@ -85,7 +85,6 @@ function MetricsSettings() {
       for (const e of elements) {
         if (
           e.Name == "gpu_core_clock" ||
-          e.Name == "cpu_stats" ||
           e.Name == "cpu_load_change"
         ) {
           continue;
@@ -106,7 +105,7 @@ function MetricsSettings() {
       let newGpuElements = [];
       let index = 2000;
       for (const e of elements) {
-        if (e.Name == "gpu_stats" || e.Name == "gpu_load_change") {
+        if (e.Name == "gpu_load_change") {
           continue;
         }
         if (e.Name.includes("gpu") || e.Name.includes("vram")) {
