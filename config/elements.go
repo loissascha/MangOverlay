@@ -279,6 +279,7 @@ func initElements() {
 		{Name: "cpu_mhz", Active: false, DisplayName: "CPU Mhz"},
 		{Name: "cpu_load_change", Active: false, DisplayName: "CPU Load Change"},
 		{Name: "core_load", Active: false, DisplayName: "CPU Core Load"},
+		{Name: "core_bars", Active: false, DisplayName: "CPU Core Bars"},
 		{Name: "core_load_change", Active: false, DisplayName: "CPU Core Load Change"},
 	}
 	ExtraElementsAvailable = []Element{

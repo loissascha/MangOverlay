@@ -115,6 +115,7 @@ function MetricsOrderSettings() {
           if (name == "engine_short_names") continue;
           if (name == "procmem_shared") continue;
           if (name == "procmem_virt") continue;
+          if (name == "core_bars") continue;
           if (
             name == "frametime" ||
             name == "throttling_status_graph" ||
