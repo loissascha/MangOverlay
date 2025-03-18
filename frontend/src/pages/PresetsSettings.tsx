@@ -1,6 +1,8 @@
-import preset1Img from "../assets/images/presets-1.png";
+import presetMine from "../assets/images/presets-mine.png";
 import presetMinimal from "../assets/images/preset-minimal.png";
 import presetFpsOnly from "../assets/images/preset-fps-only.png";
+import presetDefault from "../assets/images/preset-default.png";
+import presetRiva from "../assets/images/preset-riva.png";
 
 export default function PresetsSettings() {
   return (
@@ -25,29 +27,29 @@ export default function PresetsSettings() {
           </div>
         </div>
         <div className="border-r border-b p-2 border-latte-surface2 dark:border-mocha-surface2">
-          <div className="text-center text-xl">Preset 3</div>
-          <img src={preset1Img} className="mx-auto max-h-96" />
+          <div className="text-center text-xl">Default</div>
+          <img src={presetDefault} className="mx-auto max-h-96" />
           <div className="text-center">
             <PresetButton>Apply</PresetButton>
           </div>
         </div>
         <div className="border-b p-2 border-latte-surface2 dark:border-mocha-surface2">
-          <div className="text-center text-xl">Preset 4</div>
-          <img src={preset1Img} className="mx-auto max-h-96" />
+          <div className="text-center text-xl">Extended</div>
+          <img src={presetMine} className="mx-auto max-h-96" />
           <div className="text-center">
             <PresetButton>Apply</PresetButton>
           </div>
         </div>
         <div className="border-r p-2 border-latte-surface2 dark:border-mocha-surface2">
-          <div className="text-center text-xl">Preset 5</div>
-          <img src={preset1Img} className="mx-auto max-h-96" />
+          <div className="text-center text-xl">Riva</div>
+          <img src={presetRiva} className="mx-auto max-h-96" />
           <div className="text-center">
             <PresetButton>Apply</PresetButton>
           </div>
         </div>
         <div className="p-2">
           <div className="text-center text-xl">Preset 6</div>
-          <img src={preset1Img} className="mx-auto max-h-96" />
+          <img src={presetMine} className="mx-auto max-h-96" />
           <div className="text-center">
             <PresetButton>Apply</PresetButton>
           </div>
