@@ -1,6 +1,8 @@
 package config
 
-import "os"
+import (
+	"os"
+)
 
 func createBackupConfig() {
 	configFilePath := getConfigFilePath()

@@ -14,6 +14,30 @@ export function AddUnorderedElement(arg1) {
   return window['go']['main']['App']['AddUnorderedElement'](arg1);
 }
 
+export function ApplyPresetDefault() {
+  return window['go']['main']['App']['ApplyPresetDefault']();
+}
+
+export function ApplyPresetExtended() {
+  return window['go']['main']['App']['ApplyPresetExtended']();
+}
+
+export function ApplyPresetFpsOnly() {
+  return window['go']['main']['App']['ApplyPresetFpsOnly']();
+}
+
+export function ApplyPresetFull() {
+  return window['go']['main']['App']['ApplyPresetFull']();
+}
+
+export function ApplyPresetMinimal() {
+  return window['go']['main']['App']['ApplyPresetMinimal']();
+}
+
+export function ApplyPresetRiva() {
+  return window['go']['main']['App']['ApplyPresetRiva']();
+}
+
 export function DeactivateElement(arg1) {
   return window['go']['main']['App']['DeactivateElement'](arg1);
 }

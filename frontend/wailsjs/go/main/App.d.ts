@@ -8,6 +8,18 @@ export function AddFPSLimit(arg1:string):Promise<void>;
 
 export function AddUnorderedElement(arg1:string):Promise<void>;
 
+export function ApplyPresetDefault():Promise<void>;
+
+export function ApplyPresetExtended():Promise<void>;
+
+export function ApplyPresetFpsOnly():Promise<void>;
+
+export function ApplyPresetFull():Promise<void>;
+
+export function ApplyPresetMinimal():Promise<void>;
+
+export function ApplyPresetRiva():Promise<void>;
+
 export function DeactivateElement(arg1:string):Promise<void>;
 
 export function DisableGlobally():Promise<void>;
