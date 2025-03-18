@@ -1,8 +1,9 @@
-import presetMine from "../assets/images/presets-mine.png";
+import presetMine from "../assets/images/preset-mine.png";
 import presetMinimal from "../assets/images/preset-minimal.png";
 import presetFpsOnly from "../assets/images/preset-fps-only.png";
 import presetDefault from "../assets/images/preset-default.png";
 import presetRiva from "../assets/images/preset-riva.png";
+import presetFull from "../assets/images/preset-full.png";
 
 export default function PresetsSettings() {
   return (
@@ -48,8 +49,8 @@ export default function PresetsSettings() {
           </div>
         </div>
         <div className="p-2">
-          <div className="text-center text-xl">Preset 6</div>
-          <img src={presetMine} className="mx-auto max-h-96" />
+          <div className="text-center text-xl">Full</div>
+          <img src={presetFull} className="mx-auto max-h-96" />
           <div className="text-center">
             <PresetButton>Apply</PresetButton>
           </div>
