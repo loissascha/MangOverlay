@@ -21,6 +21,7 @@ import {
   faCopy,
   faDownload,
   faGears,
+  faHeart,
   faQuestion,
   faSave,
   faShare,
@@ -28,7 +29,11 @@ import {
   faWrench,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
+import {
+  faSquare,
+  faSquareCheck,
+  faClipboard,
+} from "@fortawesome/free-regular-svg-icons";
 import AdvancedSettings from "./pages/AdvancedSettings";
 import { Version } from "./consts";
 import Modal from "./ui/Modal";
@@ -159,7 +164,7 @@ function App() {
             }
           >
             <div>
-              <FontAwesomeIcon icon={faWrench} title="Presets" />
+              <FontAwesomeIcon icon={faClipboard} title="Presets" />
             </div>
             <a className="hidden md:inline-block">Presets</a>
           </li>
@@ -225,6 +230,15 @@ function App() {
           )}
         </div>
         <div className="flex items-center justify-end me-5">
+          <a
+            title="Donate"
+            className="cursor-pointer me-5"
+            onClick={() => {
+              OpenLink("https://ko-fi.com/saschalois");
+            }}
+          >
+            <FontAwesomeIcon icon={faHeart} title="Donate" />
+          </a>
           <a
             title="Export"
             className="cursor-pointer me-5"
