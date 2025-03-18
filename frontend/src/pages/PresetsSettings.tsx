@@ -1,23 +1,25 @@
 import preset1Img from "../assets/images/presets-1.png";
+import presetMinimal from "../assets/images/preset-minimal.png";
+import presetFpsOnly from "../assets/images/preset-fps-only.png";
 
 export default function PresetsSettings() {
   return (
     <>
       <div className="text-center mb-3 text-xl">
-        <strong>Attention!</strong> This will overwrite <strong>all</strong> of
-        your current settings!
+        ⚠️ <strong>Warning!</strong> This action will{" "}
+        <strong>overwrite all</strong> of your current settings!
       </div>
       <div className="grid grid-cols-2">
         <div className="border-r border-b border-t p-2 border-latte-surface2 dark:border-mocha-surface2">
-          <div className="text-center text-xl">Preset 1</div>
-          <img src={preset1Img} className="mx-auto max-h-96" />
+          <div className="text-center text-xl">FPS Only</div>
+          <img src={presetFpsOnly} className="mx-auto max-h-96" />
           <div className="text-center">
             <PresetButton>Apply</PresetButton>
           </div>
         </div>
         <div className="border-b border-t p-2 border-latte-surface2 dark:border-mocha-surface2">
-          <div className="text-center text-xl">Preset 2</div>
-          <img src={preset1Img} className="mx-auto max-h-96" />
+          <div className="text-center text-xl">Minimal</div>
+          <img src={presetMinimal} className="mx-auto max-h-96" />
           <div className="text-center">
             <PresetButton>Apply</PresetButton>
           </div>
