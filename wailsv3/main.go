@@ -2,6 +2,7 @@ package main
 
 import (
 	"embed"
+	"mangoverlay/internal/config"
 
 	"log"
 	"time"
@@ -28,6 +29,8 @@ func init() {
 // and starts a goroutine that emits a time-based event every second. It subsequently runs the application and
 // logs any error that might occur.
 func main() {
+
+	config.LoadConfig()
 
 	// Create a new Wails application by providing the necessary options.
 	// Variables 'Name' and 'Description' are for application metadata.
