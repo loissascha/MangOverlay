@@ -1,4 +1,4 @@
-module changeme
+module mangoverlay
 
 go 1.25.0
 
