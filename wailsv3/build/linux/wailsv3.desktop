@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=wailsv3
+Exec=wailsv3
+Icon=wailsv3
+Categories=Development;
+Terminal=false
+Keywords=wails
+Version=1.0
+StartupNotify=false
