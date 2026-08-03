@@ -2,7 +2,7 @@ package main
 
 import (
 	"embed"
-	"mangoverlay/internal/config"
+	"mangoverlay/internal/services/appservice"
 
 	"log"
 	"time"
@@ -30,7 +30,8 @@ func init() {
 // logs any error that might occur.
 func main() {
 
-	config.LoadConfig()
+	appService := &appservice.AppService{}
+	appService.Startup()
 
 	// Create a new Wails application by providing the necessary options.
 	// Variables 'Name' and 'Description' are for application metadata.
@@ -42,6 +43,7 @@ func main() {
 		Description: "",
 		Services: []application.Service{
 			application.NewService(&GreetService{}),
+			application.NewService(appService),
 		},
 		Assets: application.AssetOptions{
 			Handler: application.AssetFileServerFS(assets),
