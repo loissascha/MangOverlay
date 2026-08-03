@@ -1,121 +1,443 @@
-import { useState, useEffect, useRef } from 'react'
-import {Events, WML} from "@wailsio/runtime";
-import {GreetService} from "../bindings/mangoverlay";
-
-// Show the actual Wails version this project was generated against.
-const wailsVersion = "v3.0.0-beta.2";
+import { useEffect, useRef, useState } from "react";
+import GeneralSettings from "./pages/GeneralSettings";
+import {
+  DisableGlobally,
+  EnableGlobally,
+  GloballyEnabled,
+  ImportConfig,
+  OpenLink,
+  ReloadConfig,
+  RestartVkcube,
+  ShareConfig,
+} from "../bindings/mangoverlay/internal/services/appservice/appservice";
+import Button from "./ui/Button";
+import MetricsSettings from "./pages/MetricsSettings";
+import MetricsOrderSettings from "./pages/MetricsOrderSettings";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUpRightFromSquare,
+  faBars,
+  faCode,
+  faCopy,
+  faDownload,
+  faGears,
+  faHeart,
+  faQuestion,
+  faSave,
+  faShare,
+  faSort,
+  faWrench,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faSquare,
+  faSquareCheck,
+  faClipboard,
+} from "@fortawesome/free-regular-svg-icons";
+import AdvancedSettings from "./pages/AdvancedSettings";
+import { Version } from "./consts";
+import Modal from "./ui/Modal";
+import ExtraSettings from "./pages/ExtraSettings";
+import PresetsSettings from "./pages/PresetsSettings";
 
 function App() {
-  const [name, setName] = useState<string>('');
-  const [time, setTime] = useState<string>('Listening for Time event...');
-
-  const titleNameRef = useRef<HTMLSpanElement | null>(null);
-  const toastRef = useRef<HTMLDivElement | null>(null);
-  const resultRef = useRef<HTMLSpanElement | null>(null);
-  const toastTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-
-  // Crossfade the framework word in the heading ("Wails + React") to the name
-  // the user entered ("Wails + <name>"): the old word fades out while the new one
-  // fades in over the same spot.
-  const swapTitleName = (name: string) => {
-    const titleNameElement = titleNameRef.current;
-    if (!titleNameElement) {
-      return;
-    }
-    const current = titleNameElement.querySelector('.title-name-text:not(.is-outgoing)');
-    if (!current || current.textContent === name) {
-      return;
-    }
-    const incoming = document.createElement('span');
-    incoming.className = 'title-name-text is-entering';
-    incoming.textContent = name;
-    current.classList.add('is-outgoing');
-    titleNameElement.appendChild(incoming);
-    // Force a reflow so the transitions run from the starting state.
-    void incoming.offsetWidth;
-    incoming.classList.remove('is-entering');
-    current.classList.add('is-leaving');
-    current.addEventListener('transitionend', () => current.remove(), {once: true});
-  };
-
-  // Pop the toast with the message Go returned, then auto-dismiss it.
-  const showToast = (message: string) => {
-    if (resultRef.current) {
-      resultRef.current.innerText = message;
-    }
-    if (toastRef.current) {
-      toastRef.current.classList.add('is-visible');
-    }
-    clearTimeout(toastTimer.current);
-    toastTimer.current = setTimeout(() => {
-      if (toastRef.current) {
-        toastRef.current.classList.remove('is-visible');
-      }
-    }, 4000);
-  };
-
-  const doGreet = () => {
-    let n = name || 'anonymous';
-    swapTitleName(n);
-    GreetService.Greet(n).then(showToast).catch(console.error);
-  };
+  const [activeMenu, setActiveMenu] = useState<string>("general");
+  const [globallyEnabled, setGloballyEnabled] = useState<boolean>(false);
+  const [showRestartModal, setShowRestartModal] = useState<boolean>(false);
+  const [showHelpModal, setShowHelpModal] = useState<boolean>(false);
+  const [showShareModal, setShowShareModal] = useState<boolean>(false);
+  const [showImportModal, setShowImportModal] = useState<boolean>(false);
+  const [shareConfig, setShareConfig] = useState<string[]>([]);
+  const shareRef = useRef<HTMLPreElement | null>(null);
+  const importTextRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
-    Events.On('time', (timeValue: any) => {
-      // On a narrow screen the full RFC1123 stamp is too wide for the footer, so
-      // show just the clock time there (matching the CSS breakpoint).
-      const full = timeValue.data;
-      const compact = (full.match(/\d{1,2}:\d{2}:\d{2}/) || [full])[0];
-      setTime(window.matchMedia('(max-width: 640px)').matches ? compact : full);
+    GloballyEnabled().then((r: any) => {
+      setGloballyEnabled(r);
     });
-    // Reload WML so it picks up the wml tags
-    WML.Reload();
   }, []);
 
+  function setActiveMenuButton(am: string) {
+    setActiveMenu(am);
+  }
+
   return (
-    <>
-      <main className="container">
-        <header className="brand">
-          <a className="brand-mark" data-wml-openURL="https://v3.wails.io" aria-label="Wails website">
-            <img src="/wails.png" className="brand-logo" alt="Wails logo"/>
+    <div
+      className={
+        "w-full h-full text-latte-text dark:text-mocha-text grid grid-rows-[auto_1fr_auto] select-none cursor-default " +
+        (showRestartModal || showHelpModal || showShareModal || showImportModal
+          ? "overflow-hidden"
+          : null)
+      }
+    >
+      <nav className="bg-latte-surface0 dark:bg-mocha-surface0 pt-2 px-3">
+        <ul className="flex gap-3 list-none">
+          <li
+            onClick={() => {
+              setActiveMenuButton("general");
+            }}
+            className={
+              "pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " +
+              (activeMenu == "general"
+                ? "bg-latte-base dark:bg-mocha-base"
+                : "bg-latte-surface2 dark:bg-mocha-surface1")
+            }
+          >
+            <div>
+              <FontAwesomeIcon icon={faGears} title="General" />
+            </div>
+            <a className="hidden md:inline-block">General</a>
+          </li>
+          <li
+            onClick={() => {
+              setActiveMenuButton("extra");
+            }}
+            className={
+              "pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " +
+              (activeMenu == "extra"
+                ? "bg-latte-base dark:bg-mocha-base"
+                : "bg-latte-surface2 dark:bg-mocha-surface1")
+            }
+          >
+            <div>
+              <FontAwesomeIcon icon={faCode} title="Extras" />
+            </div>
+            <a className="hidden md:inline-block">Extras</a>
+          </li>
+          <li
+            onClick={() => {
+              setActiveMenuButton("metrics");
+            }}
+            className={
+              "pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " +
+              (activeMenu == "metrics"
+                ? "bg-latte-base dark:bg-mocha-base"
+                : "bg-latte-surface2 dark:bg-mocha-surface1")
+            }
+          >
+            <div>
+              <FontAwesomeIcon icon={faBars} title="Metrics" />
+            </div>
+            <a className="hidden md:inline-block">Metrics</a>
+          </li>
+          <li
+            onClick={() => {
+              setActiveMenuButton("metrics-order");
+            }}
+            className={
+              "pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " +
+              (activeMenu == "metrics-order"
+                ? "bg-latte-base dark:bg-mocha-base"
+                : "bg-latte-surface2 dark:bg-mocha-surface1")
+            }
+          >
+            <div>
+              <FontAwesomeIcon icon={faSort} title="Order" />
+            </div>
+            <a className="hidden md:inline-block">Order</a>
+          </li>
+          <li
+            onClick={() => {
+              setActiveMenuButton("manual");
+            }}
+            className={
+              "pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " +
+              (activeMenu == "manual"
+                ? "bg-latte-base dark:bg-mocha-base"
+                : "bg-latte-surface2 dark:bg-mocha-surface1")
+            }
+          >
+            <div>
+              <FontAwesomeIcon icon={faWrench} title="Advanced" />
+            </div>
+            <a className="hidden md:inline-block">Advanced</a>
+          </li>
+          <li
+            onClick={() => {
+              setActiveMenuButton("presets");
+            }}
+            className={
+              "pt-2 pb-1 px-3 cursor-pointer rounded-t-lg flex gap-2 " +
+              (activeMenu == "presets"
+                ? "bg-latte-base dark:bg-mocha-base"
+                : "bg-latte-surface2 dark:bg-mocha-surface1")
+            }
+          >
+            <div>
+              <FontAwesomeIcon icon={faClipboard} title="Presets" />
+            </div>
+            <a className="hidden md:inline-block">Presets</a>
+          </li>
+        </ul>
+      </nav>
+      <main className="bg-latte-base dark:bg-mocha-base p-3">
+        {(() => {
+          switch (activeMenu) {
+            case "general":
+              return <GeneralSettings />;
+            case "extra":
+              return <ExtraSettings />;
+            case "metrics":
+              return <MetricsSettings />;
+            case "metrics-order":
+              return <MetricsOrderSettings />;
+            case "manual":
+              return <AdvancedSettings />;
+            case "presets":
+              return <PresetsSettings />;
+            default:
+              return null;
+          }
+        })()}
+      </main>
+      <footer className="bg-latte-surface0 dark:bg-mocha-surface0 p-2 grid grid-cols-[1fr_auto]">
+        <div>
+          <Button
+            click={() => {
+              RestartVkcube();
+            }}
+          >
+            Restart VkCube
+          </Button>
+          {globallyEnabled ? (
+            <Button
+              click={() => {
+                DisableGlobally().then(() => {
+                  GloballyEnabled().then((r: any) => {
+                    setGloballyEnabled(r);
+                    setShowRestartModal(true);
+                  });
+                });
+              }}
+            >
+              <FontAwesomeIcon icon={faSquareCheck} className="me-2" />
+              Globally Enabled
+            </Button>
+          ) : (
+            <Button
+              click={() => {
+                EnableGlobally().then(() => {
+                  GloballyEnabled().then((r: any) => {
+                    setGloballyEnabled(r);
+                    setShowRestartModal(true);
+                  });
+                });
+              }}
+            >
+              <FontAwesomeIcon icon={faSquare} className="me-2" />
+              Globally Enabled
+            </Button>
+          )}
+        </div>
+        <div className="flex items-center justify-end me-5">
+          <a
+            title="Donate"
+            className="cursor-pointer me-5"
+            onClick={() => {
+              OpenLink("https://ko-fi.com/saschalois");
+            }}
+          >
+            <FontAwesomeIcon icon={faHeart} title="Donate" />
           </a>
-          <a className="brand-badge" data-wml-openURL="https://reactjs.org" aria-label="React">
-            <img src="/react.svg" alt="React logo"/>
+          <a
+            title="Export"
+            className="cursor-pointer me-5"
+            onClick={() => {
+              ShareConfig().then((r: any) => {
+                setShareConfig(r);
+                setShowShareModal(true);
+              });
+            }}
+          >
+            <FontAwesomeIcon icon={faShare} />
           </a>
-        </header>
-
-        <h1 className="title"><span className="title-accent">Wails +</span> <span className="title-name" ref={titleNameRef}><span className="title-name-text">React</span></span></h1>
-        <p className="subtitle">Build beautiful cross-platform apps with Go and React.</p>
-
-        <div className="greet">
-          <div className="input-box">
-            <svg className="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <input aria-label="input" className="input" value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Your name" autoComplete="off"/>
-            <button aria-label="greet-btn" className="btn" onClick={doGreet}>Greet
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <a
+            title="Help"
+            className="cursor-pointer"
+            onClick={() => {
+              setShowHelpModal(true);
+            }}
+          >
+            <FontAwesomeIcon icon={faQuestion} />
+          </a>
+        </div>
+      </footer>
+      {showRestartModal ? (
+        <Modal>
+          <p>To apply this change, please restart your device.</p>
+          <div className="text-center">
+            <button
+              className="mt-2 bg-green-300 dark:bg-green-500 hover:bg-green-400 cursor-pointer border border-green-500 px-4 py-2 rounded-md"
+              onClick={() => {
+                setShowRestartModal(false);
+              }}
+            >
+              Okay
             </button>
           </div>
-        </div>
-      </main>
-
-      <hr className="footer-divider"/>
-      <footer className="footer">
-        <span className="footer-version"><span>{wailsVersion}</span></span>
-        <span className="footer-time">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>{time}</span>
-        </span>
-        <a className="footer-docs" data-wml-openURL="https://v3.wails.io" aria-label="Wails documentation">Docs
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </a>
-      </footer>
-
-      <div className="toast" ref={toastRef} role="status" aria-live="polite">
-        <span className="toast-label">From Go</span>
-        <span aria-label="result" className="toast-msg" ref={resultRef}></span>
-      </div>
-    </>
-  )
+        </Modal>
+      ) : null}
+      {showImportModal ? (
+        <Modal>
+          <div className="grid grid-cols-2 mb-3">
+            <h1 className="text-xl mb-2">Import Config</h1>
+            <div className="text-right">
+              <button
+                className="me-3"
+                onClick={() => {
+                  setShowImportModal(false);
+                  setShowShareModal(true);
+                }}
+              >
+                <FontAwesomeIcon icon={faShare} title="Export" />
+              </button>
+              <button
+                className="bg-red-300 dark:bg-red-500 hover:bg-red-400 cursor-pointer px-2 py-1 rounded-md"
+                onClick={() => {
+                  setShowImportModal(false);
+                }}
+              >
+                <FontAwesomeIcon icon={faXmark} />
+              </button>
+            </div>
+          </div>
+          <div>
+            <textarea
+              ref={importTextRef}
+              className="dark:bg-mocha-surface0 w-full h-28"
+            ></textarea>
+          </div>
+          <div className="text-center">
+            <button
+              onClick={() => {
+                if (importTextRef == null) {
+                  return;
+                }
+                if (
+                  confirm(
+                    "This will overwrite your current configuration. Are you sure you want to proceed?",
+                  )
+                ) {
+                  const text = importTextRef.current?.value;
+                  if (text) {
+                    ImportConfig(text).then(() => {
+                      ReloadConfig().then(() => {
+                        setShowImportModal(false);
+                        location.reload();
+                      });
+                    });
+                  } else {
+                    alert("Can't read text!");
+                  }
+                }
+              }}
+              className="bg-latte-green text-white dark:bg-mocha-green dark:text-black rounded px-3 py-2"
+            >
+              <FontAwesomeIcon icon={faSave} /> Import
+            </button>
+          </div>
+        </Modal>
+      ) : null}
+      {showShareModal ? (
+        <Modal>
+          <div className="grid grid-cols-2 mb-3">
+            <h1 className="text-xl mb-2">Export Config</h1>
+            <div className="text-right">
+              <button
+                className="me-3"
+                onClick={() => {
+                  if (shareRef == null) {
+                    return;
+                  }
+                  const text = shareRef.current?.innerText;
+                  if (text) {
+                    navigator.clipboard
+                      .writeText(text)
+                      .then(() => {
+                        alert("Copied to clipboard!");
+                      })
+                      .catch((error) => {
+                        alert(
+                          "Error! If this issue persists, please report it on github! " +
+                            error,
+                        );
+                      });
+                  }
+                }}
+              >
+                <FontAwesomeIcon icon={faCopy} title="Copy to clipboard" />
+              </button>
+              <button
+                className="me-3"
+                onClick={() => {
+                  setShowShareModal(false);
+                  setShowImportModal(true);
+                }}
+              >
+                <FontAwesomeIcon icon={faDownload} title="Import" />
+              </button>
+              <button
+                className="bg-red-300 dark:bg-red-500 hover:bg-red-400 cursor-pointer px-2 py-1 rounded-md"
+                onClick={() => {
+                  setShowShareModal(false);
+                }}
+              >
+                <FontAwesomeIcon icon={faXmark} />
+              </button>
+            </div>
+          </div>
+          <pre
+            ref={shareRef}
+            className="select-text border-2 p-2 border-latte-surface0 dark:border-mocha-surface0 rounded"
+          >
+            {shareConfig.map((c, i) => {
+              return (
+                <>
+                  {c}
+                  <br />
+                </>
+              );
+            })}
+          </pre>
+          <div className="text-center"></div>
+        </Modal>
+      ) : null}
+      {showHelpModal ? (
+        <Modal>
+          <h1 className="text-xl leading-relaxed tracking-wide font-bold">
+            MangOverlay
+          </h1>
+          <p>Version: {Version}</p>
+          <a
+            className="text-sm cursor-pointer"
+            onClick={() => {
+              OpenLink("https://github.com/loissascha/mangoverlay");
+            }}
+          >
+            Github <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+          </a>
+          <a
+            className="text-sm cursor-pointer ms-4"
+            onClick={() => {
+              OpenLink("https://ko-fi.com/saschalois");
+            }}
+          >
+            Donate <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+          </a>
+          <div className="text-center">
+            <button
+              className="mt-3 bg-red-300 dark:bg-red-500 hover:bg-red-400 cursor-pointer border border-red-500 px-4 py-2 rounded-md"
+              onClick={() => {
+                setShowHelpModal(false);
+              }}
+            >
+              Close Help
+            </button>
+          </div>
+        </Modal>
+      ) : null}
+    </div>
+  );
 }
 
-export default App
+export default App;
