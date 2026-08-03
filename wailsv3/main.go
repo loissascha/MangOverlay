@@ -5,7 +5,6 @@ import (
 	"mangoverlay/internal/services/appservice"
 
 	"log"
-	"time"
 
 	"github.com/wailsapp/wails/v3/pkg/application"
 )
@@ -42,7 +41,7 @@ func main() {
 		Name:        "MangOverlay",
 		Description: "",
 		Services: []application.Service{
-			application.NewService(&GreetService{}),
+			// application.NewService(&GreetService{}),
 			application.NewService(appService),
 		},
 		Assets: application.AssetOptions{
@@ -74,13 +73,13 @@ func main() {
 
 	// Create a goroutine that emits an event containing the current time every second.
 	// The frontend can listen to this event and update the UI accordingly.
-	go func() {
-		for {
-			now := time.Now().Format(time.RFC1123)
-			app.Event.Emit("time", now)
-			time.Sleep(time.Second)
-		}
-	}()
+	// go func() {
+	// 	for {
+	// 		now := time.Now().Format(time.RFC1123)
+	// 		app.Event.Emit("time", now)
+	// 		time.Sleep(time.Second)
+	// 	}
+	// }()
 
 	// Run the application. This blocks until the application has been exited.
 	err := app.Run()

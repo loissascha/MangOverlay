@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=wailsv3
-Exec=wailsv3
-Icon=wailsv3
+Name=MangOverlay
+Exec=MangOverlay
+Icon=MangOverlay
 Categories=Development;
 Terminal=false
 Keywords=wails
