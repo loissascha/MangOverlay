@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetGpuLoadValue, SetGpuLoadColors, GetGpuLoadColor0, GetGpuLoadColor1, GetGpuLoadColor2, GetGpuText, SetGpuLoadValue, SetGpuText, GetElements, DeactivateElement, ActivateElement } from "../../wailsjs/go/main/App";
+import { GetGpuLoadValue, SetGpuLoadColors, GetGpuLoadColor0, GetGpuLoadColor1, GetGpuLoadColor2, GetGpuText, SetGpuLoadValue, SetGpuText, GetElements, DeactivateElement, ActivateElement } from "../../bindings/mangoverlay/internal/services/appservice/appservice";
 import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,19 +22,19 @@ function Gpu() {
     const defaultGpuLoadColor2 = "B22222"
 
     useEffect(() => {
-        GetGpuText().then((r) => {
+        GetGpuText().then((r: any) => {
             setGpuText(r)
         })
-        GetGpuLoadValue().then((r) => {
+        GetGpuLoadValue().then((r: any) => {
             setGpuLoadValue(r)
         })
-        GetGpuLoadColor0().then((r) => {
+        GetGpuLoadColor0().then((r: any) => {
             setGpuLoadColor0(r)
         })
-        GetGpuLoadColor1().then((r) => {
+        GetGpuLoadColor1().then((r: any) => {
             setGpuLoadColor1(r)
         })
-        GetGpuLoadColor2().then((r) => {
+        GetGpuLoadColor2().then((r: any) => {
             setGpuLoadColor2(r)
         })
         reloadElement()

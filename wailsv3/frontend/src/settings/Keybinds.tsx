@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { GetKbToggleHud, GetKbToggleHudPosition, GetKbTogglePreset, GetKbToggleFpsLimit, GetKbToggleLogging, GetKbReloadCfg, GetKbUploadLog, SetKbToggleHud, SetKbToggleHudPosition, SetKbTogglePreset, SetKbToggleFpsLimit, SetKbToggleLogging, SetKbReloadCfg, SetKbUploadLog } from "../../wailsjs/go/main/App"
+import { GetKbToggleHud, GetKbToggleHudPosition, GetKbTogglePreset, GetKbToggleFpsLimit, GetKbToggleLogging, GetKbReloadCfg, GetKbUploadLog, SetKbToggleHud, SetKbToggleHudPosition, SetKbTogglePreset, SetKbToggleFpsLimit, SetKbToggleLogging, SetKbReloadCfg, SetKbUploadLog } from "../../bindings/mangoverlay/internal/services/appservice/appservice"
 import SettingBox from "../ui/SettingBox"
 
 function Keybinds() {
@@ -12,25 +12,25 @@ function Keybinds() {
     const [kbUploadLog, setKbUploadLog] = useState<string>("")
 
     useEffect(() => {
-        GetKbToggleHud().then((r) => {
+        GetKbToggleHud().then((r: any) => {
             setKbToggleHud(r)
         })
-        GetKbToggleHudPosition().then((r) => {
+        GetKbToggleHudPosition().then((r: any) => {
             setKbToggleHudPosition(r)
         })
-        GetKbTogglePreset().then((r) => {
+        GetKbTogglePreset().then((r: any) => {
             setKbTogglePreset(r)
         })
-        GetKbToggleFpsLimit().then((r) => {
+        GetKbToggleFpsLimit().then((r: any) => {
             setKbToggleFpsLimit(r)
         })
-        GetKbToggleLogging().then((r) => {
+        GetKbToggleLogging().then((r: any) => {
             setKbToggleLogging(r)
         })
-        GetKbReloadCfg().then((r) => {
+        GetKbReloadCfg().then((r: any) => {
             setKbReloadCfg(r)
         })
-        GetKbUploadLog().then((r) => {
+        GetKbUploadLog().then((r: any) => {
             setKbUploadLog(r)
         })
     }, [])

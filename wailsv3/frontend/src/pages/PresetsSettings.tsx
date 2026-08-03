@@ -11,7 +11,7 @@ import {
   ApplyPresetFull,
   ApplyPresetMinimal,
   ApplyPresetRiva,
-} from "../../wailsjs/go/main/App";
+} from "../../bindings/mangoverlay/internal/services/appservice/appservice";
 
 export default function PresetsSettings() {
   return (

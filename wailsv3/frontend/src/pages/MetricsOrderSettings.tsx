@@ -3,7 +3,7 @@ import {
   GetOrderElements,
   OrderElementUnderneathElement,
   ReplaceElements,
-} from "../../wailsjs/go/main/App";
+} from "../../bindings/mangoverlay/internal/services/appservice/appservice";
 import SettingBox from "../ui/SettingBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

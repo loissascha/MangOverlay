@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ActivateElement, DeactivateElement, GetElements, GetFpsLoadColor0, GetFpsLoadColor1, GetFpsLoadColor2, GetFpsLoadValue, SetFpsLoadColors, SetFpsLoadValue } from "../../wailsjs/go/main/App";
+import { ActivateElement, DeactivateElement, GetElements, GetFpsLoadColor0, GetFpsLoadColor1, GetFpsLoadColor2, GetFpsLoadValue, SetFpsLoadColors, SetFpsLoadValue } from "../../bindings/mangoverlay/internal/services/appservice/appservice";
 import SettingBox from "../ui/SettingBox"
 import { SketchPicker } from "react-color";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,16 +20,16 @@ function Fps() {
     const defaultFpsLoadColor2 = "B22222"
 
     useEffect(() => {
-        GetFpsLoadValue().then((r) => {
+        GetFpsLoadValue().then((r: any) => {
             setFpsLoadValue(r)
         })
-        GetFpsLoadColor0().then((r) => {
+        GetFpsLoadColor0().then((r: any) => {
             setFpsLoadColor0(r)
         })
-        GetFpsLoadColor1().then((r) => {
+        GetFpsLoadColor1().then((r: any) => {
             setFpsLoadColor1(r)
         })
-        GetFpsLoadColor2().then((r) => {
+        GetFpsLoadColor2().then((r: any) => {
             setFpsLoadColor2(r)
         })
         reloadElement()

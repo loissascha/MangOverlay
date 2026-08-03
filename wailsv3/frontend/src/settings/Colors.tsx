@@ -32,7 +32,7 @@ import {
   SetRamColor,
   SetVramColor,
   SetWineColor,
-} from "../../wailsjs/go/main/App";
+} from "../../bindings/mangoverlay/internal/services/appservice/appservice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
@@ -63,37 +63,37 @@ function Colors() {
   const defaultNetworkColor = "E07B85";
 
   useEffect(() => {
-    GetGpuColor().then((r) => {
+    GetGpuColor().then((r: any) => {
       setGpuColor(r);
     });
-    GetCpuColor().then((r) => {
+    GetCpuColor().then((r: any) => {
       setCpuColor(r);
     });
-    GetVramColor().then((r) => {
+    GetVramColor().then((r: any) => {
       setVramColor(r);
     });
-    GetRamColor().then((r) => {
+    GetRamColor().then((r: any) => {
       setRamColor(r);
     });
-    GetEngineColor().then((r) => {
+    GetEngineColor().then((r: any) => {
       setEngineColor(r);
     });
-    GetIoColor().then((r) => {
+    GetIoColor().then((r: any) => {
       setIoColor(r);
     });
-    GetFrametimeColor().then((r) => {
+    GetFrametimeColor().then((r: any) => {
       setFrametimeColor(r);
     });
-    GetMediaColor().then((r) => {
+    GetMediaColor().then((r: any) => {
       setMediaColor(r);
     });
-    GetWineColor().then((r) => {
+    GetWineColor().then((r: any) => {
       setWineColor(r);
     });
-    GetBatteryColor().then((r) => {
+    GetBatteryColor().then((r: any) => {
       setBatteryColor(r);
     });
-    GetNetworkColor().then((r) => {
+    GetNetworkColor().then((r: any) => {
       setNetworkColor(r);
     });
   }, []);

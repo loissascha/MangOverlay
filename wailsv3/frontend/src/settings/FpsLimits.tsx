@@ -12,7 +12,7 @@ import {
   RemoveFPSLimit,
   ReorderFPSLimit,
   UpdateFPSLimit,
-} from "../../wailsjs/go/main/App";
+} from "../../bindings/mangoverlay/internal/services/appservice/appservice";
 import SettingBox from "../ui/SettingBox";
 
 function FpsLimits() {

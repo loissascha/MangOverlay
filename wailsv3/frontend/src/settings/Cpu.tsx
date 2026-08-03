@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SettingBox from "../ui/SettingBox";
 import { SketchPicker } from "react-color";
-import { SetCpuLoadColors, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetCpuLoadValue, GetCpuText, SetCpuLoadValue, SetCpuText, GetElements, DeactivateElement, ActivateElement } from "../../wailsjs/go/main/App";
+import { SetCpuLoadColors, GetCpuLoadColor0, GetCpuLoadColor1, GetCpuLoadColor2, GetCpuLoadValue, GetCpuText, SetCpuLoadValue, SetCpuText, GetElements, DeactivateElement, ActivateElement } from "../../bindings/mangoverlay/internal/services/appservice/appservice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
@@ -21,19 +21,19 @@ function Cpu() {
     const defaultCpuLoadColor2 = "B22222"
 
     useEffect(() => {
-        GetCpuText().then((r) => {
+        GetCpuText().then((r: any) => {
             setCpuText(r)
         })
-        GetCpuLoadValue().then((r) => {
+        GetCpuLoadValue().then((r: any) => {
             setCpuLoadValue(r)
         })
-        GetCpuLoadColor0().then((r) => {
+        GetCpuLoadColor0().then((r: any) => {
             setCpuLoadColor0(r)
         })
-        GetCpuLoadColor1().then((r) => {
+        GetCpuLoadColor1().then((r: any) => {
             setCpuLoadColor1(r)
         })
-        GetCpuLoadColor2().then((r) => {
+        GetCpuLoadColor2().then((r: any) => {
             setCpuLoadColor2(r)
         })
         reloadElement()

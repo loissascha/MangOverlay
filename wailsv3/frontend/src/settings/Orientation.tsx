@@ -1,14 +1,14 @@
 import { faCircle, faCircleDot } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { GetOrientation, SetOrientation } from "../../wailsjs/go/main/App";
+import { GetOrientation, SetOrientation } from "../../bindings/mangoverlay/internal/services/appservice/appservice";
 import SettingBox from "../ui/SettingBox";
 
 function Orientation() {
     const [orientation, setOrientation] = useState<string>("");
 
     useEffect(() => {
-        GetOrientation().then((or) => {
+        GetOrientation().then((or: any) => {
             setOrientation(or)
         })
     }, [])

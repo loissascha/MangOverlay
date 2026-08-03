@@ -14,7 +14,7 @@ import {
   SetOffsetY,
   SetUseOffset,
   GetUseOffset,
-} from "../../wailsjs/go/main/App";
+} from "../../bindings/mangoverlay/internal/services/appservice/appservice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckSquare,
@@ -33,7 +33,7 @@ function Position() {
   const [offsetY, setOffsetY] = useState<string>("0");
 
   useEffect(() => {
-    GetPosition().then((r) => {
+    GetPosition().then((r: any) => {
       setPosition(r);
       console.log("position: ", r);
     });
@@ -42,19 +42,19 @@ function Position() {
   }, []);
 
   function reloadOffsets() {
-    GetUseOffset().then((r) => {
+    GetUseOffset().then((r: any) => {
       setUseOffset(r);
     });
-    GetOffsetX().then((r) => {
+    GetOffsetX().then((r: any) => {
       setOffsetX(r);
     });
-    GetOffsetY().then((r) => {
+    GetOffsetY().then((r: any) => {
       setOffsetY(r);
     });
   }
 
   function reloadTableColumns() {
-    GetTableColumns().then((r) => {
+    GetTableColumns().then((r: any) => {
       setTableColumns(r);
     });
   }

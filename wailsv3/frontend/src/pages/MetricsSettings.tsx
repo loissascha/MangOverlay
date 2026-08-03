@@ -5,7 +5,7 @@ import {
   ActivateElement,
   DeactivateElement,
   GetElements,
-} from "../../wailsjs/go/main/App";
+} from "../../bindings/mangoverlay/internal/services/appservice/appservice";
 import SettingBox from "../ui/SettingBox";
 
 interface MetricItemProps {
@@ -73,7 +73,7 @@ function MetricsSettings() {
   const [extraElements, setExtraElements] = useState<any>([]);
 
   useEffect(() => {
-    GetElements().then((r) => {
+    GetElements().then((r: any) => {
       setElements(r);
     });
   }, []);
@@ -309,14 +309,14 @@ function MetricsSettings() {
                 active={e.Active}
                 activate={() => {
                   ActivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
                 }}
                 deactivate={() => {
                   DeactivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
@@ -333,14 +333,14 @@ function MetricsSettings() {
                 active={e.Active}
                 activate={() => {
                   ActivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
                 }}
                 deactivate={() => {
                   DeactivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
@@ -358,14 +358,14 @@ function MetricsSettings() {
                 active={e.Active}
                 activate={() => {
                   ActivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
                 }}
                 deactivate={() => {
                   DeactivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
@@ -382,14 +382,14 @@ function MetricsSettings() {
                 active={e.Active}
                 activate={() => {
                   ActivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
                 }}
                 deactivate={() => {
                   DeactivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
@@ -406,14 +406,14 @@ function MetricsSettings() {
                 active={e.Active}
                 activate={() => {
                   ActivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
                 }}
                 deactivate={() => {
                   DeactivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
@@ -431,14 +431,14 @@ function MetricsSettings() {
                 active={e.Active}
                 activate={() => {
                   ActivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
                 }}
                 deactivate={() => {
                   DeactivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
@@ -455,14 +455,14 @@ function MetricsSettings() {
                 active={e.Active}
                 activate={() => {
                   ActivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
                 }}
                 deactivate={() => {
                   DeactivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
@@ -480,14 +480,14 @@ function MetricsSettings() {
                 active={e.Active}
                 activate={() => {
                   ActivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
                 }}
                 deactivate={() => {
                   DeactivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
@@ -504,14 +504,14 @@ function MetricsSettings() {
                 active={e.Active}
                 activate={() => {
                   ActivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
                 }}
                 deactivate={() => {
                   DeactivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
@@ -528,14 +528,14 @@ function MetricsSettings() {
                 active={e.Active}
                 activate={() => {
                   ActivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });
                 }}
                 deactivate={() => {
                   DeactivateElement(e.Name).then(() => {
-                    GetElements().then((r) => {
+                    GetElements().then((r: any) => {
                       setElements(r);
                     });
                   });

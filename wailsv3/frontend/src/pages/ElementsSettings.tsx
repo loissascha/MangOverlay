@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ActivateElement, DeactivateElement, GetElements } from "../../wailsjs/go/main/App";
+import { ActivateElement, DeactivateElement, GetElements } from "../../bindings/mangoverlay/internal/services/appservice/appservice";
 import SettingBox from "../ui/SettingBox";
 
 function ElementsSettings() {
@@ -10,7 +10,7 @@ function ElementsSettings() {
     const ignore_elements = ["cpu", "gpu", "core", "vram", "procmem", "battery", "frame", "fps", "time", "hdr", "fsr", "refresh_rate", "resolution", "version", "wine", "arch", "vulkan", "engine", "hud", "no_small_font", "no_display", "present_mode", "io_read", "io_write", "throttling", "exec_name", "network"]
 
     useEffect(() => {
-        GetElements().then((r) => {
+        GetElements().then((r: any) => {
             setElements(r)
         })
     }, [])
@@ -95,7 +95,7 @@ function ElementsSettings() {
                                         className="cursor-pointer"
                                         onClick={() => {
                                             DeactivateElement(e.Name).then(() => {
-                                                GetElements().then((r) => {
+                                                GetElements().then((r: any) => {
                                                     setElements(r)
                                                 })
                                             })
@@ -118,7 +118,7 @@ function ElementsSettings() {
                                         className="cursor-pointer"
                                         onClick={() => {
                                             ActivateElement(e.Name).then(() => {
-                                                GetElements().then((r2) => {
+                                                GetElements().then((r2: any) => {
                                                     setElements(r2)
                                                 })
                                             })
